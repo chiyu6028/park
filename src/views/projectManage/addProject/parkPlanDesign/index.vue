@@ -109,7 +109,7 @@ export default {
   },
   methods: {
     initForm () {
-      this.$axios.post(URL['selectForFormByAjax'], { projectid: this.projectid }).then(resp => {
+      this.$axios.post(URL['SELECT_PLAN_DESIGN_INFO'], { projectid: this.projectid }).then(resp => {
         this.loading = false
         if (resp.status === 200) {
           if (resp.data && resp.data.code === 1) {

@@ -56,7 +56,8 @@ export default {
   methods: {
     ...mapMutations('addProject', {
       setProjectId: 'setProjectId',
-      setPageFlag: 'setPageFlag'
+      setPageFlag: 'setPageFlag',
+      setFlag: 'setFlag'
     }),
     save (value) {
       this.$axios.post(URL['UPDATE_PROJECT_BASE_STATUS'], { projectid: this.projectid, parkstatus: value }).then(resp => {
@@ -79,6 +80,7 @@ export default {
     this.setPageFlag({ flag: this.flag })
     if (this.flag === 'edit') {
       this.setProjectId({ projectId: this.$route.params.id })
+      this.setFlag({ flag: 'edit' })
     } else {
       this.$axios.get(URL['GET_PARK_PROJECTID']).then(resp => {
         if (resp.status === 200) {

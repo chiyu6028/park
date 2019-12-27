@@ -63,41 +63,45 @@
         v-loading="loading"
         :data="tableData"
         max-height="450"
-        style="width: 100%">
+        style="width: 100%; text-align: center">
         <el-table-column
           prop="projectid"
-          label="项目ID">
+          label="项目ID" align="center"
+          >
         </el-table-column>
         <el-table-column
-          prop="parkname"
+          prop="parkname" align="center"
           label="园区名称">
         </el-table-column>
         <el-table-column
-          prop="parktype"
+          prop="parktype" align="center"
           label="园区类型">
         </el-table-column>
         <el-table-column
-          prop="location"
+          prop="location" align="center"
           label="所属区位">
         </el-table-column>
         <el-table-column
-          prop="usetype"
+          prop="usetype" align="center"
           label="用地性质">
         </el-table-column>
         <el-table-column
-          prop="usearea"
+          prop="usearea" align="center"
           label="用地面积（公顷）">
         </el-table-column>
         <el-table-column
-          prop="updatetime"
+          prop="updatetime" align="center"
           label="发布时间">
         </el-table-column>
         <el-table-column
-          prop="operate"
+          prop="operate" align="center"
           label="编辑">
         <template slot-scope="{row}">
-          <i class="el-icon-edit" @click="editProject(row)"></i>
-          <i class="el-icon-delete pointer" @click="deleteProject(row)"></i>
+          <div style="text-align: center">
+            <i class="el-icon-edit" @click="editProject(row)" style="margin-right:50px"></i>
+            <i class="el-icon-delete pointer" @click="deleteProject(row)"></i>
+          </div>
+
         </template>
         </el-table-column>
       </el-table>
@@ -183,6 +187,9 @@ export default {
         if (resp.status === 200) {
           if (resp.data && resp.data.code === 1) {
             this.tableData = resp.data.data
+            this.tableData.forEach(item => {
+              item.updatetime = item.updatetime.substring(0, 10)
+            })
             this.total = resp.data.pageCount
           } else {
             this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')

@@ -23,7 +23,7 @@
         >{{ item.label }}</el-menu-item>
       </el-menu>
     </el-col>
-    <el-col :span="4">
+    <el-col :span="4" style="text-align:right">
       <div class="inline-block line-h-h float-right exit" @click="logout">退出</div>
       <div class="inline-block line-h-h float-right">
         <i class="el-icon-s-custom"></i>
@@ -79,9 +79,9 @@ $height: 78px;
   background-color: #262b35;
   color: $white;
   @include font16;
-  .el-col-16{
-  width:58.2%;
-  }
+  // .el-col-16{
+  // width:100%;
+  // }
 
   img {
     height: 48px;

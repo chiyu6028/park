@@ -264,10 +264,11 @@ export default {
   },
   methods: {
     initForm () {
-      this.$axios.post(URL['selectForFormByAjax'], { projectid: this.projectid }).then(resp => {
+      this.$axios.post(URL['SELECT_INVERST_OPERATE_INFO'], { projectid: this.projectid }).then(resp => {
         this.loading = false
         if (resp.status === 200) {
           if (resp.data && resp.data.code === 1) {
+            console.log(resp.data.data)
             this.form = resp.data.data
           } else {
             this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')

@@ -126,11 +126,12 @@ export default {
     }
   },
   mounted () {
+    // console.log(this.projectid, this.flag, this.pageMark)
     if (this.flag === 'edit') this.initForm()
   },
   methods: {
     initForm () {
-      this.$axios.post(URL['selectForFormByAjax'], { projectid: this.projectid }).then(resp => {
+      this.$axios.post(URL['SELECT_PROJECT_BASE_INFO'], { projectid: this.projectid }).then(resp => {
         this.loading = false
         if (resp.status === 200) {
           if (resp.data && resp.data.code === 1) {
