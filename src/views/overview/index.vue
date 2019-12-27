@@ -1,6 +1,6 @@
 <template>
   <div class="yqbg">
-  <img src="@images/bgright.png" style="position:absolute;right:0;top:100px;width:20%;">
+  <img src="@images/bgright.png" style="position:absolute;right:0;top:0px;width:18%;">
   <div style="width:100%;clear:both;margin:0 auto;"></div>
   </div>
 </template>
