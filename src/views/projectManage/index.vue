@@ -15,7 +15,9 @@
           <el-breadcrumb-item>项目管理</el-breadcrumb-item>
           <el-breadcrumb-item>{{ pageName }}</el-breadcrumb-item>
         </el-breadcrumb>
+        <div style="width:100%;background-color:#fff;padding:30px;position:relative;">
         <router-view></router-view>
+        </div>
       </el-main>
     </el-container>
   </el-container>
@@ -60,6 +62,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+    .el-main{
+    background:rgba(236,241,242,1);
+    padding:30px !important;
+    margin:0 !important;
+    }
+    .beeadrumb{
+    height: 45px !important;
+    line-height: 10px !important;
+    font-size: 12px !important;
+    }
 .project-container {
   .project-aside {
     position: absolute;
@@ -68,6 +81,9 @@ export default {
     bottom: 0;
     width: 200px;
     overflow-y: auto;
+  }
+  .el-breadcrumb__inner{
+  color:#999999 !important;
   }
   .project-content {
     position: absolute;
@@ -80,7 +96,10 @@ export default {
     .content-main{
       margin: 0 0 0 60px;
     }
+  .el-form-item__label{
+color:#656B7F !important;
 
+  }
     .beeadrumb{
       height: 78px;
       line-height: 78px;
@@ -90,10 +109,13 @@ export default {
   .el-menu {
     background-color: #2e333d;
     height: calc(100%);
+    padding-top:30px;
 
     .el-menu-item {
       background-color: #2e333d;
-      color: $white;
+      color:#A9B0B8;
+      text-align:center;
+      margin-top:20px;
       @include font16;
 
       &:hover {
@@ -105,7 +127,8 @@ export default {
       &.is-active {
         background-color: #294262;
         color: $white;
-        border-left: 1px #539ef4 solid;
+        border-left: 2px #539ef4 solid;
+        text-align:center;
         @include font16;
       }
     }

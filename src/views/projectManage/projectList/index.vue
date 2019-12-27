@@ -57,6 +57,7 @@
       </el-form>
     </el-col>
     <el-col :span="24">
+        <div class="itemtitle">项目列表</div>
       <el-table
         border
         v-loading="loading"
@@ -104,7 +105,7 @@
     <!-- <el-col :span="24" v-show="!loading && tableData.length === 0" class="empty">
       暂无数据！
     </el-col> -->
-    <el-col :span="24">
+    <el-col :span="24" style="margin-top:40px;">
       <el-pagination
         background
         layout="prev, pager, next"
@@ -226,6 +227,19 @@ export default {
   width: 20%;
   margin-right: 0;
 }
+.el-icon-edit{
+    cursor: pointer;
+    margin-right: 15px;
+}
+.el-icon-edit:hover,el-icon-delete:hover{
+  color:#1580F8;
+}
+.itemtitle{
+  font-size:18px;
+  font-weight:bold;
+  color:#262B35;
+  padding:10px 0 20px 0;
+}
 .inline-5.el-input {
   width: 20%;
   margin-right: 0;
@@ -241,6 +255,10 @@ export default {
 .inline-1.el-form-item{
   width: 100%;
   margin-right: 0;
+}
+.el-button{
+  margin-left:20px;
+  padding:12px 40px;
 }
 .empty{
   text-align: center;

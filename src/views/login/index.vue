@@ -6,7 +6,7 @@
         <div class="login-panel-body">
           <el-form ref="loginForm" :model="formData" :rules="rules">
             <el-form-item prop="account">
-              <el-input v-model="formData.account" prefix-icon="el-icon-user" placeholder="admin"></el-input>
+              <el-input v-model="formData.account" prefix-icon="el-icon-user" placeholder="用户名"></el-input>
             </el-form-item>
             <el-form-item prop="password">
               <el-input
@@ -38,7 +38,7 @@
       title
       custom-class="login-dialog"
       :visible.sync="dialogVisible"
-      width="20vw"
+      width="50vw"
       :close-on-click-modal="false"
       :close-on-press-escape="false"
       :show-close="false"
@@ -46,7 +46,7 @@
       top="36vh"
     >
       <div class="text-center">
-        <span>账号已禁用，不可登录此系统</span>
+        <span>用户名或密码错误，请重试！</span>
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" class="margin-right-15" @click="dialogVisible = false">确 定</el-button>
@@ -137,7 +137,6 @@ $height: 646px;
   background-color: $white;
   box-shadow: 0px 0px 40px 0px rgba(6, 24, 101, 0.2);
   border-radius: 10px;
-
   .login-panel {
     width: $width;
     height: $height;
@@ -150,6 +149,8 @@ $height: 646px;
 
       @include font36;
     }
+
+
 
     .login-panel-body {
       padding: 0 57px;
@@ -191,6 +192,7 @@ $height: 646px;
       .login-type-img {
         text-align: center;
       }
+
     }
   }
 }

@@ -1,8 +1,8 @@
 <template>
 <div>
 
-  <el-row class="park-header">
-    <el-col :span="4">
+  <el-row class="park-header" >
+    <el-col :span="4" style="width:300px;">
       <img class="mark" src="@images/logo.png" />
     </el-col>
     <!-- <el-col :span="2">
@@ -74,11 +74,14 @@ export default {
 $height: 78px;
 
 .park-header {
-  width: 100%;
+  width: 100% !important;
   height: $height;
   background-color: #262b35;
   color: $white;
   @include font16;
+  .el-col-16{
+  width:58.2%;
+  }
 
   img {
     height: 48px;
@@ -91,6 +94,13 @@ $height: 78px;
     line-height: $height;
     @include font18;
   }
+  .el-menu{
+  margin: 0 auto;
+  }
+  .header-menu{
+      width:45% !important;
+      padding:0 50px !important;
+  }
 
   .header-menu.el-menu {
     background-color: #262b35;
@@ -99,12 +109,13 @@ $height: 78px;
     .el-menu-item {
       height: $height;
       line-height: $height;
-      color: $white;
+      color: #A9B0B8;
       @include font16;
 
       &:hover,
       &.is-active {
         background-color: #262b35 !important;
+        color:$white;
       }
     }
   }
