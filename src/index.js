@@ -3,6 +3,7 @@ import ElementUI from 'element-ui'
 import '@utils/axios'
 import App from './App.vue'
 import router from './views/router.js'
+// import router from './router'
 import store from './store'
 
 import 'element-ui/lib/theme-chalk/index.css'

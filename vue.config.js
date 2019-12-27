@@ -4,8 +4,8 @@ const resolve = _path => {
 }
 
 module.exports = {
-  // publicPath: '/',
-  publicPath: './', // pro
+  publicPath: '/',
+  // publicPath: './', // pro
   outputDir: 'dist',
   pages: {
     index: {

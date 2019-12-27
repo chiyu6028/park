@@ -1,5 +1,4 @@
 <template>
-<div class="draft-container">
   <el-row>
     <el-col :span="24" class="margin-bottom-15">
       <span class="title margin-right-10">草稿箱</span>
@@ -38,23 +37,14 @@
         </el-table-column>
         <el-table-column
           prop="updatetime"
-          width ="300"
           label="发布时间">
-        </el-table-column>
-        <el-table-column
-          prop="operate"
-          label="删除">
-        <template slot-scope="{row}">
-          <!-- <i class="el-icon-edit"></i> -->
-          <i class="el-icon-delete pointer" @click="deleteProject(row)"></i>
-        </template>
         </el-table-column>
         <el-table-column
           prop="operate"
           label="编辑">
         <template slot-scope="{row}">
-          <!-- <i class="el-icon-edit"></i> -->
-          <i class="el-icon-delete pointer" @click="editProject(row)"></i>
+          <i class="el-icon-edit" @click="editProject(row)"></i>
+          <i class="el-icon-delete pointer" @click="deleteProject(row)"></i>
         </template>
         </el-table-column>
       </el-table>
@@ -73,7 +63,6 @@
       </el-pagination>
     </el-col>
   </el-row>
-</div>
 </template>
 
 <script>
@@ -110,6 +99,9 @@ export default {
         }
       })
     },
+    editProject (row) {
+      this.$router.push({ path: `editProject/${row.projectid}` })
+    },
     deleteProject (row) {
       this.$axios.post(URL['DELETE_PROJECT_BASE'], { projectid: row.projectid }).then(resp => {
         if (resp.status === 200) {
@@ -137,9 +129,4 @@ export default {
   text-align: center;
   line-height: 300px;
 }
-// .draft-container{
-//   /deep/.el-table th{
-//     text-align: center;
-//   }
-// }
 </style>

@@ -95,7 +95,7 @@
           prop="operate"
           label="编辑">
         <template slot-scope="{row}">
-          <!-- <i class="el-icon-edit"></i> -->
+          <i class="el-icon-edit" @click="editProject(row)"></i>
           <i class="el-icon-delete pointer" @click="deleteProject(row)"></i>
         </template>
         </el-table-column>
@@ -190,6 +190,9 @@ export default {
           this.$message.error('系统异常，请联系管理员！')
         }
       })
+    },
+    editProject (row) {
+      this.$router.push({ path: `editProject/${row.projectid}` })
     },
     deleteProject (row) {
       this.$axios.post(URL['DELETE_PROJECT_BASE'], { projectid: row.projectid }).then(resp => {

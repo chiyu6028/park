@@ -1,11 +1,13 @@
 <template>
+<div>
+
   <el-row class="park-header">
-    <el-col :span="2">
-      <img class="mark" src="@images/mark.png" />
+    <el-col :span="4">
+      <img class="mark" src="@images/logo.png" />
     </el-col>
-    <el-col :span="2">
+    <!-- <el-col :span="2">
       <div class="header-title padding-left-5">产业数据库</div>
-    </el-col>
+    </el-col> -->
     <el-col :span="16">
       <el-menu
         :default-active="activeIndex"
@@ -22,13 +24,15 @@
       </el-menu>
     </el-col>
     <el-col :span="4">
-      <div class="inline-block line-h-h float-right exit">退出</div>
+      <div class="inline-block line-h-h float-right exit" @click="logout">退出</div>
       <div class="inline-block line-h-h float-right">
         <i class="el-icon-s-custom"></i>
         <span>admin</span>
       </div>
     </el-col>
   </el-row>
+
+</div>
 </template>
 
 <script>
@@ -58,6 +62,9 @@ export default {
         }
       })
       this.$router.push({ path })
+    },
+    logout () {
+      this.$router.push('/login')
     }
   }
 }
@@ -74,7 +81,9 @@ $height: 78px;
   @include font16;
 
   img {
-    height: $height;
+    height: 48px;
+    margin-left: 42px;
+    margin-top: 10px;
   }
 
   .header-title {

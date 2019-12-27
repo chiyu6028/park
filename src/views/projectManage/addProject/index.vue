@@ -6,6 +6,10 @@
       </el-tab-pane>
     </el-tabs>
     <div class="notice">
+      <el-button round @click="toList" v-if="flag === 'edit'">
+        <i class="el-icon-notebook-2"></i>
+        返回列表
+      </el-button>
       <el-button type="info" round @click="() => save(1)">
         <i class="el-icon-delete"></i>
         存为草稿
@@ -34,6 +38,7 @@ import Information from './information'
 
 export default {
   name: 'addProject',
+  props: ['flag'],
   components: { ParkPlanDesign, Parkview, Investment, IndustrialPlanning, ArchitecturalDesign, LandscapeDesign, Periphery, Information },
   data () {
     const addList = D.addProjectTab
@@ -50,7 +55,8 @@ export default {
   },
   methods: {
     ...mapMutations('addProject', {
-      setProjectId: 'setProjectId'
+      setProjectId: 'setProjectId',
+      setPageFlag: 'setPageFlag'
     }),
     save (value) {
       this.$axios.post(URL['UPDATE_PROJECT_BASE_STATUS'], { projectid: this.projectid, parkstatus: value }).then(resp => {
@@ -64,20 +70,28 @@ export default {
           this.$message.error('系统异常，请联系管理员！')
         }
       })
+    },
+    toList () {
+      this.$router.go(-1)
     }
   },
   mounted () {
-    this.$axios.get(URL['GET_PARK_PROJECTID']).then(resp => {
-      if (resp.status === 200) {
-        if (resp.data && resp.data.code === 1 && resp.data.data && resp.data.data.projectId) {
-          this.setProjectId({ projectId: resp.data.data.projectId })
+    this.setPageFlag({ flag: this.flag })
+    if (this.flag === 'edit') {
+      this.setProjectId({ projectId: this.$route.params.id })
+    } else {
+      this.$axios.get(URL['GET_PARK_PROJECTID']).then(resp => {
+        if (resp.status === 200) {
+          if (resp.data && resp.data.code === 1 && resp.data.data && resp.data.data.projectId) {
+            this.setProjectId({ projectId: resp.data.data.projectId })
+          } else {
+            this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '获取项目id失败！')
+          }
         } else {
-          this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '获取项目id失败！')
+          this.$message.error('系统异常，请联系管理员！')
         }
-      } else {
-        this.$message.error('系统异常，请联系管理员！')
-      }
-    })
+      })
+    }
   }
 }
 </script>

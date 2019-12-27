@@ -2,7 +2,6 @@ import Index from './index.vue'
 import ProjectList from './projectList'
 import AddProject from './addProject'
 import Draft from './draft'
-import Detail from './detail'
 
 export default {
   path: 'projectManage',
@@ -10,8 +9,8 @@ export default {
   redirect: '/index/projectManage/projectList',
   children: [
     { path: 'projectList', component: ProjectList },
-    { path: 'addProject', component: AddProject },
+    { path: 'addProject', component: AddProject, props: { flag: 'add' } },
     { path: 'draft', component: Draft },
-    { path: 'detail', component: Detail }
+    { path: 'addProject/:id', component: AddProject, props: { flag: 'edit' }, alias: 'editProject/:id' }
   ]
 }

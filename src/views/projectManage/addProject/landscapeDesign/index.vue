@@ -92,10 +92,29 @@ export default {
   },
   computed: {
     ...mapState('addProject', {
-      projectid: state => state.project_id
+      projectid: state => state.project_id,
+      flag: state => state.flag,
+      pageMark: state => state.flag + ',' + state.project_id
     })
   },
+  mounted () {
+    if (this.flag === 'edit') this.initForm()
+  },
   methods: {
+    initForm () {
+      this.$axios.post(URL['selectForFormByAjax'], { projectid: this.projectid }).then(resp => {
+        this.loading = false
+        if (resp.status === 200) {
+          if (resp.data && resp.data.code === 1) {
+            this.form = resp.data.data
+          } else {
+            this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
+          }
+        } else {
+          this.$message.error('系统异常，请联系管理员！')
+        }
+      })
+    },
     onSubmit () {
       this.$axios.post(URL['INSERT_GARDEN_DESIGN'], { ...this.form, projectid: this.projectid }).then(resp => {
         if (resp.status === 200) {
@@ -111,6 +130,12 @@ export default {
     },
     setFileList (column, value) {
       this.form[column] = value
+    }
+  },
+  watch: {
+    pageMark (value) {
+      let info = value.split(',')
+      if (info[0] === 'edit' && info[1]) this.initForm()
     }
   }
 }

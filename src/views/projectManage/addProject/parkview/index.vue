@@ -103,7 +103,9 @@ export default {
   },
   computed: {
     ...mapState('addProject', {
-      projectid: state => state.project_id
+      projectid: state => state.project_id,
+      flag: state => state.flag,
+      pageMark: state => state.flag + ',' + state.project_id
     }),
     positionProps () {
       let vm = this
@@ -123,7 +125,24 @@ export default {
       }
     }
   },
+  mounted () {
+    if (this.flag === 'edit') this.initForm()
+  },
   methods: {
+    initForm () {
+      this.$axios.post(URL['selectForFormByAjax'], { projectid: this.projectid }).then(resp => {
+        this.loading = false
+        if (resp.status === 200) {
+          if (resp.data && resp.data.code === 1) {
+            this.form = resp.data.data
+          } else {
+            this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
+          }
+        } else {
+          this.$message.error('系统异常，请联系管理员！')
+        }
+      })
+    },
     onSubmit () {
       this.$refs.parkView.validate(isValid => {
         if (isValid) {
@@ -152,6 +171,10 @@ export default {
       this.form.city = city
       this.form.region = region
       this.form.street = street
+    },
+    pageMark (value) {
+      let info = value.split(',')
+      if (info[0] === 'edit' && info[1]) this.initForm()
     }
   }
 }
