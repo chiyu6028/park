@@ -17,6 +17,7 @@ export default {
 	background-image:url("~@images/map.png");
 	height:100%;
 	width:100%;
-	background-size: cover;
+	background-size: 126%;
+    background-position: -260px -271px;
 }
 </style>
