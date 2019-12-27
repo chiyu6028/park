@@ -9,7 +9,7 @@
               <el-input v-model="formData.account" prefix-icon="el-icon-user" placeholder="用户名"></el-input>
             </el-form-item>
             <el-form-item prop="password">
-              <el-input
+              <el-input class="logpsd"
                 v-model="formData.password"
                 show-password
                 prefix-icon="el-icon-lock"
