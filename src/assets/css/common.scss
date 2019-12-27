@@ -2,7 +2,71 @@ html,
 body {
   font-family: 'Microsoft YaHei';
 }
-
+.el-tabs__header{
+  position: absolute;
+    top: 0px;
+    left: 0px;
+    border:0;
+    background:rgba(236,241,242,1);
+    width:100%;
+    height:49px;
+}
+.el-input__suffix{
+  padding-left: 18px;
+  right:25px !important;
+  top:-5px;
+}
+.el-input--suffix>.el-input__inner {
+    padding-left: 10px !important;
+}
+.el-icon-date{
+      margin-left: 105px;
+    margin-top: -6px;
+}
+.el-upload{
+  border:1px solid #E2E7EB;
+  padding:20px;
+  width:87%;
+}
+.el-input--suffix .el-input__inner{
+  width:87%;
+}
+.el-input--suffix .el-input__inner{
+  padding:0 !important;
+  padding-left:10px !important;
+}
+.el-upload--picture-card,.el-upload-list--picture-card .el-upload-list__item{
+  width:280px !important;
+  height:180px !important;
+}
+.el-input__inner{
+  margin-bottom:15px;
+}
+.notice{
+  top: 0px !important;
+  right: 30px !important;
+}
+.el-tabs__item{
+  text-align:center;
+}
+.el-tabs__nav-scroll .el-tabs__nav{
+  border:0 !important;
+}
+.el-tabs__header .el-tabs__item{
+  width:110px;
+height:40px;
+background:rgba(181,194,202,1);
+border-radius:4px;
+margin-right:15px;
+text-algin:center;
+}
+.el-tabs__header .is-active{
+  height:55px;
+  background:#fff;
+}
+.el-tabs__content{
+  margin-top:40px
+}
 .router-fade-enter-active,
 .router-fade-leave-active {
   transition: opacity .5s;
@@ -27,6 +91,34 @@ body {
   background-size: cover;
 }
 
+  .el-table .cell {
+  text-align: center;
+  }
+  .el-table .cell a:hover{
+  color:#1580F8;
+  }
+el-form-item__label {
+  color:#656B7F !important;
+}
+.el-table thead{
+  color:#4B6570;
+}
+.el-table--border td{
+  border-top:1px solid #E2E7EB !important;
+  border-left:0;
+  border-right:0;
+}
+.el-table th.is-leaf{
+  border-bottom:1px solid #E2E7EB !important;
+  border-left:0;
+  border-right:0;
+  background:#FAFCFE;
+}
+.el-tabs--card>.el-tabs__header .el-tabs__item.is-active{
+  color:#333 !important;
+  font-weight:bold !important;
+  font-size:14px !important;
+}
 // 仅限于登录界面input只保留底线
 .login-panel-body .el-input__inner {
   border-radius: 0px;
@@ -258,4 +350,7 @@ body {
 
 .pointer {
   cursor: pointer;
+}
+.text-center span{
+color:red;
 }
