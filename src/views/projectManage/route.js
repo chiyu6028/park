@@ -2,6 +2,7 @@ import Index from './index.vue'
 import ProjectList from './projectList'
 import AddProject from './addProject'
 import Draft from './draft'
+import Detail from './detail'
 
 export default {
   path: 'projectManage',
@@ -10,6 +11,7 @@ export default {
   children: [
     { path: 'projectList', component: ProjectList },
     { path: 'addProject', component: AddProject },
-    { path: 'draft', component: Draft }
+    { path: 'draft', component: Draft },
+    { path: 'detail', component: Detail }
   ]
 }

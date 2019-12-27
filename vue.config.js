@@ -24,10 +24,29 @@ module.exports = {
     }
   },
   devServer: {
-    // proxy: 'http://192.168.1.115:9999'
-    // proxy: 'http://127.0.0.1:9999'
-    // proxy: 'http://117.136.40.240:9999'
+    host: 'localhost',
+    port: 88, // 端口号
+    https: false, // https:{type:Boolean}
+    open: true, // 配置自动启动浏览器
+    proxy: 'http://192.168.31.43:9999' // 配置跨域处理,只有一个代理
+
+    // 配置多个代理
+    // proxy: {
+    //   "/api": {
+    //     target: "<url>",
+    //     ws: true,
+    //     changeOrigin: true
+    //   },
+    //   "/foo": {
+    //     target: "<other_url>"
+    //   }
+    // }
   },
+  // devServer: {
+  //   proxy: 'http://192.168.31.43:9999'
+  //   // proxy: 'http://127.0.0.1:9999'
+  //   // proxy: 'http://117.136.40.240:9999'
+  // },
   configureWebpack: config => {
     // config.module.rules.push({})
     if (process.env.NODE_ENV === 'production') {

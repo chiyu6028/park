@@ -80,19 +80,35 @@ export default {
         if (isValid && !this.isSubmit) {
           this.submitText = '登录中...'
           this.isSubmit = true
-          this.$axios
-            .post(URL['LOGIN'], {
-              username: 'sz777',
-              password: '123456'
-            })
-            .then(resp => {
-              if (resp.status === 200 && resp.data && resp.data.code === 1) {
-                this.submitText = '登录成功'
-                this.$router.push({ path: '/index' })
-              } else {
-                this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '系统异常，请联系管理员！')
-              }
-            })
+          let that = this
+          this.$axios({
+            method: 'post',
+            url: '/login',
+            data: {
+              username: that.formData.account,
+              password: this.formData.password
+            }
+          }).then(function (resp) {
+            if (resp.status === 200 && resp.data && resp.data.code === 1) {
+              that.submitText = '登录成功'
+              that.$router.push({ path: '/index' })
+            } else {
+              that.$message.error(resp.data && resp.data.msg ? resp.data.msg : '系统异常，请联系管理员！')
+            }
+          })
+          // this.$axios
+          //   .post(URL['LOGIN'], {
+          //     username: 'sz777',
+          //     password: '123456'
+          //   })
+          //   .then(resp => {
+          //     if (resp.status === 200 && resp.data && resp.data.code === 1) {
+          //       this.submitText = '登录成功'
+          //       this.$router.push({ path: '/index' })
+          //     } else {
+          //       this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '系统异常，请联系管理员！')
+          //     }
+          //   })
         } else if (!isValid) {
           // for test
           this.dialogVisible = true
