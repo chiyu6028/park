@@ -20,7 +20,27 @@ const dataService = {
   'UPDATE_PROJECT_BASE_STATUS': `${nameSpace}/updateProjectBaseStatus`,
   // 项目列表 和草稿箱
   'SELECT_PARK_INFO': `${nameSpace}/selectParkInfo`,
-  'DELETE_PROJECT_BASE': `${nameSpace}/deleteProjectBase`
+  'DELETE_PROJECT_BASE': `${nameSpace}/deleteProjectBase`,
+
+  // 查询园区概况
+  'SELECT_PROJECT_BASE_INFO': `${nameSpace}/selectProjectBaseById`,
+  // 投资运营
+  'SELECT_INVERST_OPERATE_INFO': `${nameSpace}/selectInvestOperateById`,
+  // 产业规划
+  'SELECT_INDUSTRIAL_PLAN_INFO': `${nameSpace}/selectIndustrialPlanInfoById`,
+  // 规划设计
+  'SELECT_PLAN_DESIGN_INFO': `${nameSpace}/selectPlanDesignById`,
+  // 建筑设计
+  'SELECT_BUILD_DESIGN_INFO': `${nameSpace}/selectBuildDesignById`,
+  // 景观设计
+  'SELECT_GARDEN_DESIGN_INFO': `${nameSpace}/selectGardenDesignById`,
+  // 周边条件
+  'SELECT_NEAR_CONDITION_INFO': `${nameSpace}/selectNearConditionById`,
+  // 周边园区
+  'SELECT_NEAR_GARDEN_INFO': `${nameSpace}/selectNearGardenById`,
+  // 方案资料
+  'SELECT_SCHEMEMATER_MATER_INFO': `${nameSpace}/selectSchemeMaterialById`
+
 }
 
 export default { ...dataService }

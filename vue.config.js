@@ -28,7 +28,7 @@ module.exports = {
     port: 88, // 端口号
     https: false, // https:{type:Boolean}
     open: true, // 配置自动启动浏览器
-    proxy: 'http://192.168.31.43:9999' // 配置跨域处理,只有一个代理
+    proxy: 'http://kdd6j4.natappfree.cc' // 配置跨域处理,只有一个代理
 
     // 配置多个代理
     // proxy: {
