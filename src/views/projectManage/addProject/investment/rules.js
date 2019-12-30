@@ -26,74 +26,109 @@ const validInt = (rule, value, callback) => {
 }
 
 export default {
-  usearea: [
-    { required: true, message: '请输入用地面积', trigger: 'blur' },
+  parkvalue: [
     { validator: validNumber, trigger: 'blur' }
   ],
-  buildarea: [
+  avgvalue: [
     { validator: validNumber, trigger: 'blur' }
   ],
-  meterbuildarea: [
+  employmentpeople: [
     { validator: validNumber, trigger: 'blur' }
   ],
-  plotratio: [
+  devotetax: [
     { validator: validNumber, trigger: 'blur' }
   ],
-  builddensity: [
-    { validator: validNumber, trigger: 'blur' }
-  ],
-  overheadarea: [
-    { validator: validNumber, trigger: 'blur' }
-  ],
-  undergroundarea: [
-    { validator: validNumber, trigger: 'blur' }
-  ],
-  greenrate: [
-    { validator: validNumber, trigger: 'blur' }
-  ],
-  parkspaceup: [
+  knowledgeproperty: [
     { validator: validInt, trigger: 'blur' }
   ],
-  parkspacedown: [
+  leasenature: [
+    { validator: validStringLen(1000), trigger: 'blur' }
+  ],
+  leaseproportion: [
+    { validator: validNumber, trigger: 'blur' }
+  ],
+  propertyfee: [
+    { validator: validNumber, trigger: 'blur' }
+  ],
+  sellprice: [
+    { validator: validNumber, trigger: 'blur' }
+  ],
+  sellarea: [
+    { validator: validNumber, trigger: 'blur' }
+  ],
+  rentlevel: [
+    { validator: validNumber, trigger: 'blur' }
+  ],
+  leasedarea: [
+    { validator: validNumber, trigger: 'blur' }
+  ],
+  surplusleasearea: [
+    { validator: validNumber, trigger: 'blur' }
+  ],
+  rentalrate: [
+    { validator: validNumber, trigger: 'blur' }
+  ],
+  enterprisenum: [
     { validator: validInt, trigger: 'blur' }
   ],
-  buildteam: [
+  nhenterprisenum: [
+    { validator: validInt, trigger: 'blur' }
+  ],
+  rdorg: [
+    { validator: validInt, trigger: 'blur' }
+  ],
+  investors: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  ideasstrategy: [
+  landmethod: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  neardes: [
+  investorattr: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  designsketch: [
+  investmentmode: [
+    { validator: validNumber, trigger: 'blur' }
+  ],
+  investteam: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  generallayout: [
+  investstrategy: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  funclayout: [
+  operubject: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  streamlineanalysis: [
+  operteam: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  curtain: [
+  favouredpolicy: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  structure: [
+  witplatform: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  electromechanical: [
+  parkservice: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  hvac: [
+  opercost: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  drainage: [
+  operprofit: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  designadvantage: [
+  businessfacilities: [
+    { validator: validStringLen(1000), trigger: 'blur' }
+  ],
+  accommodations: [
+    { validator: validStringLen(1000), trigger: 'blur' }
+  ],
+  conferencehall: [
+    { validator: validStringLen(1000), trigger: 'blur' }
+  ],
+  publicfacilities: [
+    { validator: validStringLen(1000), trigger: 'blur' }
+  ],
+  investadvantage: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
   deficiencies: [

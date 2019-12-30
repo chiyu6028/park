@@ -1,20 +1,20 @@
 <template>
-  <el-form ref="information" :model="form" :inline="false" label-position="top">
+  <el-form ref="information" :model="form" :inline="false" label-position="top" style="padding-top: 23px;">
     <el-form-item label="产业规划方案">
       <p>1、后台资料上传，可批量上传，每一类可上传最多5个文件；  2、上传文件类型包括PDF、压缩文件（rar）</p>
-      <UploadButton @setFileList="value => setFileList('industryscheme', value)"></UploadButton>
+      <UploadButton :value="form.industryschemeArr" @setFileList="value => setFileList('industryscheme', value)"></UploadButton>
     </el-form-item>
     <el-form-item label="规划设计方案">
-      <UploadButton @setFileList="value => setFileList('planscheme', value)"></UploadButton>
+      <UploadButton :value="form.planschemeArr" @setFileList="value => setFileList('planscheme', value)"></UploadButton>
     </el-form-item>
     <el-form-item label="建筑设计方案">
-      <UploadButton @setFileList="value => setFileList('buildscheme', value)"></UploadButton>
+      <UploadButton :value="form.buildschemeArr" @setFileList="value => setFileList('buildscheme', value)"></UploadButton>
     </el-form-item>
     <el-form-item label="环境设计方案">
-      <UploadButton @setFileList="value => setFileList('environscheme', value)"></UploadButton>
+      <UploadButton :value="form.environschemeArr" @setFileList="value => setFileList('environscheme', value)"></UploadButton>
     </el-form-item>
     <el-form-item label="招商运营方案">
-      <UploadButton @setFileList="value => setFileList('investscheme', value)"></UploadButton>
+      <UploadButton :value="form.investschemeArr" @setFileList="value => setFileList('investscheme', value)"></UploadButton>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">保存</el-button>
@@ -34,29 +34,34 @@ export default {
     return {
       form: {
         industryscheme: '',
+        industryschemeArr: [],
         planscheme: '',
+        planschemeArr: [],
         buildscheme: '',
+        buildschemeArr: [],
         environscheme: '',
-        investscheme: ''
+        environschemeArr: [],
+        investscheme: '',
+        investschemeArr: []
       }
     }
   },
   computed: {
     ...mapState('addProject', {
-      projectid: state => state.project_id,
-      flag: state => state.flag,
-      pageMark: state => state.flag + ',' + state.project_id
+      projectid: state => state.project_id
     })
   },
-  mounted () {
-    if (this.flag === 'edit') this.initForm()
+  mounted (id) {
+    if (this.$route.path.indexOf('/editProject/') !== -1) {
+      this.initForm(this.$route.params.id)
+    }
   },
   methods: {
-    initForm () {
-      this.$axios.post(URL['selectForFormByAjax'], { projectid: this.projectid }).then(resp => {
+    initForm (id) {
+      this.$axios.post(URL['SELECT_SCHEMEMATER_MATER_INFO'], { projectid: id || this.projectid }).then(resp => {
         this.loading = false
         if (resp.status === 200) {
-          if (resp.data && resp.data.code === 1) {
+          if (resp.data && resp.data.data && resp.data.code === 1) {
             this.form = resp.data.data
           } else {
             this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
@@ -81,12 +86,6 @@ export default {
     },
     setFileList (column, value) {
       this.form[column] = value
-    }
-  },
-  watch: {
-    pageMark (value) {
-      let info = value.split(',')
-      if (info[0] === 'edit' && info[1]) this.initForm()
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <el-tabs v-model="activeName" type="card">
-      <el-tab-pane v-for="item in addList" :key="item.name" :label="item.label" :name="item.name">
+    <el-tabs v-model="activeName" type="card" class="add-tabs">
+      <el-tab-pane v-for="item in addList" :key="item.name" :label="item.label" :name="item.name" :lazy="true" class="add-tabs-pane">
         <component :is="item.componentId"></component>
       </el-tab-pane>
     </el-tabs>
@@ -10,10 +10,10 @@
         <i class="el-icon-notebook-2"></i>
         返回列表
       </el-button>
-      <el-button type="info" round @click="() => save(1)">
+      <!-- <el-button type="info" round @click="() => save(1)">
         <i class="el-icon-delete"></i>
         存为草稿
-      </el-button>
+      </el-button> -->
       <el-button type="primary" round @click="() => save(2)">
         <i class="el-icon-s-promotion"></i>
         确认发布
@@ -55,9 +55,7 @@ export default {
   },
   methods: {
     ...mapMutations('addProject', {
-      setProjectId: 'setProjectId',
-      setPageFlag: 'setPageFlag',
-      setFlag: 'setFlag'
+      setProjectId: 'setProjectId'
     }),
     save (value) {
       this.$axios.post(URL['UPDATE_PROJECT_BASE_STATUS'], { projectid: this.projectid, parkstatus: value }).then(resp => {
@@ -77,11 +75,7 @@ export default {
     }
   },
   mounted () {
-    this.setPageFlag({ flag: this.flag })
-    if (this.flag === 'edit') {
-      this.setProjectId({ projectId: this.$route.params.id })
-      this.setFlag({ flag: 'edit' })
-    } else {
+    if (this.flag === 'add') {
       this.$axios.get(URL['GET_PARK_PROJECTID']).then(resp => {
         if (resp.status === 200) {
           if (resp.data && resp.data.code === 1 && resp.data.data && resp.data.data.projectId) {
@@ -93,6 +87,8 @@ export default {
           this.$message.error('系统异常，请联系管理员！')
         }
       })
+    } else {
+      this.setProjectId({ projectId: this.$route.params.id })
     }
   }
 }
@@ -102,7 +98,7 @@ export default {
 .notice{
   position: absolute;
   top: 78px;
-  right: 60px;
+  right: 90px;
   z-index: 12;
 }
 </style>

@@ -1,15 +1,11 @@
 const addProject = {
   namespaced: true,
   state: {
-    project_id: null,
-    flag: null
+    project_id: null
   },
   mutations: {
     setProjectId (state, { projectId }) {
       state.project_id = projectId
-    },
-    setFlag (state, { flag }) {
-      state.flag = flag
     }
   }
 }

@@ -1,3 +1,8 @@
-const state = {}
+const state = {
+  province: [],
+  city: [],
+  egion: [],
+  street: []
+}
 
 export default state

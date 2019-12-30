@@ -10,26 +10,37 @@ const validStringLen = len => {
 }
 
 export default {
-  parkname: [
-    { required: true, message: '请输入园区名称', trigger: 'blur' },
+  designteam: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  parktype: [
-    { required: true, message: '请输入园区类型', trigger: 'blur' }
-  ],
-  parkdes: [
-    { validator: validStringLen(1000), trigger: 'blur' }
-  ],
-  landscope: [
+  gideasstrategy: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
   generallayout: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  realphotos: [
+  gfuncstructure: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
-  parkhonor: [
+  coredesign: [
+    { validator: validStringLen(1000), trigger: 'blur' }
+  ],
+  entrydesign: [
+    { validator: validStringLen(1000), trigger: 'blur' }
+  ],
+  pubspacedesign: [
+    { validator: validStringLen(1000), trigger: 'blur' }
+  ],
+  roofdesign: [
+    { validator: validStringLen(1000), trigger: 'blur' }
+  ],
+  sketchdesign: [
+    { validator: validStringLen(1000), trigger: 'blur' }
+  ],
+  gardenadvantage: [
+    { validator: validStringLen(1000), trigger: 'blur' }
+  ],
+  deficiencies: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ]
 }

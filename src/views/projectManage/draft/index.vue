@@ -1,53 +1,59 @@
 <template>
-  <el-row>
+  <el-row class="form-table-list">
     <el-col :span="24" class="margin-bottom-15">
       <span class="title margin-right-10">草稿箱</span>
-      <span>检索结果共<a href="javascript: void(0)">{{ total }}</a>条</span>
+      <span class="result">检索结果共<span class="num">{{ total }}</span>条</span>
     </el-col>
     <el-col :span="24">
       <el-table
         border
         v-loading="loading"
         :data="tableData"
-        max-height="450"
+        max-height="650"
+        height="650"
         style="width: 100%">
         <el-table-column
-          prop="projectid" align="center"
+          align="center"
+          prop="projectid"
           label="项目ID">
         </el-table-column>
         <el-table-column
-          prop="parkname" align="center"
+          align="center"
+          prop="parkname"
           label="园区名称">
         </el-table-column>
         <el-table-column
-          prop="parktype" align="center"
+          align="center"
+          prop="parktype"
           label="园区类型">
         </el-table-column>
         <el-table-column
-          prop="location" align="center"
+          align="center"
+          prop="location"
           label="所属区位">
         </el-table-column>
         <el-table-column
-          prop="usetype" align="center"
+          align="center"
+          prop="usetype"
           label="用地性质">
         </el-table-column>
         <el-table-column
-          prop="usearea" align="center"
+          align="center"
+          prop="usearea"
           label="用地面积（公顷）">
         </el-table-column>
         <el-table-column
-          prop="updatetime" align="center"
+          align="center"
+          prop="updatetime"
           label="发布时间">
         </el-table-column>
         <el-table-column
-          prop="operate" align="center"
+          align="center"
+          prop="operate"
           label="编辑">
         <template slot-scope="{row}">
-          <div  style="text-align: center">
-            <i class="el-icon-edit" @click="editProject(row)" style="margin-right:50px"></i>
-            <i class="el-icon-delete pointer" @click="deleteProject(row)"></i>
-          </div>
-
+          <i class="el-icon-edit pointer" title="编辑" @click="editProject(row)"></i>
+          <i class="el-icon-delete pointer padding-left-10" title="删除" @click="deleteProject(row)"></i>
         </template>
         </el-table-column>
       </el-table>
@@ -62,6 +68,10 @@
         class="text-center"
         :current-page.sync="page"
         :page-size="pageSize"
+        @size-change="changeSize"
+        @current-change="changePage"
+        @prev-click="changePage"
+        @next-click="changePage"
         :total="total">
       </el-pagination>
     </el-col>
@@ -69,7 +79,10 @@
 </template>
 
 <script>
+import * as _ from 'lodash'
 import URL from '@config/urlConfig.js'
+import T from '@utils/tools'
+import * as _D from '@config/dictionaries'
 
 export default {
   name: 'projectList',
@@ -86,16 +99,22 @@ export default {
     this.getData()
   },
   methods: {
-    getData () {
+    getData (page) {
       this.loading = true
-      this.$axios.post(URL['SELECT_PARK_INFO'], { parkstatus: 1, page: this.page, pageSize: this.pageSize }).then(resp => {
+      this.$axios.post(URL['SELECT_PARK_INFO'], { parkstatus: 1, page: page || this.page, pageSize: this.pageSize }).then(resp => {
         this.loading = false
         if (resp.status === 200) {
           if (resp.data && resp.data.code === 1) {
-            this.tableData = resp.data.data
-            this.tableData.forEach(item => {
-              item.updatetime = item.updatetime.substring(0, 10)
-            })
+            let data = resp.data && resp.data.data ? resp.data.data : []
+            let typeConvert = T.getConvert(_D.parkTypeList)
+            let usetypeConvert = T.getConvert(_D.usetypeList)
+            this.tableData = _.map(data, v => ({
+              ...v,
+              _parktype: v.parktype,
+              parktype: T.getConvertValue(v.parktype, typeConvert),
+              _usetype: v.usetype,
+              usetype: T.getConvertValue(v.usetype, usetypeConvert)
+            }))
             this.total = resp.data.pageCount
           } else {
             this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
@@ -106,7 +125,7 @@ export default {
       })
     },
     editProject (row) {
-      this.$router.push({ path: `editProject/${row.projectid}` })
+      this.$router.push({ path: `editProject/${row.projectid}`, query: { t: Date.now() } })
     },
     deleteProject (row) {
       this.$axios.post(URL['DELETE_PROJECT_BASE'], { projectid: row.projectid }).then(resp => {
@@ -121,6 +140,13 @@ export default {
           this.$message.error('系统异常，请联系管理员！')
         }
       })
+    },
+    changeSize (pageSize) {
+      this.pageSize = pageSize
+      this.getData()
+    },
+    changePage (page) {
+      this.getData(page)
     }
   }
 }
@@ -130,6 +156,13 @@ export default {
 .title{
   font-weight: bold;
   @include font18;
+}
+.result{
+  .num{
+    padding: 0 5px;
+    color: #feb1b1;
+  }
+  @include font12;
 }
 .empty{
   text-align: center;

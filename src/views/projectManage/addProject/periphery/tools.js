@@ -1,10 +1,13 @@
+let lsh = 0
 export const getParkTmpl = () => (
   {
+    'lsh': --lsh,
     'avgvalue': null,
     'deputyenterprise': '',
     'employmentpeople': null,
     'enterprisenum': null,
     'parkimg': '',
+    'parkimgArr': [],
     'parkname': '',
     'parktype': null,
     'parkvalue': null,
@@ -12,15 +15,15 @@ export const getParkTmpl = () => (
     'rentalrate': null,
     'rentlevel': '',
     'totalbuildarea': null,
-    'uselandarea': '',
-    'timeStamp': (new Date()).getTime()
+    'uselandarea': ''
   })
 
 export const getApartmentsTmpl = () => (
   {
+    'lsh': --lsh,
     'housprice': null,
     'villagedes': '',
     'villageimg': '',
-    'villagename': '',
-    'timeStamp': (new Date()).getTime()
+    'villageimgArr': [],
+    'villagename': ''
   })

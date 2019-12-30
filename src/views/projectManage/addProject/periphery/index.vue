@@ -1,18 +1,18 @@
 <template>
-  <el-form ref="periphery" :model="form" label-position="top" :inline="true">
+  <el-form ref="periphery" :model="form" :rules="rules" label-position="top" :inline="true">
     <el-form-item class="inline-1">
       <TitleBlock title="周边条件"></TitleBlock>
     </el-form-item>
-    <el-form-item label="周边概述" class="inline-1">
+    <el-form-item label="周边概述" class="inline-1" prop="neardes">
       <el-input v-model="form.neardes"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <TitleBlock title="周边园区"></TitleBlock>
     </el-form-item>
-    <el-form-item class="inline-1">
+    <el-form-item class="inline-1 periphery-block">
       <ParkGround
         v-for="item in form.parkNearGarden"
-        :key="item.timeStamp"
+        :key="item.lsh"
         :row="item"
         ref="park"
         @deletePark="deletePark">
@@ -21,13 +21,14 @@
     <el-form-item class="inline-1">
       <el-button type="primary" @click="addPark">新增一条周边园区</el-button>
     </el-form-item>
+    <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item class="inline-1">
       <TitleBlock title="周边住宅"></TitleBlock>
     </el-form-item>
-    <el-form-item class="inline-1">
+    <el-form-item class="inline-1 periphery-block">
       <ApartmentsAround
         v-for="item in form.parkNearHouse"
-        :key="item.timeStamp"
+        :key="item.lsh"
         :row="item"
         ref="apartments"
         @deleteApartments="deleteApartments">
@@ -36,6 +37,7 @@
     <el-form-item class="inline-1">
       <el-button type="primary" @click="addApartments">新增一条周边小区</el-button>
     </el-form-item>
+    <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item class="inline-1">
       <el-button type="primary" @click="onSubmit">保存</el-button>
     </el-form-item>
@@ -49,6 +51,7 @@ import TitleBlock from '@components/block/titleBlock'
 import ParkGround from './parkAround.vue'
 import ApartmentsAround from './apartmentsAround'
 import URL from '@config/urlConfig.js'
+import rules from './rules.js'
 import { getParkTmpl, getApartmentsTmpl } from './tools'
 
 export default {
@@ -56,6 +59,7 @@ export default {
   components: { TitleBlock, ParkGround, ApartmentsAround },
   data () {
     return {
+      rules,
       form: {
         neardes: '',
         parkNearGarden: [ getParkTmpl() ],
@@ -65,21 +69,42 @@ export default {
   },
   computed: {
     ...mapState('addProject', {
-      projectid: state => state.project_id,
-      flag: state => state.flag,
-      pageMark: state => state.flag + ',' + state.project_id
+      projectid: state => state.project_id
     })
   },
   mounted () {
-    if (this.flag === 'edit') this.initForm()
+    if (this.$route.path.indexOf('/editProject/') !== -1) {
+      this.initForm(this.$route.params.id)
+    }
   },
   methods: {
     initForm () {
-      this.$axios.post(URL['selectForFormByAjax'], { projectid: this.projectid }).then(resp => {
-        this.loading = false
+      this.$axios.post(URL['SELECT_NEAR_CONDITION_INFO'], { projectid: this.projectid }).then(resp => {
         if (resp.status === 200) {
-          if (resp.data && resp.data.code === 1) {
-            this.form = resp.data.data
+          if (resp.data && resp.data.data && resp.data.code === 1) {
+            this.form.neardes = resp.data.data.neardes
+          } else {
+            this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
+          }
+        } else {
+          this.$message.error('系统异常，请联系管理员！')
+        }
+      })
+      this.$axios.post(URL['SELECT_NEAR_GARDEN_INFO'], { projectid: this.projectid }).then(resp => {
+        if (resp.status === 200) {
+          if (resp.data && resp.data.data && resp.data.code === 1) {
+            this.form.parkNearGarden = resp.data.data
+          } else {
+            this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
+          }
+        } else {
+          this.$message.error('系统异常，请联系管理员！')
+        }
+      })
+      this.$axios.post(URL['SELECT_NEAR_HOUSE_INFO'], { projectid: this.projectid }).then(resp => {
+        if (resp.status === 200) {
+          if (resp.data && resp.data.data && resp.data.code === 1) {
+            this.form.parkNearHouse = resp.data.data
           } else {
             this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
           }
@@ -91,14 +116,14 @@ export default {
     addPark () {
       this.form.parkNearGarden.push(getParkTmpl())
     },
-    deletePark (timeStamp) {
-      this.form.parkNearGarden = _.filter(this.form.parkNearGarden, v => v.timeStamp !== timeStamp)
+    deletePark (lsh) {
+      this.form.parkNearGarden = _.filter(this.form.parkNearGarden, v => v.lsh !== lsh)
     },
     addApartments () {
       this.form.parkNearHouse.push(getApartmentsTmpl())
     },
-    deleteApartments (timeStamp) {
-      this.form.parkNearHouse = _.filter(this.form.parkNearHouse, v => v.timeStamp !== timeStamp)
+    deleteApartments (lsh) {
+      this.form.parkNearHouse = _.filter(this.form.parkNearHouse, v => v.lsh !== lsh)
     },
     collectInfo () {
       this.form.parkNearGarden = _.map(this.$refs['park'], v => v.getInfo())
@@ -122,23 +147,15 @@ export default {
     setFileList (column, value) {
       this.form[column] = value
     }
-  },
-  watch: {
-    pageMark (value) {
-      let info = value.split(',')
-      if (info[0] === 'edit' && info[1]) this.initForm()
-    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.inline-5.el-form-item {
-  width: 20%;
-  margin-right: 0;
-}
-.inline-1.el-form-item{
-  width: 100%;
-  margin-right: 0;
+.el-form-item.inline-1.periphery-block {
+  width: calc(100% - 60px);
+  border-radius:4px;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 0px 20px 0px rgba(0, 0, 0, 0.1);
 }
 </style>

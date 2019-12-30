@@ -1,5 +1,5 @@
 const rules = {
-  account: [
+  username: [
     { type: 'string', required: true, message: '请输入账户名', trigger: 'blur' }
   ],
   password: [

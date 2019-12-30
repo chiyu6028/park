@@ -1,14 +1,13 @@
 export const headerList = [
   { index: '1', label: '园区概览', path: '/index/overview' },
-  { index: '2', label: '项目管理', path: '/index/projectManage' },
-  { index: '3', label: '系统管理', path: '/index/systemManage' }
+  { index: '2', label: '项目管理', path: '/index/projectManage' }
+  // { index: '3', label: '系统管理', path: '/index/systemManage' }
 ]
 
 export const projectManageAside = [
   { index: '1', label: '项目列表', path: '/index/projectManage/projectList' },
   { index: '2', label: '新增项目', path: '/index/projectManage/addProject' },
   { index: '3', label: '草稿箱', path: '/index/projectManage/draft' }
-  // { index: '4', label: '详情页', path: '/index/projectManage/detail' }
 ]
 
 export const addProjectTab = [

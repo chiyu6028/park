@@ -4,6 +4,7 @@
       :action="actionUrl"
       list-type="picture-card"
       :auto-upload="true"
+      multiple
       :on-success="uploadSuccess"
       :file-list="fileList">
         <i slot="default" class="el-icon-plus"></i>
@@ -57,15 +58,32 @@ export default {
       fileIds: []
     }
   },
-  mounted () {
-    this.fileList = this.value || []
+  computed: {
+    ids () {
+      return this.fileIds.join(',')
+    }
   },
   methods: {
+    initFileList () {
+      let fileIds = []; let fileList = []
+      _.each(this.value || [], v => {
+        fileIds.push(v.attid)
+        fileList.push({
+          id: v.attid,
+          uid: v.attid,
+          name: v.attrealname,
+          url: `/downloadFile?filePath=${window.encodeURIComponent(v.attpath)}`
+        })
+      })
+      this.fileIds = fileIds
+      this.fileList = fileList
+    },
     handleRemove (file) {
       let list = _.filter(this.fileList, v => v.uid !== file.uid)
       this.fileList = list
       let ids = _.filter(this.fileList, v => v.id !== file.id)
       this.fileIds = ids
+      this.$emit('setFileList', this.ids)
     },
     handlePictureCardPreview (file) {
       this.dialogImageUrl = file.url
@@ -78,9 +96,14 @@ export default {
           file.id = data.fileid
           this.fileList.push(file)
           this.fileIds.push(data.fileid)
-          this.$emit('setFileList', this.fileIds.join(','))
+          this.$emit('setFileList', this.fileIds.ids)
         }
       }
+    }
+  },
+  watch: {
+    value () {
+      this.initFileList()
     }
   }
 }

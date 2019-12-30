@@ -1,45 +1,49 @@
 <template>
-  <el-form ref="industrialPlanning" :model="form" :inline="false" label-position="top">
+  <el-form ref="industrialPlanning" :model="form" :rules="rules" :inline="false" label-position="top">
     <el-form-item>
       <TitleBlock title="产业规划"></TitleBlock>
     </el-form-item>
-    <el-form-item label="产业规划理念">
+    <el-form-item prop="planconcept" label="产业规划理念">
       <el-input v-model="form.planconcept"></el-input>
     </el-form-item>
-    <el-form-item label="产业定位">
+    <el-form-item prop="planlocation" label="产业定位">
       <el-input v-model="form.planlocation"></el-input>
     </el-form-item>
-    <el-form-item label="发展目标">
+    <el-form-item prop="depgoal" label="发展目标">
       <el-input v-model="form.depgoal"></el-input>
     </el-form-item>
-    <el-form-item label="产业体系">
+    <el-form-item prop="industrysystem" label="产业体系">
       <el-input v-model="form.industrysystem"></el-input>
     </el-form-item>
-    <el-form-item label="业态组成">
+    <el-form-item prop="formatcomposition" label="业态组成">
       <el-input v-model="form.formatcomposition"></el-input>
     </el-form-item>
-    <el-form-item label="产业发展路径">
+    <el-form-item prop="deppath" label="产业发展路径">
       <el-input v-model="form.deppath"></el-input>
     </el-form-item>
-    <el-form-item label="产业政策">
+    <el-form-item prop="deppolicy" label="产业政策">
       <el-input v-model="form.deppolicy"></el-input>
     </el-form-item>
-    <el-form-item label="产业规划团队">
+    <el-form-item prop="depteam" label="产业规划团队">
       <el-input v-model="form.depteam"></el-input>
     </el-form-item>
-    <el-form-item label="项目区位">
+    <el-form-item prop="location" label="项目区位">
       <el-input v-model="form.location"></el-input>
-      <Upload @setFileList="value => setFileList('locationimges', value)"></Upload>
     </el-form-item>
+    <el-form-item class="inline-1">
+      <Upload :value="form.locationimgesArr" @setFileList="value => setFileList('locationimges', value)"></Upload>
+    </el-form-item>
+    <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item>
       <TitleBlock title="产业规划小结 "></TitleBlock>
     </el-form-item>
-    <el-form-item label="项目亮点" class="inline-1">
+    <el-form-item prop="planadvantage" label="项目亮点" class="inline-1">
       <el-input v-model="form.planadvantage"></el-input>
     </el-form-item>
-    <el-form-item label="面临困境" class="inline-1">
+    <el-form-item prop="deficiencies" label="面临困境" class="inline-1">
       <el-input v-model="form.deficiencies"></el-input>
     </el-form-item>
+    <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item class="inline-1">
       <el-button type="primary" @click="onSubmit">保存</el-button>
     </el-form-item>
@@ -51,12 +55,14 @@ import { mapState } from 'vuex'
 import TitleBlock from '@components/block/titleBlock'
 import Upload from '@components/form/upload'
 import URL from '@config/urlConfig.js'
+import rules from './rules'
 
 export default {
   name: 'industrialPlanning',
   components: { TitleBlock, Upload },
   data () {
     return {
+      rules,
       form: {
         planconcept: '',
         planlocation: '',
@@ -68,6 +74,7 @@ export default {
         depteam: '',
         location: '',
         locationimges: '',
+        locationimgesArr: [],
         planadvantage: '',
         deficiencies: ''
       }
@@ -76,19 +83,20 @@ export default {
   computed: {
     ...mapState('addProject', {
       projectid: state => state.project_id,
-      flag: state => state.flag,
-      pageMark: state => state.flag + ',' + state.project_id
+      flag: state => state.flag
     })
   },
   mounted () {
-    if (this.flag === 'edit') this.initForm()
+    if (this.$route.path.indexOf('/editProject/') !== -1) {
+      this.initForm(this.$route.params.id)
+    }
   },
   methods: {
-    initForm () {
-      this.$axios.post(URL['SELECT_INDUSTRIAL_PLAN_INFO'], { projectid: this.projectid }).then(resp => {
+    initForm (id) {
+      this.$axios.post(URL['SELECT_INDUSTRIAL_PLAN_INFO'], { projectid: id || this.projectid }).then(resp => {
         this.loading = false
         if (resp.status === 200) {
-          if (resp.data && resp.data.code === 1) {
+          if (resp.data && resp.data.data && resp.data.code === 1) {
             this.form = resp.data.data
           } else {
             this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
@@ -113,12 +121,6 @@ export default {
           this.$message.error('系统异常，请联系管理员！')
         }
       })
-    }
-  },
-  watch: {
-    pageMark (value) {
-      let info = value.split(',')
-      if (info[0] === 'edit' && info[1]) this.initForm()
     }
   }
 }

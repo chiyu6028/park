@@ -18,10 +18,6 @@ const dataService = {
   'INSERT_SCHEME_MATERIAL': `${nameSpace}/insertSchemeMaterial`,
   'INSERT_NEAR_CONDITION': `${nameSpace}/insertNearCondition`,
   'UPDATE_PROJECT_BASE_STATUS': `${nameSpace}/updateProjectBaseStatus`,
-  // 项目列表 和草稿箱
-  'SELECT_PARK_INFO': `${nameSpace}/selectParkInfo`,
-  'DELETE_PROJECT_BASE': `${nameSpace}/deleteProjectBase`,
-
   // 查询园区概况
   'SELECT_PROJECT_BASE_INFO': `${nameSpace}/selectProjectBaseById`,
   // 投资运营
@@ -38,9 +34,13 @@ const dataService = {
   'SELECT_NEAR_CONDITION_INFO': `${nameSpace}/selectNearConditionById`,
   // 周边园区
   'SELECT_NEAR_GARDEN_INFO': `${nameSpace}/selectNearGardenById`,
+  // 周边小区
+  'SELECT_NEAR_HOUSE_INFO': `${nameSpace}/selectNearHouseById`,
   // 方案资料
-  'SELECT_SCHEMEMATER_MATER_INFO': `${nameSpace}/selectSchemeMaterialById`
-
+  'SELECT_SCHEMEMATER_MATER_INFO': `${nameSpace}/selectSchemeMaterialById`,
+  // 项目列表 和草稿箱
+  'SELECT_PARK_INFO': `${nameSpace}/selectParkInfo`,
+  'DELETE_PROJECT_BASE': `${nameSpace}/deleteProjectBase`
 }
 
 export default { ...dataService }

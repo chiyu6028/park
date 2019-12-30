@@ -1,10 +1,10 @@
 <template>
-  <el-row>
-    <el-col :span="24">
-      <el-form ref="projectList" :model="form" label-position="right" :inline="true">
+  <el-row class="form-table-list">
+    <el-col :span="24" class="list-row">
+      <el-form ref="projectList" :model="form" :inline="true">
         <el-form-item class="inline-1">
-          <el-col :span="20"><el-input v-model="form.parkName" placeholder="请输入园区名称"></el-input></el-col>
-          <el-col :span="4"><el-button type="primary" class="inline" @click="getData">确认</el-button></el-col>
+          <el-col :span="6"><el-input v-model="form.parkName" placeholder="请输入园区名称"></el-input></el-col>
+          <el-col :span="18" class="padding-left-15"><el-button type="primary" class="inline" @click="getData">确认</el-button></el-col>
         </el-form-item>
         <el-form-item label="项目地址" class="inline-5">
           <el-cascader
@@ -12,13 +12,19 @@
             :props="positionProps"></el-cascader>
         </el-form-item>
         <el-form-item label="用地面积" class="inline-5">
-          <el-input v-model="form.useArea"></el-input>
+          <el-select v-model="form.useArea" placeholder="请选择">
+            <el-option v-for="item in useAreaList" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="总建筑面积" class="inline-5">
-          <el-input v-model="form.buildArea"></el-input>
+          <el-select v-model="form.buildArea" placeholder="请选择">
+            <el-option v-for="item in buildTotalAreaList" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="容积率" class="inline-5">
-          <el-input v-model="form.plotRatio"></el-input>
+          <el-select v-model="form.plotRatio" placeholder="请选择">
+            <el-option v-for="item in plotRatioList" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="开发时间" class="inline-5">
           <el-date-picker
@@ -39,10 +45,14 @@
           </el-date-picker>
         </el-form-item>
         <el-form-item label="主导产业" class="inline-5">
-          <el-input v-model="form.leadIndustry"></el-input>
+          <el-select v-model="form.leadIndustry" placeholder="请选择">
+            <el-option v-for="item in leadIndustryList" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="开发主体" class="inline-5">
-          <el-input v-model="form.devSubject"></el-input>
+          <el-select v-model="form.devSubject" placeholder="请选择">
+            <el-option v-for="item in devSubjectList" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="运营模式" class="inline-5">
           <el-select v-model="form.operMode" placeholder="请选择">
@@ -57,51 +67,55 @@
       </el-form>
     </el-col>
     <el-col :span="24">
-        <div class="itemtitle">项目列表</div>
       <el-table
         border
         v-loading="loading"
         :data="tableData"
-        max-height="450"
-        style="width: 100%; text-align: center">
+        max-height="500"
+        height="500"
+        style="width: 100%">
         <el-table-column
+          align="center"
           prop="projectid"
-          label="项目ID" align="center"
-          >
+          label="项目ID">
         </el-table-column>
         <el-table-column
-          prop="parkname" align="center"
+          align="center"
+          prop="parkname"
           label="园区名称">
         </el-table-column>
         <el-table-column
-          prop="parktype" align="center"
+          align="center"
+          prop="parktype"
           label="园区类型">
         </el-table-column>
         <el-table-column
-          prop="location" align="center"
+          align="center"
+          prop="location"
           label="所属区位">
         </el-table-column>
         <el-table-column
-          prop="usetype" align="center"
+          align="center"
+          prop="usetype"
           label="用地性质">
         </el-table-column>
         <el-table-column
-          prop="usearea" align="center"
+          align="center"
+          prop="usearea"
           label="用地面积（公顷）">
         </el-table-column>
         <el-table-column
-          prop="updatetime" align="center"
+          align="center"
+          prop="updatetime"
           label="发布时间">
         </el-table-column>
         <el-table-column
-          prop="operate" align="center"
+          align="center"
+          prop="operate"
           label="编辑">
         <template slot-scope="{row}">
-          <div style="text-align: center">
-            <i class="el-icon-edit" @click="editProject(row)" style="margin-right:50px"></i>
-            <i class="el-icon-delete pointer" @click="deleteProject(row)"></i>
-          </div>
-
+          <i class="el-icon-edit pointer" title="编辑" @click="editProject(row)"></i>
+          <i class="el-icon-delete pointer padding-left-10" title="编辑" @click="deleteProject(row)"></i>
         </template>
         </el-table-column>
       </el-table>
@@ -109,13 +123,17 @@
     <!-- <el-col :span="24" v-show="!loading && tableData.length === 0" class="empty">
       暂无数据！
     </el-col> -->
-    <el-col :span="24" style="margin-top:40px;">
+    <el-col :span="24">
       <el-pagination
         background
         layout="prev, pager, next"
         class="text-center"
         :current-page.sync="page"
         :page-size="pageSize"
+        @size-change="changeSize"
+        @current-change="changePage"
+        @prev-click="changePage"
+        @next-click="changePage"
         :total="total">
       </el-pagination>
     </el-col>
@@ -124,6 +142,7 @@
 
 <script>
 import * as _ from 'lodash'
+import T from '@utils/tools'
 import URL from '@config/urlConfig.js'
 import * as _D from '@config/dictionaries'
 
@@ -136,6 +155,11 @@ export default {
       page: 1,
       pageSize: 10,
       total: 0,
+      useAreaList: _D.useAreaList,
+      buildTotalAreaList: _D.buildTotalAreaList,
+      plotRatioList: _D.plotRatioList,
+      leadIndustryList: _D.leadIndustryList,
+      devSubjectList: _D.devSubjectList,
       operModeList: _D.operModeList,
       parkTypeList: _D.parkTypeList,
       form: {
@@ -186,10 +210,16 @@ export default {
         this.loading = false
         if (resp.status === 200) {
           if (resp.data && resp.data.code === 1) {
-            this.tableData = resp.data.data
-            this.tableData.forEach(item => {
-              item.updatetime = item.updatetime.substring(0, 10)
-            })
+            let data = resp.data && resp.data.data ? resp.data.data : []
+            let typeConvert = T.getConvert(_D.parkTypeList)
+            let usetypeConvert = T.getConvert(_D.usetypeList)
+            this.tableData = _.map(data, v => ({
+              ...v,
+              _parktype: v.parktype,
+              parktype: T.getConvertValue(v.parktype, typeConvert),
+              _usetype: v.usetype,
+              usetype: T.getConvertValue(v.usetype, usetypeConvert)
+            }))
             this.total = resp.data.pageCount
           } else {
             this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
@@ -200,7 +230,7 @@ export default {
       })
     },
     editProject (row) {
-      this.$router.push({ path: `editProject/${row.projectid}` })
+      this.$router.push({ path: `editProject/${row.projectid}`, query: { t: Date.now() } })
     },
     deleteProject (row) {
       this.$axios.post(URL['DELETE_PROJECT_BASE'], { projectid: row.projectid }).then(resp => {
@@ -215,6 +245,13 @@ export default {
           this.$message.error('系统异常，请联系管理员！')
         }
       })
+    },
+    changeSize (pageSize) {
+      this.pageSize = pageSize
+      this.getData()
+    },
+    changePage (page) {
+      this.getData(page)
     }
   },
   watch: {
@@ -230,43 +267,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.inline-5.el-form-item {
-  width: 20%;
-  margin-right: 0;
-}
-.el-icon-edit{
-    cursor: pointer;
-    margin-right: 15px;
-}
-.el-icon-edit:hover,el-icon-delete:hover{
-  color:#1580F8;
-}
-.itemtitle{
-  font-size:18px;
-  font-weight:bold;
-  color:#262B35;
-  padding:10px 0 20px 0;
-}
-.inline-5.el-input {
-  width: 20%;
-  margin-right: 0;
-}
-.inline-4.el-form-item {
-  width: 25%;
-  margin-right: 0;
-}
-.inline-4.el-input {
-  width: 25%;
-  margin-right: 0;
-}
-.inline-1.el-form-item{
-  width: 100%;
-  margin-right: 0;
-}
-.el-button{
-  margin-left:20px;
-  padding:12px 40px;
-}
 .empty{
   text-align: center;
   line-height: 300px;

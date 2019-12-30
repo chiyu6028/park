@@ -4,8 +4,8 @@ const resolve = _path => {
 }
 
 module.exports = {
-  publicPath: '/',
-  // publicPath: './', // pro
+  // publicPath: '/',
+  publicPath: './',
   outputDir: 'dist',
   pages: {
     index: {
@@ -24,36 +24,16 @@ module.exports = {
     }
   },
   devServer: {
-    host: 'localhost',
-    port: 88, // 端口号
-    https: false, // https:{type:Boolean}
-    open: true, // 配置自动启动浏览器
-    proxy: 'http://kdd6j4.natappfree.cc' // 配置跨域处理,只有一个代理
-
-    // 配置多个代理
-    // proxy: {
-    //   "/api": {
-    //     target: "<url>",
-    //     ws: true,
-    //     changeOrigin: true
-    //   },
-    //   "/foo": {
-    //     target: "<other_url>"
-    //   }
-    // }
+    open: true,
+    proxy: 'http://37jk2g.natappfree.cc'
   },
-  // devServer: {
-  //   proxy: 'http://192.168.31.43:9999'
-  //   // proxy: 'http://127.0.0.1:9999'
-  //   // proxy: 'http://117.136.40.240:9999'
-  // },
   configureWebpack: config => {
     // config.module.rules.push({})
     if (process.env.NODE_ENV === 'production') {
       // 为生产环境修改配置...
     } else {
       // 为开发环境修改配置...
-      config.devtool = 'source-map'
+      // config.devtool = 'source-map'
     }
     // config.entry = './src/index.js'
     config.resolve.alias = {

@@ -9,15 +9,13 @@
         >{{item.label }}</el-menu-item>
       </el-menu>
     </el-aside>
-    <el-container class="project-content padding-0">
-      <el-main class="content-main">
+    <el-container class="project-content">
+      <el-main class="content-main padding-0">
         <el-breadcrumb separator-class="el-icon-arrow-right" class="beeadrumb">
           <el-breadcrumb-item>项目管理</el-breadcrumb-item>
           <el-breadcrumb-item>{{ pageName }}</el-breadcrumb-item>
         </el-breadcrumb>
-        <div style="width:100%;background-color:#fff;padding:30px;position:relative;">
-        <router-view></router-view>
-        </div>
+        <router-view :key="$route.path + $route.query.t" class="content-main-panel"></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -26,7 +24,6 @@
 <script>
 import * as _ from 'lodash'
 import * as D from '@config/default.js'
-// import { getWinSize } from '@utils/tools'
 
 export default {
   name: 'ProjectManage',
@@ -44,6 +41,9 @@ export default {
       _.each(D.projectManageAside, v => {
         if (this.$route.path === v.path) name = v.label
       })
+      if (!name && this.$route.path.indexOf('/editProject/') !== -1) {
+        name = '编辑项目'
+      }
       return name
     }
   },
@@ -62,17 +62,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-    .el-main{
-    background:rgba(236,241,242,1);
-    padding:30px !important;
-    margin:0 !important;
-    }
-    .beeadrumb{
-    height: 45px !important;
-    line-height: 10px !important;
-    font-size: 12px !important;
-    }
 .project-container {
   .project-aside {
     position: absolute;
@@ -82,9 +71,6 @@ export default {
     width: 200px;
     overflow-y: auto;
   }
-  .el-breadcrumb__inner{
-  color:#999999 !important;
-  }
   .project-content {
     position: absolute;
     top: 78px;
@@ -92,14 +78,17 @@ export default {
     bottom: 0;
     right: 0;
     overflow: auto;
+    background-color: #ecf1f2;
 
     .content-main{
       margin: 0 0 0 60px;
-    }
-  .el-form-item__label{
-color:#656B7F !important;
+      padding-right: 40px;
 
-  }
+      .content-main-panel{
+        background-color: $white;
+      }
+    }
+
     .beeadrumb{
       height: 78px;
       line-height: 78px;
@@ -109,13 +98,10 @@ color:#656B7F !important;
   .el-menu {
     background-color: #2e333d;
     height: calc(100%);
-    padding-top:30px;
 
     .el-menu-item {
       background-color: #2e333d;
-      color:#A9B0B8;
-      text-align:center;
-      margin-top:20px;
+      color: $white;
       @include font16;
 
       &:hover {
@@ -127,8 +113,7 @@ color:#656B7F !important;
       &.is-active {
         background-color: #294262;
         color: $white;
-        border-left: 2px #539ef4 solid;
-        text-align:center;
+        border-left: 1px #539ef4 solid;
         @include font16;
       }
     }

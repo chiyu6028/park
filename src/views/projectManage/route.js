@@ -11,6 +11,6 @@ export default {
     { path: 'projectList', component: ProjectList },
     { path: 'addProject', component: AddProject, props: { flag: 'add' } },
     { path: 'draft', component: Draft },
-    { path: 'addProject/:id', component: AddProject, props: { flag: 'edit' }, alias: 'editProject/:id' }
+    { path: 'editProject/:id', component: AddProject, props: { flag: 'edit' } }
   ]
 }

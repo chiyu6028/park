@@ -13,11 +13,11 @@ export default {
 
 <style lang="scss" scoped>
 .yqbg{
-	position:relative;
-	background-image:url("~@images/map.png");
-	height:100%;
-	width:100%;
-	background-size: 126%;
-    background-position: -260px -271px;
+  position:relative;
+  background-image:url("~@images/map.png");
+  height:100%;
+  width:100%;
+  background-size: 126%;
+  background-position: -260px -271px;
 }
 </style>
