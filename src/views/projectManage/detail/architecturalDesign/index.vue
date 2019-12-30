@@ -1,252 +1,267 @@
 <template>
-  <el-form ref="industrialPlanning" :model="form" :rules="rules" :inline="true" label-position="top">
-    <el-form-item class="inline-1">
-      <TitleBlock title="基本信息"></TitleBlock>
-    </el-form-item>
-    <el-form-item prop="usearea" label="用地面积（ha）" class="inline-7">
-      <el-input v-model="form.usearea"></el-input>
-    </el-form-item>
-    <el-form-item prop="buildarea" label="总建筑面积（m²）" class="inline-7">
-      <el-input v-model="form.buildarea"></el-input>
-    </el-form-item>
-    <el-form-item prop="meterbuildarea" label="计容建筑面积（m²）" class="inline-7">
-      <el-input v-model="form.meterbuildarea"></el-input>
-    </el-form-item>
-    <el-form-item prop="plotratio" label="容积率" class="inline-7">
-      <el-input v-model="form.plotratio"></el-input>
-    </el-form-item>
-    <el-form-item prop="builddensity" label="建筑密度（%）" class="inline-7">
-      <el-input v-model="form.builddensity"></el-input>
-    </el-form-item>
-    <el-form-item prop="overheadarea" label="架空面积（m²）" class="inline-7">
-      <el-input v-model="form.overheadarea"></el-input>
-    </el-form-item>
-    <el-form-item prop="undergroundarea" label="地下面积（m²）" class="inline-7">
-      <el-input v-model="form.undergroundarea"></el-input>
-    </el-form-item>
-    <el-form-item prop="greenrate" label="绿化率（%）" class="inline-7">
-      <el-input v-model="form.greenrate"></el-input>
-    </el-form-item>
-    <el-form-item prop="parkspaceup" label="停车位（地上）" class="inline-7">
-      <el-input v-model="form.parkspaceup"></el-input>
-    </el-form-item>
-    <el-form-item prop="parkspacedown" label="停车位（地下）" class="inline-7">
-      <el-input v-model="form.parkspacedown"></el-input>
-    </el-form-item>
-    <el-form-item class="inline-1">
-      <TitleBlock title="建筑设计方案"></TitleBlock>
-    </el-form-item>
-    <el-form-item prop="buildteam" label="建筑设计团队" class="inline-1">
-      <el-input v-model="form.buildteam"></el-input>
-    </el-form-item>
-    <el-form-item prop="ideasstrategy" label="建筑设计理念与策略" class="inline-1">
-      <el-input v-model="form.ideasstrategy"></el-input>
-    </el-form-item>
-    <el-form-item class="inline-1">
-      <Upload :value='form.ideasstrategyimgArr' @setFileList="value => setFileList('ideasstrategyimg', value)"></Upload>
-    </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item prop="neardes" label="周边概况" class="inline-1">
-      <el-input v-model="form.neardes"></el-input>
-    </el-form-item>
-    <el-form-item class="inline-1">
-      <Upload :value='form.neardesimgArr' @setFileList="value => setFileList('neardesimg', value)"></Upload>
-    </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item prop="designsketch" label="效果图" class="inline-1">
-      <el-input v-model="form.designsketch"></el-input>
-    </el-form-item>
-    <el-form-item class="inline-1">
-      <Upload :value='form.designsketchimgArr' @setFileList="value => setFileList('designsketchimg', value)"></Upload>
-    </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item prop="generallayout" label="总平面图" class="inline-1">
-      <el-input v-model="form.generallayout"></el-input>
-    </el-form-item>
-    <el-form-item class="inline-1">
-      <Upload :value='form.generallayoutimgArr' @setFileList="value => setFileList('generallayoutimg', value)"></Upload>
-    </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item prop="funclayout" label="功能布局" class="inline-1">
-      <el-input v-model="form.funclayout"></el-input>
-    </el-form-item>
-    <el-form-item class="inline-1">
-      <Upload :value='form.funclayoutimgArr' @setFileList="value => setFileList('funclayoutimg', value)"></Upload>
-    </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item prop="streamlineanalysis" label="流线分析" class="inline-1">
-      <el-input v-model="form.streamlineanalysis"></el-input>
-    </el-form-item>
-    <el-form-item class="inline-1">
-      <Upload :value='form.streamlineanalysisimgArr' @setFileList="value => setFileList('streamlineanalysisimg', value)"></Upload>
-    </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item class="inline-1">
-      <TitleBlock title="专业技术"></TitleBlock>
-    </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item prop="curtain" label="幕墙" class="inline-1">
-      <el-input v-model="form.curtain"></el-input>
-    </el-form-item>
-    <el-form-item class="inline-1">
-      <Upload :value='form.curtainimgArr' @setFileList="value => setFileList('curtainimg', value)"></Upload>
-    </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item prop="structure" label="结构" class="inline-1">
-      <el-input v-model="form.structure"></el-input>
-    </el-form-item>
-    <el-form-item class="inline-1">
-      <Upload :value='form.structureimgArr' @setFileList="value => setFileList('structureimg', value)"></Upload>
-    </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item prop="electromechanical" label="机电" class="inline-1">
-      <el-input v-model="form.electromechanical"></el-input>
-    </el-form-item>
-    <el-form-item class="inline-1">
-      <Upload :value='form.electromechanicalimgArr' @setFileList="value => setFileList('electromechanicalimg', value)"></Upload>
-    </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item prop="hvac" label="暖通" class="inline-1">
-      <el-input v-model="form.hvac"></el-input>
-    </el-form-item>
-    <el-form-item class="inline-1">
-      <Upload :value='form.hvacimgArr' @setFileList="value => setFileList('hvacimg', value)"></Upload>
-    </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item prop="drainage" label="给排水" class="inline-1">
-      <el-input v-model="form.drainage"></el-input>
-    </el-form-item>
-    <el-form-item class="inline-1">
-      <Upload :value='form.drainageimgArr' @setFileList="value => setFileList('drainageimg', value)"></Upload>
-    </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item class="inline-1">
-      <TitleBlock title="建筑设计小结  "></TitleBlock>
-    </el-form-item>
-    <el-form-item prop="designadvantage" label="项目亮点" class="inline-1">
-      <el-input v-model="form.designadvantage"></el-input>
-    </el-form-item>
-    <el-form-item prop="deficiencies" label="面临困境" class="inline-1">
-      <el-input v-model="form.deficiencies"></el-input>
-    </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item class="inline-1">
-      <el-button type="primary" @click="onSubmit">保存</el-button>
-    </el-form-item>
-  </el-form>
+  <div class="park-content">
+    <!-- 基础信息 -->
+    <div class="box-content">
+      <div class="title">基础信息</div>
+      <el-row :gutter="24">
+        <el-col :span="6" class="info-li">用地面积：dddd</el-col>
+        <el-col :span="6" class="info-li">总建筑面积：dddd</el-col>
+        <el-col :span="6" class="info-li">计容建筑面积：dddd</el-col>
+        <el-col :span="6" class="info-li">容积率：dddd</el-col>
+        <el-col :span="6" class="info-li">绿化率：dddd</el-col>
+        <el-col :span="6" class="info-li">架空面积：dddd</el-col>
+        <el-col :span="6" class="info-li">地下面积：dddd</el-col>
+        <el-col :span="24" class="r-box r-box2">停车位（地上/地下）：<div class="right-content">ddd</div></el-col>
+      </el-row>
+    </div>
+    <!-- 规划设计方案 -->
+    <div class="box-content">
+      <div class="title">规划设计方案</div>
+      <el-row :gutter="24">
+        <el-col :span="24" class="r-box r-box2">规划设计团队：<div class="right-content">ddd</div></el-col>
+        <el-col :span="24" class="r-box r-box2">规划设计理念与策略：<div class="right-content">
+          <span>dsafdsfaf</span>
+          <ul class="img-list">
+            <li><img src="@images/map.png" alt=""></li>
+          </ul>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">周边概况：<div class="right-content">
+          <span>dsafdsfaf</span>
+          <ul class="img-list">
+            <li><img src="@images/map.png" alt=""></li>
+          </ul>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">效果图：<div class="right-content">
+          <span>dsafdsfaf</span>
+          <ul class="img-list">
+            <li><img src="@images/map.png" alt=""></li>
+          </ul>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">总平面图：<div class="right-content">
+          <span>dsafdsfaf</span>
+          <ul class="img-list">
+            <li><img src="@images/map.png" alt=""></li>
+          </ul>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">功能布局：<div class="right-content">
+          <span>dsafdsfaf</span>
+          <ul class="img-list">
+            <li><img src="@images/map.png" alt=""></li>
+          </ul>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">流线分析：<div class="right-content">
+          <span>dsafdsfaf</span>
+          <ul class="img-list">
+            <li><img src="@images/map.png" alt=""></li>
+          </ul>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+    <!-- 专业技术 -->
+    <div class="box-content">
+      <div class="title">专业技术</div>
+      <el-row :gutter="24">
+        <el-col :span="24" class="r-box r-box2">幕墙：<div class="right-content">
+          <span>dsafdsfaf</span>
+          <ul class="img-list">
+            <li><img src="@images/map.png" alt=""></li>
+          </ul>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">结构：<div class="right-content">
+          <span>dsafdsfaf</span>
+          <ul class="img-list">
+            <li><img src="@images/map.png" alt=""></li>
+          </ul>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">机电：<div class="right-content">
+          <span>dsafdsfaf</span>
+          <ul class="img-list">
+            <li><img src="@images/map.png" alt=""></li>
+          </ul>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">暖通：<div class="right-content">
+          <span>dsafdsfaf</span>
+          <ul class="img-list">
+            <li><img src="@images/map.png" alt=""></li>
+          </ul>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">给排水：<div class="right-content">
+          <span>dsafdsfaf</span>
+          <ul class="img-list">
+            <li><img src="@images/map.png" alt=""></li>
+          </ul>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+    <!-- 规划设计小结 -->
+    <div class="box-content">
+      <div class="title">规划设计小结</div>
+      <el-row :gutter="24">
+        <el-col :span="24" class="r-box">投资亮点：<div class="right-content">
+            <span>的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃</span>
+          </div>
+          </el-col>
+          <el-col :span="24" class="r-box">面临困境：<div class="right-content">
+            <span>的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃</span>
+          </div>
+          </el-col>
+      </el-row>
+    </div>
+  </div>
 </template>
-
 <script>
-import { mapState } from 'vuex'
-import TitleBlock from '@components/block/titleBlock'
-import Upload from '@components/form/upload'
-import URL from '@config/urlConfig.js'
-import rules from './rules.js'
-
 export default {
-  name: 'industrialPlanning',
-  components: { TitleBlock, Upload },
   data () {
     return {
-      rules,
-      form: {
-        usearea: '',
-        buildarea: '',
-        meterbuildarea: '',
-        plotratio: '',
-        builddensity: '',
-        overheadarea: '',
-        undergroundarea: '',
-        greenrate: '',
-        parkspaceup: '',
-        parkspacedown: '',
-        buildteam: '',
-        ideasstrategy: '',
-        ideasstrategyimg: '',
-        ideasstrategyimgArr: [],
-        neardes: '',
-        neardesimg: '',
-        neardesimgArr: [],
-        designsketch: '',
-        designsketchimg: '',
-        designsketchimgArr: [],
-        generallayout: '',
-        generallayoutimg: '',
-        generallayoutimgArr: [],
-        funclayout: '',
-        funclayoutimg: '',
-        funclayoutimgArr: [],
-        streamlineanalysis: '',
-        streamlineanalysisimg: '',
-        streamlineanalysisimgArr: [],
-        curtain: '',
-        curtainimg: '',
-        curtainimgArr: [],
-        structure: '',
-        structureimg: '',
-        structureimgArr: [],
-        electromechanical: '',
-        electromechanicalimg: '',
-        electromechanicalimgArr: [],
-        hvac: '',
-        hvacimg: '',
-        hvacimgArr: [],
-        drainage: '',
-        drainageimg: '',
-        drainageimgArr: [],
-        designadvantage: '',
-        deficiencies: ''
-      }
+      imgList: [
+        {
+          title: '总平面图',
+          list: [
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
+          ]
+        },
+        {
+          title: '实景照片',
+          list: [
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
+          ]
+        },
+        {
+          title: '园区照片',
+          list: [
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
+          ]
+        },
+        {
+          title: '园区宣传片',
+          list: [
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
+          ]
+        },
+        {
+          title: '园区航拍',
+          list: [
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
+          ]
+        },
+        {
+          title: '园区荣誉',
+          list: [
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
+            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
+          ]
+        }
+      ]
     }
   },
-  computed: {
-    ...mapState('addProject', {
-      projectid: state => state.project_id
-    })
-  },
-  mounted () {
-    if (this.$route.path.indexOf('/editProject/') !== -1) {
-      this.initForm(this.$route.params.id)
-    }
+  created () {
+
   },
   methods: {
-    initForm (id) {
-      this.$axios.post(URL['SELECT_BUILD_DESIGN_INFO'], { projectid: id || this.projectid }).then(resp => {
-        this.loading = false
-        if (resp.status === 200) {
-          if (resp.data && resp.data.data && resp.data.code === 1) {
-            this.form = resp.data.data
-          } else {
-            this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
-          }
-        } else {
-          this.$message.error('系统异常，请联系管理员！')
-        }
-      })
-    },
-    onSubmit () {
-      this.$refs.industrialPlanning.validate(isValid => {
-        if (isValid) {
-          this.$axios.post(URL['INSERT_BUILD_DESIGN'], { ...this.form, projectid: this.projectid }).then(resp => {
-            if (resp.status === 200) {
-              if (resp.data && resp.data.code === 1) {
-                this.$message.success(resp.data.msg)
-              } else {
-                this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
-              }
-            } else {
-              this.$message.error('系统异常，请联系管理员！')
-            }
-          })
-        }
-      })
-    },
-    setFileList (column, value) {
-      this.form[column] = value
-    }
+
   }
 }
 </script>
-
-<style lang="scss" scoped>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  ul{
+    list-style: none;
+  }
+</style>
+<style scoped lang="scss">
+.park-content{
+  padding:0 20px;
+}
+.title{
+  font-size:16px;
+  font-family:Microsoft YaHei;
+  font-weight:bold;
+  color:rgba(63,151,249,1);
+  line-height:34px;
+      position: relative;
+      margin-left: 20px;
+  &::before{
+    content: "";
+    display: block;
+    width:4px;
+    height:12px;
+    background:rgba(63,151,249,1);
+    border-radius:2px;
+    position: absolute;
+    top: 10px;
+    left: -20px;
+  }
+}
+.info-li{
+  padding:10px 0;
+}
+.box-content{
+  margin-bottom: 20px;
+}
+.imglist{
+  img{
+    width: 300px;
+    height: 180px;
+    margin:10px;
+  }
+}
+.r-box{
+  display: flex;
+  border-bottom: 1px solid #ECF1F2;
+  padding: 20px 0 10px;
+  &.r-box2{
+    border-bottom:none;
+    padding-top: 10px;
+  }
+  .right-content{
+    flex: 1;
+    line-height: 24px;
+  }
+  .img-list{
+    padding:20px 0 10px;
+    display: flex;
+    margin-left: -10px;
+    &.tb{
+      margin-left: -80px;
+    }
+    li{
+      width: 300px;
+      padding: 10px;
+      img{
+        width: 300px;
+         height: 180px;
+      }
+    }
+    .text{
+      text-align: center;
+    }
+  }
+  .list-phone{
+    margin-left: 10px;
+    margin-top: 20px;
+  }
+}
 </style>

@@ -10,8 +10,13 @@ import * as D from '@config/default.js'
 import Parkview from './parkview'
 import Investment from './investment'
 import IndustrialPlanning from './industrialPlanning'
+import ParkPlanDesign from './parkPlanDesign'
+import ArchitecturalDesign from './architecturalDesign'
+import LandscapeDesign from './landscapeDesign'
+import Periphery from './periphery'
+import Information from './information'
 export default {
-  components: { Parkview, Investment, IndustrialPlanning },
+  components: { Parkview, Investment, IndustrialPlanning, ParkPlanDesign, ArchitecturalDesign, LandscapeDesign, Periphery, Information },
   data () {
     const detailList = D.addProjectTab
     return {
