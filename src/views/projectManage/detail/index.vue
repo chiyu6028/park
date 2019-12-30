@@ -8,14 +8,18 @@
 <script>
 import * as D from '@config/default.js'
 import Parkview from './parkview'
+import Investment from './investment'
 export default {
-  components: { Parkview },
+  components: { Parkview, Investment },
   data () {
     const detailList = D.addProjectTab
     return {
       tabVal: 'first',
       detailList
     }
+  },
+  created () {
+    console.log(this.detailList, '---------------detailList')
   },
   methods: {
     handleClick (tab, event) {
