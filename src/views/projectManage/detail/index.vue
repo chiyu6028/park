@@ -9,8 +9,9 @@
 import * as D from '@config/default.js'
 import Parkview from './parkview'
 import Investment from './investment'
+import IndustrialPlanning from './industrialPlanning'
 export default {
-  components: { Parkview, Investment },
+  components: { Parkview, Investment, IndustrialPlanning },
   data () {
     const detailList = D.addProjectTab
     return {
