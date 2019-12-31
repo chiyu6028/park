@@ -28,42 +28,48 @@
       <el-input v-model="form.funcstructure"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value="form.funcstructureimgArr" @setFileList="value => setFileList('funcstructureimg', value)"></Upload>
+      <!-- <Upload :value="form.funcstructureimgArr" @setFileList="value => setFileList('funcstructureimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.funcstructureimgArr" @setFileList="value => setFileList('funcstructureimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="landuse" label="土地利用">
       <el-input v-model="form.landuse"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value="form.landuseimgArr" @setFileList="value => setFileList('landuseimg', value)"></Upload>
+      <!-- <Upload :value="form.landuseimgArr" @setFileList="value => setFileList('landuseimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.landuseimgArr" @setFileList="value => setFileList('landuseimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="spatialform" label="空间形态">
       <el-input v-model="form.spatialform"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value="form.spatialformimgArr" @setFileList="value => setFileList('spatialformimg', value)"></Upload>
+      <!-- <Upload :value="form.spatialformimgArr" @setFileList="value => setFileList('spatialformimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.spatialformimgArr" @setFileList="value => setFileList('spatialformimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="roadtraffic" label="道路交通">
       <el-input v-model="form.roadtraffic"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value="form.roadtrafficimgArr" @setFileList="value => setFileList('roadtrafficimg', value)"></Upload>
+      <!-- <Upload :value="form.roadtrafficimgArr" @setFileList="value => setFileList('roadtrafficimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.roadtrafficimgArr" @setFileList="value => setFileList('roadtrafficimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="supportingfacilities" label="配套设施">
       <el-input v-model="form.supportingfacilities"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value="form.supportingfacilitiesimgArr" @setFileList="value => setFileList('supportingfacilitiesimg', value)"></Upload>
+      <!-- <Upload :value="form.supportingfacilitiesimgArr" @setFileList="value => setFileList('supportingfacilitiesimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.supportingfacilitiesimgArr" @setFileList="value => setFileList('supportingfacilitiesimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="impcontrol" label="实施控制">
       <el-input v-model="form.impcontrol"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value="form.impcontrolimgArr" @setFileList="value => setFileList('impcontrolimg', value)"></Upload>
+      <!-- <Upload :value="form.impcontrolimgArr" @setFileList="value => setFileList('impcontrolimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.impcontrolimgArr" @setFileList="value => setFileList('impcontrolimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item>
@@ -85,6 +91,7 @@
 <script>
 import { mapState } from 'vuex'
 import TitleBlock from '@components/block/titleBlock'
+import UploadDescBottom from '@components/form/upload-desc-bottom'
 import Upload from '@components/form/upload'
 import rules from './rules.js'
 import URL from '@config/urlConfig.js'
@@ -92,7 +99,7 @@ import * as _D from '@config/dictionaries'
 
 export default {
   name: 'parkPlanDesign',
-  components: { TitleBlock, Upload },
+  components: { TitleBlock, Upload, UploadDescBottom },
   data () {
     return {
       usetypeList: _D.usetypeList,

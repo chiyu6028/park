@@ -9,18 +9,20 @@
     </el-form-item>
     <el-form-item label="园区图册" class="inline-1">
       <Upload :value="form.villageimgArr" @setFileList="value => setFileList('villageimg', value)"></Upload>
+      <UploadDescBottom :value="form.parkimgArr" @setFileList="value => setFileList('parkimg', value)"></UploadDescBottom>
     </el-form-item>
   </el-form>
 </template>
 
 <script>
-import Upload from '@components/form/upload'
+// import Upload from '@components/form/upload'
 import { getApartmentsTmpl } from './tools'
 import rules from './rules.js'
+import UploadDescBottom from '@components/form/upload-desc-bottom'
 
 export default {
   name: 'ApartmentsAround',
-  components: { Upload },
+  components: { UploadDescBottom }, // Upload
   props: {
     row: {
       type: Object,

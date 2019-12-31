@@ -31,7 +31,8 @@
       <el-input v-model="form.location"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value="form.locationimgesArr" @setFileList="value => setFileList('locationimges', value)"></Upload>
+      <!-- <Upload :value="form.locationimgesArr" @setFileList="value => setFileList('locationimges', value)"></Upload> -->
+      <UploadDescBottom :value="form.locationimgesArr" @setFileList="value => setFileList('locationimges', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item>
@@ -53,13 +54,14 @@
 <script>
 import { mapState } from 'vuex'
 import TitleBlock from '@components/block/titleBlock'
-import Upload from '@components/form/upload'
+import UploadDescBottom from '@components/form/upload-desc-bottom'
+// import Upload from '@components/form/upload'
 import URL from '@config/urlConfig.js'
 import rules from './rules'
 
 export default {
   name: 'industrialPlanning',
-  components: { TitleBlock, Upload },
+  components: { UploadDescBottom, TitleBlock }, //, Upload
   data () {
     return {
       rules,

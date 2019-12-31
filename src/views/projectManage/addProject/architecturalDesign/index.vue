@@ -43,42 +43,48 @@
       <el-input v-model="form.ideasstrategy"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value='form.ideasstrategyimgArr' @setFileList="value => setFileList('ideasstrategyimg', value)"></Upload>
+      <!-- <Upload :value='form.ideasstrategyimgArr' @setFileList="value => setFileList('ideasstrategyimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.ideasstrategyimgArr" @setFileList="value => setFileList('ideasstrategyimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="neardes" label="周边概况" class="inline-1">
       <el-input v-model="form.neardes"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value='form.neardesimgArr' @setFileList="value => setFileList('neardesimg', value)"></Upload>
+      <!-- <Upload :value='form.neardesimgArr' @setFileList="value => setFileList('neardesimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.neardesimgArr" @setFileList="value => setFileList('neardesimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="designsketch" label="效果图" class="inline-1">
       <el-input v-model="form.designsketch"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value='form.designsketchimgArr' @setFileList="value => setFileList('designsketchimg', value)"></Upload>
+      <!-- <Upload :value='form.designsketchimgArr' @setFileList="value => setFileList('designsketchimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.designsketchimgArr" @setFileList="value => setFileList('designsketchimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="generallayout" label="总平面图" class="inline-1">
       <el-input v-model="form.generallayout"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value='form.generallayoutimgArr' @setFileList="value => setFileList('generallayoutimg', value)"></Upload>
+      <!-- <Upload :value='form.generallayoutimgArr' @setFileList="value => setFileList('generallayoutimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.generallayoutimgArr" @setFileList="value => setFileList('generallayoutimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="funclayout" label="功能布局" class="inline-1">
       <el-input v-model="form.funclayout"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value='form.funclayoutimgArr' @setFileList="value => setFileList('funclayoutimg', value)"></Upload>
+      <!-- <Upload :value='form.funclayoutimgArr' @setFileList="value => setFileList('funclayoutimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.funclayoutimgArr" @setFileList="value => setFileList('funclayoutimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="streamlineanalysis" label="流线分析" class="inline-1">
       <el-input v-model="form.streamlineanalysis"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value='form.streamlineanalysisimgArr' @setFileList="value => setFileList('streamlineanalysisimg', value)"></Upload>
+      <!-- <Upload :value='form.streamlineanalysisimgArr' @setFileList="value => setFileList('streamlineanalysisimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.streamlineanalysisimgArr" @setFileList="value => setFileList('streamlineanalysisimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item class="inline-1">
@@ -89,35 +95,40 @@
       <el-input v-model="form.curtain"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value='form.curtainimgArr' @setFileList="value => setFileList('curtainimg', value)"></Upload>
+      <!-- <Upload :value='form.curtainimgArr' @setFileList="value => setFileList('curtainimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.curtainimgArr" @setFileList="value => setFileList('curtainimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="structure" label="结构" class="inline-1">
       <el-input v-model="form.structure"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value='form.structureimgArr' @setFileList="value => setFileList('structureimg', value)"></Upload>
+      <!-- <Upload :value='form.structureimgArr' @setFileList="value => setFileList('structureimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.structureimgArr" @setFileList="value => setFileList('structureimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="electromechanical" label="机电" class="inline-1">
       <el-input v-model="form.electromechanical"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value='form.electromechanicalimgArr' @setFileList="value => setFileList('electromechanicalimg', value)"></Upload>
+      <!-- <Upload :value='form.electromechanicalimgArr' @setFileList="value => setFileList('electromechanicalimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.electromechanicalimgArr" @setFileList="value => setFileList('electromechanicalimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="hvac" label="暖通" class="inline-1">
       <el-input v-model="form.hvac"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value='form.hvacimgArr' @setFileList="value => setFileList('hvacimg', value)"></Upload>
+      <!-- <Upload :value='form.hvacimgArr' @setFileList="value => setFileList('hvacimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.hvacimgArr" @setFileList="value => setFileList('hvacimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="drainage" label="给排水" class="inline-1">
       <el-input v-model="form.drainage"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value='form.drainageimgArr' @setFileList="value => setFileList('drainageimg', value)"></Upload>
+      <!-- <Upload :value='form.drainageimgArr' @setFileList="value => setFileList('drainageimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.drainageimgArr" @setFileList="value => setFileList('drainageimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item class="inline-1">
@@ -139,13 +150,14 @@
 <script>
 import { mapState } from 'vuex'
 import TitleBlock from '@components/block/titleBlock'
-import Upload from '@components/form/upload'
+import UploadDescBottom from '@components/form/upload-desc-bottom'
+// import Upload from '@components/form/upload'
 import URL from '@config/urlConfig.js'
 import rules from './rules.js'
 
 export default {
   name: 'industrialPlanning',
-  components: { TitleBlock, Upload },
+  components: { UploadDescBottom, TitleBlock }, //, Upload
   data () {
     return {
       rules,

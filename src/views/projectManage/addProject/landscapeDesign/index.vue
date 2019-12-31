@@ -10,14 +10,16 @@
       <el-input v-model="form.gideasstrategy"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value="form.gideasstrategyimgArr" @setFileList="value => setFileList('gideasstrategyimg', value)"></Upload>
+      <!-- <Upload :value="form.gideasstrategyimgArr" @setFileList="value => setFileList('gideasstrategyimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.gideasstrategyimgArr" @setFileList="value => setFileList('gideasstrategyimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item label="景观总平面图" class="inline-1" prop="generallayout">
       <el-input v-model="form.generallayout"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value="form.generallayoutimgArr" @setFileList="value => setFileList('generallayoutimg', value)"></Upload>
+      <!-- <Upload :value="form.generallayoutimgArr" @setFileList="value => setFileList('generallayoutimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.generallayoutimgArr" @setFileList="value => setFileList('generallayoutimg', value)"></UploadDescBottom>
     </el-form-item>
 
     <el-form-item class="like-hr inline-1"></el-form-item>
@@ -25,7 +27,8 @@
       <el-input v-model="form.gfuncstructure"></el-input>
     </el-form-item>
     <el-form-item  class="inline-1">
-      <Upload :value="form.gfuncstructureimgArr" @setFileList="value => setFileList('gfuncstructureimg', value)"></Upload>
+      <!-- <Upload :value="form.gfuncstructureimgArr" @setFileList="value => setFileList('gfuncstructureimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.gfuncstructureimgArr" @setFileList="value => setFileList('gfuncstructureimg', value)"></UploadDescBottom>
     </el-form-item>
 
     <el-form-item class="like-hr inline-1"></el-form-item>
@@ -36,7 +39,8 @@
       <el-input v-model="form.coredesign"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value="form.coredesignimgArr" @setFileList="value => setFileList('coredesignimg', value)"></Upload>
+      <!-- <Upload :value="form.coredesignimgArr" @setFileList="value => setFileList('coredesignimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.coredesignimgArr" @setFileList="value => setFileList('coredesignimg', value)"></UploadDescBottom>
     </el-form-item>
 
     <el-form-item class="like-hr inline-1"></el-form-item>
@@ -44,7 +48,8 @@
       <el-input v-model="form.entrydesign"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value="form.entrydesignimgArr" @setFileList="value => setFileList('entrydesignimg', value)"></Upload>
+      <!-- <Upload :value="form.entrydesignimgArr" @setFileList="value => setFileList('entrydesignimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.entrydesignimgArr" @setFileList="value => setFileList('entrydesignimg', value)"></UploadDescBottom>
     </el-form-item>
 
     <el-form-item class="like-hr inline-1"></el-form-item>
@@ -52,7 +57,8 @@
       <el-input v-model="form.pubspacedesign" ></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value="form.pubspacedesignimgArr" @setFileList="value => setFileList('pubspacedesignimg', value)"></Upload>
+      <!-- <Upload :value="form.pubspacedesignimgArr" @setFileList="value => setFileList('pubspacedesignimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.pubspacedesignimgArr" @setFileList="value => setFileList('pubspacedesignimg', value)"></UploadDescBottom>
     </el-form-item>
 
     <el-form-item class="like-hr inline-1"></el-form-item>
@@ -60,7 +66,8 @@
       <el-input v-model="form.roofdesign" ></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value="form.roofdesignimgArr" @setFileList="value => setFileList('roofdesignimg', value)"></Upload>
+      <!-- <Upload :value="form.roofdesignimgArr" @setFileList="value => setFileList('roofdesignimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.roofdesignimgArr" @setFileList="value => setFileList('roofdesignimg', value)"></UploadDescBottom>
     </el-form-item>
 
     <el-form-item class="like-hr inline-1"></el-form-item>
@@ -68,7 +75,8 @@
       <el-input v-model="form.sketchdesign"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
-      <Upload :value="form.sketchdesignimgArr" @setFileList="value => setFileList('sketchdesignimg', value)"></Upload>
+      <!-- <Upload :value="form.sketchdesignimgArr" @setFileList="value => setFileList('sketchdesignimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.sketchdesignimgArr" @setFileList="value => setFileList('sketchdesignimg', value)"></UploadDescBottom>
     </el-form-item>
 
     <el-form-item class="like-hr inline-1"></el-form-item>
@@ -91,13 +99,14 @@
 <script>
 import { mapState } from 'vuex'
 import TitleBlock from '@components/block/titleBlock'
-import Upload from '@components/form/upload'
+import UploadDescBottom from '@components/form/upload-desc-bottom'
+// import Upload from '@components/form/upload'
 import URL from '@config/urlConfig.js'
 import rules from './rules.js'
 
 export default {
   name: 'parkview',
-  components: { TitleBlock, Upload },
+  components: { UploadDescBottom, TitleBlock }, //, Upload
   data () {
     return {
       rules,

@@ -20,7 +20,7 @@ export default {
   data () {
     const detailList = D.addProjectTab
     return {
-      tabVal: 'first',
+      tabVal: '1',
       detailList
     }
   },

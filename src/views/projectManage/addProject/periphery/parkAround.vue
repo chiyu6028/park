@@ -40,20 +40,22 @@
       <el-input v-model="form.deputyenterprise"></el-input>
     </el-form-item>
     <el-form-item label="园区图册" class="inline-1">
-      <Upload :value="form.parkimgArr" @setFileList="value => setFileList('parkimg', value)"></Upload>
+      <!-- <Upload :value="form.parkimgArr" @setFileList="value => setFileList('parkimg', value)"></Upload> -->
+      <UploadDescBottom :value="form.parkimgArr" @setFileList="value => setFileList('parkimg', value)"></UploadDescBottom>
     </el-form-item>
   </el-form>
 </template>
 
 <script>
-import Upload from '@components/form/upload'
+// import Upload from '@components/form/upload'
 import { getParkTmpl } from './tools'
 import rules from './rules.js'
 import * as _D from '@config/dictionaries'
+import UploadDescBottom from '@components/form/upload-desc-bottom'
 
 export default {
   name: 'ParkGround',
-  components: { Upload },
+  components: { UploadDescBottom }, //, Upload
   props: {
     row: {
       type: Object,
