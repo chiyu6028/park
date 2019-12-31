@@ -389,3 +389,20 @@ body {
     }
   }
 }
+
+.park-upload ul.el-upload-list li {
+  height: 198px;
+  border-width: 0;
+
+  .park-upload-block {
+    .el-upload-list__item-actions {
+      height: 148px;
+      border-radius: 4px;
+    }
+
+    img {
+      border: 1px solid #c0ccda;
+      border-radius: 4px;
+    }
+  }
+}

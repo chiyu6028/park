@@ -2,19 +2,19 @@
   <el-form ref="information" :model="form" :inline="false" label-position="top" style="padding-top: 23px;">
     <el-form-item label="产业规划方案">
       <p>1、后台资料上传，可批量上传，每一类可上传最多5个文件；  2、上传文件类型包括PDF、压缩文件（rar）</p>
-      <UploadButton :value="form.industryschemeArr" @setFileList="value => setFileList('industryscheme', value)"></UploadButton>
+      <UploadButton :reg="['pdf', 'rar']" matchError="只能上传PDF和RAR类型的文件！" :value="form.industryschemeArr" @setFileList="value => setFileList('industryscheme', value)"></UploadButton>
     </el-form-item>
     <el-form-item label="规划设计方案">
-      <UploadButton :value="form.planschemeArr" @setFileList="value => setFileList('planscheme', value)"></UploadButton>
+      <UploadButton :reg="['pdf', 'rar']" matchError="只能上传PDF和RAR类型的文件！" :value="form.planschemeArr" @setFileList="value => setFileList('planscheme', value)"></UploadButton>
     </el-form-item>
     <el-form-item label="建筑设计方案">
-      <UploadButton :value="form.buildschemeArr" @setFileList="value => setFileList('buildscheme', value)"></UploadButton>
+      <UploadButton :reg="['pdf', 'rar']" matchError="只能上传PDF和RAR类型的文件！" :value="form.buildschemeArr" @setFileList="value => setFileList('buildscheme', value)"></UploadButton>
     </el-form-item>
     <el-form-item label="环境设计方案">
-      <UploadButton :value="form.environschemeArr" @setFileList="value => setFileList('environscheme', value)"></UploadButton>
+      <UploadButton :reg="['pdf', 'rar']" matchError="只能上传PDF和RAR类型的文件！" :value="form.environschemeArr" @setFileList="value => setFileList('environscheme', value)"></UploadButton>
     </el-form-item>
     <el-form-item label="招商运营方案">
-      <UploadButton :value="form.investschemeArr" @setFileList="value => setFileList('investscheme', value)"></UploadButton>
+      <UploadButton :reg="['pdf', 'rar']" matchError="只能上传PDF和RAR类型的文件！" :value="form.investschemeArr" @setFileList="value => setFileList('investscheme', value)"></UploadButton>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">保存</el-button>
@@ -63,8 +63,6 @@ export default {
         if (resp.status === 200) {
           if (resp.data && resp.data.data && resp.data.code === 1) {
             this.form = resp.data.data
-          } else {
-            this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
           }
         } else {
           this.$message.error('系统异常，请联系管理员！')

@@ -1,6 +1,7 @@
 <template>
   <div class="yqbg">
-  <img src="@images/bgright.png" style="position:absolute;right:0;top:0px;width:18%;">
+  <img src="@images/maptop.png" style="height:100%;">
+  <img src="@images/bgright.png" style="position:absolute;right:20px;top:40px;height:89%;">
   <div style="width:100%;clear:both;margin:0 auto;"></div>
   </div>
 </template>
@@ -17,7 +18,9 @@ export default {
   background-image:url("~@images/map.png");
   height:100%;
   width:100%;
-  background-size: 126%;
-  background-position: -260px -271px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color:#171717;
+  text-align:center;
 }
 </style>

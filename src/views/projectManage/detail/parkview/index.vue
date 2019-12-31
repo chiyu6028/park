@@ -1,43 +1,41 @@
 <template>
-  <div class="park-content">
+  <div class="park-content" id="parkViewdetail">
     <!-- 基础信息 -->
     <div class="box-content">
       <div class="title">基础信息</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">项目ID：dddd</el-col>
-        <el-col :span="6" class="info-li">园区名称：dddd</el-col>
-        <el-col :span="6" class="info-li">园区类型：dddd</el-col>
-        <el-col :span="6" class="info-li">项目地址：dddd</el-col>
-        <el-col :span="6" class="info-li">发布时间：dddd</el-col>
-        <el-col :span="6" class="info-li">建成时间：dddd</el-col>
-        <el-col :span="24" class="r-box">园区介绍：<div class="right-content">ddd</div></el-col>
+        <el-col :span="6" class="info-li">项目ID：{{form.projectid}}</el-col>
+        <el-col :span="6" class="info-li">园区名称：{{form.parkname}}</el-col>
+        <el-col :span="6" class="info-li">园区类型：<span v-if="parkTypeList[form.parktype]">{{parkTypeList[form.parktype].label}}</span></el-col>
+        <el-col :span="6" class="info-li">项目地址：<span v-if="positionMaps[form.province]">{{positionMaps[form.province].label}}</span></el-col>
+        <el-col :span="6" class="info-li">发布时间：{{form.developtime}}</el-col>
+        <el-col :span="6" class="info-li">建成时间：{{form.createtime}}</el-col>
+        <el-col :span="24" class="r-box">园区介绍：<div class="right-content">{{form.parkdes}}</div></el-col>
       </el-row>
     </div>
     <!-- 技术指标 -->
     <div class="box-content">
       <div class="title">技术指标</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">用地性质：dddd</el-col>
-        <el-col :span="6" class="info-li">用地面积：dddd</el-col>
-        <el-col :span="6" class="info-li">总建筑面积：dddd</el-col>
-        <el-col :span="6" class="info-li">绿化率：dddd</el-col>
-        <el-col :span="6" class="info-li">容积率：dddd</el-col>
+        <el-col :span="6" class="info-li">用地性质：<span v-if="usetypeList[form.usetype]">{{usetypeList[form.usetype].label}}</span></el-col>
+        <el-col :span="6" class="info-li">用地面积：{{form.usearea}}</el-col>
+        <el-col :span="6" class="info-li">总建筑面积：{{form.buildarea}}</el-col>
+        <el-col :span="6" class="info-li">绿化率：{{form.greenrate}}</el-col>
+        <el-col :span="6" class="info-li">容积率：{{form.plotratio}}</el-col>
         <el-col :span="24" class="r-box">项目区位：<div class="right-content">
-          <span>对对对</span>
+          <span>{{form.location}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.locationimgesArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div></el-col>
         <el-col :span="24" class="r-box">用地范围：<div class="right-content">
-          <span>的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃</span>
+          <span>{{form.landscope}}</span>
           <ul class="img-list">
-            <li>
-              <img src="@images/map.png" alt="">
-              <div class="text">大开发就发</div>
-            </li>
-            <li>
-              <img src="@images/map.png" alt="">
-              <div class="text">大开发就发</div>
+            <li v-for="(tag,idx) in form.landscopeimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+              <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
@@ -48,23 +46,66 @@
     <div class="box-content">
       <div class="title">园区经济指标</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">主导产业：dddd</el-col>
-        <el-col :span="6" class="info-li">主导功能：dddd</el-col>
-        <el-col :span="6" class="info-li">投资主体：dddd</el-col>
-        <el-col :span="6" class="info-li">运营主体：dddd</el-col>
-        <el-col :span="6" class="info-li">运营模式：dddd</el-col>
-        <el-col :span="6" class="info-li">企业数量：dddd</el-col>
-        <el-col :span="6" class="info-li">投资规模：dddd</el-col>
-        <el-col :span="6" class="info-li">园区产值：dddd</el-col>
+        <el-col :span="6" class="info-li">主导产业：{{form.leadindustry}}</el-col>
+        <el-col :span="6" class="info-li">主导功能：{{form.leadfunc}}</el-col>
+        <el-col :span="6" class="info-li">投资主体：{{form.investors}}</el-col>
+        <el-col :span="6" class="info-li">运营主体：{{form.operubject}}</el-col>
+        <el-col :span="6" class="info-li">运营模式：<span v-if="operModeList[form.opermode]">{{operModeList[form.opermode].label}}</span></el-col>
+        <el-col :span="6" class="info-li">企业数量：{{form.nhenterprisenum}}</el-col>
+        <el-col :span="6" class="info-li">投资规模：{{form.investmentmode}}</el-col>
+        <el-col :span="6" class="info-li">园区产值：{{form.parkvalue}}</el-col>
       </el-row>
     </div>
     <!-- 相册 -->
     <div class="box-content">
       <div class="title">相册</div>
-      <el-col :span="24" class="r-box"  v-for="(item,index) in imgList" :key="index">{{item.title}}<div class="right-content">
+      <el-col :span="24" class="r-box">总平面图<div class="right-content">
           <ul class="img-list list-phone">
-            <li v-for="(tag,idx) in item.list" :key="idx">
-              <img :src="tag.url" alt="">
+            <li v-for="(tag,idx) in form.generalLayoutimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
+          </ul>
+          </div>
+        </el-col>
+      <el-col :span="24" class="r-box">实景照片<div class="right-content">
+          <ul class="img-list list-phone">
+            <li v-for="(tag,idx) in form.realphotosimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
+          </ul>
+          </div>
+        </el-col>
+      <!-- <el-col :span="24" class="r-box">园区照片<div class="right-content">
+        <ul class="img-list list-phone">
+          <li v-for="(tag,idx) in form.realphotosimgArr" :key="idx">
+            <img :src="url+tag.attpath">
+          </li>
+        </ul>
+        </div>
+      </el-col> -->
+
+      <el-col :span="24" class="r-box">园区宣传片<div class="right-content">
+        <ul class="img-list list-phone">
+          <li v-for="(tag,idx) in form.multimediapromoArr" :key="idx">
+            <img :src="url+tag.attpath">
+          </li>
+        </ul>
+        </div>
+      </el-col>
+
+      <el-col :span="24" class="r-box">园区航拍<div class="right-content">
+        <ul class="img-list list-phone">
+          <li v-for="(tag,idx) in form.shortvideoArr" :key="idx">
+            <img :src="url+tag.attpath">
+          </li>
+        </ul>
+        </div>
+      </el-col>
+
+      <el-col :span="24" class="r-box">园区荣誉<div class="right-content">
+          <ul class="img-list list-phone">
+            <li v-for="(tag,idx) in form.parkHonorimgArr" :key="idx">
+              <img :src="url+tag.attpath">
             </li>
           </ul>
           </div>
@@ -73,64 +114,100 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+import URL from '@config/urlConfig.js'
+import * as _D from '@config/dictionaries'
+import positionMaps from '@config/maps.js'
+
 export default {
+  name: 'parkViewdetail',
   data () {
     return {
-      imgList: [
-        {
-          title: '总平面图',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '实景照片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区照片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区宣传片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区航拍',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区荣誉',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        }
-      ]
+      url: '/downloadFile?filePath=',
+      parkTypeList: _D.parkTypeList,
+      usetypeList: _D.usetypeList,
+      operModeList: _D.operModeList,
+      positionMaps,
+      form: {
+        parkname: '',
+        parktype: '',
+        position: [],
+        province: '',
+        city: '',
+        region: '',
+        street: '',
+        developtime: '',
+        createtime: '',
+        parkdes: '',
+        landscope: '',
+        landscopeimg: '',
+        landscopeimgArr: [],
+        generallayout: '',
+        generallayoutimg: '',
+        generallayoutimgArr: [],
+        realphotos: '',
+        realphotosimg: '',
+        realphotosimgArr: [],
+        multimediapromo: '',
+        multimediapromoArr: [],
+        shortvideo: '',
+        shortvideoArr: [],
+        parkhonor: '',
+        parkhonorimg: '',
+        parkhonorimgArr: [],
+        usetype: '',
+        usearea: '',
+        buildarea: '',
+        plotratio: '',
+        greenrate: '',
+        location: '',
+        locationimges: '',
+        locationimgesArr: [],
+        leadindustry: '',
+        leadfunc: '',
+        investors: '',
+        operubject: '',
+        opermode: '',
+        nhenterprisenum: '',
+        investmentmode: '',
+        parkvalue: ''
+      }
+
     }
   },
-  created () {
-
+  computed: {
+    ...mapState('addProject', {
+      projectid: state => state.project_id
+    })
+  },
+  mounted () {
+    console.log(this.$route.params.id)
+    this.initForm(this.$route.params.id)
   },
   methods: {
-
+    initForm (id) {
+      this.$axios.post(URL['SELECT_PROJECT_BASE_EXT_INFO'], { projectid: id || this.projectid }).then(resp => {
+        this.loading = false
+        if (resp.status === 200) {
+          if (resp.data && resp.data.data && resp.data.code === 1) {
+            let data = resp.data.data
+            const { province = '', city = '', region = '', street = '' } = data
+            data.position = [province, city, region, street]
+            // data.developtime = data.developtime ? new Date(data.developtime + '').toJSON() : ''
+            // data.createtime = data.createtime ? new Date(data.createtime + '').toJSON() : ''
+            this.form = data
+          } else {
+            this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
+          }
+        } else {
+          this.$message.error('系统异常，请联系管理员！')
+        }
+      })
+    },
+    setFileList (column, value) {
+      console.log('setFileList')
+      this.form[column] = value
+    }
   }
 }
 </script>

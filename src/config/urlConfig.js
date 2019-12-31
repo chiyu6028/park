@@ -20,6 +20,8 @@ const dataService = {
   'UPDATE_PROJECT_BASE_STATUS': `${nameSpace}/updateProjectBaseStatus`,
   // 查询园区概况
   'SELECT_PROJECT_BASE_INFO': `${nameSpace}/selectProjectBaseById`,
+  //
+  'SELECT_PROJECT_BASE_EXT_INFO': `${nameSpace}/selectProjectBaseByExt`,
   // 投资运营
   'SELECT_INVERST_OPERATE_INFO': `${nameSpace}/selectInvestOperateById`,
   // 产业规划

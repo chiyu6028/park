@@ -2,9 +2,11 @@
   <el-upload
     :action="actionUrl"
     :auto-upload="true"
-    multiple
     :on-success="uploadSuccess"
     :on-remove="handleRemove"
+    :before-upload="beforeUpload"
+    :limit="15"
+    :on-exceed="handleExceed"
     :file-list="fileList">
     <el-button size="small" type="primary">点击上传</el-button>
   </el-upload>
@@ -20,6 +22,13 @@ export default {
     value: {
       type: Array,
       default: () => ([])
+    },
+    reg: {
+      type: Array
+    },
+    matchError: {
+      type: String,
+      default: () => ''
     }
   },
   data () {
@@ -52,10 +61,28 @@ export default {
       this.fileIds = fileIds
       this.fileList = fileList
     },
+    beforeUpload (file) {
+      if (!this.reg) return true
+      const reg = this.reg
+      let name = (file.name || '').toLowerCase()
+      let nameArr = name.split('.')
+      let after = nameArr[nameArr.length - 1]
+      if (!after) {
+        this.$message.error('无法获取文件名!')
+      }
+      const isJPG = reg.includes(after)
+      if (!isJPG) {
+        this.$message.error(this.matchError ? this.matchError : '上传图片格式不合要求!')
+      }
+      return isJPG
+    },
+    handleExceed (files, fileList) {
+      this.$message.warning(`当前限制选择15个文件，本次选择了${files.length}个文件，共选择了${files.length + fileList.length}个文件`)
+    },
     handleRemove (file) {
       let list = _.filter(this.fileList, v => v.uid !== file.uid)
       this.fileList = list
-      let ids = _.filter(this.fileList, v => v.id !== file.id)
+      let ids = _.map(this.fileList, v => v.id)
       this.fileIds = ids
       this.$emit('setFileList', this.ids)
     },

@@ -198,7 +198,6 @@ export default {
   name: 'investment',
   components: { TitleBlock, UploadDescBottom },
   data () {
-    console.log(_D)
     return {
       leadindustryList: _D.leadIndustryList,
       devSubjectList: _D.devSubjectList,
@@ -290,8 +289,6 @@ export default {
             let data = resp.data.data
             data.leadindustryArray = _.map((data.leadindustry || '').split(','), v => v || '')
             this.form = data
-          } else {
-            this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
           }
         } else {
           this.$message.error('系统异常，请联系管理员！')

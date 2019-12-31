@@ -4,65 +4,79 @@
     <div class="box-content">
       <div class="title">基础信息</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">用地性质：dddd</el-col>
-        <el-col :span="6" class="info-li">用地面积：dddd</el-col>
-        <el-col :span="6" class="info-li">总建筑面积：dddd</el-col>
-        <el-col :span="6" class="info-li">容积率：dddd</el-col>
-        <el-col :span="6" class="info-li">绿化率：dddd</el-col>
-        <el-col :span="24" class="r-box r-box2">周边项目：<div class="right-content">ddd</div></el-col>
+        <el-col :span="6" class="info-li">用地性质：<span v-if="usetypeList[form.usetype]">{{usetypeList[form.usetype].label}}</span></el-col>
+        <el-col :span="6" class="info-li">用地面积：{{form2.usearea}}</el-col>
+        <el-col :span="6" class="info-li">总建筑面积：{{form2.buildarea}}</el-col>
+        <el-col :span="6" class="info-li">容积率：{{form2.plotratio}}</el-col>
+        <el-col :span="6" class="info-li">绿化率：{{form2.greenrate}}</el-col>
+        <el-col :span="24" class="r-box r-box2">周边项目：<div class="right-content">{{form.nearproject}}</div></el-col>
       </el-row>
     </div>
     <!-- 规划设计方案 -->
     <div class="box-content">
       <div class="title">规划设计方案</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">规划设计团队：<div class="right-content">ddd</div></el-col>
+        <el-col :span="24" class="r-box r-box2">规划设计团队：<div class="right-content">{{form.designteam}}</div></el-col>
         <el-col :span="24" class="r-box r-box2">规划设计理念：<div class="right-content">
-          <span>dsafdsfaf</span>
+          <span>{{form.designidea}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.designideaimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
         <el-col :span="24" class="r-box r-box2">功能结构：<div class="right-content">
-          <span>dsafdsfaf</span>
+          <span>{{form.funcstructure}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.funcstructureimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
         <el-col :span="24" class="r-box r-box2">土地利用：<div class="right-content">
-          <span>dsafdsfaf</span>
+          <span>{{form.landuse}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.landuseimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
         <el-col :span="24" class="r-box r-box2">空间形态：<div class="right-content">
-          <span>dsafdsfaf</span>
+          <span>{{form.spatialform}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.spatialformimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
         <el-col :span="24" class="r-box r-box2">道路交通：<div class="right-content">
-          <span>dsafdsfaf</span>
+          <span>{{form.roadtraffic}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.roadtrafficimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
         <el-col :span="24" class="r-box r-box2">配套设施：<div class="right-content">
-          <span>dsafdsfaf</span>
+          <span>{{form.supportingfacilities}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.supportingfacilitiesimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
         <el-col :span="24" class="r-box r-box2">实施控制：<div class="right-content">
-          <span>dsafdsfaf</span>
+          <span>{{form.impcontrol}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.impcontrolimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
@@ -73,11 +87,11 @@
       <div class="title">规划设计小结</div>
       <el-row :gutter="24">
         <el-col :span="24" class="r-box">投资亮点：<div class="right-content">
-            <span>的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃</span>
+            <span>{{form.planadvantage}}</span>
           </div>
           </el-col>
           <el-col :span="24" class="r-box">面临困境：<div class="right-content">
-            <span>的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃</span>
+            <span>{{form.deficiencies}}</span>
           </div>
           </el-col>
       </el-row>
@@ -85,64 +99,128 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+import URL from '@config/urlConfig.js'
+import * as _D from '@config/dictionaries'
+
 export default {
+  name: 'parkPlanDesign',
   data () {
     return {
-      imgList: [
-        {
-          title: '总平面图',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '实景照片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区照片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区宣传片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区航拍',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区荣誉',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        }
-      ]
+      url: '/downloadFile?filePath=',
+      usetypeList: _D.usetypeList,
+      form: {
+        usetype: '',
+        nearproject: '',
+        designteam: '',
+        designidea: '',
+        designideaimg: '',
+        designideaimgArr: [],
+        funcstructure: '',
+        funcstructureimg: '',
+        funcstructureimgArr: [],
+        landuse: '',
+        landuseimg: '',
+        landuseimgArr: [],
+        spatialform: '',
+        spatialformimg: '',
+        spatialformimgArr: [],
+        roadtraffic: '',
+        roadtrafficimg: '',
+        roadtrafficimgArr: [],
+        supportingfacilities: '',
+        supportingfacilitiesimg: '',
+        supportingfacilitiesimgArr: [],
+        impcontrol: '',
+        impcontrolimg: '',
+        impcontrolimgArr: [],
+        planadvantage: '',
+        deficiencies: ''
+      },
+      form2: {
+        usearea: '',
+        buildarea: '',
+        meterbuildarea: '',
+        plotratio: '',
+        builddensity: '',
+        overheadarea: '',
+        undergroundarea: '',
+        greenrate: '',
+        parkspaceup: '',
+        parkspacedown: '',
+        buildteam: '',
+        ideasstrategy: '',
+        ideasstrategyimg: '',
+        ideasstrategyimgArr: [],
+        neardes: '',
+        neardesimg: '',
+        neardesimgArr: [],
+        designsketch: '',
+        designsketchimg: '',
+        designsketchimgArr: [],
+        generallayout: '',
+        generallayoutimg: '',
+        generallayoutimgArr: [],
+        funclayout: '',
+        funclayoutimg: '',
+        funclayoutimgArr: [],
+        streamlineanalysis: '',
+        streamlineanalysisimg: '',
+        streamlineanalysisimgArr: [],
+        curtain: '',
+        curtainimg: '',
+        curtainimgArr: [],
+        structure: '',
+        structureimg: '',
+        structureimgArr: [],
+        electromechanical: '',
+        electromechanicalimg: '',
+        electromechanicalimgArr: [],
+        hvac: '',
+        hvacimg: '',
+        hvacimgArr: [],
+        drainage: '',
+        drainageimg: '',
+        drainageimgArr: [],
+        designadvantage: '',
+        deficiencies: ''
+      }
     }
   },
-  created () {
-
+  computed: {
+    ...mapState('addProject', {
+      projectid: state => state.project_id
+    })
+  },
+  mounted () {
+    this.initForm(this.$route.params.id)
   },
   methods: {
-
+    initForm (id) {
+      this.$axios.post(URL['SELECT_PLAN_DESIGN_INFO'], { projectid: id || this.projectid }).then(resp => {
+        this.loading = false
+        if (resp.status === 200) {
+          if (resp.data && resp.data.data && resp.data.code === 1) {
+            this.form = resp.data.data
+          }
+        } else {
+          this.$message.error('系统异常，请联系管理员！')
+        }
+      })
+      this.$axios.post(URL['SELECT_BUILD_DESIGN_INFO'], { projectid: id || this.projectid }).then(resp => {
+        this.loading = false
+        if (resp.status === 200) {
+          if (resp.data && resp.data.data && resp.data.code === 1) {
+            this.form2 = resp.data.data
+          }
+        } else {
+          this.$message.error('系统异常，请联系管理员！')
+        }
+      })
+    },
+    setFileList (column, value) {
+      this.form[column] = value
+    }
   }
 }
 </script>

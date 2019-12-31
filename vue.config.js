@@ -24,8 +24,11 @@ module.exports = {
     }
   },
   devServer: {
+    host: 'localhost',
+    port: 88, // 端口号
+    https: false, // https:{type:Boolean}
     open: true,
-    proxy: 'http://37jk2g.natappfree.cc'
+    proxy: 'http://129.204.177.180:8082'
   },
   configureWebpack: config => {
     // config.module.rules.push({})

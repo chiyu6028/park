@@ -4,25 +4,31 @@
     <div class="box-content">
       <div class="title">总体景观设计</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">设计团队：<div class="right-content">ddd</div></el-col>
+        <el-col :span="24" class="r-box r-box2">设计团队：<div class="right-content">{{form.designteam}}</div></el-col>
         <el-col :span="24" class="r-box r-box2">环境设计理念与策略：<div class="right-content">
-          <span>dsafdsfaf</span>
+          <span>{{form.gideasstrategy}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.gideasstrategyimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
         <el-col :span="24" class="r-box r-box2">总平面图：<div class="right-content">
-          <span>dsafdsfaf</span>
+          <span>{{form.generallayout}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.generallayoutimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
         <el-col :span="24" class="r-box r-box2">功能结构：<div class="right-content">
-          <span>dsafdsfaf</span>
+          <span>{{form.gfuncstructure}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.gfuncstructureimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
@@ -32,32 +38,40 @@
     <div class="box-content">
       <div class="title">重要节点景观设计</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">核心景观设计：<div class="right-content">ddd</div></el-col>
+        <el-col :span="24" class="r-box r-box2">核心景观设计：<div class="right-content">{{form.coredesign}}</div></el-col>
         <el-col :span="24" class="r-box r-box2">园区入口设计：<div class="right-content">
-          <span>dsafdsfaf</span>
+          <span>{{form.entrydesign}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.entrydesignimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
         <el-col :span="24" class="r-box r-box2">公共平台/空间设计：<div class="right-content">
-          <span>dsafdsfaf</span>
+          <span>{{form.pubspacedesign}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.pubspacedesignimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
         <el-col :span="24" class="r-box r-box2">屋顶景观设计：<div class="right-content">
-          <span>dsafdsfaf</span>
+          <span>{{form.roofdesign}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.roofdesignimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
         <el-col :span="24" class="r-box r-box2">外立面景观设计：<div class="right-content">
-          <span>dsafdsfaf</span>
+          <span>{{form.sketchdesign}}</span>
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.sketchdesignimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
@@ -68,11 +82,11 @@
       <div class="title">景观设计小结</div>
       <el-row :gutter="24">
         <el-col :span="24" class="r-box">投资亮点：<div class="right-content">
-            <span>的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃</span>
+            <span>{{form.gardenadvantage}}</span>
           </div>
           </el-col>
           <el-col :span="24" class="r-box">面临困境：<div class="right-content">
-            <span>的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃</span>
+            <span>{{form.deficiencies}}</span>
           </div>
           </el-col>
       </el-row>
@@ -80,64 +94,69 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+import URL from '@config/urlConfig.js'
+
 export default {
+  name: 'parkview',
   data () {
     return {
-      imgList: [
-        {
-          title: '总平面图',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '实景照片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区照片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区宣传片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区航拍',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区荣誉',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        }
-      ]
+      url: '/downloadFile?filePath=',
+      form: {
+        designteam: '',
+        gideasstrategy: '',
+        gideasstrategyimg: '',
+        gideasstrategyimgArr: [],
+        generallayout: '',
+        generallayoutimg: '',
+        generallayoutimgArr: [],
+        gfuncstructure: '',
+        gfuncstructureimg: '',
+        gfuncstructureimgArr: [],
+        coredesign: '',
+        coredesignimg: '',
+        coredesignimgArr: [],
+        entrydesign: '',
+        entrydesignimg: '',
+        entrydesignimgArr: [],
+        pubspacedesign: '',
+        pubspacedesignimg: '',
+        pubspacedesignimgArr: [],
+        roofdesign: '',
+        roofdesignimg: '',
+        roofdesignimgArr: [],
+        sketchdesign: '',
+        sketchdesignimg: '',
+        sketchdesignimgArr: [],
+        gardenadvantage: '',
+        deficiencies: ''
+      }
     }
   },
-  created () {
-
+  computed: {
+    ...mapState('addProject', {
+      projectid: state => state.project_id
+    })
+  },
+  mounted () {
+    this.initForm(this.$route.params.id)
   },
   methods: {
-
+    initForm (id) {
+      this.$axios.post(URL['SELECT_GARDEN_DESIGN_INFO'], { projectid: id || this.projectid }).then(resp => {
+        this.loading = false
+        if (resp.status === 200) {
+          if (resp.data && resp.data.data && resp.data.code === 1) {
+            this.form = resp.data.data
+          }
+        } else {
+          this.$message.error('系统异常，请联系管理员！')
+        }
+      })
+    },
+    setFileList (column, value) {
+      this.form[column] = value
+    }
   }
 }
 </script>

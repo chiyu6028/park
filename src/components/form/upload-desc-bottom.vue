@@ -1,15 +1,18 @@
 <template>
   <div>
     <el-upload
+      class="park-upload"
       :action="actionUrl"
       list-type="picture-card"
       :auto-upload="true"
-      multiple
       :on-success="uploadSuccess"
       :before-remove="beforeRemove"
+      :before-upload="beforeUpload"
+      :limit="15"
+      :on-exceed="handleExceed"
       :file-list="fileList">
         <i slot="default" class="el-icon-plus"></i>
-        <div slot="file" slot-scope="{file}">
+        <div slot="file" slot-scope="{file}" class="park-upload-block">
           <img
             class="el-upload-list__item-thumbnail"
             :src="file.url" alt=""
@@ -28,13 +31,13 @@
             >
               <i class="el-icon-delete"></i>
             </span>
-            <el-input
-              v-model="describle[file.uid]"
-              :disabled="!describle[file.uid + 'disabled']"
-              :placeholder="describle[file.uid + 'placeholder'] || '等待上传成功'"
-              @input="limitLength(file)"
-              @change="changeDesc(file)"></el-input>
           </span>
+          <el-input
+            v-model="describle[file.uid]"
+            :disabled="!describle[file.uid + 'disabled']"
+            :placeholder="describle[file.uid + 'placeholder'] || '等待上传成功'"
+            @input="limitLength(file)"
+            @change="changeDesc(file)"></el-input>
         </div>
     </el-upload>
     <el-dialog :visible.sync="dialogVisible">
@@ -54,6 +57,13 @@ export default {
     value: {
       type: Array,
       default: () => ([])
+    },
+    reg: {
+      type: Array
+    },
+    matchError: {
+      type: String,
+      default: () => ''
     }
   },
   data () {
@@ -97,10 +107,27 @@ export default {
         return false
       }
     },
+    beforeUpload (file) {
+      let name = (file.name || '').toLowerCase()
+      let nameArr = name.split('.')
+      let after = nameArr[nameArr.length - 1]
+      if (!after) {
+        this.$message.error('无法获取文件名!')
+      }
+      const reg = this.reg || ['png', 'jpg', 'gif', 'tiff']
+      const isJPG = reg.includes(after)
+      if (!isJPG) {
+        this.$message.error(this.matchError ? this.matchError : '上传图片只能是PNG、JPG、GIF或TIFF格式!')
+      }
+      return isJPG
+    },
+    handleExceed (files, fileList) {
+      this.$message.warning(`当前限制选择15个文件，本次选择了${files.length}个文件，共选择了${files.length + fileList.length}个文件`)
+    },
     handleRemove (file, fileList) {
-      let list = _.filter(fileList, v => v.uid !== file.uid)
+      let list = _.filter(this.fileList, v => v.uid !== file.uid)
       this.fileList = list
-      let ids = _.filter(fileList, v => v.id !== file.id)
+      let ids = _.map(this.fileList, v => v.id)
       this.fileIds = ids
       this.$emit('setFileList', this.ids)
     },
@@ -121,7 +148,7 @@ export default {
         }
       }
     },
-    limitLength (file) {
+    limitLength1 (file) {
       const limit = 1000
       let string = this.describle[file.uid]
       let len = T.getStringLen(string)
@@ -130,6 +157,20 @@ export default {
         while (len > limit) {
           string = string.slice(0, -1)
           len = T.getStringLen(string)
+        }
+        this.describle[file.uid] = string
+        this.$message.warning(`描述长度不能超过${limit}`)
+      }
+    },
+    limitLength (file) {
+      const limit = 30
+      let string = this.describle[file.uid]
+      let len = string.length
+      // 验证长度
+      if (len > limit) {
+        while (len > limit) {
+          string = string.slice(0, -1)
+          len = string.length
         }
         this.describle[file.uid] = string
         this.$message.warning(`描述长度不能超过${limit}`)

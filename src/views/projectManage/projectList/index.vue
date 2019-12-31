@@ -83,6 +83,9 @@
           align="center"
           prop="parkname"
           label="园区名称">
+          <template slot-scope="{row}">
+          <i @click="detailProject(row)">{{row.parkname}}</i>
+        </template>
         </el-table-column>
         <el-table-column
           align="center"
@@ -231,6 +234,9 @@ export default {
     },
     editProject (row) {
       this.$router.push({ path: `editProject/${row.projectid}`, query: { t: Date.now() } })
+    },
+    detailProject (row) {
+      this.$router.push({ path: `detail/${row.projectid}`, query: { t: Date.now() } })
     },
     deleteProject (row) {
       this.$axios.post(URL['DELETE_PROJECT_BASE'], { projectid: row.projectid }).then(resp => {

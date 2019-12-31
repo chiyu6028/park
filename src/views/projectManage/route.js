@@ -12,7 +12,7 @@ export default {
     { path: 'projectList', component: ProjectList },
     { path: 'addProject', component: AddProject, props: { flag: 'add' } },
     { path: 'draft', component: Draft },
-    { path: 'detail', component: Detail },
+    { path: 'detail/:id', component: Detail },
     { path: 'editProject/:id', component: AddProject, props: { flag: 'edit' } }
   ]
 }

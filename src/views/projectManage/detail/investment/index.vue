@@ -4,47 +4,44 @@
     <div class="box-content">
       <div class="title">基础信息</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">主导产业：<div class="right-content">ddd</div></el-col>
-        <el-col :span="6" class="info-li">主要功能：dddd</el-col>
-        <el-col :span="6" class="info-li">园区产值：dddd</el-col>
-        <el-col :span="6" class="info-li">平均产值：dddd</el-col>
-        <el-col :span="6" class="info-li">贡献税收：dddd</el-col>
-        <el-col :span="6" class="info-li">就业人口：dddd</el-col>
-        <el-col :span="6" class="info-li">企业数量：dddd</el-col>
-        <el-col :span="6" class="info-li">高薪企业：dddd</el-col>
-        <el-col :span="6" class="info-li">科研/研发机构：dddd</el-col>
-        <el-col :span="6" class="info-li">知识产权：dddd</el-col>
-        <el-col :span="6" class="info-li">租赁性质：dddd</el-col>
-        <el-col :span="6" class="info-li">租赁比例：dddd</el-col>
-        <el-col :span="6" class="info-li">出售价格：dddd</el-col>
-        <el-col :span="6" class="info-li">出售面积：dddd</el-col>
-        <el-col :span="6" class="info-li">租金水平：dddd</el-col>
-        <el-col :span="6" class="info-li">已租出面积：dddd</el-col>
-        <el-col :span="6" class="info-li">剩余出租面积：dddd</el-col>
-        <el-col :span="6" class="info-li">出租率：dddd</el-col>
-        <el-col :span="6" class="info-li">物业管理费：dddd</el-col>
+        <el-col :span="24" class="r-box r-box2">主导产业：
+          <div class="right-content">
+          <span v-for="(tag,idx) in form.leadindustryArray" :key="idx">
+            {{leadindustryList[tag].label  }}
+          </span>
+          </div></el-col>
+        <el-col :span="6" class="info-li">主要功能：<span v-if="leadfuncList[form.leadfunc]">{{leadfuncList[form.leadfunc].label}}</span></el-col>
+        <el-col :span="6" class="info-li">园区产值：{{form.parkvalue}}</el-col>
+        <el-col :span="6" class="info-li">平均产值：{{form.avgvalue}}</el-col>
+        <el-col :span="6" class="info-li">贡献税收：{{form.devotetax}}</el-col>
+        <el-col :span="6" class="info-li">就业人口：{{form.employmentpeople}}</el-col>
+        <el-col :span="6" class="info-li">企业数量：{{form.enterprisenum}}</el-col>
+        <el-col :span="6" class="info-li">高薪企业：{{form.nhenterprisenum}}</el-col>
+        <el-col :span="6" class="info-li">科研/研发机构：{{form.rdorg}}</el-col>
+        <el-col :span="6" class="info-li">知识产权：{{form.knowledgeproperty}}</el-col>
+        <el-col :span="6" class="info-li">租赁性质：{{form.leaseNature}}</el-col>
+        <el-col :span="6" class="info-li">租赁比例：{{form.leaseproportion}}</el-col>
+        <el-col :span="6" class="info-li">出售价格：{{form.sellprice}}</el-col>
+        <el-col :span="6" class="info-li">出售面积：{{form.sellarea}}</el-col>
+        <el-col :span="6" class="info-li">租金水平：{{form.rentlevel}}</el-col>
+        <el-col :span="6" class="info-li">已租出面积：{{form.leasedarea}}</el-col>
+        <el-col :span="6" class="info-li">剩余出租面积：{{form.surplusleasearea}}</el-col>
+        <el-col :span="6" class="info-li">出租率：{{form.rentalrate}}</el-col>
+        <el-col :span="6" class="info-li">物业管理费：{{form.propertyfee}}</el-col>
         <el-col :span="24" class="r-box">典型企业：<div class="right-content">
           <ul class="img-list">
-            <li>
-              <img src="@images/map.png" style="width:270px;height:83px;" alt="">
-              <div class="text">大开发就发</div>
-            </li>
-            <li>
-              <img src="@images/map.png" style="width:270px;height:83px;" alt="">
-              <div class="text">大开发就发</div>
+            <li v-for="(tag,idx) in form.typicalenterprisesArr" :key="idx">
+              <img :src="url+tag.attpath">
+              <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
         </el-col>
         <el-col :span="24" class="r-box">典型科研/研发机构：<div class="right-content">
           <ul class="img-list tb">
-            <li>
-              <img src="@images/map.png" style="width:270px;height:83px;" alt="">
-              <div class="text">大开发就发</div>
-            </li>
-            <li>
-              <img src="@images/map.png" style="width:270px;height:83px;" alt="">
-              <div class="text">大开发就发</div>
+            <li v-for="(tag,idx) in form.typicalrdorgimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+              <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
@@ -55,26 +52,28 @@
     <div class="box-content">
       <div class="title">投资开发运营招商</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">投资主体：dddd</el-col>
-        <el-col :span="6" class="info-li">开发主体：dddd</el-col>
-        <el-col :span="6" class="info-li">投资主体属性：dddd</el-col>
-        <el-col :span="6" class="info-li">土地获得方式：dddd</el-col>
-        <el-col :span="6" class="info-li">开发方式：dddd</el-col>
-        <el-col :span="6" class="info-li">投资规模：dddd</el-col>
-        <el-col :span="6" class="info-li">招商方式：dddd</el-col>
-        <el-col :span="6" class="info-li">招商团队：dddd</el-col>
-        <el-col :span="6" class="info-li">招商策略：dddd</el-col>
-        <el-col :span="6" class="info-li">运营主体：dddd</el-col>
-        <el-col :span="6" class="info-li">运营模式：dddd</el-col>
-        <el-col :span="6" class="info-li">运营团队：dddd</el-col>
-        <el-col :span="24" class="r-box r-box2">优惠政策：<div class="right-content">ddd</div></el-col>
-        <el-col :span="24" class="r-box r-box2">智慧园区平台：<div class="right-content">ddd</div></el-col>
-        <el-col :span="24" class="r-box r-box2">园区服务：<div class="right-content">ddd</div></el-col>
-        <el-col :span="24" class="r-box r-box2">运营成本：<div class="right-content">ddd</div></el-col>
-        <el-col :span="24" class="r-box r-box2">运营收益：<div class="right-content">ddd</div></el-col>
+        <el-col :span="6" class="info-li">投资主体：{{form.investors}}</el-col>
+        <el-col :span="6" class="info-li">开发主体：<span v-if="devSubjectList[form.devsubject]">{{devSubjectList[form.devsubject].label}}</span></el-col>
+        <el-col :span="6" class="info-li">投资主体属性：{{form.investorattr}}</el-col>
+        <el-col :span="6" class="info-li">土地获得方式：{{form.rentlevel}}</el-col>
+        <el-col :span="6" class="info-li">开发方式：<span v-if="depmethodList[form.depmethod]">{{depmethodList[form.depmethod].label}}</span></el-col>
+        <el-col :span="6" class="info-li">投资规模：{{form.investmentmode}}</el-col>
+        <el-col :span="6" class="info-li">招商方式：<span v-if="investModeList[form.investmode]">{{investModeList[form.investmode].label}}</span></el-col>
+        <el-col :span="6" class="info-li">招商团队：{{form.investteam}}</el-col>
+        <el-col :span="6" class="info-li">招商策略：{{form.investstrategy}}</el-col>
+        <el-col :span="6" class="info-li">运营主体：{{form.operubject}}</el-col>
+        <el-col :span="6" class="info-li">运营模式：<span v-if="operModeList[form.opermode]">{{operModeList[form.opermode].label}}</span></el-col>
+        <el-col :span="6" class="info-li">运营团队：{{form.operteam}}</el-col>
+        <el-col :span="24" class="r-box r-box2">优惠政策：<div class="right-content">{{form.favouredpolicy}}</div></el-col>
+        <el-col :span="24" class="r-box r-box2">智慧园区平台：<div class="right-content">{{form.witplatform}}</div></el-col>
+        <el-col :span="24" class="r-box r-box2">园区服务：<div class="right-content">{{form.parkservice}}</div></el-col>
+        <el-col :span="24" class="r-box r-box2">运营成本：<div class="right-content">{{form.opercost}}</div></el-col>
+        <el-col :span="24" class="r-box r-box2">运营收益：<div class="right-content">{{form.operprofit}}</div></el-col>
         <el-col :span="24" class="r-box r-box2">园区活动：<div class="right-content">
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.parkactivityimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
@@ -85,62 +84,47 @@
       <div class="title">配套设施</div>
       <el-row :gutter="24">
         <el-col :span="24" class="r-box">商业设施：<div class="right-content">
-            <span>的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃</span>
+            <span>{{form.businessfacilities}}</span>
             <ul class="img-list">
-              <li>
-                <img src="@images/map.png" alt="">
-              </li>
-              <li>
-                <img src="@images/map.png" alt="">
-              </li>
+              <li v-for="(tag,idx) in form.businessfacilitiesimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
             </ul>
             </div>
           </el-col>
           <el-col :span="24" class="r-box">居住设施：<div class="right-content">
-            <span>的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃</span>
+            <span>{{form.accommodations}}</span>
             <ul class="img-list">
-              <li>
-                <img src="@images/map.png" alt="">
-              </li>
-              <li>
-                <img src="@images/map.png" alt="">
-              </li>
+              <li v-for="(tag,idx) in form.accommodationsimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
             </ul>
             </div>
           </el-col>
           <el-col :span="24" class="r-box">会议展厅：<div class="right-content">
-            <span>的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃</span>
+            <span>{{form.conferencehall}}</span>
             <ul class="img-list">
-              <li>
-                <img src="@images/map.png" alt="">
-              </li>
-              <li>
-                <img src="@images/map.png" alt="">
-              </li>
+              <li v-for="(tag,idx) in form.conferencehallimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
             </ul>
             </div>
           </el-col>
           <el-col :span="24" class="r-box">停车设施：<div class="right-content">
-            <span>的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃</span>
+            <span>{{form.parkfacility}}</span>
             <ul class="img-list">
-              <li>
-                <img src="@images/map.png" alt="">
-              </li>
-              <li>
-                <img src="@images/map.png" alt="">
-              </li>
+              <li v-for="(tag,idx) in form.parkfacilityimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
             </ul>
             </div>
           </el-col>
           <el-col :span="24" class="r-box">公共服务设施：<div class="right-content">
-            <span>的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃</span>
+            <span>{{form.publicfacilities}}</span>
             <ul class="img-list">
-              <li>
-                <img src="@images/map.png" alt="">
-              </li>
-              <li>
-                <img src="@images/map.png" alt="">
-              </li>
+              <li v-for="(tag,idx) in form.publicfacilitiesimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
             </ul>
             </div>
           </el-col>
@@ -151,11 +135,11 @@
       <div class="title">投资运营小结</div>
       <el-row :gutter="24">
         <el-col :span="24" class="r-box">投资亮点：<div class="right-content">
-            <span>的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃</span>
+            <span>{{form.investadvantage}}</span>
           </div>
           </el-col>
           <el-col :span="24" class="r-box">面临困境：<div class="right-content">
-            <span>的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃的对的呃呃</span>
+            <span>{{form.deficiencies}}</span>
           </div>
           </el-col>
       </el-row>
@@ -163,64 +147,108 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+import URL from '@config/urlConfig.js'
+import * as _D from '@config/dictionaries'
+
 export default {
+  name: 'parkViewdetail',
   data () {
     return {
-      imgList: [
-        {
-          title: '总平面图',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '实景照片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区照片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区宣传片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区航拍',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区荣誉',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        }
-      ]
+      leadindustryList: _D.leadIndustryList,
+      devSubjectList: _D.devSubjectList,
+      depmethodList: _D.depmethodList,
+      investModeList: _D.investModeList,
+      operModeList: _D.operModeList,
+      leadfuncList: _D.leadfuncList,
+      url: '/downloadFile?filePath=',
+      form: {
+        leadindustryArray: [],
+        leadindustry: '',
+        leadfunc: '',
+        parkvalue: '',
+        avgvalue: '',
+        employmentpeople: '',
+        devotetax: '',
+        knowledgeproperty: '',
+        leasenature: '',
+        leaseproportion: '',
+        propertyfee: '',
+        sellprice: '',
+        sellarea: '',
+        rentlevel: '',
+        leasedarea: '',
+        surplusleasearea: '',
+        rentalrate: '',
+        enterprisenum: '',
+        nhenterprisenum: '',
+        rdorg: '',
+        typicalenterprises: '',
+        typicalenterprisesArr: [],
+        typicalrdorgimg: '',
+        typicalrdorgimgArr: [],
+        investors: '',
+        devsubject: '',
+        landmethod: '',
+        investorattr: '',
+        depmethod: '',
+        investmentmode: '',
+        investmode: '',
+        investteam: '',
+        investstrategy: '',
+        operubject: '',
+        opermode: '',
+        operteam: '',
+        favouredpolicy: '',
+        witplatform: '',
+        parkservice: '',
+        opercost: '',
+        operprofit: '',
+        parkactivityimg: '',
+        parkactivityimgArr: [],
+        businessfacilities: '',
+        businessfacilitiesimg: '',
+        businessfacilitiesimgArr: [],
+        accommodations: '',
+        accommodationsimg: '',
+        accommodationsimgArr: [],
+        conferencehall: '',
+        conferencehallimg: '',
+        conferencehallimgArr: [],
+        publicfacilities: '',
+        publicfacilitiesimg: '',
+        publicfacilitiesimgArr: [],
+        investadvantage: '',
+        deficiencies: ''
+      }
     }
   },
-  created () {
-
+  computed: {
+    ...mapState('addProject', {
+      projectid: state => state.project_id
+    })
+  },
+  mounted () {
+    this.initForm(this.$route.params.id)
   },
   methods: {
-
+    initForm (id) {
+      this.$axios.post(URL['SELECT_INVERST_OPERATE_INFO'], { projectid: id || this.projectid }).then(resp => {
+        this.loading = false
+        if (resp.status === 200) {
+          if (resp.data && resp.data.data && resp.data.code === 1) {
+            let data = resp.data.data
+            data.leadindustryArray = _.map((data.leadindustry || '').split(','), v => v || '')
+            this.form = data
+          }
+        } else {
+          this.$message.error('系统异常，请联系管理员！')
+        }
+      })
+    },
+    setFileList (column, value) {
+      this.form[column] = value
+    }
   }
 }
 </script>

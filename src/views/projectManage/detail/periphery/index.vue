@@ -4,28 +4,30 @@
     <div class="box-content">
       <div class="title">周边条件</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">周边概述：<div class="right-content">ddd</div></el-col>
+        <el-col :span="24" class="r-box r-box2">周边概述：<div class="right-content">{{form.neardes}}</div></el-col>
       </el-row>
     </div>
     <!-- 周边园区 -->
     <div class="box-content">
       <div class="title">周边园区</div>
-      <el-row :gutter="24">
-        <el-col :span="6" class="info-li">园区名称：dddd</el-col>
-        <el-col :span="6" class="info-li">用地面积：dddd</el-col>
-        <el-col :span="6" class="info-li">总建筑面积：dddd</el-col>
-        <el-col :span="6" class="info-li">容积率：dddd</el-col>
-        <el-col :span="6" class="info-li">园区类型：dddd</el-col>
-        <el-col :span="6" class="info-li">园区产值：dddd</el-col>
-        <el-col :span="6" class="info-li">平均产值：dddd</el-col>
-        <el-col :span="6" class="info-li">就业人口：dddd</el-col>
-        <el-col :span="6" class="info-li">企业数量：dddd</el-col>
-        <el-col :span="6" class="info-li">代表企业：dddd</el-col>
-        <el-col :span="6" class="info-li">租金水平：dddd</el-col>
-        <el-col :span="6" class="info-li">出租率：dddd</el-col>
+      <el-row :gutter="24" v-for="(item,idx) in form.parkNearGarden" :key="idx">
+        <el-col :span="6" class="info-li">园区名称：{{item.parkname}}</el-col>
+        <el-col :span="6" class="info-li">用地面积：{{item.uselandarea}}</el-col>
+        <el-col :span="6" class="info-li">总建筑面积：{{item.totalbuildarea}}</el-col>
+        <el-col :span="6" class="info-li">容积率：{{item.plotratio}}</el-col>
+        <el-col :span="6" class="info-li">园区类型：<span v-if="parkTypeList[item.parktype]">{{parkTypeList[item.parktype].label}}</span></el-col>
+        <el-col :span="6" class="info-li">园区产值：{{item.parkvalue}}</el-col>
+        <el-col :span="6" class="info-li">平均产值：{{item.avgvalue}}</el-col>
+        <el-col :span="6" class="info-li">就业人口：{{item.employmentpeople}}</el-col>
+        <el-col :span="6" class="info-li">企业数量：{{item.enterprisenum}}</el-col>
+        <el-col :span="6" class="info-li">代表企业：{{item.deputyenterprise}}</el-col>
+        <el-col :span="6" class="info-li">租金水平：{{item.rentlevel}}</el-col>
+        <el-col :span="6" class="info-li">出租率：{{item.rentalrate}}</el-col>
         <el-col :span="24" class="r-box r-box2">园区图册：<div class="right-content">
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.parkimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
@@ -34,13 +36,15 @@
      <!-- 周边住宅 -->
     <div class="box-content">
       <div class="title">周边住宅</div>
-      <el-row :gutter="24">
-        <el-col :span="6" class="info-li">小区名称：dddd</el-col>
-        <el-col :span="6" class="info-li">房价水平：dddd</el-col>
-        <el-col :span="24" class="r-box r-box2">周边介绍：<div class="right-content">ddd</div></el-col>
+      <el-row :gutter="24" v-for="(item,idx) in form.parkNearHouse" :key="idx">
+        <el-col :span="6" class="info-li">小区名称：{{item.villagename}}</el-col>
+        <el-col :span="6" class="info-li">房价水平：{{item.housprice}}</el-col>
+        <el-col :span="24" class="r-box r-box2">周边介绍：<div class="right-content">{{item.villagedes}}</div></el-col>
         <el-col :span="24" class="r-box r-box2">小区图册：<div class="right-content">
           <ul class="img-list">
-            <li><img src="@images/map.png" alt=""></li>
+            <li v-for="(tag,idx) in form.villageimgArr" :key="idx">
+              <img :src="url+tag.attpath">
+            </li>
           </ul>
           </div>
         </el-col>
@@ -49,64 +53,64 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+import URL from '@config/urlConfig.js'
+import * as _D from '@config/dictionaries'
+
 export default {
+  name: 'periphery',
   data () {
     return {
-      imgList: [
-        {
-          title: '总平面图',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '实景照片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区照片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区宣传片',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区航拍',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        },
-        {
-          title: '园区荣誉',
-          list: [
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' },
-            { url: 'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg' }
-          ]
-        }
-      ]
+      url: '/downloadFile?filePath=',
+      parkTypeList: _D.parkTypeList,
+      form: {
+        neardes: '',
+        parkNearGarden: [],
+        parkNearHouse: []
+      }
     }
   },
-  created () {
-
+  computed: {
+    ...mapState('addProject', {
+      projectid: state => state.project_id
+    })
+  },
+  mounted () {
+    this.initForm(this.$route.params.id)
   },
   methods: {
-
+    initForm (id) {
+      this.$axios.post(URL['SELECT_NEAR_CONDITION_INFO'], { projectid: id || this.projectid }).then(resp => {
+        if (resp.status === 200) {
+          if (resp.data && resp.data.data && resp.data.code === 1) {
+            this.form.neardes = resp.data.data.neardes
+          }
+        } else {
+          this.$message.error('系统异常，请联系管理员！')
+        }
+      })
+      this.$axios.post(URL['SELECT_NEAR_GARDEN_INFO'], { projectid: id || this.projectid }).then(resp => {
+        if (resp.status === 200) {
+          if (resp.data && resp.data.data && resp.data.code === 1) {
+            this.form.parkNearGarden = resp.data.data
+          }
+        } else {
+          this.$message.error('系统异常，请联系管理员！')
+        }
+      })
+      this.$axios.post(URL['SELECT_NEAR_HOUSE_INFO'], { projectid: id || this.projectid }).then(resp => {
+        if (resp.status === 200) {
+          if (resp.data && resp.data.data && resp.data.code === 1) {
+            this.form.parkNearHouse = resp.data.data
+          }
+        } else {
+          this.$message.error('系统异常，请联系管理员！')
+        }
+      })
+    },
+    setFileList (column, value) {
+      this.form[column] = value
+    }
   }
 }
 </script>

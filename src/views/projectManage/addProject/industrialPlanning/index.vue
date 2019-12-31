@@ -98,8 +98,6 @@ export default {
         if (resp.status === 200) {
           if (resp.data && resp.data.data && resp.data.code === 1) {
             this.form = resp.data.data
-          } else {
-            this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
           }
         } else {
           this.$message.error('系统异常，请联系管理员！')

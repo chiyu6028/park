@@ -4,8 +4,10 @@
       :action="actionUrl"
       list-type="picture-card"
       :auto-upload="true"
-      multiple
       :on-success="uploadSuccess"
+      :before-upload="beforeUpload"
+      :limit="15"
+      :on-exceed="handleExceed"
       :file-list="fileList">
         <i slot="default" class="el-icon-plus"></i>
         <div slot="file" slot-scope="{file}">
@@ -46,6 +48,13 @@ export default {
     value: {
       type: Array,
       default: () => ([])
+    },
+    reg: {
+      type: Array
+    },
+    matchError: {
+      type: String,
+      default: () => ''
     }
   },
   data () {
@@ -81,9 +90,26 @@ export default {
     handleRemove (file) {
       let list = _.filter(this.fileList, v => v.uid !== file.uid)
       this.fileList = list
-      let ids = _.filter(this.fileList, v => v.id !== file.id)
+      let ids = _.map(this.fileList, v => v.id)
       this.fileIds = ids
       this.$emit('setFileList', this.ids)
+    },
+    beforeUpload (file) {
+      let name = (file.name || '').toLowerCase()
+      let nameArr = name.split('.')
+      let after = nameArr[nameArr.length - 1]
+      if (!after) {
+        this.$message.error('无法获取文件名!')
+      }
+      const reg = this.reg || ['png', 'jpg', 'gif', 'tiff']
+      const isJPG = reg.includes(after)
+      if (!isJPG) {
+        this.$message.error(this.matchError ? this.matchError : '上传图片只能是PNG、JPG、GIF或TIFF格式!')
+      }
+      return isJPG
+    },
+    handleExceed (files, fileList) {
+      this.$message.warning(`当前限制选择15个文件，本次选择了${files.length}个文件，共选择了${files.length + fileList.length}个文件`)
     },
     handlePictureCardPreview (file) {
       this.dialogImageUrl = file.url

@@ -75,12 +75,13 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import UploadDescBottom from '@components/form/upload-desc-bottom'
 import UploadButton from '@components/form/upload-button'
 import URL from '@config/urlConfig.js'
 import rules from './rules.js'
 import * as _D from '@config/dictionaries'
+import positionMaps from '@config/maps.js'
 
 export default {
   name: 'parkview',
@@ -89,6 +90,7 @@ export default {
     return {
       parkTypeList: _D.parkTypeList,
       rules,
+      positionMaps,
       form: {
         parkname: '',
         parktype: '',
@@ -122,8 +124,7 @@ export default {
   computed: {
     ...mapState('addProject', {
       projectid: state => state.project_id
-    }),
-    ...mapGetters({ positionMaps: 'getMaps' })
+    })
   },
   mounted () {
     if (this.$route.path.indexOf('/editProject/') !== -1) {
@@ -137,11 +138,11 @@ export default {
         if (resp.status === 200) {
           if (resp.data && resp.data.data && resp.data.code === 1) {
             let data = resp.data.data
+            const { province = '', city = '', region = '', street = '' } = data
+            data.position = [province, city, region, street]
             // data.developtime = data.developtime ? new Date(data.developtime + '').toJSON() : ''
             // data.createtime = data.createtime ? new Date(data.createtime + '').toJSON() : ''
             this.form = data
-          } else {
-            this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
           }
         } else {
           this.$message.error('系统异常，请联系管理员！')
@@ -152,7 +153,7 @@ export default {
       this.$refs.parkView.validate(isValid => {
         if (isValid) {
           // 填充项目地址
-          const [ province, city, region, street ] = this.form.position
+          const [ province, city, region, street ] = this.form.position || []
           this.form.province = province || ''
           this.form.city = city || ''
           this.form.region = region || ''
@@ -173,13 +174,6 @@ export default {
     },
     setFileList (column, value) {
       this.form[column] = value
-    }
-  },
-  watch: {
-    positionMaps (value) {
-      if (value && value.length) {
-        this.form.position = [ this.form.province || '', this.form.city || '', this.form.region || '', this.form.street || '' ]
-      }
     }
   }
 }

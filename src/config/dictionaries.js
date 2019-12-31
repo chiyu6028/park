@@ -43,7 +43,6 @@ export const leadIndustryList = [
 ]
 // 开发主体
 export const devSubjectList = [
-  { value: '', label: '全部建设方式' },
   { value: '1', label: '国有企业' },
   { value: '2', label: '民营企业' },
   { value: '3', label: '外资企业' },
