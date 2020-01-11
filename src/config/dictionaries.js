@@ -85,3 +85,16 @@ export const investModeList = [
   { value: '1', label: '自主招商' },
   { value: '2', label: '委托（代理）招商' }
 ]
+
+// 权限
+export const roleList = [
+  { value: '1', label: '超级管理员' },
+  { value: '2', label: '下载用户' },
+  { value: '3', label: '浏览用户' }
+]
+
+// 用户状态
+export const userStatusList = [
+  { value: '0', label: '禁用' },
+  { value: '1', label: '启用' }
+]

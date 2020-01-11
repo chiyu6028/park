@@ -8,7 +8,7 @@
       <el-input v-model="form.housprice" class="inline-4"></el-input>
     </el-form-item>
     <el-form-item label="园区图册" class="inline-1">
-      <Upload :value="form.villageimgArr" @setFileList="value => setFileList('villageimg', value)"></Upload>
+      <!-- <Upload :value="form.villageimgArr" @setFileList="value => setFileList('villageimg', value)"></Upload> -->
       <UploadDescBottom :value="form.parkimgArr" @setFileList="value => setFileList('parkimg', value)"></UploadDescBottom>
     </el-form-item>
   </el-form>

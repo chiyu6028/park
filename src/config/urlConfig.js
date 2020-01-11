@@ -42,7 +42,21 @@ const dataService = {
   'SELECT_SCHEMEMATER_MATER_INFO': `${nameSpace}/selectSchemeMaterialById`,
   // 项目列表 和草稿箱
   'SELECT_PARK_INFO': `${nameSpace}/selectParkInfo`,
-  'DELETE_PROJECT_BASE': `${nameSpace}/deleteProjectBase`
+  'DELETE_PROJECT_BASE': `${nameSpace}/deleteProjectBase`,
+  // 用户列表查询
+  'selectUserList': `${nameSpace}/selectUserList`,
+  // 修改用户信息
+  'updateUserInfo': `${nameSpace}/updateUserInfo`,
+  // 查询对比项目
+  'selectProjectByCity': `${nameSpace}/selectProjectByCity`,
+  // 对比成市场查询
+  'selectCityInfo': `${nameSpace}/selectCityInfo`,
+  // 查询对比字段
+  'selectContrastField': `${nameSpace}/selectContrastField`,
+  // 查询对比结果
+  'selectContrastInfo': `${nameSpace}/selectContrastInfo`,
+  // 根据城市查询项目
+  'selectCityProject': `${nameSpace}/selectCityProject`
 }
 
 export default { ...dataService }
