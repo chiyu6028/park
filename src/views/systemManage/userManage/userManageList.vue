@@ -20,7 +20,7 @@
       </div>
     </el-col>
     <el-col :span="24">
-      <el-table class="data-table"  v-loading="loading" :data="tableData" max-height="500" height="500" style="width: 100%">
+      <el-table class="data-table"  v-loading="loading" :data="tableData"  style="width: 100%">
         <el-table-column align="center" prop="userId" label="员工ID"></el-table-column>
         <el-table-column align="center" prop="userName" label="用户名"></el-table-column>
         <el-table-column align="center" prop="userDep" label="部门"></el-table-column>
@@ -41,8 +41,8 @@
         </el-table-column>
       </el-table>
     </el-col>
-    <el-col :span="24">
-      <el-pagination background layout="prev, pager, next" class="text-center" :current-page.sync="page" :page-size="pageSize" @size-change="changeSize" @current-change="changePage" @prev-click="changePage" @next-click="changePage" :total="total"></el-pagination>
+    <el-col :span="24" style="margin-top: 20px;text-align:center;">
+      <el-pagination @size-change="changeSize" @current-change="changePage" :current-page="page" :page-sizes="[10, 20, 30, 50]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total"></el-pagination>
     </el-col>
     <el-dialog title="选择分配权限" center :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
       <span>
@@ -192,27 +192,8 @@ export default {
               item._userStatus = this.statusObj[item.userStstus] ? this.statusObj[item.userStstus] : item.userStstus
             })
             this.tableData = list
-            this.total = resp.data.pageCount
-          } else {
-            this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
-          }
-        } else {
-          this.$message.error('系统异常，请联系管理员！')
-        }
-      })
-    },
-    editProject (row) {
-      this.$router.push({ path: `editProject/${row.projectid}`, query: { t: Date.now() } })
-    },
-    detailProject (row) {
-      this.$router.push({ path: `detail/${row.projectid}`, query: { t: Date.now() } })
-    },
-    deleteProject (row) {
-      this.$axios.post(URL['DELETE_PROJECT_BASE'], { projectid: row.projectid }).then(resp => {
-        if (resp.status === 200) {
-          if (resp.data && resp.data.code === 1) {
-            this.$message.success(resp.data.msg || '操作成功！')
-            this.getData()
+            this.page = resp.data.curPage
+            this.total = resp.data.total
           } else {
             this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
           }
@@ -223,10 +204,11 @@ export default {
     },
     changeSize (pageSize) {
       this.pageSize = pageSize
-      this.getData()
+      this.queryData()
     },
     changePage (page) {
-      this.getData(page)
+      this.page = page
+      this.queryData()
     }
   }
 }

@@ -11,10 +11,36 @@
 
 <script>
 import Header from '@components/block/header.vue'
+import URL from '@config/urlConfig.js'
 export default {
   name: 'Index',
   components: {
     Header
+  },
+  created () {
+    this.getUserInfo()
+  },
+  methods: {
+    getUserInfo () {
+      let param = {
+        'page': 0,
+        'pageSize': 1,
+        'userName': 'sz777'
+      }
+      this.$axios.post(URL['selectUserList'], param).then(resp => {
+        if (resp.status === 200) {
+          if (resp.data && resp.data.code === 1 && resp.data.data) {
+            let item = resp.data.data.list[0]
+            this.$store.commit('setRole', item.userRole)
+            this.$store.commit('setUser', item)
+          } else {
+            this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
+          }
+        } else {
+          this.$message.error('系统异常，请联系管理员！')
+        }
+      })
+    }
   }
 }
 </script>

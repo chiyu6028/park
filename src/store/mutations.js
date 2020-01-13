@@ -10,6 +10,12 @@ const mutations = {
   },
   setStreet (state, { value = [] }) {
     state.street = value
+  },
+  setUser (state, value) {
+    state.user = value
+  },
+  setRole (state, value = '3') {
+    state.role = value
   }
 }
 
