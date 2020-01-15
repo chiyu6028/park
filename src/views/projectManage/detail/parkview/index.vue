@@ -181,7 +181,6 @@ export default {
     })
   },
   mounted () {
-    console.log(this.$route.params.id)
     this.initForm(this.$route.params.id)
   },
   methods: {
@@ -205,7 +204,6 @@ export default {
       })
     },
     setFileList (column, value) {
-      console.log('setFileList')
       this.form[column] = value
     }
   }

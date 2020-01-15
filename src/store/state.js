@@ -2,7 +2,9 @@ const state = {
   province: [],
   city: [],
   egion: [],
-  street: []
+  street: [],
+  user: {},
+  role: '1'
 }
 
 export default state

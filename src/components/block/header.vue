@@ -37,15 +37,18 @@ import * as D from '@config/default.js'
 export default {
   name: 'Header',
   data () {
-    const headerList = D.headerList
+    let headerList = D.headerList
+    let item = {}
+    if (this.$store.state.role === '2' || this.$store.state.role === '3') {
+      item = headerList.find(elem => {
+        return elem.index === '2'
+      })
+      headerList = [item]
+    }
     let activeIndex = headerList.length > 0 ? _.head(headerList).index : null
-    // :style="{padding}",
-    // padding: `0 ${padding}px`
-    // const winSize = T.getWinSize()
-    // let padding = winSize.screenWidth / 3 - 240
     return {
       activeIndex,
-      headerList: D.headerList
+      headerList: headerList
     }
   },
   methods: {

@@ -5,79 +5,29 @@
       <span class="result">检索结果共<span class="num">{{ total }}</span>条</span>
     </el-col>
     <el-col :span="24">
-      <el-table
-        border
-        v-loading="loading"
-        :data="tableData"
-        max-height="650"
-        height="650"
-        @row-dblclick="viewDetail"
-        style="width: 100%">
-        <el-table-column
-          align="center"
-          prop="projectid"
-          label="项目ID">
+      <el-table border v-loading="loading" :data="tableData" @row-dblclick="viewDetail" style="width: 100%">
+        <el-table-column align="center" prop="projectid" label="项目ID"></el-table-column>
+        <el-table-column align="center" prop="parkname" label="园区名称">
+          <template slot-scope="{row}">
+            <i @click="detailProject(row)">{{row.parkname}}</i>
+          </template>
         </el-table-column>
-        <el-table-column
-          align="center"
-          prop="parkname"
-          label="园区名称">
-        <template slot-scope="{row}">
-          <i @click="detailProject(row)">{{row.parkname}}</i>
-        </template>
-        </el-table-column>
-        <el-table-column
-          align="center"
-          prop="parktype"
-          label="园区类型">
-        </el-table-column>
-        <el-table-column
-          align="center"
-          prop="location"
-          label="所属区位">
-        </el-table-column>
-        <el-table-column
-          align="center"
-          prop="usetype"
-          label="用地性质">
-        </el-table-column>
-        <el-table-column
-          align="center"
-          prop="usearea"
-          label="用地面积（公顷）">
-        </el-table-column>
-        <el-table-column
-          align="center"
-          prop="updatetime"
-          label="发布时间">
-        </el-table-column>
-        <el-table-column
-          align="center"
-          prop="operate"
-          label="编辑">
-        <template slot-scope="{row}">
-          <i class="el-icon-edit pointer" title="编辑" @click="editProject(row)"></i>
-          <i class="el-icon-delete pointer padding-left-10" title="删除" @click="deleteProject(row)"></i>
-        </template>
-        </el-table-column>
+        <el-table-column align="center" prop="parktype" label="园区类型"></el-table-column>
+        <el-table-column align="center" prop="location" label="所属区位"></el-table-column>
+        <el-table-column align="center" prop="usetype" label="用地性质"></el-table-column>
+        <el-table-column align="center" prop="usearea" label="用地面积（公顷）"></el-table-column>
+        <el-table-column align="center" prop="buildArea" label="建筑面积（公顷）"></el-table-column>
+        <el-table-column align="center" prop="updatetime" label="发布时间"></el-table-column>
+        <el-table-column align="center" prop="operate" label="编辑">
+          <template slot-scope="{row}">
+            <i class="el-icon-edit pointer" title="操作" @click="editProject(row)"></i>
+            <i class="el-icon-delete pointer padding-left-10" title="删除" @click="deleteProject(row)"></i>
+          </template>
+          </el-table-column>
       </el-table>
     </el-col>
-    <!-- <el-col :span="24" v-show="!loading && tableData.length === 0" class="empty">
-      暂无数据！
-    </el-col> -->
-    <el-col :span="24">
-      <el-pagination
-        background
-        layout="prev, pager, next"
-        class="text-center"
-        :current-page.sync="page"
-        :page-size="pageSize"
-        @size-change="changeSize"
-        @current-change="changePage"
-        @prev-click="changePage"
-        @next-click="changePage"
-        :total="total">
-      </el-pagination>
+    <el-col :span="24" style="margin-top: 20px;text-align:center;">
+      <el-pagination @size-change="changeSize" @current-change="changePage" :current-page="page" :page-sizes="[10, 20, 30, 50]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total"></el-pagination>
     </el-col>
   </el-row>
 </template>
@@ -119,7 +69,8 @@ export default {
               _usetype: v.usetype,
               usetype: T.getConvertValue(v.usetype, usetypeConvert)
             }))
-            this.total = resp.data.pageCount
+            this.page = resp.data.curPage
+            this.total = resp.data.total
           } else {
             this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
           }
@@ -153,7 +104,8 @@ export default {
       this.getData()
     },
     changePage (page) {
-      this.getData(page)
+      this.page = page
+      this.getData()
     }
   }
 }

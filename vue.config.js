@@ -1,6 +1,27 @@
 const path = require('path')
+const os = require('os')
 const resolve = _path => {
   return path.resolve(__dirname, _path)
+}
+
+let getLocalIP = () => {
+  let ifaces = os.networkInterfaces()
+  let ip = null
+  for (let dev in ifaces) {
+    ifaces[dev].forEach((details) => {
+      if (details.family.toUpperCase() === 'IPV4') {
+        ip = details.address
+      }
+      if (details.family.toUpperCase() === 'IPV6') {
+        ip = details.address
+      }
+    })
+    break
+  }
+  if (ip === null) {
+    ip = 'localhost'
+  }
+  return ip
 }
 
 module.exports = {
@@ -24,10 +45,12 @@ module.exports = {
     }
   },
   devServer: {
-    host: 'localhost',
+    host: getLocalIP(), // 'localhost',
     port: 88, // 端口号
     https: false, // https:{type:Boolean}
     open: true,
+    hot: true,
+    // proxy: 'http://129.204.177.180:8082'
     proxy: 'http://129.204.177.180:8082'
   },
   configureWebpack: config => {

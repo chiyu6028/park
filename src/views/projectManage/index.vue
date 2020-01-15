@@ -28,7 +28,14 @@ import * as D from '@config/default.js'
 export default {
   name: 'ProjectManage',
   data () {
-    const asideList = D.projectManageAside
+    let asideList = D.projectManageAside
+    let item = {}
+    if (this.$store.state.role === '2' || this.$store.state.role === '3') {
+      item = asideList.find(elem => {
+        return elem.index === '1'
+      })
+      asideList = [item]
+    }
     let activeIndex = _.head(asideList).index
     return {
       activeIndex,

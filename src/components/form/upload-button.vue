@@ -49,6 +49,7 @@ export default {
   methods: {
     initFileList () {
       let fileIds = []; let fileList = []
+      // this.rootUrl = process.env.NODE_ENV !== 'development' ? process.env.API_ROOT : '/api'
       _.each(this.value || [], v => {
         fileIds.push(v.attid)
         fileList.push({
