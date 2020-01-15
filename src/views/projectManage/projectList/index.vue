@@ -16,7 +16,7 @@
             <el-option v-for="item in useAreaList" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="总建筑面积" class="inline-5">
+        <el-form-item label="总建面" class="inline-5">
           <el-select v-model="form.buildArea" placeholder="请选择">
             <el-option v-for="item in buildTotalAreaList" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
@@ -67,8 +67,8 @@
       </el-form>
     </el-col>
     <el-col :span="24">
-      <el-table border v-loading="loading" :data="tableData"  style="width: 100%">
-        <el-table-column align="center" prop="projectid" label="项目ID"></el-table-column>
+      <el-table border v-loading="loading" :data="tableData" stripe border="0" style="width: 100%">
+        <el-table-column width="60" align="center" prop="projectid" label="项目ID"></el-table-column>
         <el-table-column align="center" prop="parkname" label="园区名称">
           <template slot-scope="{row}">
             <a class="detail" @click="detailProject(row)">{{row.parkname}}</a>
@@ -77,12 +77,12 @@
         <el-table-column align="center" prop="parktype" label="园区类型"></el-table-column>
         <el-table-column align="center" prop="location" label="项目地址"></el-table-column>
         <el-table-column align="center" prop="usetype" label="用地性质"></el-table-column>
-        <el-table-column align="center" prop="usearea" label="用地面积（公顷）"></el-table-column>
-        <el-table-column align="center" prop="buildArea" label="建筑面积（公顷）"></el-table-column>
+        <el-table-column align="center" prop="usearea" label="用地面积(公顷)"></el-table-column>
+        <el-table-column align="center" prop="buildArea" label="建筑面积(公顷)"></el-table-column>
         <el-table-column align="center" prop="updatetime" label="发布时间"></el-table-column>
-        <el-table-column align="center" prop="operate" label="编辑" v-if="enable">
+        <el-table-column align="center" prop="operate" label="操作" v-if="enable">
           <template slot-scope="{row}">
-            <i class="el-icon-edit pointer" title="操作"  @click="editProject(row)"></i> &nbsp;&nbsp;
+            <i class="el-icon-edit pointer" title="编辑"  @click="editProject(row)"></i> &nbsp;&nbsp;
             <i class="el-icon-delete pointer padding-left-10"  title="删除" @click="deleteProject(row)"></i>
           </template>
         </el-table-column>

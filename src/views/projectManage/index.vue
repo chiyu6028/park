@@ -1,6 +1,6 @@
 <template>
   <el-container class="project-container">
-    <el-aside width="200px" class="project-aside">
+    <el-aside width="120px" class="project-aside">
       <el-menu :default-active="activeIndex" @select="handleSelect">
         <el-menu-item
           v-for="item in asideList"

@@ -13,6 +13,18 @@ body {
   opacity: 0;
 }
 
+.el-button,.el-table{
+  font-size:12px !important;
+}
+
+.project-container .project-content .content-main{
+ margin-left:15px !important;
+ padding-right:15px !important; 
+}
+.project-container .project-content{
+  left:120px !important;
+}
+
 .home-container {
   position: absolute;
   top: 0;
@@ -53,6 +65,10 @@ body {
   &:active {
     background-color: #0765cf !important;
   }
+}
+
+.el-input__inner{
+  font-size:12px !important;
 }
 
 .text-center {
@@ -275,7 +291,7 @@ body {
     .el-tabs__item.is-top {
       vertical-align: top;
       margin-right: 20px;
-      font-size: 14px;
+      font-size: 12px;
       background-color: #B5C2CA;
       border-radius: 4px;
       border-width: 0px;
@@ -340,7 +356,11 @@ body {
     .el-form-item__label {
       padding: 0;
       line-height: 28px;
-      font-size: 14px;
+      font-size: 12px !important;
+      text-align:right !important;
+    }
+    .form-table-list .el-form-item .el-form-item__label{
+    text-align: right !important;
     }
 
     .el-form-item__content {
@@ -380,8 +400,9 @@ body {
 
     .el-form-item__label {
       padding-left: 10px;
-      text-align: left;
+      text-align: right;
       width: 35%;
+      font-size:12px !important;
     }
 
     .el-form-item__content {
