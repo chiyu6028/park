@@ -1,6 +1,6 @@
 <template>
   <el-container class="project-container">
-    <el-aside width="120px" class="project-aside">
+    <el-aside class="project-aside">
       <el-menu :default-active="activeIndex" @select="handleSelect">
         <el-menu-item
           v-for="item in asideList"
@@ -9,7 +9,7 @@
         >{{item.label }}</el-menu-item>
       </el-menu>
     </el-aside>
-    <el-container class="project-content">
+    <el-container class="project-content" v-infinite-scroll="load" style="overflow:auto">
       <el-main class="content-main padding-0">
         <el-breadcrumb separator-class="el-icon-arrow-right" class="beeadrumb">
           <el-breadcrumb-item>项目管理</el-breadcrumb-item>
@@ -75,17 +75,18 @@ export default {
     top: 78px;
     left: 0;
     bottom: 0;
-    width: 200px;
+    width: 180px !important;
     overflow-y: auto;
+	padding-top: 50px;
   }
   .project-content {
     position: absolute;
     top: 78px;
-    left: 200px;
-    bottom: 0;
+    left: 179px;
     right: 0;
     overflow: auto;
-    background-color: #ecf1f2;
+    background-color: #dbdbdc;
+	z-index: -1;
 
     .content-main{
       margin: 0 0 0 60px;
@@ -97,30 +98,32 @@ export default {
     }
 
     .beeadrumb{
-      height: 78px;
-      line-height: 78px;
+      height: 70px;
+      line-height: 70px;
       @include font12;
     }
   }
   .el-menu {
-    background-color: #2e333d;
+    background-color: #FFFFFF;
+	position: fixed;
+	width: 179px;
     height: calc(100%);
-
+  
     .el-menu-item {
-      background-color: #2e333d;
-      color: $white;
+      background-color: #FFFFFF;
+      color: #000;
+  	  text-align: center;
+  	  margin-top: 10px;
       @include font16;
-
+  
       &:hover {
-        background-color: #294262;
-        color: $white;
+        font-weight: bold;
         @include font16;
       }
-
+  
       &.is-active {
-        background-color: #294262;
+        background-color: #1580f8;
         color: $white;
-        border-left: 1px #539ef4 solid;
         @include font16;
       }
     }

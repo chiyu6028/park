@@ -1,6 +1,6 @@
 <template>
   <el-row class="park-header">
-    <el-col :span="8">
+    <el-col :span="9">
       <div class="img-block">
         <img class="mark" src="@images/mark.png" />
       </div>
@@ -16,14 +16,14 @@
           v-for="item in headerList"
           :key="item.index"
           :index="item.index"
-        >{{ item.label }}</el-menu-item>
+        >{{ item.label }}<a> </a></el-menu-item>
       </el-menu>
     </el-col>
-    <el-col :span="8">
-      <div class="inline-block line-h-h float-right exit pointer" @click="exit">退出</div>
-      <div class="inline-block line-h-h float-right">
-        <i class="el-icon-s-custom"></i>
-        <span>admin</span>
+    <el-col :span="7">
+      <div class="inline-block line-h-h float-right exit pointer" style="color: #666;" @click="exit">退出</div>
+      <div class="inline-block line-h-h float-right" style="margin-right: 15px;">
+        <img src="../../assets/images/head.png" style="margin-top: 20px;" />
+        <span style="position: absolute;right: 109px;">admin</span>
       </div>
     </el-col>
   </el-row>
@@ -74,32 +74,54 @@ $height: 78px;
 .park-header {
   width: 100%;
   height: $height;
-  background-color: #262b35;
-  color: $white;
+  background-color: #eeeeef;
+  color: #000;
+  border-bottom: 1px;
+  border-color: #d2d5d8;
+  box-shadow: 0 2px 20px 0 rgba(0,0,0,.35);
+  position: fixed;
   @include font16;
 
   img {
-    height: 48px;
+    height: 40px;
     margin: ($height - 48px) / 2;
   }
-
+.header-menu{
+	margin-left: 20%;
+}
   .header-menu.el-menu {
-    background-color: #262b35;
+    background-color: #eeeeef;
     border-width: 0px;
 
     .el-menu-item {
       height: $height;
       line-height: $height;
-      color: $white;
+      color: #000;
       @include font16;
 
       &:hover,
       &.is-active {
-        background-color: #262b35 !important;
+		font-weight: bold;
+		border-bottom: 0;
+		background-color: #eeeeef !important;
       }
+	  &.is-active a{
+		  position: absolute;
+		  border-radius: 2px;
+		  bottom: 17px;
+		  left: 34px;
+		  width: 40px;
+		  height: 4px;
+		  background-color: #1580f8;
+	  }
     }
   }
-
+  .park-header .header-menu.el-menu .el-menu-item{
+	  height: 62px !important;
+  }
+.el-menu .el-menu-item:hover{
+	background-color: #eeeeef !important;
+}
   .line-h-h{
     height: $height;
     line-height: $height;

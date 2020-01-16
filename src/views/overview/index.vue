@@ -6,8 +6,8 @@
       <el-button type="primary" v-if="!isvisible"  round @click="exportResult">结果导出</el-button>
       <el-button type="info"  v-if="!isvisible" round @click="closeCompare">关闭对比</el-button>
     </div>
-    <div>
-      <img src="@images/maptop.png" style="height:100%;">
+    <div class="topmap">
+      <img src="@images/maptop.png" class="mid-img">
       <img src="@images/bgright.png" class="right-img">
     </div>
     <div class="compareDiv" v-if="dialogTableVisible">
@@ -285,6 +285,11 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+.topmap{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
 .yqbg{
   position:relative;
   background-image:url("~@images/map.png");
@@ -294,18 +299,27 @@ export default {
   background-repeat: no-repeat;
   background-color:#171717;
   text-align:center;
+  overflow: hidden;
+}
+.mid-img{
+	position: absolute;
+	top:50%;
+	left: 50%;
+	width: 100%;
+	transform: translate(-50%,-50%);
 }
 .btn-group{
   position: absolute;
   left: 60px;
   top: 30px;
   z-index: 2002;
+  overflow: hidden;
 }
 .right-img{
   position:absolute;
   right:20px;
-  top:40px;
-  height:89%;
+  top:-20px;
+  height:95%;
 }
 .compareDiv {
   position: fixed;

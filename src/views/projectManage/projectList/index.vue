@@ -1,9 +1,9 @@
 <template>
-  <el-row class="form-table-list">
+  <el-row class="form-table-list" style="height: auto !important;">
     <el-col :span="24" class="list-row">
-      <el-form ref="projectList" :model="form" :inline="true">
+      <el-form ref="projectList" :model="form" :inline="true" style="width: 100% !important;">
         <el-form-item class="inline-1">
-          <el-col :span="6"><el-input v-model="form.parkName" placeholder="请输入园区名称"></el-input></el-col>
+          <el-col :span="6"><el-input size="large" maxlength="30" v-model="form.parkName" placeholder="请输入园区名称"></el-input></el-col>
           <el-col :span="18" class="padding-left-15"><el-button type="primary" class="inline" @click="getData">确认</el-button></el-col>
         </el-form-item>
         <el-form-item label="项目地址" class="inline-5">
@@ -16,7 +16,7 @@
             <el-option v-for="item in useAreaList" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="总建面" class="inline-5">
+        <el-form-item label="总建面积" class="inline-5">
           <el-select v-model="form.buildArea" placeholder="请选择">
             <el-option v-for="item in buildTotalAreaList" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
@@ -66,21 +66,22 @@
         </el-form-item>
       </el-form>
     </el-col>
+	<h3 style="margin-bottom: 20px;">项目列表</h3>
     <el-col :span="24">
       <el-table border v-loading="loading" :data="tableData" stripe border="0" style="width: 100%">
-        <el-table-column width="60" align="center" prop="projectid" label="项目ID"></el-table-column>
-        <el-table-column align="center" prop="parkname" label="园区名称">
+        <el-table-column class="tbhd" width="60" align="center" prop="projectid" label="项目ID"></el-table-column>
+        <el-table-column class="tbhd" align="center" prop="parkname" label="园区名称">
           <template slot-scope="{row}">
             <a class="detail" @click="detailProject(row)">{{row.parkname}}</a>
           </template>
         </el-table-column>
-        <el-table-column align="center" prop="parktype" label="园区类型"></el-table-column>
-        <el-table-column align="center" prop="location" label="项目地址"></el-table-column>
-        <el-table-column align="center" prop="usetype" label="用地性质"></el-table-column>
-        <el-table-column align="center" prop="usearea" label="用地面积(公顷)"></el-table-column>
-        <el-table-column align="center" prop="buildArea" label="建筑面积(公顷)"></el-table-column>
-        <el-table-column align="center" prop="updatetime" label="发布时间"></el-table-column>
-        <el-table-column align="center" prop="operate" label="操作" v-if="enable">
+        <el-table-column class="tbhd" width="110" align="center" prop="parktype" label="园区类型"></el-table-column>
+        <el-table-column class="tbhd" align="center" prop="location" label="项目地址"></el-table-column>
+        <el-table-column class="tbhd" width="120" align="center" prop="usetype" label="用地性质"></el-table-column>
+        <el-table-column class="tbhd" align="center" prop="usearea" label="用地面积(公顷)"></el-table-column>
+        <el-table-column class="tbhd" align="center" prop="buildArea" label="建筑面积(公顷)"></el-table-column>
+        <el-table-column class="tbhd" align="center" prop="updatetime" label="发布时间"></el-table-column>
+        <el-table-column class="tbhd" width="80" align="center" prop="operate" label="操作" v-if="enable">
           <template slot-scope="{row}">
             <i class="el-icon-edit pointer" title="编辑"  @click="editProject(row)"></i> &nbsp;&nbsp;
             <i class="el-icon-delete pointer padding-left-10"  title="删除" @click="deleteProject(row)"></i>

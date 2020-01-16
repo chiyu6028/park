@@ -2,7 +2,14 @@ html,
 body {
   font-family: 'Microsoft YaHei';
 }
-
+.el-table__header .is-leaf{
+	background-color: #dbdbdc !important;
+	color: #271f1c !important;
+	border-right:0;
+}
+.el-table__row .is-center{
+	border-right:0;
+}
 .router-fade-enter-active,
 .router-fade-leave-active {
   transition: opacity .2s;
@@ -18,11 +25,8 @@ body {
 }
 
 .project-container .project-content .content-main{
- margin-left:15px !important;
+ margin-left:25px !important;
  padding-right:15px !important; 
-}
-.project-container .project-content{
-  left:120px !important;
 }
 
 .home-container {
