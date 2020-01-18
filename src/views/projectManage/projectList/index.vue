@@ -68,7 +68,7 @@
     </el-col>
 	<h3 style="margin-bottom: 20px;">项目列表</h3>
     <el-col :span="24">
-      <el-table border v-loading="loading" :data="tableData" stripe border="0" style="width: 100%">
+      <el-table v-loading="loading" :data="tableData" stripe style="width: 100%">
         <el-table-column class="tbhd" width="60" align="center" prop="projectid" label="项目ID"></el-table-column>
         <el-table-column class="tbhd" align="center" prop="parkname" label="园区名称">
           <template slot-scope="{row}">
