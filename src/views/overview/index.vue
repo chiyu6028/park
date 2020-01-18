@@ -54,6 +54,7 @@
         </div>
       </el-card>
     </div>
+		  <div class="clear"></div>
   </div>
 </template>
 
@@ -289,6 +290,7 @@ export default {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
+	position: relative;
 }
 .yqbg{
   position:relative;
@@ -314,6 +316,11 @@ export default {
   top: 30px;
   z-index: 2002;
   overflow: hidden;
+}
+.clear{
+	clear: both;
+	width: 100%;
+	margin: 0 auto;
 }
 .right-img{
   position:absolute;

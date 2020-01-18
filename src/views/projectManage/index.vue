@@ -9,7 +9,7 @@
         >{{item.label }}</el-menu-item>
       </el-menu>
     </el-aside>
-    <el-container class="project-content" v-infinite-scroll="load" style="overflow:auto">
+    <el-container class="project-content" style="overflow:auto">
       <el-main class="content-main padding-0">
         <el-breadcrumb separator-class="el-icon-arrow-right" class="beeadrumb">
           <el-breadcrumb-item>项目管理</el-breadcrumb-item>
@@ -86,7 +86,7 @@ export default {
     right: 0;
     overflow: auto;
     background-color: #dbdbdc;
-	z-index: -1;
+	z-index: 1;
 
     .content-main{
       margin: 0 0 0 60px;

@@ -79,7 +79,7 @@ export default {
     right: 0;
     overflow: auto;
     background-color: #dbdbdc;
-	z-index: -1;
+	z-index: 1;
 
     .content-main{
       margin: 0 0 0 60px;
