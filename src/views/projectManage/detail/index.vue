@@ -66,8 +66,12 @@ export default {
 	.title{
 		margin-bottom: 15px;
 	}
+	.info-li{
+		font-size: 12px;
+	}
 	.r-box,.info-li{
 		color: #999999 !important;
+		font-size: 12px !important;
 	}
 	.r-box .right-content,.info-li span{
 		color: #000000 !important;
@@ -75,6 +79,7 @@ export default {
 	.r-box{
 		display: block !important;
 		float: left !important;
+		font-size: 12px !important;
 	}
 	.r-box .img-list{
 		display: block !important;

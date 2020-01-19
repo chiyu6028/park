@@ -245,6 +245,7 @@ export default {
 .info-li{
   padding:10px 0;
   color: #999999;
+  font-size: 12px;
 }
 .info-li span{
 	color: #000000;

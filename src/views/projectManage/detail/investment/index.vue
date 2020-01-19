@@ -252,7 +252,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped lang="scss">
   *{
     margin: 0;
     padding: 0;
@@ -260,8 +260,7 @@ export default {
   ul{
     list-style: none;
   }
-</style>
-<style scoped lang="scss">
+
 .park-content{
   padding:0 20px;
 }
