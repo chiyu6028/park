@@ -4,39 +4,60 @@
 		  <div class="title">产业规划方案</div>
 	<el-row :gutter="24">
 	  <el-col :span="24" class="r-box"><div class="right-content">
-	      <span>{{form.industryschemeArr}}</span>
+		  <ul class="img-list">
+		    <li v-for="(tag,idx) in form.industryschemeArr" :key="idx">
+		      url+tag.attpath
+		    </li>
+		  </ul>
 	    </div>
 	    </el-col>
 		</el-row>
 		<div class="title">规划设计方案</div>
 		<el-row :gutter="24">
 	    <el-col :span="24" class="r-box"><div class="right-content">
-	      <span>{{form.planschemeArr}}</span>
+		  <ul class="img-list">
+		    <li v-for="(tag,idx) in form.planschemeArr" :key="idx">
+		      url+tag.attpath
+		    </li>
+		  </ul>
 	    </div>
 	    </el-col>
 		</el-row>
 		<div class="title">建筑设计方案</div>
 		<el-row :gutter="24">
 		<el-col :span="24" class="r-box"><div class="right-content">
-		  <span>{{form.buildschemeArr}}</span>
+		  <ul class="img-list">
+		    <li v-for="(tag,idx) in form.buildschemeArr" :key="idx">
+		      url+tag.attpath
+		    </li>
+		  </ul>
 		</div>
 		</el-col>
 		</el-row>
 		<div class="title">环境设计方案</div>
 		<el-row :gutter="24">
 		<el-col :span="24" class="r-box"><div class="right-content">
-		  <span>{{form.environschemeArr}}</span>
+		  <ul class="img-list">
+		    <li v-for="(tag,idx) in form.environschemeArr" :key="idx">
+		      url+tag.attpath
+		    </li>
+		  </ul>
 		</div>
 		</el-col>
 		</el-row>
 		<div class="title">招商运营方案</div>
 		<el-row :gutter="24">
 		<el-col :span="24" class="r-box"><div class="right-content">
-		  <span>{{form.industryschemeArr}}</span>
+		  <ul class="img-list">
+		    <li v-for="(tag,idx) in form.investschemeArr" :key="idx">
+		      url+tag.attpath
+		    </li>
+		  </ul>
 		</div>
 		</el-col>
 	</el-row>
-	</div></div>
+	</div>
+	</div>
 </template>
 
 <script>
@@ -47,12 +68,7 @@ export default {
   name: 'information',
   data () {
     return {
-		leadindustryList: _D.leadIndustryList,
-		devSubjectList: _D.devSubjectList,
-		depmethodList: _D.depmethodList,
-		investModeList: _D.investModeList,
-		operModeList: _D.operModeList,
-		leadfuncList: _D.leadfuncList,
+
 		url: '/downloadFile?filePath=',
       form: {
         industryscheme: '',
