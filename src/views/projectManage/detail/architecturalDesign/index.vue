@@ -4,13 +4,13 @@
     <div class="box-content">
       <div class="title">基础信息</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">用地面积：{{form.usearea}}</el-col>
-        <el-col :span="6" class="info-li">总建筑面积：{{form.buildarea}}</el-col>
-        <el-col :span="6" class="info-li">计容建筑面积：{{form.meterbuildarea}}</el-col>
-        <el-col :span="6" class="info-li">容积率：{{form.plotratio}}</el-col>
-        <el-col :span="6" class="info-li">绿化率：{{form.greenrate}}</el-col>
-        <el-col :span="6" class="info-li">架空面积：{{form.overheadarea}}</el-col>
-        <el-col :span="6" class="info-li">地下面积：{{form.undergroundarea}}</el-col>
+        <el-col :span="6" class="info-li">用地面积：<span>{{form.usearea}}</span></el-col>
+        <el-col :span="6" class="info-li">总建筑面积：<span>{{form.buildarea}}</span></el-col>
+        <el-col :span="6" class="info-li">计容建筑面积：<span>{{form.meterbuildarea}}</span></el-col>
+        <el-col :span="6" class="info-li">容积率：<span>{{form.plotratio}}</span></el-col>
+        <el-col :span="6" class="info-li">绿化率：<span>{{form.greenrate}}</span></el-col>
+        <el-col :span="6" class="info-li">架空面积：<span>{{form.overheadarea}}</span></el-col>
+        <el-col :span="6" class="info-li">地下面积：<span>{{form.undergroundarea}}</span></el-col>
         <el-col :span="24" class="r-box r-box2">停车位（地上/地下）：<div class="right-content">{{form.parkspaceup+form.parkspacedown}}</div></el-col>
       </el-row>
     </div>
@@ -263,6 +263,10 @@ export default {
 }
 .info-li{
   padding:10px 0;
+  color: #999999;
+}
+.info-li span{
+	color: #000000;
 }
 .box-content{
   margin-bottom: 20px;

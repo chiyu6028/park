@@ -7,8 +7,74 @@
       <el-button type="info"  v-if="!isvisible" round @click="closeCompare">关闭对比</el-button>
     </div>
     <div class="topmap">
-      <img src="@images/maptop.png" class="mid-img">
-      <img src="@images/bgright.png" class="right-img">
+	<div class="tips-click dot01" style="top:55px;left:305px;">
+		    	<span>华强创意产业园</span>
+		    	<b></b>
+		    	<b></b>
+		    	<b></b>
+	</div>
+	<div class="tips-click dot01" style="top:153px;left:443px;">
+		    	<span style="left: -44px;">宝能科技城</span>
+		    	<b></b>
+		    	<b></b>
+		    	<b></b>
+	</div>
+	<div class="tips-click dot01" style="top:160px;left:563px;">
+		    	<span style="left: -13px;">平湖恒路物流创新广场</span>
+		    	<b></b>
+		    	<b></b>
+		    	<b></b>
+	</div>
+	<div class="tips-click dot01" style="top:145px;left:670px;">
+		    	<span>启迪协信科技园</span>
+		    	<b></b>
+		    	<b></b>
+		    	<b></b>
+	</div>
+	<div class="tips-click dot01" style="top:230px;left:293px;">
+		    	<span style="left: -50px;">创智云城</span>
+		    	<b></b>
+		    	<b></b>
+		    	<b></b>
+	</div>
+	<div class="tips-click dot01" style="top:258px;left:293px;">
+		    	<span style="left: -26px;">南山科技创新中心</span>
+		    	<b></b>
+		    	<b></b>
+		    	<b></b>
+	</div>
+	<div class="tips-click dot01" style="top:306px;left:285px;">
+		    	<span style="left: -38px;">创智天地大厦</span>
+		    	<b></b>
+		    	<b></b>
+		    	<b></b>
+	</div>
+	<div class="tips-click dot01" style="top:290px;left:460px;">
+		    	<span style="left: -20px;">长城开发彩田工业园</span>
+		    	<b></b>
+		    	<b></b>
+		    	<b></b>
+	</div>
+	<div class="tips-click dot01" style="top:327px;left:312px;">
+		    	<span style="left: -25px;">深圳湾科技生态园</span>
+		    	<b></b>
+		    	<b></b>
+		    	<b></b>
+	</div>
+	<div class="tips-click dot01" style="top:352px;left:276px;">
+		    	<span style="left: -18px;">深圳市软件产业基地</span>
+		    	<b></b>
+		    	<b></b>
+		    	<b></b>
+	</div>
+	<div class="tips-click dot01" style="top:332px;left:239px;">
+		    	<span style="left: -155px;">万科前海企业公馆</span>
+		    	<b></b>
+		    	<b></b>
+		    	<b></b>
+	</div>
+      <img src="@images/top.png" style="position: absolute;left: 0;top: 0;">
+      <img src="@images/bgright01.png" class="right-img">
     </div>
     <div class="compareDiv" v-if="dialogTableVisible">
       <el-card class="box-card">
@@ -64,6 +130,10 @@ export default {
   name: 'Overview',
   data () {
     return {
+	  contentStyleObj:{
+		　　　　　　top:'',
+				  left:''
+		　　　　},
       isvisible: true,
       dialogTableVisible: false,
       isShowClose: false,
@@ -80,7 +150,12 @@ export default {
   created () {
     this.getDimensionList()
     this.getProjectList()
+	window.addEventListener('resize', this.getHeight);
+	this.getHeight()
   },
+  destroyed(){
+      window.removeEventListener('resize', this.getHeight)
+    },
   methods: {
     compareCancel () {
       this.isvisible = true
@@ -88,6 +163,10 @@ export default {
       this.form.project = ''
       this.form.dimensions = ''
     },
+	getHeight(){
+	      this.contentStyleObj.top=window.innerHeight*0.07+'px';
+		  this.contentStyleObj.left=window.innerWidth*0.23+'px';
+	    },
     exportResult () {
       require.ensure([], () => {
         const { export_json_to_excel } = require('../../vender/Export2Excel.js')
@@ -307,8 +386,9 @@ export default {
 	position: absolute;
 	top:50%;
 	left: 50%;
-	width: 100%;
-	transform: translate(-50%,-50%);
+	max-width: 98%;
+	//max-height: 99%;
+	transform: translate(-50%, -50%);
 }
 .btn-group{
   position: absolute;
@@ -381,4 +461,98 @@ export default {
    padding: 10px 0px;
   }
 }
+.dot01{
+	position: absolute;
+	
+}
+	.tips-click{
+		width: 15px;
+		height: 15px;
+		cursor: pointer;
+		margin:120px auto 0;
+	}
+	.tips-click span{
+		    color: #fff;
+		    /* font-weight: bold; */
+		    font-size: 12px;
+		    position: absolute;
+		    left: -34px;
+		    top: 0px;
+		    /* -webkit-transform: translate(-50%, -50%); */
+		    /* transform: translate(-50%, -50%); */
+		    z-index: 2;
+		    width: 200px;
+	    z-index: 2;
+	}
+	.tips-click b{
+		width: 100%;
+		height:100%;
+		background: #f8f015;
+		border-radius: 50%;
+		display: block;	
+		background-color: rgba(248, 240, 21, .6);	
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 1;
+	}
+	.tips-click b:nth-of-type(1){
+	    -webkit-animation: click1 1s linear infinite;
+	    animation: click1 1s linear infinite;		
+	}
+	.tips-click b:nth-of-type(2){
+	    -webkit-animation: click2 1s linear infinite;
+	    animation: click2 1s linear infinite;		
+	}
+	@-webkit-keyframes click1 {
+	    0% {
+	        opacity: .8;
+	        -webkit-transform: scale(1);
+	        transform: scale(1);
+	    }
+	    100% {
+	        opacity: 0;
+	        -webkit-transform: scale(2);
+	        transform: scale(2);
+	    }
+	}
+
+	@keyframes click1 {
+	    0% {
+	        opacity: .8;
+	        -webkit-transform: scale(1);
+	        transform: scale(1);
+	    }
+	    100% {
+	        opacity: 0;
+	        -webkit-transform: scale(2);
+	        transform: scale(2);
+	    }
+	}
+
+	@-webkit-keyframes click2 {
+	    0% {
+	        opacity: .8;
+	        -webkit-transform: scale(1);
+	        transform: scale(1);
+	    }
+	    100% {
+	        opacity: 0;
+	        -webkit-transform: scale(3);
+	        transform: scale(3);
+	    }
+	}
+
+	@keyframes click2 {
+	    0% {
+	        opacity: .8;
+	        -webkit-transform: scale(1);
+	        transform: scale(1);
+	    }
+	    100% {
+	        opacity: 0;
+	        -webkit-transform: scale(3);
+	        transform: scale(3);
+	    }
+	}
 </style>

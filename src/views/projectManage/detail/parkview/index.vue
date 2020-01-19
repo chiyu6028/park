@@ -4,13 +4,13 @@
     <div class="box-content">
       <div class="title">基础信息</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">项目ID：{{form.projectid}}</el-col>
-        <el-col :span="6" class="info-li">园区名称：{{form.parkname}}</el-col>
+        <el-col :span="6" class="info-li">项目ID：<span>{{form.projectid}}</span></el-col>
+        <el-col :span="6" class="info-li">园区名称：<span>{{form.parkname}}</span></el-col>
         <el-col :span="6" class="info-li">园区类型：<span v-if="parkTypeList[form.parktype]">{{parkTypeList[form.parktype].label}}</span></el-col>
         <el-col :span="6" class="info-li">项目地址：<span v-if="positionMaps[form.province]">{{positionMaps[form.province].label}}</span></el-col>
-        <el-col :span="6" class="info-li">发布时间：{{form.developtime}}</el-col>
-        <el-col :span="6" class="info-li">建成时间：{{form.createtime}}</el-col>
-        <el-col :span="24" class="r-box">园区介绍：<div class="right-content">{{form.parkdes}}</div></el-col>
+        <el-col :span="6" class="info-li">发布时间：<span>{{form.developtime}}</span></el-col>
+        <el-col :span="6" class="info-li">建成时间：<span>{{form.createtime}}</span></el-col>
+        <el-col :span="24" class="r-box" style="color: #999999;">园区介绍：<div class="right-content" style="color: #000;">{{form.parkdes}}</div></el-col>
       </el-row>
     </div>
     <!-- 技术指标 -->
@@ -18,10 +18,10 @@
       <div class="title">技术指标</div>
       <el-row :gutter="24">
         <el-col :span="6" class="info-li">用地性质：<span v-if="usetypeList[form.usetype]">{{usetypeList[form.usetype].label}}</span></el-col>
-        <el-col :span="6" class="info-li">用地面积：{{form.usearea}}</el-col>
-        <el-col :span="6" class="info-li">总建筑面积：{{form.buildarea}}</el-col>
-        <el-col :span="6" class="info-li">绿化率：{{form.greenrate}}</el-col>
-        <el-col :span="6" class="info-li">容积率：{{form.plotratio}}</el-col>
+        <el-col :span="6" class="info-li">用地面积：<span>{{form.usearea}}</span></el-col>
+        <el-col :span="6" class="info-li">总建筑面积：<span>{{form.buildarea}}</span></el-col>
+        <el-col :span="6" class="info-li">绿化率：<span>{{form.greenrate}}</span></el-col>
+        <el-col :span="6" class="info-li">容积率：<span>{{form.plotratio}}</span></el-col>
         <el-col :span="24" class="r-box">项目区位：<div class="right-content">
           <span>{{form.location}}</span>
           <ul class="img-list">
@@ -46,14 +46,14 @@
     <div class="box-content">
       <div class="title">园区经济指标</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">主导产业：{{form.leadindustry}}</el-col>
-        <el-col :span="6" class="info-li">主导功能：{{form.leadfunc}}</el-col>
-        <el-col :span="6" class="info-li">投资主体：{{form.investors}}</el-col>
-        <el-col :span="6" class="info-li">运营主体：{{form.operubject}}</el-col>
+        <el-col :span="6" class="info-li">主导产业：<span>{{form.leadindustry}}</span></el-col>
+        <el-col :span="6" class="info-li">主导功能：<span>{{form.leadfunc}}</span></el-col>
+        <el-col :span="6" class="info-li">投资主体：<span>{{form.investors}}</span></el-col>
+        <el-col :span="6" class="info-li">运营主体：<span>{{form.operubject}}</span></el-col>
         <el-col :span="6" class="info-li">运营模式：<span v-if="operModeList[form.opermode]">{{operModeList[form.opermode].label}}</span></el-col>
-        <el-col :span="6" class="info-li">企业数量：{{form.nhenterprisenum}}</el-col>
-        <el-col :span="6" class="info-li">投资规模：{{form.investmentmode}}</el-col>
-        <el-col :span="6" class="info-li">园区产值：{{form.parkvalue}}</el-col>
+        <el-col :span="6" class="info-li">企业数量：<span>{{form.nhenterprisenum}}</span></el-col>
+        <el-col :span="6" class="info-li">投资规模：<span>{{form.investmentmode}}</span></el-col>
+        <el-col :span="6" class="info-li">园区产值：<span>{{form.parkvalue}}</span></el-col>
       </el-row>
     </div>
     <!-- 相册 -->
@@ -244,6 +244,10 @@ export default {
 }
 .info-li{
   padding:10px 0;
+  color: #999999;
+}
+.info-li span{
+	color: #000000;
 }
 .box-content{
   margin-bottom: 20px;
@@ -258,10 +262,13 @@ export default {
 .r-box{
   display: flex;
   border-bottom: 1px solid #ECF1F2;
+  color: #999;
+  font-size: 12px;
   padding: 20px 0 10px;
   .right-content{
     flex: 1;
     line-height: 24px;
+	color: #000;
   }
   .img-list{
     padding:10px 0;

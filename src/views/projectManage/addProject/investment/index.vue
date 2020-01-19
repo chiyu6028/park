@@ -3,7 +3,7 @@
     <el-form-item class="inline-1">
       <TitleBlock title="园区效益"></TitleBlock>
     </el-form-item>
-    <el-form-item label="主导产业：互联网、新能源、高端装备制造、现代服务业、人工智能 " class="inline-1 form-leadindustry">
+    <el-form-item label="主导产业" class="inline-1 form-leadindustry">
       <el-checkbox-group v-model="form.leadindustryArray">
         <el-checkbox v-for="item in leadindustryList" :key="item.value" :label="item.value">{{ item.label }}</el-checkbox>
       </el-checkbox-group>
