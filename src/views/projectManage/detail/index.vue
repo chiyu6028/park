@@ -72,5 +72,13 @@ export default {
 	.r-box .right-content,.info-li span{
 		color: #000000 !important;
 	}
+	.r-box{
+		display: block !important;
+		float: left !important;
+	}
+	.r-box .img-list{
+		display: block !important;
+		float:left !important;
+	}
 	
 </style>

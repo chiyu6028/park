@@ -303,7 +303,7 @@ export default {
   }
 }
 .r-box{
-  display: flex;
+  //display: flex;
   border-bottom: 1px solid #ECF1F2;
   padding: 20px 0 10px;
   &.r-box2{

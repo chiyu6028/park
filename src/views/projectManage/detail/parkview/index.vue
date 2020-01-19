@@ -260,7 +260,7 @@ export default {
   }
 }
 .r-box{
-  display: flex;
+  //display: flex;
   border-bottom: 1px solid #ECF1F2;
   color: #999;
   font-size: 12px;
