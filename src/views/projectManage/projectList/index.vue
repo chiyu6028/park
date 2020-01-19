@@ -78,8 +78,8 @@
         <el-table-column class="tbhd" width="110" align="center" prop="parktype" label="园区类型"></el-table-column>
         <el-table-column class="tbhd" align="center" prop="location" label="项目地址"></el-table-column>
         <el-table-column class="tbhd" width="120" align="center" prop="usetype" label="用地性质"></el-table-column>
-        <el-table-column class="tbhd" align="center" prop="usearea" label="用地面积(公顷)"></el-table-column>
-        <el-table-column class="tbhd" align="center" prop="buildArea" label="建筑面积(公顷)"></el-table-column>
+        <el-table-column class="tbhd" width="102" align="center" prop="usearea" label="用地面积(公顷)"></el-table-column>
+        <el-table-column class="tbhd" width="102" align="center" prop="buildArea" label="建筑面积(公顷)"></el-table-column>
         <el-table-column class="tbhd" align="center" prop="updatetime" label="发布时间"></el-table-column>
         <el-table-column class="tbhd" width="80" align="center" prop="operate" label="操作" v-if="enable">
           <template slot-scope="{row}">

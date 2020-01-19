@@ -47,7 +47,7 @@ export const devSubjectList = [
   { value: '2', label: '民营企业' },
   { value: '3', label: '外资企业' },
   { value: '4', label: '混合所有制企业' },
-  { value: '5', label: '合资' }
+  { value: '5', label: '合资企业' }
 ]
 // 运营模式
 export const operModeList = [
