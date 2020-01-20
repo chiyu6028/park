@@ -80,6 +80,7 @@ export default {
 		display: block !important;
 		float: left !important;
 		font-size: 12px !important;
+		padding-bottom: 20px;
 	}
 	.r-box .img-list{
 		display: block !important;

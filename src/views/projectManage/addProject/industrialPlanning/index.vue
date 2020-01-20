@@ -4,31 +4,31 @@
       <TitleBlock title="产业规划"></TitleBlock>
     </el-form-item>
     <el-form-item prop="planconcept" label="产业规划理念">
-      <el-input v-model="form.planconcept"></el-input>
+      <el-input type="textarea" autosize  v-model="form.planconcept"></el-input>
     </el-form-item>
     <el-form-item prop="planlocation" label="产业定位">
-      <el-input v-model="form.planlocation"></el-input>
+      <el-input type="textarea" autosize  v-model="form.planlocation"></el-input>
     </el-form-item>
     <el-form-item prop="depgoal" label="发展目标">
-      <el-input v-model="form.depgoal"></el-input>
+      <el-input type="textarea" autosize  v-model="form.depgoal"></el-input>
     </el-form-item>
     <el-form-item prop="industrysystem" label="产业体系">
-      <el-input v-model="form.industrysystem"></el-input>
+      <el-input type="textarea" autosize  v-model="form.industrysystem"></el-input>
     </el-form-item>
     <el-form-item prop="formatcomposition" label="业态组成">
-      <el-input v-model="form.formatcomposition"></el-input>
+      <el-input type="textarea" autosize  v-model="form.formatcomposition"></el-input>
     </el-form-item>
     <el-form-item prop="deppath" label="产业发展路径">
-      <el-input v-model="form.deppath"></el-input>
+      <el-input type="textarea" autosize  v-model="form.deppath"></el-input>
     </el-form-item>
     <el-form-item prop="deppolicy" label="产业政策">
-      <el-input v-model="form.deppolicy"></el-input>
+      <el-input type="textarea" autosize  v-model="form.deppolicy"></el-input>
     </el-form-item>
     <el-form-item prop="depteam" label="产业规划团队">
-      <el-input v-model="form.depteam"></el-input>
+      <el-input type="textarea" autosize  v-model="form.depteam"></el-input>
     </el-form-item>
     <el-form-item prop="location" label="项目区位">
-      <el-input v-model="form.location"></el-input>
+      <el-input type="textarea" autosize  v-model="form.location"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value="form.locationimgesArr" @setFileList="value => setFileList('locationimges', value)"></Upload> -->
@@ -39,10 +39,10 @@
       <TitleBlock title="产业规划小结 "></TitleBlock>
     </el-form-item>
     <el-form-item prop="planadvantage" label="项目亮点" class="inline-1">
-      <el-input v-model="form.planadvantage"></el-input>
+      <el-input type="textarea" autosize  v-model="form.planadvantage"></el-input>
     </el-form-item>
     <el-form-item prop="deficiencies" label="面临困境" class="inline-1">
-      <el-input v-model="form.deficiencies"></el-input>
+      <el-input type="textarea" autosize  v-model="form.deficiencies"></el-input>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item class="inline-1">

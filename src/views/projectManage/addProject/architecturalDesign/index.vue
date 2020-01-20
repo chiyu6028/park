@@ -37,10 +37,10 @@
       <TitleBlock title="建筑设计方案"></TitleBlock>
     </el-form-item>
     <el-form-item prop="buildteam" label="建筑设计团队" class="inline-1">
-      <el-input v-model="form.buildteam"></el-input>
+      <el-input type="textarea" autosize v-model="form.buildteam"></el-input>
     </el-form-item>
     <el-form-item prop="ideasstrategy" label="建筑设计理念与策略" class="inline-1">
-      <el-input v-model="form.ideasstrategy"></el-input>
+      <el-input type="textarea" autosize v-model="form.ideasstrategy"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value='form.ideasstrategyimgArr' @setFileList="value => setFileList('ideasstrategyimg', value)"></Upload> -->
@@ -48,7 +48,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="neardes" label="周边概况" class="inline-1">
-      <el-input v-model="form.neardes"></el-input>
+      <el-input type="textarea" autosize v-model="form.neardes"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value='form.neardesimgArr' @setFileList="value => setFileList('neardesimg', value)"></Upload> -->
@@ -56,7 +56,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="designsketch" label="效果图" class="inline-1">
-      <el-input v-model="form.designsketch"></el-input>
+      <el-input type="textarea" autosize v-model="form.designsketch"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value='form.designsketchimgArr' @setFileList="value => setFileList('designsketchimg', value)"></Upload> -->
@@ -64,7 +64,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="generallayout" label="总平面图" class="inline-1">
-      <el-input v-model="form.generallayout"></el-input>
+      <el-input type="textarea" autosize v-model="form.generallayout"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value='form.generallayoutimgArr' @setFileList="value => setFileList('generallayoutimg', value)"></Upload> -->
@@ -72,7 +72,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="funclayout" label="功能布局" class="inline-1">
-      <el-input v-model="form.funclayout"></el-input>
+      <el-input type="textarea" autosize v-model="form.funclayout"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value='form.funclayoutimgArr' @setFileList="value => setFileList('funclayoutimg', value)"></Upload> -->
@@ -80,7 +80,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="streamlineanalysis" label="流线分析" class="inline-1">
-      <el-input v-model="form.streamlineanalysis"></el-input>
+      <el-input type="textarea" autosize v-model="form.streamlineanalysis"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value='form.streamlineanalysisimgArr' @setFileList="value => setFileList('streamlineanalysisimg', value)"></Upload> -->
@@ -92,7 +92,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="curtain" label="幕墙" class="inline-1">
-      <el-input v-model="form.curtain"></el-input>
+      <el-input type="textarea" autosize v-model="form.curtain"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value='form.curtainimgArr' @setFileList="value => setFileList('curtainimg', value)"></Upload> -->
@@ -100,7 +100,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="structure" label="结构" class="inline-1">
-      <el-input v-model="form.structure"></el-input>
+      <el-input type="textarea" autosize v-model="form.structure"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value='form.structureimgArr' @setFileList="value => setFileList('structureimg', value)"></Upload> -->
@@ -108,7 +108,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="electromechanical" label="机电" class="inline-1">
-      <el-input v-model="form.electromechanical"></el-input>
+      <el-input type="textarea" autosize v-model="form.electromechanical"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value='form.electromechanicalimgArr' @setFileList="value => setFileList('electromechanicalimg', value)"></Upload> -->
@@ -116,7 +116,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="hvac" label="暖通" class="inline-1">
-      <el-input v-model="form.hvac"></el-input>
+      <el-input type="textarea" autosize v-model="form.hvac"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value='form.hvacimgArr' @setFileList="value => setFileList('hvacimg', value)"></Upload> -->
@@ -124,7 +124,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="drainage" label="给排水" class="inline-1">
-      <el-input v-model="form.drainage"></el-input>
+      <el-input type="textarea" autosize v-model="form.drainage"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value='form.drainageimgArr' @setFileList="value => setFileList('drainageimg', value)"></Upload> -->
@@ -134,10 +134,10 @@
     <el-form-item class="inline-1">
       <TitleBlock title="建筑设计小结  "></TitleBlock>
     </el-form-item>
-    <el-form-item prop="designadvantage" label="项目亮点" class="inline-1">
+    <el-form-item type="textarea" autosize prop="designadvantage" label="项目亮点" class="inline-1">
       <el-input v-model="form.designadvantage"></el-input>
     </el-form-item>
-    <el-form-item prop="deficiencies" label="面临困境" class="inline-1">
+    <el-form-item type="textarea" autosize prop="deficiencies" label="面临困境" class="inline-1">
       <el-input v-model="form.deficiencies"></el-input>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>

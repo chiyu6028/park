@@ -9,23 +9,23 @@
       </el-select>
     </el-form-item>
     <el-form-item prop="nearproject" label="周边项目">
-      <el-input v-model="form.nearproject"></el-input>
+      <el-input type="textarea" autosize  v-model="form.nearproject"></el-input>
     </el-form-item>
     <el-form-item>
       <TitleBlock title="规划设计方案"></TitleBlock>
     </el-form-item>
     <el-form-item prop="designteam" label="规划设计团队">
-      <el-input v-model="form.designteam"></el-input>
+      <el-input type="textarea" autosize  v-model="form.designteam"></el-input>
     </el-form-item>
     <el-form-item prop="designidea" label="规划设计理念">
-      <el-input v-model="form.designidea"></el-input>
+      <el-input type="textarea" autosize  v-model="form.designidea"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <Upload :value="form.designideaimgArr" @setFileList="value => setFileList('designideaimg', value)"></Upload>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="funcstructure" label="功能结构">
-      <el-input v-model="form.funcstructure"></el-input>
+      <el-input type="textarea" autosize  v-model="form.funcstructure"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value="form.funcstructureimgArr" @setFileList="value => setFileList('funcstructureimg', value)"></Upload> -->
@@ -33,7 +33,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="landuse" label="土地利用">
-      <el-input v-model="form.landuse"></el-input>
+      <el-input type="textarea" autosize  v-model="form.landuse"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value="form.landuseimgArr" @setFileList="value => setFileList('landuseimg', value)"></Upload> -->
@@ -41,7 +41,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="spatialform" label="空间形态">
-      <el-input v-model="form.spatialform"></el-input>
+      <el-input type="textarea" autosize  v-model="form.spatialform"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value="form.spatialformimgArr" @setFileList="value => setFileList('spatialformimg', value)"></Upload> -->
@@ -49,7 +49,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="roadtraffic" label="道路交通">
-      <el-input v-model="form.roadtraffic"></el-input>
+      <el-input type="textarea" autosize  v-model="form.roadtraffic"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value="form.roadtrafficimgArr" @setFileList="value => setFileList('roadtrafficimg', value)"></Upload> -->
@@ -57,7 +57,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="supportingfacilities" label="配套设施">
-      <el-input v-model="form.supportingfacilities"></el-input>
+      <el-input type="textarea" autosize  v-model="form.supportingfacilities"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value="form.supportingfacilitiesimgArr" @setFileList="value => setFileList('supportingfacilitiesimg', value)"></Upload> -->
@@ -65,7 +65,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="impcontrol" label="实施控制">
-      <el-input v-model="form.impcontrol"></el-input>
+      <el-input type="textarea" autosize  v-model="form.impcontrol"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value="form.impcontrolimgArr" @setFileList="value => setFileList('impcontrolimg', value)"></Upload> -->
@@ -76,10 +76,10 @@
       <TitleBlock title="规划设计小结"></TitleBlock>
     </el-form-item>
     <el-form-item prop="planadvantage" label="项目亮点">
-      <el-input v-model="form.planadvantage"></el-input>
+      <el-input type="textarea" autosize  v-model="form.planadvantage"></el-input>
     </el-form-item>
     <el-form-item prop="deficiencies" label="面临困境">
-      <el-input v-model="form.deficiencies"></el-input>
+      <el-input type="textarea" autosize  v-model="form.deficiencies"></el-input>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item>

@@ -76,7 +76,7 @@
           </template>
         </el-table-column>
         <el-table-column class="tbhd" width="110" align="center" prop="parktype" label="园区类型"></el-table-column>
-        <el-table-column class="tbhd" align="center" prop="location" label="项目地址"></el-table-column>
+        <el-table-column class="tbhd" align="center" prop="position" label="项目地址"></el-table-column>
         <el-table-column class="tbhd" width="120" align="center" prop="usetype" label="用地性质"></el-table-column>
         <el-table-column class="tbhd" width="102" align="center" prop="usearea" label="用地面积(公顷)"></el-table-column>
         <el-table-column class="tbhd" width="102" align="center" prop="buildArea" label="建筑面积(公顷)"></el-table-column>
@@ -199,7 +199,7 @@ export default {
       this.$router.push({ path: `detail/${row.projectid}`, query: { t: Date.now() } })
     },
     deleteProject (row) {
-      this.$confirm('您确定要把此项目放入回收站吗？', '提示', {
+      this.$confirm('您确定要删除此项目吗？删除后将不可恢复！', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
