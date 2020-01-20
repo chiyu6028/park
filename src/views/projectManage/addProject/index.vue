@@ -101,4 +101,7 @@ export default {
   right: 90px;
   z-index: 12;
 }
+.el-checkbox__label{
+ font-size: 12px !important;
+}
 </style>
