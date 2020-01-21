@@ -13,10 +13,13 @@
       :file-list="fileList">
         <i slot="default" class="el-icon-plus"></i>
         <div slot="file" slot-scope="{file}" class="park-upload-block">
-          <img
+          <div class="el-upload--picture-card">
+		  <img
             class="el-upload-list__item-thumbnail"
             :src="file.url" alt=""
           >
+		  </div>
+
           <span class="el-upload-list__item-actions">
             <span
               class="el-upload-list__item-preview"
@@ -197,3 +200,34 @@ export default {
   }
 }
 </script>
+<style>
+	.el-upload--picture-card img{
+		max-width: 240px;
+		max-height: 160px;
+	}
+	.el-upload--picture-card img{
+		width: auto !important;
+		height: auto !important;
+		border-radius: 0 !important;
+		border: 0 !important;
+	}
+	.el-upload--picture-card{
+		width: 242px !important;
+		height: 162px !important;
+		vertical-align: middle !important;
+		text-align: center;
+	}
+	.el-upload-list__item{
+		overflow: visible !important;
+	}
+	.park-upload ul.el-upload-list li{
+		width: 240px !important;
+		margin-bottom: 70px;
+	}
+	.park-upload ul.el-upload-list li .park-upload-block .el-upload-list__item-actions{
+		height: 162px !important;
+	}
+	.park-upload-block .el-input{
+		margin-top: 10px;
+	}
+</style>

@@ -4,7 +4,7 @@
       <TitleBlock title="周边条件"></TitleBlock>
     </el-form-item>
     <el-form-item label="周边概述" class="inline-1" prop="neardes">
-      <el-input v-model="form.neardes"></el-input>
+      <el-input type="textarea" autosize v-model="form.neardes"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <TitleBlock title="周边园区"></TitleBlock>

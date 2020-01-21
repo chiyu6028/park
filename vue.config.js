@@ -33,7 +33,7 @@ module.exports = {
       entry: 'src/index.js',
       template: 'public/index.html',
       filename: 'index.html',
-      title: '管理系统',
+      title: '产业园数据库',
       chunks: ['chunk-vendors', 'chunk-common', 'index']
     }
   },
@@ -45,7 +45,7 @@ module.exports = {
     }
   },
   devServer: {
-    host: getLocalIP(), // 'localhost',
+    host: '127.0.0.1', // getLocalIP(), // 'localhost',
     port: 88, // 端口号
     https: false, // https:{type:Boolean}
     open: true,

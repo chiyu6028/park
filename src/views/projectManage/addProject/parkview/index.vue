@@ -33,23 +33,23 @@
       </el-date-picker>
     </el-form-item>
     <el-form-item label="园区介绍" class="inline-1" prop="parkdes">
-      <el-input v-model="form.parkdes"></el-input>
+      <el-input type="textarea" autosize v-model="form.parkdes"></el-input>
     </el-form-item>
     <el-form-item label="用地范围" class="inline-1" prop="landscope">
-      <el-input v-model="form.landscope"></el-input>
+      <el-input type="textarea" autosize v-model="form.landscope"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <UploadDescBottom :value="form.landscopeimgArr" @setFileList="value => setFileList('landscopeimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item label="总平面图" class="inline-1" prop="generallayout">
-      <el-input v-model="form.generallayout"></el-input>
+      <el-input  type="textarea" autosize v-model="form.generallayout"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <UploadDescBottom :value="form.generallayoutimgArr" @setFileList="value => setFileList('generallayoutimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item label="实景图" class="inline-1" prop="realphotos">
-      <el-input v-model="form.realphotos"></el-input>
+      <el-input  type="textarea"  autosize v-model="form.realphotos"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <UploadDescBottom :value="form.realphotosimgArr" @setFileList="value => setFileList('realphotosimg', value)"></UploadDescBottom>
@@ -62,7 +62,7 @@
       <UploadButton :value="form.shortvideoArr" @setFileList="value => setFileList('shortvideo', value)"></UploadButton>
     </el-form-item>
     <el-form-item label="园区荣誉" class="inline-1" prop="parkhonor">
-      <el-input v-model="form.parkhonor"></el-input>
+      <el-input  type="textarea"  autosize v-model="form.parkhonor"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <UploadDescBottom :value="form.parkhonorimgArr" @setFileList="value => setFileList('parkhonorimg', value)"></UploadDescBottom>

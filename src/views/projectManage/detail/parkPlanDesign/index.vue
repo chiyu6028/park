@@ -5,10 +5,10 @@
       <div class="title">基础信息</div>
       <el-row :gutter="24">
         <el-col :span="6" class="info-li">用地性质：<span v-if="usetypeList[form.usetype]">{{usetypeList[form.usetype].label}}</span></el-col>
-        <el-col :span="6" class="info-li">用地面积：{{form2.usearea}}</el-col>
-        <el-col :span="6" class="info-li">总建筑面积：{{form2.buildarea}}</el-col>
-        <el-col :span="6" class="info-li">容积率：{{form2.plotratio}}</el-col>
-        <el-col :span="6" class="info-li">绿化率：{{form2.greenrate}}</el-col>
+        <el-col :span="6" class="info-li">用地面积：<span>{{form2.usearea}}</span></el-col>
+        <el-col :span="6" class="info-li">总建筑面积：<span>{{form2.buildarea}}</span></el-col>
+        <el-col :span="6" class="info-li">容积率：<span>{{form2.plotratio}}</span></el-col>
+        <el-col :span="6" class="info-li">绿化率：<span>{{form2.greenrate}}</span></el-col>
         <el-col :span="24" class="r-box r-box2">周边项目：<div class="right-content">{{form.nearproject}}</div></el-col>
       </el-row>
     </div>
@@ -259,6 +259,10 @@ export default {
 }
 .info-li{
   padding:10px 0;
+  color: #999999;
+}
+.info-li span{
+	color: #000000;
 }
 .box-content{
   margin-bottom: 20px;
@@ -271,7 +275,7 @@ export default {
   }
 }
 .r-box{
-  display: flex;
+  //display: flex;
   border-bottom: 1px solid #ECF1F2;
   padding: 20px 0 10px;
   &.r-box2{

@@ -3,7 +3,7 @@
     <el-form-item class="inline-1">
       <TitleBlock title="园区效益"></TitleBlock>
     </el-form-item>
-    <el-form-item label="主导产业：互联网、新能源、高端装备制造、现代服务业、人工智能 " class="inline-1 form-leadindustry">
+    <el-form-item label="主导产业" class="inline-1 form-leadindustry">
       <el-checkbox-group v-model="form.leadindustryArray">
         <el-checkbox v-for="item in leadindustryList" :key="item.value" :label="item.value">{{ item.label }}</el-checkbox>
       </el-checkbox-group>
@@ -120,19 +120,19 @@
       <el-input v-model="form.operteam"></el-input>
     </el-form-item>
     <el-form-item prop="favouredpolicy" label="优惠政策" class="inline-1">
-      <el-input v-model="form.favouredpolicy"></el-input>
+      <el-input type="textarea" autosize v-model="form.favouredpolicy"></el-input>
     </el-form-item>
     <el-form-item prop="witplatform" label="智慧园区平台" class="inline-1">
-      <el-input v-model="form.witplatform"></el-input>
+      <el-input type="textarea" autosize v-model="form.witplatform"></el-input>
     </el-form-item>
     <el-form-item prop="parkservice" label="园区服务" class="inline-1">
-      <el-input v-model="form.parkservice"></el-input>
+      <el-input type="textarea" autosize v-model="form.parkservice"></el-input>
     </el-form-item>
     <el-form-item prop="opercost" label="运营成本" class="inline-1">
-      <el-input v-model="form.opercost"></el-input>
+      <el-input type="textarea" autosize v-model="form.opercost"></el-input>
     </el-form-item>
     <el-form-item prop="operprofit" label="运营收益" class="inline-1">
-      <el-input v-model="form.operprofit"></el-input>
+      <el-input type="textarea" autosize v-model="form.operprofit"></el-input>
     </el-form-item>
     <el-form-item label="园区活动" class="inline-1">
       <UploadDescBottom :value="form.parkactivityimgArr" @setFileList="value => setFileList('parkactivityimg', value)"></UploadDescBottom>
@@ -142,28 +142,28 @@
       <TitleBlock title="配套设施"></TitleBlock>
     </el-form-item>
     <el-form-item prop="businessfacilities" label="商业设施" class="inline-1">
-      <el-input v-model="form.businessfacilities"></el-input>
+      <el-input type="textarea" autosize v-model="form.businessfacilities"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <UploadDescBottom :value="form.businessfacilitiesimgArr" @setFileList="value => setFileList('businessfacilitiesimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="accommodations" label="居住设施" class="inline-1">
-      <el-input v-model="form.accommodations"></el-input>
+      <el-input type="textarea" autosize v-model="form.accommodations"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <UploadDescBottom :value="form.accommodationsimgArr" @setFileList="value => setFileList('accommodationsimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="conferencehall" label="会议展厅" class="inline-1">
-      <el-input v-model="form.conferencehall"></el-input>
+      <el-input type="textarea" autosize v-model="form.conferencehall"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <UploadDescBottom :value="form.conferencehallimgArr" @setFileList="value => setFileList('conferencehallimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="publicfacilities" label="公共服务设施" class="inline-1">
-      <el-input v-model="form.publicfacilities"></el-input>
+      <el-input type="textarea" autosize v-model="form.publicfacilities"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <UploadDescBottom :value="form.publicfacilitiesimgArr" @setFileList="value => setFileList('publicfacilitiesimg', value)"></UploadDescBottom>
@@ -173,10 +173,10 @@
       <TitleBlock title="投资运营小结 "></TitleBlock>
     </el-form-item>
     <el-form-item prop="investadvantage" label="项目亮点" class="inline-1">
-      <el-input v-model="form.investadvantage"></el-input>
+      <el-input type="textarea" autosize v-model="form.investadvantage"></el-input>
     </el-form-item>
     <el-form-item prop="deficiencies" label="面临困境" class="inline-1">
-      <el-input v-model="form.deficiencies"></el-input>
+      <el-input type="textarea" autosize v-model="form.deficiencies"></el-input>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item class="inline-1">

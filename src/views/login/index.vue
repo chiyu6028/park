@@ -6,7 +6,7 @@
         <div class="login-panel-body">
           <el-form ref="loginForm" :model="form" :rules="rules">
             <el-form-item prop="username">
-              <el-input v-model="form.username" prefix-icon="el-icon-user" placeholder="admin"></el-input>
+              <el-input v-model="form.username" prefix-icon="el-icon-user" placeholder="账户名"></el-input>
             </el-form-item>
             <el-form-item prop="password">
               <el-input

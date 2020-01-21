@@ -5,7 +5,7 @@
       <span class="result">检索结果共<span class="num">{{ total }}</span>条</span>
     </el-col>
     <el-col :span="24">
-      <el-table border v-loading="loading" :data="tableData" @row-dblclick="viewDetail" style="width: 100%">
+      <el-table v-loading="loading" :data="tableData" @row-dblclick="viewDetail" style="width: 100%">
         <el-table-column align="center" prop="projectid" label="项目ID"></el-table-column>
         <el-table-column align="center" prop="parkname" label="园区名称">
           <template slot-scope="{row}">

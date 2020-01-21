@@ -128,6 +128,10 @@ export default {
 }
 .info-li{
   padding:10px 0;
+  color: #999999;
+}
+.info-li span{
+	color: #000000;
 }
 .box-content{
   margin-bottom: 20px;
@@ -140,7 +144,7 @@ export default {
   }
 }
 .r-box{
-  display: flex;
+  //display: flex;
   border-bottom: 1px solid #ECF1F2;
   padding: 20px 0 10px;
   &.r-box2{

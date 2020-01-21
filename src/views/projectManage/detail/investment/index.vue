@@ -4,30 +4,30 @@
     <div class="box-content">
       <div class="title">基础信息</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">主导产业：
+        <el-col :span="24" class="r-box r-box2" style="color: #999999;">主导产业：
           <div class="right-content">
-          <span v-for="(tag,idx) in form.leadindustryArray" :key="idx">
+          <span style="color: #000;" v-for="(tag,idx) in form.leadindustryArray" :key="idx">
             {{leadindustryList[tag].label  }}
           </span>
           </div></el-col>
         <el-col :span="6" class="info-li">主要功能：<span v-if="leadfuncList[form.leadfunc]">{{leadfuncList[form.leadfunc].label}}</span></el-col>
-        <el-col :span="6" class="info-li">园区产值：{{form.parkvalue}}</el-col>
-        <el-col :span="6" class="info-li">平均产值：{{form.avgvalue}}</el-col>
-        <el-col :span="6" class="info-li">贡献税收：{{form.devotetax}}</el-col>
-        <el-col :span="6" class="info-li">就业人口：{{form.employmentpeople}}</el-col>
-        <el-col :span="6" class="info-li">企业数量：{{form.enterprisenum}}</el-col>
-        <el-col :span="6" class="info-li">高薪企业：{{form.nhenterprisenum}}</el-col>
-        <el-col :span="6" class="info-li">科研/研发机构：{{form.rdorg}}</el-col>
-        <el-col :span="6" class="info-li">知识产权：{{form.knowledgeproperty}}</el-col>
-        <el-col :span="6" class="info-li">租赁性质：{{form.leaseNature}}</el-col>
-        <el-col :span="6" class="info-li">租赁比例：{{form.leaseproportion}}</el-col>
-        <el-col :span="6" class="info-li">出售价格：{{form.sellprice}}</el-col>
-        <el-col :span="6" class="info-li">出售面积：{{form.sellarea}}</el-col>
-        <el-col :span="6" class="info-li">租金水平：{{form.rentlevel}}</el-col>
-        <el-col :span="6" class="info-li">已租出面积：{{form.leasedarea}}</el-col>
-        <el-col :span="6" class="info-li">剩余出租面积：{{form.surplusleasearea}}</el-col>
-        <el-col :span="6" class="info-li">出租率：{{form.rentalrate}}</el-col>
-        <el-col :span="6" class="info-li">物业管理费：{{form.propertyfee}}</el-col>
+        <el-col :span="6" class="info-li">园区产值：<span>{{form.parkvalue}}</span></el-col>
+        <el-col :span="6" class="info-li">平均产值：<span>{{form.avgvalue}}</span></el-col>
+        <el-col :span="6" class="info-li">贡献税收：<span>{{form.devotetax}}</span></el-col>
+        <el-col :span="6" class="info-li">就业人口：<span>{{form.employmentpeople}}</span></el-col>
+        <el-col :span="6" class="info-li">企业数量：<span>{{form.enterprisenum}}</span></el-col>
+        <el-col :span="6" class="info-li">高薪企业：<span>{{form.nhenterprisenum}}</span></el-col>
+        <el-col :span="6" class="info-li">科研/研发机构：<span>{{form.rdorg}}</span></el-col>
+        <el-col :span="6" class="info-li">知识产权：<span>{{form.knowledgeproperty}}</span></el-col>
+        <el-col :span="6" class="info-li">租赁性质：<span>{{form.leaseNature}}</span></el-col>
+        <el-col :span="6" class="info-li">租赁比例：<span>{{form.leaseproportion}}</span></el-col>
+        <el-col :span="6" class="info-li">出售价格：<span>{{form.sellprice}}</span></el-col>
+        <el-col :span="6" class="info-li">出售面积：<span>{{form.sellarea}}</span></el-col>
+        <el-col :span="6" class="info-li">租金水平：<span>{{form.rentlevel}}</span></el-col>
+        <el-col :span="6" class="info-li">已租出面积：<span>{{form.leasedarea}}</span></el-col>
+        <el-col :span="6" class="info-li">剩余出租面积：<span>{{form.surplusleasearea}}</span></el-col>
+        <el-col :span="6" class="info-li">出租率：<span>{{form.rentalrate}}</span></el-col>
+        <el-col :span="6" class="info-li">物业管理费：<span>{{form.propertyfee}}</span></el-col>
         <el-col :span="24" class="r-box">典型企业：<div class="right-content">
           <ul class="img-list">
             <li v-for="(tag,idx) in form.typicalenterprisesArr" :key="idx">
@@ -52,18 +52,18 @@
     <div class="box-content">
       <div class="title">投资开发运营招商</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">投资主体：{{form.investors}}</el-col>
+        <el-col :span="6" class="info-li">投资主体：<span>{{form.investors}}</span></el-col>
         <el-col :span="6" class="info-li">开发主体：<span v-if="devSubjectList[form.devsubject]">{{devSubjectList[form.devsubject].label}}</span></el-col>
-        <el-col :span="6" class="info-li">投资主体属性：{{form.investorattr}}</el-col>
-        <el-col :span="6" class="info-li">土地获得方式：{{form.rentlevel}}</el-col>
+        <el-col :span="6" class="info-li">投资主体属性：<span>{{form.investorattr}}</span></el-col>
+        <el-col :span="6" class="info-li">土地获得方式：<span>{{form.rentlevel}}</span></el-col>
         <el-col :span="6" class="info-li">开发方式：<span v-if="depmethodList[form.depmethod]">{{depmethodList[form.depmethod].label}}</span></el-col>
-        <el-col :span="6" class="info-li">投资规模：{{form.investmentmode}}</el-col>
+        <el-col :span="6" class="info-li">投资规模：<span>{{form.investmentmode}}</span></el-col>
         <el-col :span="6" class="info-li">招商方式：<span v-if="investModeList[form.investmode]">{{investModeList[form.investmode].label}}</span></el-col>
-        <el-col :span="6" class="info-li">招商团队：{{form.investteam}}</el-col>
-        <el-col :span="6" class="info-li">招商策略：{{form.investstrategy}}</el-col>
-        <el-col :span="6" class="info-li">运营主体：{{form.operubject}}</el-col>
+        <el-col :span="6" class="info-li">招商团队：<span>{{form.investteam}}</span></el-col>
+        <el-col :span="6" class="info-li">招商策略：<span>{{form.investstrategy}}</span></el-col>
+        <el-col :span="6" class="info-li">运营主体：<span>{{form.operubject}}</span></el-col>
         <el-col :span="6" class="info-li">运营模式：<span v-if="operModeList[form.opermode]">{{operModeList[form.opermode].label}}</span></el-col>
-        <el-col :span="6" class="info-li">运营团队：{{form.operteam}}</el-col>
+        <el-col :span="6" class="info-li">运营团队：<span>{{form.operteam}}</span></el-col>
         <el-col :span="24" class="r-box r-box2">优惠政策：<div class="right-content">{{form.favouredpolicy}}</div></el-col>
         <el-col :span="24" class="r-box r-box2">智慧园区平台：<div class="right-content">{{form.witplatform}}</div></el-col>
         <el-col :span="24" class="r-box r-box2">园区服务：<div class="right-content">{{form.parkservice}}</div></el-col>
@@ -252,7 +252,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped lang="scss">
   *{
     margin: 0;
     padding: 0;
@@ -260,8 +260,7 @@ export default {
   ul{
     list-style: none;
   }
-</style>
-<style scoped lang="scss">
+
 .park-content{
   padding:0 20px;
 }
@@ -287,6 +286,10 @@ export default {
 }
 .info-li{
   padding:10px 0;
+  color: #999999;
+}
+.info-li span{
+	color: #000000;
 }
 .box-content{
   margin-bottom: 20px;
@@ -299,7 +302,7 @@ export default {
   }
 }
 .r-box{
-  display: flex;
+  //display: flex;
   border-bottom: 1px solid #ECF1F2;
   padding: 20px 0 10px;
   &.r-box2{

@@ -4,10 +4,10 @@
       <TitleBlock title="总体景观设计"></TitleBlock>
     </el-form-item>
     <el-form-item label="设计团队" prop="designteam">
-      <el-input v-model="form.designteam"></el-input>
+      <el-input type="textarea" autosize  v-model="form.designteam"></el-input>
     </el-form-item>
     <el-form-item label="环境设计理念与策略" class="inline-1" prop="gideasstrategy">
-      <el-input v-model="form.gideasstrategy"></el-input>
+      <el-input type="textarea" autosize  v-model="form.gideasstrategy"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value="form.gideasstrategyimgArr" @setFileList="value => setFileList('gideasstrategyimg', value)"></Upload> -->
@@ -15,7 +15,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item label="景观总平面图" class="inline-1" prop="generallayout">
-      <el-input v-model="form.generallayout"></el-input>
+      <el-input type="textarea" autosize  v-model="form.generallayout"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value="form.generallayoutimgArr" @setFileList="value => setFileList('generallayoutimg', value)"></Upload> -->
@@ -24,7 +24,7 @@
 
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item label="景观功能结构" class="inline-1" prop="gfuncstructure">
-      <el-input v-model="form.gfuncstructure"></el-input>
+      <el-input type="textarea" autosize  v-model="form.gfuncstructure"></el-input>
     </el-form-item>
     <el-form-item  class="inline-1">
       <!-- <Upload :value="form.gfuncstructureimgArr" @setFileList="value => setFileList('gfuncstructureimg', value)"></Upload> -->
@@ -36,7 +36,7 @@
       <TitleBlock title="重要节点景观设计"></TitleBlock>
     </el-form-item>
     <el-form-item label="核心景观设计" class="inline-1" prop="coredesign">
-      <el-input v-model="form.coredesign"></el-input>
+      <el-input type="textarea" autosize  v-model="form.coredesign"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value="form.coredesignimgArr" @setFileList="value => setFileList('coredesignimg', value)"></Upload> -->
@@ -45,7 +45,7 @@
 
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item label="园区入口设计" class="inline-1" prop="entrydesign">
-      <el-input v-model="form.entrydesign"></el-input>
+      <el-input type="textarea" autosize  v-model="form.entrydesign"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value="form.entrydesignimgArr" @setFileList="value => setFileList('entrydesignimg', value)"></Upload> -->
@@ -54,7 +54,7 @@
 
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item label="公共平台/空间设计" class="inline-1" prop="pubspacedesign">
-      <el-input v-model="form.pubspacedesign" ></el-input>
+      <el-input type="textarea" autosize  v-model="form.pubspacedesign" ></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value="form.pubspacedesignimgArr" @setFileList="value => setFileList('pubspacedesignimg', value)"></Upload> -->
@@ -63,7 +63,7 @@
 
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item label="屋顶景观设计" class="inline-1" prop="roofdesign">
-      <el-input v-model="form.roofdesign" ></el-input>
+      <el-input type="textarea" autosize  v-model="form.roofdesign" ></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value="form.roofdesignimgArr" @setFileList="value => setFileList('roofdesignimg', value)"></Upload> -->
@@ -72,7 +72,7 @@
 
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item label="外立面景观设计" class="inline-1" prop="sketchdesign">
-      <el-input v-model="form.sketchdesign"></el-input>
+      <el-input type="textarea" autosize  v-model="form.sketchdesign"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <!-- <Upload :value="form.sketchdesignimgArr" @setFileList="value => setFileList('sketchdesignimg', value)"></Upload> -->
@@ -84,10 +84,10 @@
       <TitleBlock title="景观设计小结"></TitleBlock>
     </el-form-item>
     <el-form-item label="项目亮点" prop="gardenadvantage">
-      <el-input v-model="form.gardenadvantage"></el-input>
+      <el-input type="textarea" autosize  v-model="form.gardenadvantage"></el-input>
     </el-form-item>
     <el-form-item label="面临困境" prop="deficiencies">
-      <el-input v-model="form.deficiencies"></el-input>
+      <el-input type="textarea" autosize  v-model="form.deficiencies"></el-input>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item>
