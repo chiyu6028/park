@@ -88,7 +88,7 @@ $height: 78px;
     margin: ($height - 48px) / 2;
   }
 .header-menu{
-	margin-left: 20%;
+  margin-left: 20%;
 }
   .header-menu.el-menu {
     background-color: #eeeeef;
@@ -102,26 +102,45 @@ $height: 78px;
 
       &:hover,
       &.is-active {
-		font-weight: bold;
-		border-bottom: 0;
-		background-color: #eeeeef !important;
+        font-weight: bold;
+        border-bottom: 0;
+        background-color: #eeeeef !important;
       }
-	  &.is-active a{
-		  position: absolute;
-		  border-radius: 2px;
-		  bottom: 17px;
-		  left: 34px;
-		  width: 40px;
-		  height: 4px;
-		  background-color: #1580f8;
-	  }
+  &.is-active a{
+    position: absolute;
+    border-radius: 2px;
+    bottom: 17px;
+    left: 34px;
+    width: 40px;
+    height: 4px;
+    background-color: #1580f8;
+    }
     }
   }
   .park-header .header-menu.el-menu .el-menu-item{
-	  height: 62px !important;
+    height: 62px !important;
   }
 .el-menu .el-menu-item:hover{
-	background-color: #eeeeef !important;
+  background-color: #eeeeef !important;
+}
+  .line-h-h{
+    height: $height;
+    line-height: $height;
+    @include font13;
+
+    .el-icon-s-custom{
+      @include font22;
+    }
+
+    &.exit{
+      padding: 0 50px;
+    }
+  }
+  .park-header .header-menu.el-menu .el-menu-item{
+    height: 62px !important;
+  }
+.el-menu .el-menu-item:hover{
+  background-color: #eeeeef !important;
 }
   .line-h-h{
     height: $height;

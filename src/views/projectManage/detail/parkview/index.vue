@@ -248,7 +248,7 @@ export default {
   font-size: 12px;
 }
 .info-li span{
-	color: #000000;
+  color: #000000;
 }
 .box-content{
   margin-bottom: 20px;
@@ -269,7 +269,7 @@ export default {
   .right-content{
     flex: 1;
     line-height: 24px;
-	color: #000;
+    color: #000;
   }
   .img-list{
     padding:10px 0;

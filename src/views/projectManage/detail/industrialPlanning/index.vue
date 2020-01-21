@@ -131,7 +131,7 @@ export default {
   color: #999999;
 }
 .info-li span{
-	color: #000000;
+  color: #000000;
 }
 .box-content{
   margin-bottom: 20px;

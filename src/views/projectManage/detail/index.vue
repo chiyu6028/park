@@ -1,5 +1,4 @@
 <template>
-
 <el-card>
   <div class="notice" style="position: absolute;right: 5px;z-index: 999;">
     <el-button round @click="backToList">
@@ -51,40 +50,40 @@ export default {
 }
 </script>
 <style>
-	.el-card__body{
-		padding: 0 !important;
-	}
-	.el-card{
-		border: 0 !important;
-	}
-	.el-card.is-always-shadow{
-		box-shadow: none !important;
-	}
-	.box-content{
-		margin: 30px 20px !important;
-	}
-	.title{
-		margin-bottom: 15px;
-	}
-	.info-li{
-		font-size: 12px;
-	}
-	.r-box,.info-li{
-		color: #999999 !important;
-		font-size: 12px !important;
-	}
-	.r-box .right-content,.info-li span{
-		color: #000000 !important;
-	}
-	.r-box{
-		display: block !important;
-		float: left !important;
-		font-size: 12px !important;
-		padding-bottom: 20px;
-	}
-	.r-box .img-list{
-		display: block !important;
-		float:left !important;
-	}
-	
+.el-card__body{
+  padding: 0 !important;
+}
+.el-card{
+  border: 0 !important;
+}
+.el-card.is-always-shadow{
+  box-shadow: none !important;
+}
+.box-content{
+  margin: 30px 20px !important;
+}
+.title{
+  margin-bottom: 15px;
+}
+.info-li{
+  font-size: 12px;
+}
+.r-box,.info-li{
+  color: #999999 !important;
+  font-size: 12px !important;
+}
+.r-box .right-content,.info-li span{
+  color: #000000 !important;
+}
+.r-box{
+  display: block !important;
+  float: left !important;
+  font-size: 12px !important;
+  padding-bottom: 20px;
+}
+.r-box .img-list{
+  display: block !important;
+  float:left !important;
+}
+
 </style>
