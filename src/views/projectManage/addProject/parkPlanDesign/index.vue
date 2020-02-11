@@ -14,9 +14,6 @@
     <el-form-item>
       <TitleBlock title="规划设计方案"></TitleBlock>
     </el-form-item>
-    <el-form-item prop="designteam" label="规划设计团队">
-      <el-input type="textarea" autosize  v-model="form.designteam"></el-input>
-    </el-form-item>
     <el-form-item prop="designidea" label="规划设计理念">
       <el-input type="textarea" autosize  v-model="form.designidea"></el-input>
     </el-form-item>
@@ -73,12 +70,15 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item>
-      <TitleBlock title="规划设计小结"></TitleBlock>
+      <TitleBlock title="建筑设计小结"></TitleBlock>
     </el-form-item>
-    <el-form-item prop="planadvantage" label="项目亮点">
+     <el-form-item prop="designteam" label="规划设计团队">
+      <el-input type="textarea" autosize  v-model="form.designteam"></el-input>
+    </el-form-item>
+    <el-form-item prop="planadvantage" label="规划设计亮点">
       <el-input type="textarea" autosize  v-model="form.planadvantage"></el-input>
     </el-form-item>
-    <el-form-item prop="deficiencies" label="面临困境">
+    <el-form-item prop="deficiencies" label="规划设计不足">
       <el-input type="textarea" autosize  v-model="form.deficiencies"></el-input>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>

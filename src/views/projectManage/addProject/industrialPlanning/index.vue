@@ -24,9 +24,6 @@
     <el-form-item prop="deppolicy" label="产业政策">
       <el-input type="textarea" autosize  v-model="form.deppolicy"></el-input>
     </el-form-item>
-    <el-form-item prop="depteam" label="产业规划团队">
-      <el-input type="textarea" autosize  v-model="form.depteam"></el-input>
-    </el-form-item>
     <el-form-item prop="location" label="项目区位">
       <el-input type="textarea" autosize  v-model="form.location"></el-input>
     </el-form-item>
@@ -38,7 +35,10 @@
     <el-form-item>
       <TitleBlock title="产业规划小结 "></TitleBlock>
     </el-form-item>
-    <el-form-item prop="planadvantage" label="项目亮点" class="inline-1">
+     <el-form-item prop="depteam" label="产业规划团队">
+      <el-input type="textarea" autosize  v-model="form.depteam"></el-input>
+    </el-form-item>
+    <el-form-item prop="planadvantage" label="产业规划亮点" class="inline-1">
       <el-input type="textarea" autosize  v-model="form.planadvantage"></el-input>
     </el-form-item>
     <el-form-item prop="deficiencies" label="面临困境" class="inline-1">

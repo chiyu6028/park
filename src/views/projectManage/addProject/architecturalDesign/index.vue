@@ -7,6 +7,7 @@
       <el-input v-model="form.usearea"></el-input>
     </el-form-item>
     <el-form-item prop="buildarea" label="总建筑面积（m²）" class="inline-7">
+
       <el-input v-model="form.buildarea"></el-input>
     </el-form-item>
     <el-form-item prop="meterbuildarea" label="计容建筑面积（m²）" class="inline-7">
@@ -35,9 +36,6 @@
     </el-form-item>
     <el-form-item class="inline-1">
       <TitleBlock title="建筑设计方案"></TitleBlock>
-    </el-form-item>
-    <el-form-item prop="buildteam" label="建筑设计团队" class="inline-1">
-      <el-input type="textarea" autosize v-model="form.buildteam"></el-input>
     </el-form-item>
     <el-form-item prop="ideasstrategy" label="建筑设计理念与策略" class="inline-1">
       <el-input type="textarea" autosize v-model="form.ideasstrategy"></el-input>
@@ -134,10 +132,13 @@
     <el-form-item class="inline-1">
       <TitleBlock title="建筑设计小结  "></TitleBlock>
     </el-form-item>
+    <el-form-item prop="buildteam" label="建筑设计团队" class="inline-1">
+      <el-input type="textarea" autosize v-model="form.buildteam"></el-input>
+    </el-form-item>
     <el-form-item type="textarea" autosize prop="designadvantage" label="项目亮点" class="inline-1">
       <el-input v-model="form.designadvantage"></el-input>
     </el-form-item>
-    <el-form-item type="textarea" autosize prop="deficiencies" label="面临困境" class="inline-1">
+    <el-form-item type="textarea" autosize prop="deficiencies" label="建筑设计不足" class="inline-1">
       <el-input v-model="form.deficiencies"></el-input>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>

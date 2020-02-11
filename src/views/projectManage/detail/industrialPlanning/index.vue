@@ -11,7 +11,6 @@
         <el-col :span="24" class="r-box r-box2">业态组成：<div class="right-content">{{form.formatcomposition}}</div></el-col>
         <el-col :span="24" class="r-box r-box2">产业发展路径：<div class="right-content">{{form.deppath}}</div></el-col>
         <el-col :span="24" class="r-box r-box2">产业政策：<div class="right-content">{{form.deppolicy}}</div></el-col>
-        <el-col :span="24" class="r-box r-box2">产业规划团队：<div class="right-content">{{form.depteam}}</div></el-col>
         <el-col :span="24" class="r-box">项目区位：<div class="right-content">
           <span>{{form.location}}</span>
           <ul class="img-list">
@@ -27,7 +26,8 @@
     <div class="box-content">
       <div class="title">产业规划小结</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box">项目亮点：<div class="right-content">
+        <el-col :span="24" class="r-box">产业规划团队：<div class="right-content">{{form.depteam}}</div></el-col>
+        <el-col :span="24" class="r-box">产业规划亮点：<div class="right-content">
             <span>{{form.planadvantage}}</span>
           </div>
           </el-col>

@@ -13,7 +13,8 @@ const routes = [
   {
     path: '/index',
     component: Index,
-    redirect: '/index/projectManage',
+    // redirect: '/index/projectManage',
+    redirect: '/index/overview',
     children: [
       overview,
       projectManage,

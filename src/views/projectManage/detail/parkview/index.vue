@@ -18,10 +18,10 @@
       <div class="title">技术指标</div>
       <el-row :gutter="24">
         <el-col :span="6" class="info-li">用地性质：<span v-if="usetypeList[form.usetype]">{{usetypeList[form.usetype].label}}</span></el-col>
-        <el-col :span="6" class="info-li">用地面积：<span>{{form.usearea}}</span></el-col>
-        <el-col :span="6" class="info-li">总建筑面积：<span>{{form.buildarea}}</span></el-col>
-        <el-col :span="6" class="info-li">绿化率：<span>{{form.greenrate}}</span></el-col>
-        <el-col :span="6" class="info-li">容积率：<span>{{form.plotratio}}</span></el-col>
+        <el-col :span="6" class="info-li">用地面积：<span>{{form.usearea}}</span>（m²）</el-col>
+        <el-col :span="6" class="info-li">总建筑面积：<span>{{form.buildarea}}</span>（m²）</el-col>
+        <el-col :span="6" class="info-li">绿化率：<span>{{form.greenrate}}</span>（%）</el-col>
+        <el-col :span="6" class="info-li">容积率：<span>{{form.plotratio}}</span>（%）</el-col>
         <el-col :span="24" class="r-box">项目区位：<div class="right-content">
           <span>{{form.location}}</span>
           <ul class="img-list">

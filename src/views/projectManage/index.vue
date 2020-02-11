@@ -91,6 +91,7 @@ export default {
     .content-main{
       margin: 0 0 0 60px;
       padding-right: 40px;
+      padding-bottom: 100px;
 
       .content-main-panel{
         background-color: $white;

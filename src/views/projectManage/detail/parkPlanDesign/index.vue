@@ -16,7 +16,6 @@
     <div class="box-content">
       <div class="title">规划设计方案</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">规划设计团队：<div class="right-content">{{form.designteam}}</div></el-col>
         <el-col :span="24" class="r-box r-box2">规划设计理念：<div class="right-content">
           <span>{{form.designidea}}</span>
           <ul class="img-list">
@@ -84,13 +83,14 @@
     </div>
     <!-- 规划设计小结 -->
     <div class="box-content">
-      <div class="title">规划设计小结</div>
+      <div class="title">建筑设计小结</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box">投资亮点：<div class="right-content">
+        <el-col :span="24" class="r-box r-box2">规划设计团队：<div class="right-content">{{form.designteam}}</div></el-col>
+        <el-col :span="24" class="r-box">规划设计亮点<div class="right-content">
             <span>{{form.planadvantage}}</span>
           </div>
           </el-col>
-          <el-col :span="24" class="r-box">面临困境：<div class="right-content">
+          <el-col :span="24" class="r-box">规划设计不足：<div class="right-content">
             <span>{{form.deficiencies}}</span>
           </div>
           </el-col>

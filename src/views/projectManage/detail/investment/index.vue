@@ -134,7 +134,7 @@
     <div class="box-content">
       <div class="title">投资运营小结</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box">投资亮点：<div class="right-content">
+        <el-col :span="24" class="r-box">项目亮点：<div class="right-content">
             <span>{{form.investadvantage}}</span>
           </div>
           </el-col>

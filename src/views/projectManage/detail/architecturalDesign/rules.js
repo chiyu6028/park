@@ -10,10 +10,12 @@ const validStringLen = len => {
 }
 
 const validNumber = (rule, value, callback) => {
-  if (isNaN(value)) {
-    callback(new Error('请输入数字'))
+  var _reg = /^\d+(.\d{0,2})?$/
+  if (!value || _reg.test(value)) {
+    callback()
+  } else {
+    callback(new Error('请输入最多两位小数的数字'))
   }
-  callback()
 }
 
 const validInt = (rule, value, callback) => {

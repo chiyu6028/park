@@ -37,7 +37,7 @@
     <el-form-item prop="propertyfee" label="物业管理费（元/m²/月）" class="inline-7">
       <el-input v-model="form.propertyfee"></el-input>
     </el-form-item>
-    <el-form-item prop="sellprice" label="出售价格（万元）" class="inline-7">
+    <el-form-item prop="sellprice" label="出售价格（万元/㎡）" class="inline-7">
       <el-input v-model="form.sellprice"></el-input>
     </el-form-item>
     <el-form-item prop="sellarea" label="出售面积（m²）" class="inline-7">

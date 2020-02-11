@@ -1,15 +1,13 @@
 <template>
   <el-row class="form-table-list" style="height: auto !important;">
     <el-col :span="24" class="list-row">
-      <el-form ref="projectList" :model="form" :inline="true" style="width: 100% !important;">
+      <el-form ref="projectList" :model="form" :inline="true">
         <el-form-item class="inline-1">
           <el-col :span="6"><el-input size="large" maxlength="30" v-model="form.parkName" placeholder="请输入园区名称"></el-input></el-col>
           <el-col :span="18" class="padding-left-15"><el-button type="primary" class="inline" @click="getData">确认</el-button></el-col>
         </el-form-item>
-        <el-form-item label="项目地址" class="inline-5">
-          <el-cascader
-            v-model="form.position"
-            :props="positionProps"></el-cascader>
+        <el-form-item label="项目地址" class="inline-1">
+          <el-cascader v-model="form.position" :props="positionProps" style="width: 50%;" ></el-cascader>
         </el-form-item>
         <el-form-item label="用地面积" class="inline-5">
           <el-select v-model="form.useArea" placeholder="请选择">
@@ -145,7 +143,7 @@ export default {
         expandTrigger: 'click',
         lazy: true,
         lazyLoad (node, resolve) {
-          const { level = 0, value = -1 } = node
+          const { level = 0, value = '-1' } = node
           vm.$axios.post(URL['GET_SELECT_AREA'], { level: level + 1 }).then(resp => {
             if (resp.status === 200) {
               if (resp.data && resp.data.code === 1) {

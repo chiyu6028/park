@@ -4,8 +4,7 @@
     <div class="box-content">
       <div class="title">总体景观设计</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">设计团队：<div class="right-content">{{form.designteam}}</div></el-col>
-        <el-col :span="24" class="r-box r-box2">环境设计理念与策略：<div class="right-content">
+        <el-col :span="24" class="r-box r-box2">景观设计理念与策略：<div class="right-content">
           <span>{{form.gideasstrategy}}</span>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.gideasstrategyimgArr" :key="idx">
@@ -81,14 +80,19 @@
     <div class="box-content">
       <div class="title">景观设计小结</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box">投资亮点：<div class="right-content">
+        <el-col :span="24" class="r-box r-box2">设计团队：
+          <div class="right-content">{{form.designteam}}</div>
+        </el-col>
+        <el-col :span="24" class="r-box">景观设计亮点：
+          <div class="right-content">
             <span>{{form.gardenadvantage}}</span>
           </div>
-          </el-col>
-          <el-col :span="24" class="r-box">面临困境：<div class="right-content">
+        </el-col>
+        <el-col :span="24" class="r-box">景观设计不足：
+          <div class="right-content">
             <span>{{form.deficiencies}}</span>
           </div>
-          </el-col>
+        </el-col>
       </el-row>
     </div>
   </div>

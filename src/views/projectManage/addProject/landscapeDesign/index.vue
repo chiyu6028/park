@@ -3,10 +3,7 @@
     <el-form-item>
       <TitleBlock title="总体景观设计"></TitleBlock>
     </el-form-item>
-    <el-form-item label="设计团队" prop="designteam">
-      <el-input type="textarea" autosize  v-model="form.designteam"></el-input>
-    </el-form-item>
-    <el-form-item label="环境设计理念与策略" class="inline-1" prop="gideasstrategy">
+    <el-form-item label="景观设计理念与策略" class="inline-1" prop="gideasstrategy">
       <el-input type="textarea" autosize  v-model="form.gideasstrategy"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
@@ -83,10 +80,13 @@
     <el-form-item>
       <TitleBlock title="景观设计小结"></TitleBlock>
     </el-form-item>
-    <el-form-item label="项目亮点" prop="gardenadvantage">
+    <el-form-item label="设计团队" prop="designteam">
+      <el-input type="textarea" autosize  v-model="form.designteam"></el-input>
+    </el-form-item>
+    <el-form-item label="景观设计亮点" prop="gardenadvantage">
       <el-input type="textarea" autosize  v-model="form.gardenadvantage"></el-input>
     </el-form-item>
-    <el-form-item label="面临困境" prop="deficiencies">
+    <el-form-item label="景观设计不足" prop="deficiencies">
       <el-input type="textarea" autosize  v-model="form.deficiencies"></el-input>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>

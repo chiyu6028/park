@@ -6,77 +6,95 @@
       <el-button type="primary" v-if="!isvisible"  round @click="exportResult">结果导出</el-button>
       <el-button type="info"  v-if="!isvisible" round @click="closeCompare">关闭对比</el-button>
     </div>
-    <div class="topmap">
-  <div class="tips-click dot01" style="top:55px;left:305px;">
-    <span>华强创意产业园</span>
-    <b></b>
-    <b></b>
-    <b></b>
-  </div>
-  <div class="tips-click dot01" style="top:153px;left:443px;">
-    <span style="left: -44px;">宝能科技城</span>
-    <b></b>
-    <b></b>
-    <b></b>
-  </div>
-  <div class="tips-click dot01" style="top:160px;left:563px;">
-    <span style="left: -13px;">平湖恒路物流创新广场</span>
-    <b></b>
-    <b></b>
-    <b></b>
-  </div>
-  <div class="tips-click dot01" style="top:145px;left:670px;">
-    <span>启迪协信科技园</span>
-    <b></b>
-    <b></b>
-    <b></b>
-  </div>
-  <div class="tips-click dot01" style="top:230px;left:293px;">
-    <span style="left: -50px;">创智云城</span>
-    <b></b>
-    <b></b>
-    <b></b>
-  </div>
-  <div class="tips-click dot01" style="top:258px;left:293px;">
-    <span style="left: -26px;">南山科技创新中心</span>
-    <b></b>
-    <b></b>
-    <b></b>
-  </div>
-  <div class="tips-click dot01" style="top:306px;left:285px;">
-    <span style="left: -38px;">创智天地大厦</span>
-    <b></b>
-    <b></b>
-    <b></b>
-  </div>
-  <div class="tips-click dot01" style="top:290px;left:460px;">
-    <span style="left: -20px;">长城开发彩田工业园</span>
-    <b></b>
-    <b></b>
-    <b></b>
-  </div>
-  <div class="tips-click dot01" style="top:327px;left:312px;">
-    <span style="left: -25px;">深圳湾科技生态园</span>
-    <b></b>
-    <b></b>
-    <b></b>
-  </div>
-  <div class="tips-click dot01" style="top:352px;left:276px;">
-    <span style="left: -18px;">深圳市软件产业基地</span>
-    <b></b>
-    <b></b>
-    <b></b>
-  </div>
-  <div class="tips-click dot01" style="top:332px;left:239px;">
-    <span style="left: -155px;">万科前海企业公馆</span>
-    <b></b>
-    <b></b>
-    <b></b>
-  </div>
-      <img src="@images/top.png" style="position: absolute;left: 0;top: 0;">
-      <img src="@images/bgright01.png" class="right-img">
+  <div class="topmap">
+    <div class="tips-click dot01" style="top:55px;left:305px;">
+      <span>华强创意产业园</span>
+      <b></b>
+      <b></b>
+      <b></b>
     </div>
-    <div class="compareDiv" v-if="dialogTableVisible">
+    <div class="tips-click dot01" style="top:153px;left:443px;">
+      <span style="left: -44px;">宝能科技城</span>
+      <b></b>
+      <b></b>
+      <b></b>
+    </div>
+    <div class="tips-click dot01" style="top:160px;left:563px;">
+      <span style="left: -13px;">平湖恒路物流创新广场</span>
+      <b></b>
+      <b></b>
+      <b></b>
+    </div>
+    <div class="tips-click dot01" style="top:145px;left:670px;">
+      <span>启迪协信科技园</span>
+      <b></b>
+      <b></b>
+      <b></b>
+    </div>
+    <div class="tips-click dot01" style="top:230px;left:293px;">
+      <span style="left: -50px;">创智云城</span>
+      <b></b>
+      <b></b>
+      <b></b>
+    </div>
+    <div class="tips-click dot01" style="top:258px;left:293px;">
+      <span style="left: -26px;">南山科技创新中心</span>
+      <b></b>
+      <b></b>
+      <b></b>
+    </div>
+    <div class="tips-click dot01" style="top:306px;left:285px;">
+      <span style="left: -38px;">创智天地大厦</span>
+      <b></b>
+      <b></b>
+      <b></b>
+    </div>
+    <div class="tips-click dot01" style="top:290px;left:460px;">
+      <span style="left: -20px;">长城开发彩田工业园</span>
+      <b></b>
+      <b></b>
+      <b></b>
+    </div>
+    <div class="tips-click dot01" style="top:327px;left:312px;">
+      <span style="left: -25px;">深圳湾科技生态园</span>
+      <b></b>
+      <b></b>
+      <b></b>
+    </div>
+    <div class="tips-click dot01" style="top:352px;left:276px;">
+      <span style="left: -18px;">深圳市软件产业基地</span>
+      <b></b>
+      <b></b>
+      <b></b>
+    </div>
+    <div class="tips-click dot01" style="top:332px;left:239px;">
+      <span style="left: -155px;">万科前海企业公馆</span>
+      <b></b>
+      <b></b>
+      <b></b>
+    </div>
+    <img src="@images/top.png" style="position: absolute;left: 0;top: 0;">
+    <img src="@images/bgright01.png" class="right-img" ref="rightImg" @load="loadImg">
+    <!-- <img src="@images/bgright.png" class="right-img" ref="rightImg" @load="loadImg"> -->
+    <div class="right-content" ref="rightContent" >
+      <div class="content-top" >
+        <div class="park-amount">
+          <span class="text desc">园区总量(个)</span>
+          <span class="text amout">11</span>
+          <span class="text">&nbsp;</span>
+        </div>
+      </div>
+      <div class="content-center">
+        <div class="area-amount">
+           <span class="text desc">用地面积</span>
+          <span class="text amout">11</span>
+        </div>
+        <div class="area-chart"></div>
+      </div>
+      <div class="content-bottom"></div>
+    </div>
+  </div>
+  <div class="compareDiv" v-if="dialogTableVisible">
       <el-card class="box-card">
         <div class="content">
           <div class="item left">
@@ -157,6 +175,9 @@ export default {
     window.removeEventListener('resize', this.getHeight)
   },
   methods: {
+    loadImg () {
+      this.$refs.rightContent.style.width = this.$refs.rightImg.clientWidth + 'px'
+    },
     compareCancel () {
       this.isvisible = true
       this.dialogTableVisible = false
@@ -402,11 +423,53 @@ export default {
   width: 100%;
   margin: 0 auto;
 }
-.right-img{
+.right-img, .right-content{
   position:absolute;
   right:20px;
   top:-20px;
   height:95%;
+}
+.right-content {
+  color: red;
+  border: 1px solid white;
+  // padding: 0px 50px;
+  .content-top{
+    height: 24%;
+    margin-top: 20px;
+    border-bottom: 1px solid white;
+    padding-left: 36px;
+    // padding-bottom: 20px;
+    // margin-bottom: 0px;
+    .park-amount {
+      height: 100%;
+      display:flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-content: flex-end;
+      .text {
+        text-align: left;
+        &.desc {
+          font-size: 12px;
+        }
+        &.amout {
+          font-size: 36px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  .content-center {
+    height: 40%;
+    border-bottom: 1px solid white;
+    padding-left: 36px;
+    .area-amount{
+
+    }
+  }
+  .content-bottom {
+    height: 34%;
+    border-bottom: 1px solid white;
+  }
 }
 .compareDiv {
   position: fixed;
