@@ -41,6 +41,25 @@ export const leadIndustryList = [
   { value: '15', label: '物联网' },
   { value: '16', label: '集成电路' }
 ]
+
+export const leadIndustryObj = {
+  '1': '新一代信息技术',
+  '2': '互联网',
+  '3': '新能源',
+  '4': '新材料',
+  '5': '高端装备制造',
+  '6': '节能环保',
+  '7': '生物医药',
+  '8': '文化创意',
+  '9': '航空航天',
+  '10': '无人机',
+  '11': '海洋经济',
+  '12': '现代服务业',
+  '13': '人工智能',
+  '14': '5G',
+  '15': '物联网',
+  '16': '集成电路'
+}
 // 开发主体
 export const devSubjectList = [
   { value: '1', label: '国有企业' },
@@ -80,6 +99,14 @@ export const leadfuncList = [
   { value: '3', label: '办公' },
   { value: '4', label: '总部' }
 ]
+
+export const leadfuncObj = {
+  '1': '研发',
+  '2': '生产',
+  '3': '办公',
+  '4': '总部'
+}
+
 // 招商方式
 export const investModeList = [
   { value: '1', label: '自主招商' },

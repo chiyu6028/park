@@ -75,10 +75,10 @@
     <el-form-item class="inline-1">
       <TitleBlock title="投资开发运营招商"></TitleBlock>
     </el-form-item>
-    <el-form-item prop="investors" label="投资主体" class="inline-7">
+    <el-form-item prop="investors" label="开发主体" class="inline-7">
       <el-input v-model="form.investors"></el-input>
     </el-form-item>
-    <el-form-item label="开发主体" class="inline-7">
+    <el-form-item label="投资主体" class="inline-7">
       <el-select v-model="form.devsubject" placeholder="请选择" :clearable="true">
         <el-option v-for="item in devSubjectList" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>

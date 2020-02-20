@@ -17,6 +17,7 @@
   </el-tabs>
 
 </el-card>
+
 </template>
 <script>
 import * as D from '@config/default.js'

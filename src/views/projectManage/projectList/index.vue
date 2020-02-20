@@ -47,7 +47,7 @@
             <el-option v-for="item in leadIndustryList" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="开发主体" class="inline-5">
+        <el-form-item label="投资主体" class="inline-5">
           <el-select v-model="form.devSubject" placeholder="请选择">
             <el-option v-for="item in devSubjectList" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
@@ -74,7 +74,7 @@
           </template>
         </el-table-column>
         <el-table-column class="tbhd" width="110" align="center" prop="parktype" label="园区类型"></el-table-column>
-        <el-table-column class="tbhd" align="center" prop="position" label="项目地址"></el-table-column>
+        <el-table-column class="tbhd" width="300" align="center" prop="location" label="项目地址"></el-table-column>
         <el-table-column class="tbhd" width="120" align="center" prop="usetype" label="用地性质"></el-table-column>
         <el-table-column class="tbhd" width="102" align="center" prop="usearea" label="用地面积(公顷)"></el-table-column>
         <el-table-column class="tbhd" width="102" align="center" prop="buildArea" label="建筑面积(公顷)"></el-table-column>

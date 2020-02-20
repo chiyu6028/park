@@ -11,11 +11,13 @@
         <el-col :span="24" class="r-box r-box2">业态组成：<div class="right-content">{{form.formatcomposition}}</div></el-col>
         <el-col :span="24" class="r-box r-box2">产业发展路径：<div class="right-content">{{form.deppath}}</div></el-col>
         <el-col :span="24" class="r-box r-box2">产业政策：<div class="right-content">{{form.deppolicy}}</div></el-col>
-        <el-col :span="24" class="r-box">项目区位：<div class="right-content">
-          <span>{{form.location}}</span>
+        <el-col :span="24" class="r-box">
+          <div class="right-content">
+            <div><span class="cont-title">项目区位：</span><span>{{form.location}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.locationimgesArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
@@ -154,20 +156,23 @@ export default {
   .right-content{
     flex: 1;
     line-height: 24px;
+    .cont-title{
+      font-weight: bold;
+    }
   }
   .img-list{
     padding:20px 0 10px;
-    display: flex;
+    // display: flex;
     margin-left: -10px;
     &.tb{
       margin-left: -80px;
     }
     li{
-      width: 300px;
+      float: left;
       padding: 10px;
       img{
         width: 300px;
-         height: 180px;
+        height: 180px;
       }
     }
     .text{

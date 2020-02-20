@@ -452,7 +452,7 @@ export default {
           font-size: 12px;
         }
         &.amout {
-          font-size: 36px;
+          font-size: 55px;
           font-weight: bold;
         }
       }

@@ -100,5 +100,23 @@ export default {
   ],
   deficiencies: [
     { validator: validStringLen(1000), trigger: 'blur' }
+  ],
+  devarea: [
+    { validator: validNumber, trigger: 'blur' }
+  ],
+  workarea: [
+    { validator: validNumber, trigger: 'blur' }
+  ],
+  factoryarea: [
+    { validator: validNumber, trigger: 'blur' }
+  ],
+  busarea: [
+    { validator: validNumber, trigger: 'blur' }
+  ],
+  flatsarea: [
+    { validator: validNumber, trigger: 'blur' }
+  ],
+  matarea: [
+    { validator: validNumber, trigger: 'blur' }
   ]
 }

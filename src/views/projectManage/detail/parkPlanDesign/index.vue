@@ -16,65 +16,77 @@
     <div class="box-content">
       <div class="title">规划设计方案</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">规划设计理念：<div class="right-content">
-          <span>{{form.designidea}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+            <div><span class="cont-title">规划设计理念：</span><span>{{form.designidea}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.designideaimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">功能结构：<div class="right-content">
-          <span>{{form.funcstructure}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <div><span class="cont-title">功能结构：</span><span>{{form.funcstructure}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.funcstructureimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+               <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">土地利用：<div class="right-content">
-          <span>{{form.landuse}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+            <div><span class="cont-title">土地利用：</span><span>{{form.landuse}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.landuseimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+               <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">空间形态：<div class="right-content">
-          <span>{{form.spatialform}}</span>
+        <el-col :span="24" class="r-box r-box2"><div class="right-content">
+          <div><span class="cont-title">空间形态：</span><span>{{form.spatialform}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.spatialformimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+               <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">道路交通：<div class="right-content">
-          <span>{{form.roadtraffic}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+            <div><span class="cont-title">道路交通：</span><span>{{form.roadtraffic}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.roadtrafficimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+               <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">配套设施：<div class="right-content">
-          <span>{{form.supportingfacilities}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+            <div><span class="cont-title">配套设施：</span><span>{{form.supportingfacilities}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.supportingfacilitiesimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image  style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+               <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">实施控制：<div class="right-content">
-          <span>{{form.impcontrol}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <div><span class="cont-title">实施控制：</span><span>{{form.impcontrol}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.impcontrolimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+               <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
@@ -285,21 +297,24 @@ export default {
   .right-content{
     flex: 1;
     line-height: 24px;
+    .cont-title{
+      font-weight: bold;
+    }
   }
   .img-list{
     padding:20px 0 10px;
-    display: flex;
+    // display: flex;
     margin-left: -10px;
     &.tb{
       margin-left: -80px;
     }
     li{
-      width: 300px;
+      float: left;
       padding: 10px;
-      img{
-        width: 300px;
-         height: 180px;
-      }
+      // img{
+      //   width: 300px;
+      //    height: 180px;
+      // }
     }
     .text{
       text-align: center;

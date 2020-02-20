@@ -18,26 +18,29 @@
       <div class="title">技术指标</div>
       <el-row :gutter="24">
         <el-col :span="6" class="info-li">用地性质：<span v-if="usetypeList[form.usetype]">{{usetypeList[form.usetype].label}}</span></el-col>
-        <el-col :span="6" class="info-li">用地面积：<span>{{form.usearea}}</span>（m²）</el-col>
+        <el-col :span="6" class="info-li">用地面积：<span>{{form.usearea}}</span>（万m²）</el-col>
         <el-col :span="6" class="info-li">总建筑面积：<span>{{form.buildarea}}</span>（m²）</el-col>
         <el-col :span="6" class="info-li">绿化率：<span>{{form.greenrate}}</span>（%）</el-col>
         <el-col :span="6" class="info-li">容积率：<span>{{form.plotratio}}</span>（%）</el-col>
-        <el-col :span="24" class="r-box">项目区位：<div class="right-content">
-          <span>{{form.location}}</span>
+        <el-col :span="24" class="r-box">
+          <div class="right-content">
+             <div><span class="cont-title">项目区位：</span><span>{{form.location}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.locationimgesArr" :key="idx">
-              <img :src="url+tag.attpath">
+               <el-image style="width: 300px; height: 180px;" class="img"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+               <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div></el-col>
-        <el-col :span="24" class="r-box">用地范围：<div class="right-content">
-          <span>{{form.landscope}}</span>
-          <ul class="img-list">
-            <li v-for="(tag,idx) in form.landscopeimgArr" :key="idx">
-              <img :src="url+tag.attpath">
-              <div class="text">{{tag.attdis}}</div>
-            </li>
-          </ul>
+        <el-col :span="24" class="r-box">
+          <div class="right-content">
+            <div><span class="cont-title">用地范围：</span><span>{{form.landscope}}</span></div>
+            <ul class="img-list">
+              <li v-for="(tag,idx) in form.landscopeimgArr" :key="idx">
+                <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+                <div class="text">{{tag.attdis}}</div>
+              </li>
+            </ul>
           </div>
         </el-col>
       </el-row>
@@ -59,22 +62,26 @@
     <!-- 相册 -->
     <div class="box-content">
       <div class="title">相册</div>
-      <el-col :span="24" class="r-box">总平面图<div class="right-content">
+      <el-col :span="24" class="r-box">总平面图
+        <div class="right-content">
           <ul class="img-list list-phone">
-            <li v-for="(tag,idx) in form.generalLayoutimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+            <li v-for="(item,idx) in form.generallayoutimgArr" :key="idx">
+              <el-image style="width: 300px; height: 180px;" :src="url+item.attpath" :preview-src-list="[url+item.attpath]"></el-image>
+              <div class="text">{{item.attdis}}</div>
             </li>
           </ul>
-          </div>
-        </el-col>
-      <el-col :span="24" class="r-box">实景照片<div class="right-content">
+        </div>
+      </el-col>
+      <el-col :span="24" class="r-box">实景照片
+        <div class="right-content">
           <ul class="img-list list-phone">
             <li v-for="(tag,idx) in form.realphotosimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+               <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
-          </div>
-        </el-col>
+        </div>
+      </el-col>
       <!-- <el-col :span="24" class="r-box">园区照片<div class="right-content">
         <ul class="img-list list-phone">
           <li v-for="(tag,idx) in form.realphotosimgArr" :key="idx">
@@ -87,7 +94,8 @@
       <el-col :span="24" class="r-box">园区宣传片<div class="right-content">
         <ul class="img-list list-phone">
           <li v-for="(tag,idx) in form.multimediapromoArr" :key="idx">
-            <img :src="url+tag.attpath">
+             <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+            <div class="text">{{tag.attdis}}</div>
           </li>
         </ul>
         </div>
@@ -96,7 +104,8 @@
       <el-col :span="24" class="r-box">园区航拍<div class="right-content">
         <ul class="img-list list-phone">
           <li v-for="(tag,idx) in form.shortvideoArr" :key="idx">
-            <img :src="url+tag.attpath">
+             <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+            <div class="text">{{tag.attdis}}</div>
           </li>
         </ul>
         </div>
@@ -104,8 +113,9 @@
 
       <el-col :span="24" class="r-box">园区荣誉<div class="right-content">
           <ul class="img-list list-phone">
-            <li v-for="(tag,idx) in form.parkHonorimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+            <li v-for="(tag,idx) in form.parkhonorimgArr" :key="idx">
+               <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
@@ -127,6 +137,7 @@ export default {
       parkTypeList: _D.parkTypeList,
       usetypeList: _D.usetypeList,
       operModeList: _D.operModeList,
+      leadindustryObj: _D.leadIndustryObj,
       positionMaps,
       form: {
         parkname: '',
@@ -194,6 +205,10 @@ export default {
             data.position = [province, city, region, street]
             // data.developtime = data.developtime ? new Date(data.developtime + '').toJSON() : ''
             // data.createtime = data.createtime ? new Date(data.createtime + '').toJSON() : ''
+            let _this = this
+            let leadindustryArray = _.map((data.leadindustry || '').split(','), v => _this.leadindustryObj[v] || '')
+            data.leadindustry = leadindustryArray.join(',')
+            data.leadfunc = _D.leadfuncObj[data.leadfunc + '']
             this.form = data
           } else {
             this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
@@ -270,13 +285,17 @@ export default {
     flex: 1;
     line-height: 24px;
     color: #000;
+    .cont-title{
+      font-weight: bold;
+    }
   }
   .img-list{
     padding:10px 0;
-    display: flex;
+    // display: flex;
     margin-left: -10px;
     li{
-      width: 300px;
+      float: left;
+      // width: 300px;
       padding: 10px;
       img{
         width: 300px;

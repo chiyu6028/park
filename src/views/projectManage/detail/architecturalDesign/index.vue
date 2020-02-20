@@ -4,13 +4,21 @@
     <div class="box-content">
       <div class="title">基础信息</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">用地面积：<span>{{form.usearea}}</span></el-col>
-        <el-col :span="6" class="info-li">总建筑面积：<span>{{form.buildarea}}</span></el-col>
-        <el-col :span="6" class="info-li">计容建筑面积：<span>{{form.meterbuildarea}}</span></el-col>
+        <el-col :span="6" class="info-li">用地面积：<span>{{form.usearea}}（m²）</span></el-col>
+        <el-col :span="6" class="info-li">总建筑面积：<span>{{form.buildarea}}（m²）</span></el-col>
+        <el-col :span="6" class="info-li">计容建筑面积：<span>{{form.meterbuildarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">容积率：<span>{{form.plotratio}}</span></el-col>
-        <el-col :span="6" class="info-li">绿化率：<span>{{form.greenrate}}</span></el-col>
-        <el-col :span="6" class="info-li">架空面积：<span>{{form.overheadarea}}</span></el-col>
-        <el-col :span="6" class="info-li">地下面积：<span>{{form.undergroundarea}}</span></el-col>
+        <el-col :span="6" class="info-li">绿化率：<span>{{form.greenrate}}（%）</span></el-col>
+        <el-col :span="6" class="info-li">架空面积：<span>{{form.overheadarea}}（m²）</span></el-col>
+        <el-col :span="6" class="info-li">地下面积：<span>{{form.undergroundarea}}（m²）</span></el-col>
+        
+        <el-col :span="6" class="info-li">研发面积：<span>{{form.devarea}}（m²）</span></el-col>
+        <el-col :span="6" class="info-li">办公面积：<span>{{form.workarea}}（m²）</span></el-col>
+        <el-col :span="6" class="info-li">厂房面积：<span>{{form.factoryarea}}（m²）</span></el-col>
+        <el-col :span="6" class="info-li">商业面积：<span>{{form.busarea}}（m²）</span></el-col>
+        <el-col :span="6" class="info-li">公寓面积：<span>{{form.flatsarea}}（m²）</span></el-col>
+        <el-col :span="6" class="info-li">配套面积：<span>{{form.matarea}}（m²）</span></el-col>
+        
         <el-col :span="24" class="r-box r-box2">停车位（地上/地下）：<div class="right-content">{{form.parkspaceup+form.parkspacedown}}</div></el-col>
       </el-row>
     </div>
@@ -18,56 +26,66 @@
     <div class="box-content">
       <div class="title">规划设计方案</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">规划设计理念与策略：<div class="right-content">
-          <span>{{form.ideasstrategy}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+             <div><span class="cont-title">规划设计理念与策略：</span><span>{{form.ideasstrategy}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.ideasstrategyimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image  style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">周边概况：<div class="right-content">
-          <span>{{form.neardes}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+            <div><span class="cont-title">周边概况：</span><span>{{form.neardes}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.neardesimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"   :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">效果图：<div class="right-content">
-          <span>{{form.designsketch}}</span>
+        <el-col :span="24" class="r-box r-box2"><div class="right-content">
+          <div><span class="cont-title">效果图：</span><span>{{form.designsketch}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.designsketchimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">总平面图：<div class="right-content">
-          <span>{{form.generallayout}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+            <div><span class="cont-title">总平面图：</span><span>{{form.generallayout}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.generallayoutimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">功能布局：<div class="right-content">
-          <span>{{form.funclayout}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+            <div><span class="cont-title">功能布局：</span><span>{{form.funclayout}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.funclayoutimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">流线分析：<div class="right-content">
-          <span>{{form.streamlineanalysis}}</span>
+        <el-col :span="24" class="r-box r-box2"><div class="right-content">
+          <div><span class="cont-title">流线分析：</span><span>{{form.streamlineanalysis}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.streamlineanalysisimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
@@ -78,47 +96,56 @@
     <div class="box-content">
       <div class="title">专业技术</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">幕墙：<div class="right-content">
-          <span>{{form.curtain}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+            <div><span class="cont-title">幕墙：</span><span>{{form.curtain}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.curtainimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">结构：<div class="right-content">
-          <span>{{form.structure}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+            <div><span class="cont-title">结构：</span><span>{{form.structure}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.structureimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">机电：<div class="right-content">
-          <span>{{form.electromechanical}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+            <div><span class="cont-title">机电：</span><span>{{form.electromechanical}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.electromechanicalimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">暖通：<div class="right-content">
-          <span>{{form.hvac}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+            <div><span class="cont-title">暖通：</span><span>{{form.hvac}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.hvacimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
             </li>
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box r-box2">给排水：<div class="right-content">
-          <span>{{form.drainage}}</span>
+        <el-col :span="24" class="r-box r-box2"><div class="right-content">
+          <div><span class="cont-title">给排水：</span><span>{{form.drainage}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.drainageimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
             </li>
           </ul>
           </div>
@@ -197,7 +224,13 @@ export default {
         drainageimg: '',
         drainageimgArr: [],
         designadvantage: '',
-        deficiencies: ''
+        deficiencies: '',
+        devarea:'',
+        workarea:'',
+        factoryarea:'',
+        busarea:'',
+        flatsarea:'',
+        matarea:''
       }
     }
   },
@@ -289,16 +322,19 @@ export default {
   .right-content{
     flex: 1;
     line-height: 24px;
+    .cont-title{
+      font-weight: bold;
+    }
   }
   .img-list{
     padding:20px 0 10px;
-    display: flex;
+    // display: flex;
     margin-left: -10px;
     &.tb{
       margin-left: -80px;
     }
     li{
-      width: 300px;
+      float: left;
       padding: 10px;
       img{
         width: 300px;

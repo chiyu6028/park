@@ -26,7 +26,8 @@
         <el-col :span="24" class="r-box r-box2">园区图册：<div class="right-content">
           <ul class="img-list">
             <li v-for="(tag,idx) in form.parkimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <!-- <img :src="url+tag.attpath"> -->
+              <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
             </li>
           </ul>
           </div>
@@ -43,7 +44,8 @@
         <el-col :span="24" class="r-box r-box2">小区图册：<div class="right-content">
           <ul class="img-list">
             <li v-for="(tag,idx) in form.villageimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <!-- <img :src="url+tag.attpath"> -->
+              <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
             </li>
           </ul>
           </div>
@@ -174,18 +176,18 @@ export default {
   }
   .img-list{
     padding:20px 0 10px;
-    display: flex;
+    // display: flex;
     margin-left: -10px;
     &.tb{
       margin-left: -80px;
     }
     li{
-      width: 300px;
+      float: left;
       padding: 10px;
-      img{
-        width: 300px;
-         height: 180px;
-      }
+      // img{
+      //   width: 300px;
+      //    height: 180px;
+      // }
     }
     .text{
       text-align: center;

@@ -80,7 +80,7 @@ $height: 78px;
   border-color: #d2d5d8;
   box-shadow: 0 2px 20px 0 rgba(0,0,0,.35);
   position: fixed;
-  z-index: 999;
+  // z-index: 99;
   @include font16;
 
   img {

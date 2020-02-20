@@ -34,25 +34,6 @@
     <el-form-item prop="parkspacedown" label="停车位（地下）" class="inline-7">
       <el-input v-model="form.parkspacedown"></el-input>
     </el-form-item>
-
-    <el-form-item prop="devarea" label="研发面积" class="inline-7">
-      <el-input v-model="form.devarea"></el-input>
-    </el-form-item>
-    <el-form-item prop="workarea" label="办公面积" class="inline-7">
-      <el-input v-model="form.workarea"></el-input>
-    </el-form-item>
-    <el-form-item prop="factoryarea" label="厂房面积" class="inline-7">
-      <el-input v-model="form.factoryarea"></el-input>
-    </el-form-item>
-    <el-form-item prop="busarea" label="商业面积" class="inline-7">
-      <el-input v-model="form.busarea"></el-input>
-    </el-form-item>
-    <el-form-item prop="flatsarea" label="公寓面积" class="inline-7">
-      <el-input v-model="form.flatsarea"></el-input>
-    </el-form-item>
-    <el-form-item prop="matarea" label="配套面积" class="inline-7">
-      <el-input v-model="form.matarea"></el-input>
-    </el-form-item>
     <el-form-item class="inline-1">
       <TitleBlock title="建筑设计方案"></TitleBlock>
     </el-form-item>
@@ -227,13 +208,7 @@ export default {
         drainageimg: '',
         drainageimgArr: [],
         designadvantage: '',
-        deficiencies: '',
-        devarea: '',
-        workarea: '',
-        factoryarea: '',
-        busarea: '',
-        flatsarea: '',
-        matarea: ''
+        deficiencies: ''
       }
     }
   },

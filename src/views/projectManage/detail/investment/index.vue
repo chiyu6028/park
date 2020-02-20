@@ -6,41 +6,41 @@
       <el-row :gutter="24">
         <el-col :span="24" class="r-box r-box2" style="color: #999999;">主导产业：
           <div class="right-content">
-          <span style="color: #000;" v-for="(tag,idx) in form.leadindustryArray" :key="idx">
-            {{leadindustryList[tag].label  }}
+          <span style="color: #000;" v-for="(item, idx) in form.leadindustryArray" :key="idx">
+            {{ item }}
           </span>
           </div></el-col>
-        <el-col :span="6" class="info-li">主要功能：<span v-if="leadfuncList[form.leadfunc]">{{leadfuncList[form.leadfunc].label}}</span></el-col>
-        <el-col :span="6" class="info-li">园区产值：<span>{{form.parkvalue}}</span></el-col>
-        <el-col :span="6" class="info-li">平均产值：<span>{{form.avgvalue}}</span></el-col>
-        <el-col :span="6" class="info-li">贡献税收：<span>{{form.devotetax}}</span></el-col>
-        <el-col :span="6" class="info-li">就业人口：<span>{{form.employmentpeople}}</span></el-col>
-        <el-col :span="6" class="info-li">企业数量：<span>{{form.enterprisenum}}</span></el-col>
-        <el-col :span="6" class="info-li">高薪企业：<span>{{form.nhenterprisenum}}</span></el-col>
-        <el-col :span="6" class="info-li">科研/研发机构：<span>{{form.rdorg}}</span></el-col>
+        <el-col :span="6" class="info-li">主要功能：<span >{{ form.leadfunc }}</span></el-col>
+        <el-col :span="6" class="info-li">园区产值：<span>{{form.parkvalue}}（亿元）</span></el-col>
+        <el-col :span="6" class="info-li">平均产值：<span>{{form.avgvalue}}（亿元）</span></el-col>
+        <el-col :span="6" class="info-li">贡献税收：<span>{{form.devotetax}}（亿元）</span></el-col>
+        <el-col :span="6" class="info-li">就业人口：<span>{{form.employmentpeople}}（万）</span></el-col>
+        <el-col :span="6" class="info-li">企业数量：<span>{{form.enterprisenum}}（家）</span></el-col>
+        <el-col :span="6" class="info-li">高薪企业：<span>{{form.nhenterprisenum}}（家）</span></el-col>
+        <el-col :span="6" class="info-li">科研/研发机构：<span>{{form.rdorg}}（家）</span></el-col>
         <el-col :span="6" class="info-li">知识产权：<span>{{form.knowledgeproperty}}</span></el-col>
         <el-col :span="6" class="info-li">租赁性质：<span>{{form.leaseNature}}</span></el-col>
         <el-col :span="6" class="info-li">租赁比例：<span>{{form.leaseproportion}}</span></el-col>
-        <el-col :span="6" class="info-li">出售价格：<span>{{form.sellprice}}</span></el-col>
-        <el-col :span="6" class="info-li">出售面积：<span>{{form.sellarea}}</span></el-col>
-        <el-col :span="6" class="info-li">租金水平：<span>{{form.rentlevel}}</span></el-col>
-        <el-col :span="6" class="info-li">已租出面积：<span>{{form.leasedarea}}</span></el-col>
-        <el-col :span="6" class="info-li">剩余出租面积：<span>{{form.surplusleasearea}}</span></el-col>
+        <el-col :span="6" class="info-li">出售价格：<span>{{form.sellprice}}（万元/㎡）</span></el-col>
+        <el-col :span="6" class="info-li">出售面积：<span>{{form.sellarea}}（m²）</span></el-col>
+        <el-col :span="6" class="info-li">租金水平：<span>{{form.rentlevel}}（元/m²/月）</span></el-col>
+        <el-col :span="6" class="info-li">已租出面积：<span>{{form.leasedarea}}（m²）</span></el-col>
+        <el-col :span="6" class="info-li">剩余出租面积：<span>{{form.surplusleasearea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">出租率：<span>{{form.rentalrate}}</span></el-col>
-        <el-col :span="6" class="info-li">物业管理费：<span>{{form.propertyfee}}</span></el-col>
+        <el-col :span="6" class="info-li">物业管理费：<span>{{form.propertyfee}}（元/m²/月）</span></el-col>
         <el-col :span="24" class="r-box">典型企业：<div class="right-content">
           <ul class="img-list">
             <li v-for="(tag,idx) in form.typicalenterprisesArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
               <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
         </el-col>
         <el-col :span="24" class="r-box">典型科研/研发机构：<div class="right-content">
-          <ul class="img-list tb">
+          <ul class="img-list">
             <li v-for="(tag,idx) in form.typicalrdorgimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
               <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
@@ -52,8 +52,8 @@
     <div class="box-content">
       <div class="title">投资开发运营招商</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">投资主体：<span>{{form.investors}}</span></el-col>
-        <el-col :span="6" class="info-li">开发主体：<span v-if="devSubjectList[form.devsubject]">{{devSubjectList[form.devsubject].label}}</span></el-col>
+        <el-col :span="6" class="info-li">开发主体：<span>{{form.investors}}</span></el-col>
+        <el-col :span="6" class="info-li">投资主体：<span v-if="devSubjectList[form.devsubject]">{{devSubjectList[form.devsubject].label}}</span></el-col>
         <el-col :span="6" class="info-li">投资主体属性：<span>{{form.investorattr}}</span></el-col>
         <el-col :span="6" class="info-li">土地获得方式：<span>{{form.rentlevel}}</span></el-col>
         <el-col :span="6" class="info-li">开发方式：<span v-if="depmethodList[form.depmethod]">{{depmethodList[form.depmethod].label}}</span></el-col>
@@ -72,7 +72,8 @@
         <el-col :span="24" class="r-box r-box2">园区活动：<div class="right-content">
           <ul class="img-list">
             <li v-for="(tag,idx) in form.parkactivityimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
@@ -87,7 +88,8 @@
             <span>{{form.businessfacilities}}</span>
             <ul class="img-list">
               <li v-for="(tag,idx) in form.businessfacilitiesimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
             </ul>
             </div>
@@ -96,7 +98,8 @@
             <span>{{form.accommodations}}</span>
             <ul class="img-list">
               <li v-for="(tag,idx) in form.accommodationsimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
             </ul>
             </div>
@@ -105,7 +108,8 @@
             <span>{{form.conferencehall}}</span>
             <ul class="img-list">
               <li v-for="(tag,idx) in form.conferencehallimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
             </ul>
             </div>
@@ -114,7 +118,8 @@
             <span>{{form.parkfacility}}</span>
             <ul class="img-list">
               <li v-for="(tag,idx) in form.parkfacilityimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
             </ul>
             </div>
@@ -123,7 +128,8 @@
             <span>{{form.publicfacilities}}</span>
             <ul class="img-list">
               <li v-for="(tag,idx) in form.publicfacilitiesimgArr" :key="idx">
-              <img :src="url+tag.attpath">
+              <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+              <div class="text">{{tag.attdis}}</div>
             </li>
             </ul>
             </div>
@@ -155,7 +161,8 @@ export default {
   name: 'parkViewdetail',
   data () {
     return {
-      leadindustryList: _D.leadIndustryList,
+      leadindustryObj: _D.leadIndustryObj,
+      leadfuncObj: _D.leadfuncObj,
       devSubjectList: _D.devSubjectList,
       depmethodList: _D.depmethodList,
       investModeList: _D.investModeList,
@@ -238,7 +245,9 @@ export default {
         if (resp.status === 200) {
           if (resp.data && resp.data.data && resp.data.code === 1) {
             let data = resp.data.data
-            data.leadindustryArray = _.map((data.leadindustry || '').split(','), v => v || '')
+            let _this = this
+            data.leadfunc = this.leadfuncObj[data.leadfunc + '']
+            data.leadindustryArray = _.map((data.leadindustry || '').split(','), v => _this.leadindustryObj[v] || '')
             this.form = data
           }
         } else {
@@ -315,18 +324,19 @@ export default {
   }
   .img-list{
     padding:20px 0 10px;
-    display: flex;
+    // display: flex;
     margin-left: -10px;
     &.tb{
       margin-left: -80px;
     }
     li{
-      width: 300px;
+      float: left;
+      // width: 300px;
       padding: 10px;
-      img{
-        width: 300px;
-         height: 180px;
-      }
+      // img{
+      //   width: 300px;
+      //    height: 180px;
+      // }
     }
     .text{
       text-align: center;

@@ -58,7 +58,9 @@ const dataService = {
   // 根据城市查询项目
   'selectCityProject': `${nameSpace}/selectCityProject`,
   // 根据城市查询项目
-  'getSessionUserInfo': `${nameSpace}/getSessionUserInfo`
+  'getSessionUserInfo': `${nameSpace}/getSessionUserInfo`,
+  // 文件批量下载
+  'downloadFiles': `${nameSpace}/downloadFiles`
 }
 
 export default { ...dataService }

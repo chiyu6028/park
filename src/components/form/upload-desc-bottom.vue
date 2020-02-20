@@ -226,4 +226,7 @@ export default {
   .park-upload-block .el-input{
     margin-top: 10px;
   }
+  .park-upload {
+    display: flex;
+  }
 </style>
