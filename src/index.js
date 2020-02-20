@@ -7,6 +7,8 @@ import store from './store'
 
 import 'element-ui/lib/theme-chalk/index.css'
 import '@css/common.scss'
+import uploader from 'vue-simple-uploader'
+Vue.use(uploader)
 
 Vue.config.productionTip = false
 
