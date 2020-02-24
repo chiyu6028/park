@@ -6,12 +6,12 @@
         <el-col :span="24" class="r-box">
           <div class="right-content">
             <ul class="img-list">
-              <li><el-button :type="industryschemeFlag" @click="downLoadAll(form.industryschemeArr,'产业规划方案')">下载全部</el-button></li>
+              <li v-if="isPermission"><el-button :type="industryschemeFlag" @click="downLoadAll(form.industryschemeArr,'产业规划方案')">下载全部</el-button></li>
               <li v-for="(tag,idx) in form.industryschemeArr" :key="idx">
                 <span>
                   <i class="el-icon-paperclip attapath-icon-first"></i>
                   <span>{{tag.attrealname}}</span>
-                  <a :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
+                  <a v-if="isPermission" :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
                 </span>
               </li>
             </ul>
@@ -23,12 +23,12 @@
         <el-col :span="24" class="r-box">
           <div class="right-content">
             <ul class="img-list">
-              <li><el-button :type="planschemeFlag" @click="downLoadAll(form.planschemeArr,'规划设计方案')">下载全部</el-button></li>
+              <li v-if="isPermission"><el-button :type="planschemeFlag" @click="downLoadAll(form.planschemeArr,'规划设计方案')">下载全部</el-button></li>
               <li v-for="(tag,idx) in form.planschemeArr" :key="idx">
                  <span>
                   <i class="el-icon-paperclip attapath-icon-first"></i>
                   <span>{{tag.attrealname}}</span>
-                  <a :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
+                  <a v-if="isPermission" :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
                 </span>
               </li>
             </ul>
@@ -39,12 +39,12 @@
         <div class="info-title">建筑设计方案</div>
         <el-col :span="24" class="r-box"><div class="right-content">
           <ul class="img-list">
-            <li><el-button :type="buildschemeFlag" @click="downLoadAll(form.buildschemeArr,'建筑设计方案')">下载全部</el-button></li>
+            <li v-if="isPermission"><el-button :type="buildschemeFlag" @click="downLoadAll(form.buildschemeArr,'建筑设计方案')">下载全部</el-button></li>
             <li v-for="(tag,idx) in form.buildschemeArr" :key="idx">
                <span>
                   <i class="el-icon-paperclip attapath-icon-first"></i>
                   <span>{{tag.attrealname}}</span>
-                  <a :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
+                  <a v-if="isPermission" :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
                 </span>
             </li>
           </ul>
@@ -55,12 +55,12 @@
         <div class="info-title">环境设计方案</div>
         <el-col :span="24" class="r-box"><div class="right-content">
           <ul class="img-list">
-            <li><el-button :type="environschemeFlag" @click="downLoadAll(form.environschemeArr,'环境设计方案')">下载全部</el-button></li>
+            <li v-if="isPermission"><el-button :type="environschemeFlag" @click="downLoadAll(form.environschemeArr,'环境设计方案')">下载全部</el-button></li>
             <li v-for="(tag,idx) in form.environschemeArr" :key="idx">
               <span>
                   <i class="el-icon-paperclip attapath-icon-first"></i>
                   <span>{{tag.attrealname}}</span>
-                  <a :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
+                  <a v-if="isPermission" :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
                 </span>
             </li>
           </ul>
@@ -71,12 +71,12 @@
         <div class="info-title">招商运营方案</div>
         <el-col :span="24" class="r-box"><div class="right-content">
           <ul class="img-list">
-            <li><el-button :type="investschemeFlag" @click="downLoadAll(form.investschemeArr,'招商运营方案')">下载全部</el-button></li>
+            <li v-if="isPermission"><el-button :type="investschemeFlag" @click="downLoadAll(form.investschemeArr,'招商运营方案')">下载全部</el-button></li>
             <li v-for="(tag,idx) in form.investschemeArr" :key="idx">
               <span>
                   <i class="el-icon-paperclip attapath-icon-first"></i>
                   <span>{{tag.attrealname}}</span>
-                  <a :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
+                  <a v-if="isPermission" :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
                 </span>
             </li>
           </ul>
@@ -115,12 +115,17 @@ export default {
       planschemeFlag: 'info',
       buildschemeFlag: 'info',
       environschemeFlag: 'info',
-      investschemeFlag: 'info'
+      investschemeFlag: 'info',
+      isPermission: false
     }
   },
   mounted (id) {
     this.initForm(this.$route.params.id)
     this.url = config.baseUrl.dev_static_ip
+    let role = this.$store.state.role
+    if (role === '1' || role === '2') {
+      this.isPermission = true
+    }
   },
   methods: {
     downLoadAll (arr, fileName) {

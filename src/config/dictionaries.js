@@ -82,6 +82,15 @@ export const parkTypeList = [
   { value: '4', label: '现代物流园区' },
   { value: '5', label: '其他' }
 ]
+
+export const parkTypeObj = {
+  '1': '科创产业园区',
+  '2': '文化创意园区',
+  '3': '工业园区',
+  '4': '现代物流园区',
+  '5': '其他'
+}
+
 // 开放方式
 export const depmethodList = [
   { value: '1', label: '新建' },

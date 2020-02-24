@@ -1,20 +1,23 @@
 <template>
   <el-form ref="parkView" :model="form" :rules="rules" label-position="top" :inline="true" style="padding-top: 23px;">
-    <el-form-item label="园区名称" class="inline-5" prop="parkname">
+    <el-form-item label="项目编号" class="inline-3" prop="projectbh">
+      <el-input v-model="form.projectbh" maxlength="10"></el-input>
+    </el-form-item>
+    <el-form-item label="园区名称" class="inline-3" prop="parkname">
       <el-input v-model="form.parkname"></el-input>
     </el-form-item>
-    <el-form-item label="园区类型" class="inline-5" prop="parktype">
+    <el-form-item label="园区类型" class="inline-3" prop="parktype">
       <el-select v-model="form.parktype" placeholder="请选择" :clearable="true">
         <el-option v-for="item in parkTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="项目地址" class="inline-5">
+    <el-form-item label="项目地址" class="inline-3">
       <el-cascader
         v-model="form.position"
         :options="positionMaps"
         :props="{ expandTrigger: 'hover' }"></el-cascader>
     </el-form-item>
-    <el-form-item label="开发时间" class="inline-5">
+    <el-form-item label="开发时间" class="inline-3">
       <el-date-picker
         v-model="form.developtime"
         type="year"
@@ -23,7 +26,7 @@
         placeholder="选择年">
       </el-date-picker>
     </el-form-item>
-    <el-form-item label="建成时间" class="inline-5">
+    <el-form-item label="建成时间" class="inline-3">
       <el-date-picker
         v-model="form.createtime"
         format="yyyy"
@@ -196,13 +199,11 @@ export default {
       this.computeMD5(file)
     },
     onFileSuccess (rootFile, file, response, chunk) {
-
       let res = JSON.parse(response)
 
       // 服务器自定义的错误，这种错误是Uploader无法拦截的
       if (!res.result) {
         this.$message({ message: res.message, type: 'error' })
-        return
       }
       // 如果服务端返回需要合并
       // if (res.needMerge) {
@@ -214,7 +215,7 @@ export default {
       //         // 文件合并成功
       //         Bus.$emit('fileSuccess', data);
       //     }).catch(e => {});
-      // // 不需要合并    
+      // // 不需要合并
       // } else {
       //     Bus.$emit('fileSuccess', res);
       //     console.log('上传成功');
@@ -224,7 +225,7 @@ export default {
       console.log(`上传中 ${file.name}，chunk：${chunk.startByte / 1024 / 1024} ~ ${chunk.endByte / 1024 / 1024}`)
     },
     onFileError (rootFile, file, response, chunk) {
-      console.log("error")
+      console.log('error')
     },
     fileListShow () {
 
@@ -248,7 +249,7 @@ export default {
       // this.statusSet(file.id, 'md5')
       file.pause()
       loadNext()
-      fileReader.onload = ( e => {
+      fileReader.onload = e => {
         spark.append(e.target.result)
         if (currentChunk < chunks) {
           currentChunk++
@@ -265,7 +266,7 @@ export default {
           this.computeMD5Success(md5, file)
           console.log(`MD5计算完毕：${file.name} \nMD5：${md5} \n分片：${chunks} 大小:${file.size} 用时：${new Date().getTime() - time} ms`)
         }
-      })
+      }
       fileReader.onerror = function () {
         this.error(`文件${file.name}读取出错，请检查该文件`)
         file.cancel()

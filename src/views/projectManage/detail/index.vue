@@ -1,7 +1,7 @@
 <template>
 <el-card>
   <div class="notice" style="position: absolute;right: 5px;z-index: 999;">
-    <el-button round @click="backToList">
+    <el-button round @click="backToList" v-if="isPermission">
       <i class="el-icon-notebook-2"></i>
       返回列表
     </el-button>
@@ -35,10 +35,17 @@ export default {
     const detailList = D.addProjectTab
     return {
       tabVal: '1',
-      detailList
+      detailList,
+      isPermission: false
     }
   },
   created () {
+  },
+  mounted () {
+    let role = this.$store.state.role
+    if (role === '1') {
+      this.isPermission = true
+    }
   },
   methods: {
     backToList () {

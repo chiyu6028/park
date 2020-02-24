@@ -1,6 +1,6 @@
 <template>
   <el-container class="project-container">
-    <el-aside class="project-aside">
+    <el-aside class="project-aside" v-if="isPermission">
       <el-menu :default-active="activeIndex" @select="handleSelect">
         <el-menu-item
           v-for="item in asideList"
@@ -29,17 +29,24 @@ export default {
   name: 'ProjectManage',
   data () {
     let asideList = D.projectManageAside
-    let item = {}
-    if (this.$store.state.role === '2' || this.$store.state.role === '3') {
-      item = asideList.find(elem => {
-        return elem.index === '1'
-      })
-      asideList = [item]
-    }
+    // let item = {}
+    // if (this.$store.state.role === '2' || this.$store.state.role === '3') {
+    //   item = asideList.find(elem => {
+    //     return elem.index === '1'
+    //   })
+    //   asideList = [item]
+    // }
     let activeIndex = _.head(asideList).index
     return {
       activeIndex,
-      asideList
+      asideList,
+      isPermission: false
+    }
+  },
+  mounted () {
+    let role = this.$store.state.role
+    if (role === '1') {
+      this.isPermission = true
     }
   },
   computed: {

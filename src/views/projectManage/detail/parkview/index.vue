@@ -5,6 +5,7 @@
       <div class="title">基础信息</div>
       <el-row :gutter="24">
         <el-col :span="6" class="info-li">项目ID：<span>{{form.projectid}}</span></el-col>
+        <el-col :span="6" class="info-li">项目编号：<span>{{form.projectbh}}</span></el-col>
         <el-col :span="6" class="info-li">园区名称：<span>{{form.parkname}}</span></el-col>
         <el-col :span="6" class="info-li">园区类型：<span v-if="parkTypeList[form.parktype]">{{parkTypeList[form.parktype].label}}</span></el-col>
         <el-col :span="6" class="info-li">项目地址：<span v-if="positionMaps[form.province]">{{positionMaps[form.province].label}}</span></el-col>
@@ -206,8 +207,13 @@ export default {
             // data.developtime = data.developtime ? new Date(data.developtime + '').toJSON() : ''
             // data.createtime = data.createtime ? new Date(data.createtime + '').toJSON() : ''
             let _this = this
-            let leadindustryArray = _.map((data.leadindustry || '').split(','), v => _this.leadindustryObj[v] || '')
-            data.leadindustry = leadindustryArray.join(',')
+            let leadStr = ''
+            _.map((data.leadindustry || '').split(','), v => {
+              if (_this.leadindustryObj[v]) {
+                leadStr = leadStr + _this.leadindustryObj[v] + '，'
+              }
+            })
+            data.leadindustry = leadStr.substr(0, leadStr.length - 1)
             data.leadfunc = _D.leadfuncObj[data.leadfunc + '']
             this.form = data
           } else {

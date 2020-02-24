@@ -74,24 +74,26 @@
       <b></b>
     </div>
     <img src="@images/top.png" style="position: absolute;left: 0;top: 0;">
-    <img src="@images/bgright01.png" class="right-img" ref="rightImg" @load="loadImg">
-    <!-- <img src="@images/bgright.png" class="right-img" ref="rightImg" @load="loadImg"> -->
+    <!-- <img src="@images/bgright01.png" class="right-img" ref="rightImg" @load="loadImg"> -->
+    <img src="@images/bgright.png" class="right-img" ref="rightImg" @load="loadImg">
     <div class="right-content" ref="rightContent" >
       <div class="content-top" >
         <div class="park-amount">
           <span class="text desc">园区总量(个)</span>
-          <span class="text amout">11</span>
+          <span class="text amout">{{parkTotal}}</span>
           <span class="text">&nbsp;</span>
         </div>
       </div>
       <div class="content-center">
         <div class="area-amount">
            <span class="text desc">用地面积</span>
-          <span class="text amout">11</span>
+          <span class="text amout">{{sumLandUaeArea}}</span>
         </div>
-        <div class="area-chart"></div>
+        <div class="area-chart" id="areaChart" :style="{width: '320px', height: '400px'}"></div>
       </div>
-      <div class="content-bottom"></div>
+      <div class="content-bottom">
+        <div class="pie-chart" id="pieChart" :style="{width: '320px', height: '280px'}"></div>
+      </div>
     </div>
   </div>
   <div class="compareDiv" v-if="dialogTableVisible">
@@ -144,6 +146,16 @@
 
 <script>
 import URL from '@config/urlConfig.js'
+import * as _D from '@config/dictionaries'
+import * as _ from 'lodash'
+var echarts = require('echarts/lib/echarts')
+require('echarts/lib/chart/bar')
+require('echarts/lib/chart/pie')
+require('echarts/lib/component/tooltip')
+require('echarts/lib/component/title')
+require('echarts/lib/component/legend')
+require('echarts/lib/component/grid')
+
 export default {
   name: 'Overview',
   data () {
@@ -162,7 +174,10 @@ export default {
       form: {
         project: '',
         dimensions: ''
-      }
+      },
+      parkTotal: 0,
+      sumLandUaeArea: 0,
+      parkTypeObj: _D.parkTypeObj
     }
   },
   created () {
@@ -171,10 +186,185 @@ export default {
     window.addEventListener('resize', this.getHeight)
     this.getHeight()
   },
+  mounted () {
+    this.getAreaChart()
+  },
   destroyed () {
     window.removeEventListener('resize', this.getHeight)
   },
   methods: {
+    getAreaChart () {
+      this.$axios.post(URL['selectProjectInfoMap'], {}).then(resp => {
+        if (resp.status === 200) {
+          let _data = resp.data.data
+          if (_data) {
+            this.parkTotal = _data.parkTotal
+            this.sumLandUaeArea = _data.sumLandUaeArea
+            this.getBar(_data)
+            this.getPie(_data.parkTypeInfo)
+          }
+        } else {
+          this.$message.error('系统异常，请联系管理员！')
+        }
+      })
+    },
+    getBar (_data) {
+      let dataObj = {}
+
+      _.map(_data.parkInfo, item => {
+        dataObj[item.parkname] = item.usearea
+      })
+      let option = {
+        tooltip: {},
+        grid: [{
+          top: 20,
+          width: '100%',
+          bottom: '45%',
+          left: -100,
+          containLabel: true
+        }, {
+          top: '55%',
+          width: '100%',
+          bottom: 0,
+          left: -100,
+          containLabel: true
+        }],
+        xAxis: [{
+          type: 'value',
+          max: _data.sumLandUaeArea,
+          show: false,
+          splitLine: {
+            show: false
+          },
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: '#ffffff'
+            }
+          }
+        }],
+        yAxis: [{
+          type: 'category',
+          data: Object.keys(dataObj), // Object.keys(builderJson.charts),
+          axisLabel: {
+            interval: 0,
+            rotate: 30
+          },
+          show: false,
+          // position: 'right',
+          splitLine: {
+            show: false
+          },
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: '#ffffff'
+            }
+          }
+        }],
+        color: ['#23BEFF'],
+        series: [{
+          type: 'bar',
+          stack: 'chart',
+          z: 3,
+          label: {
+            normal: {
+              position: 'right',
+              show: true
+            }
+          },
+          barWidth: '10',
+          data: Object.keys(dataObj).map(function (key) {
+            return dataObj[key]
+          })
+        }, {
+          type: 'bar',
+          stack: 'chart',
+          silent: true,
+          itemStyle: {
+            normal: {
+              color: '#22323F'
+            }
+          },
+          data: Object.keys(dataObj).map(function (key) {
+            return _data.sumLandUaeArea - dataObj[key]
+          })
+        }]
+      }
+      let myChart = echarts.init(document.getElementById('areaChart'))
+      myChart.setOption(option)
+    },
+    getPie (_data) {
+      if (_data.length) {
+        // 组装数据
+        let legendData = []
+        let seriesData = []
+        _.map(_data, item => {
+          legendData.push(item.parktype)
+          seriesData.push({ value: item.parksum, name: item.parktype })
+        })
+        let option = {
+          title: {
+            text: '类型分布（个）',
+            textStyle: {
+              color: '#ffffff',
+              fontSize: 16
+            },
+            left: 20,
+            top: 10
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+          },
+          legend: {
+            orient: 'vertical',
+            textStyle: {
+              color: '#ffffff'
+            },
+            right: 10,
+            top: '10',
+            itemWidth: 10,
+            itemHeight: 10,
+            padding: [0, 0, 0, 10],
+            data: legendData // ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+          },
+          color: ['#1580FA', '#7BFBC6', '#4DCFFF', '#7CF3FA', '#89F4A2'],
+          series: [
+            {
+              name: '类型分布（个）',
+              type: 'pie',
+              radius: ['40%', '50%'],
+              center: ['40%', '50%'],
+              avoidLabelOverlap: false,
+              left: 0,
+              top: 0,
+              label: {
+                normal: {
+                  show: false,
+                  position: 'center'
+                },
+                emphasis: {
+                  show: false,
+                  textStyle: {
+                    fontSize: '30',
+                    fontWeight: 'bold'
+                  }
+                }
+              },
+              labelLine: {
+                normal: {
+                  show: false
+                }
+              },
+              data: seriesData
+            }
+          ]
+        }
+        let myChart = echarts.init(document.getElementById('pieChart'))
+        myChart.setOption(option)
+      }
+    },
     loadImg () {
       this.$refs.rightContent.style.width = this.$refs.rightImg.clientWidth + 'px'
     },
@@ -430,29 +620,26 @@ export default {
   height:95%;
 }
 .right-content {
-  color: red;
-  border: 1px solid white;
-  // padding: 0px 50px;
+  // border: 1px solid white;
   .content-top{
     height: 24%;
     margin-top: 20px;
-    border-bottom: 1px solid white;
+    // border-bottom: 1px solid white;
     padding-left: 36px;
-    // padding-bottom: 20px;
-    // margin-bottom: 0px;
     .park-amount {
       height: 100%;
       display:flex;
       flex-direction: column;
       justify-content: flex-end;
       align-content: flex-end;
+      color: white;
       .text {
         text-align: left;
         &.desc {
-          font-size: 12px;
+          font-size: 16px;
         }
         &.amout {
-          font-size: 55px;
+          font-size: 32px;
           font-weight: bold;
         }
       }
@@ -460,15 +647,31 @@ export default {
   }
   .content-center {
     height: 40%;
-    border-bottom: 1px solid white;
+    // border-bottom: 1px solid white;
     padding-left: 36px;
+    padding-top: 5px;
     .area-amount{
-
+      display: flex;
+      flex-direction: column;
+      align-content: flex-start;
+      color: white;
+      font-weight: bold;
+      // justify-content: flex-start;
+      .desc {
+        display: flex;
+        font-size: 16px;
+        margin:5px 0px;
+      }
+      .amout {
+        display: flex;
+        font-size: 32px;
+      }
     }
   }
   .content-bottom {
     height: 34%;
-    border-bottom: 1px solid white;
+    // border-bottom: 1px solid white;
+    // background:;
   }
 }
 .compareDiv {

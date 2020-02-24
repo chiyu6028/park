@@ -17,6 +17,9 @@ export default {
   parktype: [
     { required: true, message: '请输入园区类型', trigger: 'blur' }
   ],
+  projectbh: [
+    { required: true, message: '请输入项目编号', trigger: 'blur' }
+  ],
   parkdes: [
     { validator: validStringLen(1000), trigger: 'blur' }
   ],
