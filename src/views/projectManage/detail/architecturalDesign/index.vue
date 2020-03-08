@@ -11,14 +11,14 @@
         <el-col :span="6" class="info-li">绿化率：<span>{{form.greenrate}}（%）</span></el-col>
         <el-col :span="6" class="info-li">架空面积：<span>{{form.overheadarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">地下面积：<span>{{form.undergroundarea}}（m²）</span></el-col>
-        
+
         <el-col :span="6" class="info-li">研发面积：<span>{{form.devarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">办公面积：<span>{{form.workarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">厂房面积：<span>{{form.factoryarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">商业面积：<span>{{form.busarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">公寓面积：<span>{{form.flatsarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">配套面积：<span>{{form.matarea}}（m²）</span></el-col>
-        
+
         <el-col :span="24" class="r-box r-box2">停车位（地上/地下）：<div class="right-content">{{form.parkspaceup+form.parkspacedown}}</div></el-col>
       </el-row>
     </div>
@@ -154,14 +154,14 @@
     </div>
     <!-- 规划设计小结 -->
     <div class="box-content">
-      <div class="title">规划设计小结</div>
+      <div class="title">建筑设计小结</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">规划设计团队：<div class="right-content">{{form.buildteam}}</div></el-col>
-        <el-col :span="24" class="r-box">产业规划亮点：<div class="right-content">
+        <el-col :span="24" class="r-box r-box2">建筑设计团队：<div class="right-content">{{form.buildteam}}</div></el-col>
+        <el-col :span="24" class="r-box">建筑设计亮点：<div class="right-content">
             <span>{{form.designadvantage}}</span>
           </div>
           </el-col>
-          <el-col :span="24" class="r-box">面临困境：<div class="right-content">
+          <el-col :span="24" class="r-box">建筑设计不足：<div class="right-content">
             <span>{{form.deficiencies}}</span>
           </div>
           </el-col>
@@ -225,12 +225,12 @@ export default {
         drainageimgArr: [],
         designadvantage: '',
         deficiencies: '',
-        devarea:'',
-        workarea:'',
-        factoryarea:'',
-        busarea:'',
-        flatsarea:'',
-        matarea:''
+        devarea: '',
+        workarea: '',
+        factoryarea: '',
+        busarea: '',
+        flatsarea: '',
+        matarea: ''
       }
     }
   },

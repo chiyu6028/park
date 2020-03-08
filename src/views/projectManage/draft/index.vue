@@ -15,8 +15,8 @@
         <el-table-column align="center" prop="parktype" label="园区类型"></el-table-column>
         <el-table-column align="center" width="300" prop="location" label="项目地址"></el-table-column>
         <el-table-column align="center" prop="usetype" label="用地性质"></el-table-column>
-        <el-table-column align="center" prop="usearea" label="用地面积（公顷）"></el-table-column>
-        <el-table-column align="center" prop="buildArea" label="建筑面积（公顷）"></el-table-column>
+        <el-table-column align="center" prop="usearea" label="用地面积（万公顷）"></el-table-column>
+        <el-table-column align="center" prop="buildArea" label="建筑面积（万公顷）"></el-table-column>
         <el-table-column align="center" prop="updatetime" label="发布时间"></el-table-column>
         <el-table-column align="center" prop="operate" label="编辑">
           <template slot-scope="{row}">

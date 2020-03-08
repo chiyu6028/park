@@ -6,7 +6,7 @@
       </el-tab-pane>
     </el-tabs>
     <div class="notice">
-      <el-button round @click="toList" v-if="flag === 'edit'">
+      <el-button round @click="toList">
         <i class="el-icon-notebook-2"></i>
         返回列表
       </el-button>

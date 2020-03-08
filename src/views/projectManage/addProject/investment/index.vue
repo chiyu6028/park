@@ -75,13 +75,13 @@
     <el-form-item class="inline-1">
       <TitleBlock title="投资开发运营招商"></TitleBlock>
     </el-form-item>
-    <el-form-item prop="investors" label="开发主体" class="inline-7">
-      <el-input v-model="form.investors"></el-input>
-    </el-form-item>
     <el-form-item label="投资主体" class="inline-7">
       <el-select v-model="form.devsubject" placeholder="请选择" :clearable="true">
         <el-option v-for="item in devSubjectList" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>
+    </el-form-item>
+    <el-form-item prop="investors" label="开发主体" class="inline-7">
+      <el-input v-model="form.investors"></el-input>
     </el-form-item>
     <el-form-item prop="landmethod" label="土地获得方式" class="inline-7">
       <el-input v-model="form.landmethod"></el-input>
@@ -161,6 +161,15 @@
     <el-form-item class="inline-1">
       <UploadDescBottom :value="form.conferencehallimgArr" @setFileList="value => setFileList('conferencehallimg', value)"></UploadDescBottom>
     </el-form-item>
+
+    <el-form-item class="like-hr inline-1"></el-form-item>
+    <el-form-item prop="parkfacility" label="停车设施" class="inline-1">
+      <el-input type="textarea" autosize v-model="form.parkfacility"></el-input>
+    </el-form-item>
+    <el-form-item class="inline-1">
+      <UploadDescBottom :value="form.parkfacilityimgArr" @setFileList="value => setFileList('parkfacilityimg', value)"></UploadDescBottom>
+    </el-form-item>
+
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="publicfacilities" label="公共服务设施" class="inline-1">
       <el-input type="textarea" autosize v-model="form.publicfacilities"></el-input>
@@ -259,6 +268,9 @@ export default {
         conferencehall: '',
         conferencehallimg: '',
         conferencehallimgArr: [],
+        parkfacility: '',
+        parkfacilityimg: '',
+        parkfacilityimgArr: '',
         publicfacilities: '',
         publicfacilitiesimg: '',
         publicfacilitiesimgArr: [],

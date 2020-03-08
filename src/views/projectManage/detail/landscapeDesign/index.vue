@@ -94,7 +94,7 @@
     <div class="box-content">
       <div class="title">景观设计小结</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">设计团队：
+        <el-col :span="24" class="r-box r-box2">景观设计团队：
           <div class="right-content">{{form.designteam}}</div>
         </el-col>
         <el-col :span="24" class="r-box">景观设计亮点：

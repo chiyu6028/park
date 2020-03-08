@@ -33,7 +33,7 @@
             <span>{{form.planadvantage}}</span>
           </div>
           </el-col>
-          <el-col :span="24" class="r-box">面临困境：<div class="right-content">
+          <el-col :span="24" class="r-box">产业规划不足：<div class="right-content">
             <span>{{form.deficiencies}}</span>
           </div>
           </el-col>

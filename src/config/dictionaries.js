@@ -68,6 +68,15 @@ export const devSubjectList = [
   { value: '4', label: '混合所有制企业' },
   { value: '5', label: '合资企业' }
 ]
+
+export const devSubjectObj = {
+  '1': '国有企业',
+  '2': '民营企业',
+  '3': '外资企业',
+  '4': '混合所有制企业',
+  '5': '合资企业'
+}
+
 // 运营模式
 export const operModeList = [
   { value: '1', label: '自主运营' },
@@ -101,6 +110,12 @@ export const usetypeList = [
   { value: '1', label: 'M1普通工业用地' },
   { value: '2', label: 'M0新型产业用地' }
 ]
+
+export const usetypeObj = {
+  '1': 'M1普通工业用地',
+  '2': 'M0新型产业用地'
+}
+
 // 主导功能
 export const leadfuncList = [
   { value: '1', label: '研发' },

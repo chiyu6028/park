@@ -70,7 +70,7 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item>
-      <TitleBlock title="建筑设计小结"></TitleBlock>
+      <TitleBlock title="规划设计小结"></TitleBlock>
     </el-form-item>
      <el-form-item prop="designteam" label="规划设计团队">
       <el-input type="textarea" autosize  v-model="form.designteam"></el-input>

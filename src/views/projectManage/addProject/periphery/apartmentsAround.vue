@@ -7,9 +7,12 @@
     <el-form-item label="房价水平(万/m²)" class="inline-1" prop="housprice">
       <el-input v-model="form.housprice" class="inline-4"></el-input>
     </el-form-item>
+     <el-form-item label="周边介绍" class="inline-1" prop="villagedes">
+      <el-input v-model="form.villagedes"></el-input>
+    </el-form-item>
     <el-form-item label="园区图册" class="inline-1">
       <!-- <Upload :value="form.villageimgArr" @setFileList="value => setFileList('villageimg', value)"></Upload> -->
-      <UploadDescBottom :value="form.parkimgArr" @setFileList="value => setFileList('parkimg', value)"></UploadDescBottom>
+      <UploadDescBottom :value="form.villageimgArr" @setFileList="value => setFileList('villageimg', value)"></UploadDescBottom>
     </el-form-item>
   </el-form>
 </template>

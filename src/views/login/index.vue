@@ -81,17 +81,37 @@ export default {
         if (isValid && !this.isSubmit) {
           this.submitText = '登录中...'
           this.isSubmit = true
-          this.$axios
-            .post(URL['LOGIN'], this.form)
-            .then(resp => {
-              if (resp.status === 200 && resp.data && resp.data.code === 1) {
-                this.submitText = '登录成功'
-                this.$router.push({ path: '/index' })
-              } else {
-                this.dialogVisible = true
-                this.loginResult = resp.data && resp.data.msg ? resp.data.msg : '系统异常，请联系管理员！'
-              }
-            })
+          this.$axios.post(URL['LOGIN'], this.form).then(resp => {
+            if (resp.status === 200 && resp.data && resp.data.code === 1) {
+              this.$axios.get(URL['getSessionUserInfo']).then(resp => {
+                if (resp.status === 200) {
+                  if (resp.data && resp.data.code === 1 && resp.data.data) {
+                    let dataItem = resp.data.data
+                    sessionStorage.setItem('role', dataItem.userRole)
+                    sessionStorage.setItem('user', JSON.stringify(dataItem))
+                    sessionStorage.setItem('islogin', '1')
+                    this.submitText = '登录成功'
+                    switch (dataItem.userRole) {
+                      case '1':
+                        this.$router.push({ path: '/index' })
+                        break
+                      case '2':
+                      case '3':
+                        this.$router.push({ path: '/index/projectManage/projectList' })
+                        break
+                    }
+                  } else {
+                    this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
+                  }
+                } else {
+                  this.$message.error('系统异常，请联系管理员！')
+                }
+              })
+            } else {
+              this.dialogVisible = true
+              this.loginResult = resp.data && resp.data.msg ? resp.data.msg : '系统异常，请联系管理员！'
+            }
+          })
         }
       })
     }

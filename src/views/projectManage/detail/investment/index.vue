@@ -18,15 +18,15 @@
         <el-col :span="6" class="info-li">企业数量：<span>{{form.enterprisenum}}（家）</span></el-col>
         <el-col :span="6" class="info-li">高薪企业：<span>{{form.nhenterprisenum}}（家）</span></el-col>
         <el-col :span="6" class="info-li">科研/研发机构：<span>{{form.rdorg}}（家）</span></el-col>
-        <el-col :span="6" class="info-li">知识产权：<span>{{form.knowledgeproperty}}</span></el-col>
-        <el-col :span="6" class="info-li">租赁性质：<span>{{form.leaseNature}}</span></el-col>
-        <el-col :span="6" class="info-li">租赁比例：<span>{{form.leaseproportion}}</span></el-col>
+        <el-col :span="6" class="info-li">知识产权：<span>{{form.knowledgeproperty}}(件)</span></el-col>
+        <el-col :span="6" class="info-li">租赁性质：<span>{{form.leasenature}}</span></el-col>
+        <el-col :span="6" class="info-li">租赁比例：<span>{{form.leaseproportion}}(%)</span></el-col>
         <el-col :span="6" class="info-li">出售价格：<span>{{form.sellprice}}（万元/㎡）</span></el-col>
         <el-col :span="6" class="info-li">出售面积：<span>{{form.sellarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">租金水平：<span>{{form.rentlevel}}（元/m²/月）</span></el-col>
         <el-col :span="6" class="info-li">已租出面积：<span>{{form.leasedarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">剩余出租面积：<span>{{form.surplusleasearea}}（m²）</span></el-col>
-        <el-col :span="6" class="info-li">出租率：<span>{{form.rentalrate}}</span></el-col>
+        <el-col :span="6" class="info-li">出租率：<span>{{form.rentalrate}}(%)</span></el-col>
         <el-col :span="6" class="info-li">物业管理费：<span>{{form.propertyfee}}（元/m²/月）</span></el-col>
         <el-col :span="24" class="r-box">典型企业：<div class="right-content">
           <ul class="img-list">
@@ -52,12 +52,12 @@
     <div class="box-content">
       <div class="title">投资开发运营招商</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">开发主体：<span>{{form.investors}}</span></el-col>
         <el-col :span="6" class="info-li">投资主体：<span v-if="devSubjectList[form.devsubject]">{{devSubjectList[form.devsubject].label}}</span></el-col>
+        <el-col :span="6" class="info-li">开发主体：<span>{{form.investors}}</span></el-col>
         <el-col :span="6" class="info-li">投资主体属性：<span>{{form.investorattr}}</span></el-col>
         <el-col :span="6" class="info-li">土地获得方式：<span>{{form.rentlevel}}</span></el-col>
         <el-col :span="6" class="info-li">开发方式：<span v-if="depmethodList[form.depmethod]">{{depmethodList[form.depmethod].label}}</span></el-col>
-        <el-col :span="6" class="info-li">投资规模：<span>{{form.investmentmode}}</span></el-col>
+        <el-col :span="6" class="info-li">投资规模：<span>{{form.investmentmode}}(亿元)</span></el-col>
         <el-col :span="6" class="info-li">招商方式：<span v-if="investModeList[form.investmode]">{{investModeList[form.investmode].label}}</span></el-col>
         <el-col :span="6" class="info-li">招商团队：<span>{{form.investteam}}</span></el-col>
         <el-col :span="6" class="info-li">招商策略：<span>{{form.investstrategy}}</span></el-col>
@@ -84,8 +84,9 @@
     <div class="box-content">
       <div class="title">配套设施</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box">商业设施：<div class="right-content">
-            <span>{{form.businessfacilities}}</span>
+        <el-col :span="24" class="r-box">
+          <div class="right-content">
+             <div><span class="cont-title">商业设施：</span><span>{{form.businessfacilities}}</span></div>
             <ul class="img-list">
               <li v-for="(tag,idx) in form.businessfacilitiesimgArr" :key="idx">
               <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
@@ -94,8 +95,9 @@
             </ul>
             </div>
           </el-col>
-          <el-col :span="24" class="r-box">居住设施：<div class="right-content">
-            <span>{{form.accommodations}}</span>
+          <el-col :span="24" class="r-box">
+            <div class="right-content">
+              <div><span class="cont-title">居住设施：</span><span>{{form.accommodations}}</span></div>
             <ul class="img-list">
               <li v-for="(tag,idx) in form.accommodationsimgArr" :key="idx">
               <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
@@ -104,8 +106,9 @@
             </ul>
             </div>
           </el-col>
-          <el-col :span="24" class="r-box">会议展厅：<div class="right-content">
-            <span>{{form.conferencehall}}</span>
+          <el-col :span="24" class="r-box">
+            <div class="right-content">
+              <div><span class="cont-title">会议展厅：</span><span>{{form.conferencehall}}</span></div>
             <ul class="img-list">
               <li v-for="(tag,idx) in form.conferencehallimgArr" :key="idx">
               <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
@@ -114,8 +117,9 @@
             </ul>
             </div>
           </el-col>
-          <el-col :span="24" class="r-box">停车设施：<div class="right-content">
-            <span>{{form.parkfacility}}</span>
+          <el-col :span="24" class="r-box">
+            <div class="right-content">
+              <div><span class="cont-title">停车设施：</span><span>{{form.parkfacility}}</span></div>
             <ul class="img-list">
               <li v-for="(tag,idx) in form.parkfacilityimgArr" :key="idx">
               <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
@@ -124,8 +128,8 @@
             </ul>
             </div>
           </el-col>
-          <el-col :span="24" class="r-box">公共服务设施：<div class="right-content">
-            <span>{{form.publicfacilities}}</span>
+          <el-col :span="24" class="r-box"><div class="right-content">
+            <div><span class="cont-title">公共服务设施：</span><span>{{form.publicfacilities}}</span></div>
             <ul class="img-list">
               <li v-for="(tag,idx) in form.publicfacilitiesimgArr" :key="idx">
               <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
@@ -321,6 +325,9 @@ export default {
   .right-content{
     flex: 1;
     line-height: 24px;
+    .cont-title{
+      font-weight: bold;
+    }
   }
   .img-list{
     padding:20px 0 10px;

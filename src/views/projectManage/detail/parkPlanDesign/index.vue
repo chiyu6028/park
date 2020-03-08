@@ -5,10 +5,10 @@
       <div class="title">基础信息</div>
       <el-row :gutter="24">
         <el-col :span="6" class="info-li">用地性质：<span v-if="usetypeList[form.usetype]">{{usetypeList[form.usetype].label}}</span></el-col>
-        <el-col :span="6" class="info-li">用地面积：<span>{{form2.usearea}}</span></el-col>
-        <el-col :span="6" class="info-li">总建筑面积：<span>{{form2.buildarea}}</span></el-col>
-        <el-col :span="6" class="info-li">容积率：<span>{{form2.plotratio}}</span></el-col>
-        <el-col :span="6" class="info-li">绿化率：<span>{{form2.greenrate}}</span></el-col>
+        <el-col :span="6" class="info-li">用地面积：<span>{{form2.usearea}}（万m²）</span></el-col>
+        <el-col :span="6" class="info-li">总建筑面积：<span>{{form2.buildarea}}（万m²）</span></el-col>
+        <el-col :span="6" class="info-li">容积率：<span>{{form2.plotratio}}%</span></el-col>
+        <el-col :span="6" class="info-li">绿化率：<span>{{form2.greenrate}}%</span></el-col>
         <el-col :span="24" class="r-box r-box2">周边项目：<div class="right-content">{{form.nearproject}}</div></el-col>
       </el-row>
     </div>
@@ -95,7 +95,7 @@
     </div>
     <!-- 规划设计小结 -->
     <div class="box-content">
-      <div class="title">建筑设计小结</div>
+      <div class="title">规划设计小结</div>
       <el-row :gutter="24">
         <el-col :span="24" class="r-box r-box2">规划设计团队：<div class="right-content">{{form.designteam}}</div></el-col>
         <el-col :span="24" class="r-box">规划设计亮点<div class="right-content">
@@ -274,7 +274,7 @@ export default {
   color: #999999;
 }
 .info-li span{
-	color: #000000;
+ color: #000000;
 }
 .box-content{
   margin-bottom: 20px;

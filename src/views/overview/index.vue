@@ -8,67 +8,87 @@
     </div>
   <div class="topmap">
     <div class="tips-click dot01" style="top:55px;left:305px;">
-      <span>华强创意产业园</span>
+      <hover-detaill :title="'华强创意产业园'" :dotId="'334'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
     <div class="tips-click dot01" style="top:153px;left:443px;">
-      <span style="left: -44px;">宝能科技城</span>
+      <!-- 327 -->
+      <!-- <span style="left: -44px;">宝能科技城</span> -->
+      <hover-detaill :title="'宝能科技城'" :titleStyle="'margin-left: -15px;'"  :dotId="'327'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
     <div class="tips-click dot01" style="top:160px;left:563px;">
-      <span style="left: -13px;">平湖恒路物流创新广场</span>
+      <!-- 129 -->
+      <!-- <span style="left: -13px;">平湖恒路物流创新广场</span> -->
+      <hover-detaill :title="'平湖恒路物流创新广场'"  :titleStyle="'margin-left: 35px;'" :dotId="'129'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
     <div class="tips-click dot01" style="top:145px;left:670px;">
-      <span>启迪协信科技园</span>
+      <!-- 136 -->
+      <!-- <span>启迪协信科技园</span> -->
+      <hover-detaill :title="'启迪协信科技园'"  :dotId="'136'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
     <div class="tips-click dot01" style="top:230px;left:293px;">
-      <span style="left: -50px;">创智云城</span>
+      <!-- 131 -->
+      <!-- <span style="left: -50px;">创智云城</span> -->
+      <hover-detaill :title="'创智云城'" :titleStyle="'margin-left: -30px;'"  :dotId="'131'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
     <div class="tips-click dot01" style="top:258px;left:293px;">
-      <span style="left: -26px;">南山科技创新中心</span>
+      <!-- 162 -->
+      <!-- <span style="left: -26px;">南山科技创新中心</span> -->
+      <hover-detaill :title="'南山科技创新中心'" :titleStyle="'margin-left: 20px;'"  :dotId="'162'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
     <div class="tips-click dot01" style="top:306px;left:285px;">
-      <span style="left: -38px;">创智天地大厦</span>
+      <!-- 235 -->
+      <!-- <span style="left: -38px;">创智天地大厦</span> -->
+      <hover-detaill :title="'创智天地大厦'" :titleStyle="'margin-left: -10px;'"  :dotId="'235'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
     <div class="tips-click dot01" style="top:290px;left:460px;">
-      <span style="left: -20px;">长城开发彩田工业园</span>
+      <!-- 182 -->
+      <!-- <span style="left: -20px;">长城开发彩田工业园</span> -->
+      <hover-detaill :title="'长城开发彩田工业园'" :titleStyle="'margin-left: 20px;'"  :dotId="'182'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
     <div class="tips-click dot01" style="top:327px;left:312px;">
-      <span style="left: -25px;">深圳湾科技生态园</span>
+      <!-- 177 -->
+      <!-- <span style="left: -25px;">深圳湾科技生态园</span> -->
+      <hover-detaill :title="'深圳湾科技生态园'" :titleStyle="'margin-left: 10px;'"  :dotId="'177'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
     <div class="tips-click dot01" style="top:352px;left:276px;">
-      <span style="left: -18px;">深圳市软件产业基地</span>
+      <!-- 159 -->
+      <!-- <span style="left: -18px;">深圳市软件产业基地</span> -->
+      <hover-detaill :title="'深圳市软件产业基地'" :titleStyle="'margin-left: 30px;'"  :dotId="'159'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
     <div class="tips-click dot01" style="top:332px;left:239px;">
-      <span style="left: -155px;">万科前海企业公馆</span>
+      <!-- 160 -->
+      <!-- <span style="left: -155px;">万科前海企业公馆</span> -->
+      <hover-detaill :title="'万科前海企业公馆'" :titleStyle="'margin-left: -250px;'"  :dotId="'160'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
@@ -148,6 +168,7 @@
 import URL from '@config/urlConfig.js'
 import * as _D from '@config/dictionaries'
 import * as _ from 'lodash'
+import hoverDetaill from '@components/component-item/project_hover_detaill.vue'
 var echarts = require('echarts/lib/echarts')
 require('echarts/lib/chart/bar')
 require('echarts/lib/chart/pie')
@@ -179,6 +200,9 @@ export default {
       sumLandUaeArea: 0,
       parkTypeObj: _D.parkTypeObj
     }
+  },
+  components: {
+    'hover-detaill': hoverDetaill
   },
   created () {
     this.getDimensionList()

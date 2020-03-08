@@ -62,7 +62,9 @@ const dataService = {
   // 文件批量下载
   'downloadFiles': `${nameSpace}/downloadFiles`,
   // 园区地图信息查询
-  'selectProjectInfoMap': `${nameSpace}/selectProjectInfoMap`
+  'selectProjectInfoMap': `${nameSpace}/selectProjectInfoMap`,
+  // 概况弹窗信息
+  'selectParkSurveyById': `${nameSpace}/selectParkSurveyById`
 }
 
 export default { ...dataService }

@@ -4,7 +4,8 @@ const state = {
   egion: [],
   street: [],
   user: {},
-  role: '1'
+  role: '1',
+  islogin: '0'
 }
 
 export default state

@@ -16,6 +16,9 @@ const mutations = {
   },
   setRole (state, value = '3') {
     state.role = value
+  },
+  setIslogin (state, value) {
+    state.islogin = value
   }
 }
 

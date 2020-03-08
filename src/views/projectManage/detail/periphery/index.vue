@@ -12,22 +12,23 @@
       <div class="title">周边园区</div>
       <el-row :gutter="24" v-for="(item,idx) in form.parkNearGarden" :key="idx">
         <el-col :span="6" class="info-li">园区名称：<span>{{item.parkname}}</span></el-col>
-        <el-col :span="6" class="info-li">用地面积：<span>{{item.uselandarea}}</span></el-col>
-        <el-col :span="6" class="info-li">总建筑面积：<span>{{item.totalbuildarea}}</span></el-col>
-        <el-col :span="6" class="info-li">容积率：<span>{{item.plotratio}}</span></el-col>
+        <el-col :span="6" class="info-li">用地面积：<span>{{item.uselandarea}}(ha)</span></el-col>
+        <el-col :span="6" class="info-li">总建筑面积：<span>{{item.totalbuildarea}}(m²)</span></el-col>
+        <el-col :span="6" class="info-li">容积率：<span>{{item.plotratio}}%</span></el-col>
         <el-col :span="6" class="info-li">园区类型：<span v-if="parkTypeList[item.parktype]">{{parkTypeList[item.parktype].label}}</span></el-col>
-        <el-col :span="6" class="info-li">园区产值：<span>{{item.parkvalue}}</span></el-col>
-        <el-col :span="6" class="info-li">平均产值：<span>{{item.avgvalue}}</span></el-col>
-        <el-col :span="6" class="info-li">就业人口：<span>{{item.employmentpeople}}</span></el-col>
-        <el-col :span="6" class="info-li">企业数量：<span>{{item.enterprisenum}}</span></el-col>
+        <el-col :span="6" class="info-li">园区产值：<span>{{item.parkvalue}}园区产值(亿元)</span></el-col>
+        <el-col :span="6" class="info-li">平均产值：<span>{{item.avgvalue}}(亿元)</span></el-col>
+        <el-col :span="6" class="info-li">就业人口：<span>{{item.employmentpeople}}(万)</span></el-col>
+        <el-col :span="6" class="info-li">企业数量：<span>{{item.enterprisenum}}(家)</span></el-col>
         <el-col :span="6" class="info-li">代表企业：<span>{{item.deputyenterprise}}</span></el-col>
         <el-col :span="6" class="info-li">租金水平：<span>{{item.rentlevel}}</span></el-col>
-        <el-col :span="6" class="info-li">出租率：<span>{{item.rentalrate}}</span></el-col>
+        <el-col :span="6" class="info-li">出租率：<span>{{item.rentalrate}}(%)</span></el-col>
         <el-col :span="24" class="r-box r-box2">园区图册：<div class="right-content">
           <ul class="img-list">
-            <li v-for="(tag,idx) in form.parkimgArr" :key="idx">
+            <li v-for="(tag,idx) in item.parkimgArr" :key="idx">
               <!-- <img :src="url+tag.attpath"> -->
               <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+               <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>
@@ -43,9 +44,10 @@
         <el-col :span="24" class="r-box r-box2">周边介绍：<div class="right-content">{{item.villagedes}}</div></el-col>
         <el-col :span="24" class="r-box r-box2">小区图册：<div class="right-content">
           <ul class="img-list">
-            <li v-for="(tag,idx) in form.villageimgArr" :key="idx">
+            <li v-for="(tag,idx) in item.villageimgArr" :key="idx">
               <!-- <img :src="url+tag.attpath"> -->
               <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+               <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
           </div>

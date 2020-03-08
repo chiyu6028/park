@@ -23,7 +23,7 @@
       <div class="inline-block line-h-h float-right exit pointer" style="color: #666;" @click="exit">退出</div>
       <div class="inline-block line-h-h float-right" style="margin-right: 15px;">
         <img src="../../assets/images/head.png" style="margin-top: 20px;" />
-        <span style="position: absolute;right: 109px;">admin</span>
+        <span style="position: absolute;right: 109px;">{{userName}}</span>
       </div>
     </el-col>
   </el-row>
@@ -48,8 +48,12 @@ export default {
     let activeIndex = headerList.length > 0 ? _.head(headerList).index : null
     return {
       activeIndex,
-      headerList: headerList
+      headerList: headerList,
+      userName: ''
     }
+  },
+  mounted () {
+    this.userName = JSON.parse(this.$store.state.user).userName
   },
   methods: {
     handleSelect (key) {
@@ -62,7 +66,16 @@ export default {
       this.$router.push({ path })
     },
     exit () {
-      this.$router.push({ path: '/login' })
+      this.$confirm('是否退出系统?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        sessionStorage.clear()
+        this.$router.push({ path: '/login' })
+      }).catch(() => {
+
+      })
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div class="layout" style="padding-bottom: 30px; margin-bottom: 100px;">
     <el-col :span="24"  >
       <div class="query">
         <el-form ref="queryForm" :model="queryForm" label-width="80px" :inline="true" >

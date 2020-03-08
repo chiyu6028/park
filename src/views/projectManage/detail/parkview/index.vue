@@ -20,7 +20,7 @@
       <el-row :gutter="24">
         <el-col :span="6" class="info-li">用地性质：<span v-if="usetypeList[form.usetype]">{{usetypeList[form.usetype].label}}</span></el-col>
         <el-col :span="6" class="info-li">用地面积：<span>{{form.usearea}}</span>（万m²）</el-col>
-        <el-col :span="6" class="info-li">总建筑面积：<span>{{form.buildarea}}</span>（m²）</el-col>
+        <el-col :span="6" class="info-li">总建筑面积：<span>{{form.buildarea}}</span>（万m²）</el-col>
         <el-col :span="6" class="info-li">绿化率：<span>{{form.greenrate}}</span>（%）</el-col>
         <el-col :span="6" class="info-li">容积率：<span>{{form.plotratio}}</span>（%）</el-col>
         <el-col :span="24" class="r-box">
@@ -55,9 +55,9 @@
         <el-col :span="6" class="info-li">投资主体：<span>{{form.investors}}</span></el-col>
         <el-col :span="6" class="info-li">运营主体：<span>{{form.operubject}}</span></el-col>
         <el-col :span="6" class="info-li">运营模式：<span v-if="operModeList[form.opermode]">{{operModeList[form.opermode].label}}</span></el-col>
-        <el-col :span="6" class="info-li">企业数量：<span>{{form.nhenterprisenum}}</span></el-col>
-        <el-col :span="6" class="info-li">投资规模：<span>{{form.investmentmode}}</span></el-col>
-        <el-col :span="6" class="info-li">园区产值：<span>{{form.parkvalue}}</span></el-col>
+        <el-col :span="6" class="info-li">企业数量：<span>{{form.nhenterprisenum}}(家)</span></el-col>
+        <el-col :span="6" class="info-li">投资规模：<span>{{form.investmentmode}}(亿元)</span></el-col>
+        <el-col :span="6" class="info-li">园区产值：<span>{{form.parkvalue}}园区产值</span></el-col>
       </el-row>
     </div>
     <!-- 相册 -->
@@ -112,7 +112,7 @@
         </div>
       </el-col>
 
-      <el-col :span="24" class="r-box">园区荣誉<div class="right-content">
+      <el-col :span="24" class="r-box">园区荣誉：</span><span>{{form.parkhonor}}</span><div class="right-content">
           <ul class="img-list list-phone">
             <li v-for="(tag,idx) in form.parkhonorimgArr" :key="idx">
                <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>

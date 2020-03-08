@@ -27,7 +27,7 @@
     <el-form-item label="总建筑面积(m²)" class="inline-7" prop="totalbuildarea">
       <el-input v-model="form.totalbuildarea"></el-input>
     </el-form-item>
-    <el-form-item label="容积率" class="inline-7" prop="plotratio">
+    <el-form-item label="容积率(%)" class="inline-7" prop="plotratio">
       <el-input v-model="form.plotratio"></el-input>
     </el-form-item>
     <el-form-item label="就业人口(万)" class="inline-7" prop="employmentpeople">

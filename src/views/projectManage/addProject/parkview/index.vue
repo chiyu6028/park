@@ -60,33 +60,22 @@
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item label="多媒体宣传片" class="inline-1">
       <!-- <UploadButton :value="form.multimediapromoArr" @setFileList="value => setFileList('multimediapromo', value)"></UploadButton> -->
-      <uploader
-                ref="uploader"
-                :options="options"
-                :autoStart="false"
-                @file-added="onFileAdded"
-                @file-success="onFileSuccess"
-                @file-progress="onFileProgress"
-                @file-error="onFileError"
-                class="uploader-app">
-            <uploader-unsupport></uploader-unsupport>
-
-            <uploader-btn id="global-uploader-btn" :attrs="attrs" ref="uploadBtn">选择文件</uploader-btn>
-
-            <uploader-list v-show="panelShow">
-                <div class="file-panel" slot-scope="props" :class="{'collapse': collapse}">
-                    <div v-show="!cflag">
-                      文件正在识别计算：{{computeProgress}}
-                    </div>
-
-                    <ul class="file-list" v-show="cflag">
-                        <li v-for="file in props.fileList" :key="file.id">
-                            <uploader-file :class="'file_' + file.id" ref="files" :file="file" :list="true"></uploader-file>
-                        </li>
-                        <div class="no-file" v-if="!props.fileList.length"><i class="nucfont inuc-empty-file"></i> 暂无待上传文件</div>
-                    </ul>
-                </div>
-            </uploader-list>
+      <uploader ref="uploader" :options="options" :autoStart="false" @file-added="onFileAdded" @file-success="onFileSuccess" @file-progress="onFileProgress" @file-error="onFileError" class="uploader-app">
+          <uploader-unsupport></uploader-unsupport>
+          <uploader-btn id="global-uploader-btn" :attrs="attrs" ref="uploadBtn">选择文件</uploader-btn>
+          <uploader-list v-show="panelShow">
+              <div class="file-panel" slot-scope="props" :class="{'collapse': collapse}">
+                  <div v-show="!cflag">
+                    文件正在识别计算：{{computeProgress}}
+                  </div>
+                  <ul class="file-list" v-show="cflag">
+                      <li v-for="file in props.fileList" :key="file.id">
+                          <uploader-file :class="'file_' + file.id" ref="files" :file="file" :list="true"></uploader-file>
+                      </li>
+                      <div class="no-file" v-if="!props.fileList.length"><i class="nucfont inuc-empty-file"></i> 暂无待上传文件</div>
+                  </ul>
+              </div>
+          </uploader-list>
         </uploader>
     </el-form-item>
     <el-form-item label="航拍短视频" class="inline-1">
@@ -200,26 +189,14 @@ export default {
     },
     onFileSuccess (rootFile, file, response, chunk) {
       let res = JSON.parse(response)
-
       // 服务器自定义的错误，这种错误是Uploader无法拦截的
-      if (!res.result) {
-        this.$message({ message: res.message, type: 'error' })
+      if (res.code !== 1) {
+        this.$message({ message: res.msg, type: 'error' })
+      } else {
+        this.$message({ message: res.msg, type: 'success' })
+        let data = res.data
+        this.form.multimediapromo += data.fileid + ','
       }
-      // 如果服务端返回需要合并
-      // if (res.needMerge) {
-      //     api.mergeSimpleUpload({
-      //         tempName: res.tempName,
-      //         fileName: file.name,
-      //         ...this.params,
-      //     }).then(data => {
-      //         // 文件合并成功
-      //         Bus.$emit('fileSuccess', data);
-      //     }).catch(e => {});
-      // // 不需要合并
-      // } else {
-      //     Bus.$emit('fileSuccess', res);
-      //     console.log('上传成功');
-      // }
     },
     onFileProgress (rootFile, file, chunk) {
       console.log(`上传中 ${file.name}，chunk：${chunk.startByte / 1024 / 1024} ~ ${chunk.endByte / 1024 / 1024}`)
@@ -279,12 +256,7 @@ export default {
     },
     computeMD5Success (md5, file) {
       // 将自定义参数直接加载uploader实例的opts上
-      // Object.assign(this.uploader.opts, {
-      //   query: {
-      //     ...this.params,
-      //   }
-      // })
-      console.log(md5)
+      // Object.assign(this.$refs.uploader.uploader.opts, { })
       file.uniqueIdentifier = md5
       // file.resume()
       // this.statusRemove(file.id)
@@ -297,8 +269,8 @@ export default {
             let data = resp.data.data
             const { province = '', city = '', region = '', street = '' } = data
             data.position = [province, city, region, street]
-            // data.developtime = data.developtime ? new Date(data.developtime + '').toJSON() : ''
-            // data.createtime = data.createtime ? new Date(data.createtime + '').toJSON() : ''
+            this.$refs.uploader.uploader.fileList = data.multimediapromoArr
+            // this.panelShow = true
             this.form = data
           }
         } else {
@@ -315,6 +287,7 @@ export default {
           this.form.city = city || ''
           this.form.region = region || ''
           this.form.street = street || ''
+          this.form.multimediapromo = this.form.multimediapromo.substring(0, this.form.multimediapromo.length - 1)
           this.$axios.post(URL['INSERT_PROJECT_BASE'], { ...this.form, projectid: this.projectid }).then(resp => {
             if (resp.status === 200) {
               if (resp.data && resp.data.code === 1) {

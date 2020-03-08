@@ -80,7 +80,7 @@
     <el-form-item>
       <TitleBlock title="景观设计小结"></TitleBlock>
     </el-form-item>
-    <el-form-item label="设计团队" prop="designteam">
+    <el-form-item label="景观设计团队" prop="designteam">
       <el-input type="textarea" autosize  v-model="form.designteam"></el-input>
     </el-form-item>
     <el-form-item label="景观设计亮点" prop="gardenadvantage">

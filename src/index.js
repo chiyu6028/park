@@ -4,10 +4,13 @@ import '@utils/axios'
 import App from './App.vue'
 import router from './views/router.js'
 import store from './store'
+// import echarts from 'echarts'
 
 import 'element-ui/lib/theme-chalk/index.css'
 import '@css/common.scss'
 import uploader from 'vue-simple-uploader'
+
+// Vue.prototype.$echarts = echarts
 Vue.use(uploader)
 
 Vue.config.productionTip = false
