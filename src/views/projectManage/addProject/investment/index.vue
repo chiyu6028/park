@@ -270,7 +270,7 @@ export default {
         conferencehallimgArr: [],
         parkfacility: '',
         parkfacilityimg: '',
-        parkfacilityimgArr: '',
+        parkfacilityimgArr: [],
         publicfacilities: '',
         publicfacilitiesimg: '',
         publicfacilitiesimgArr: [],

@@ -9,6 +9,11 @@ import URL from '@config/urlConfig.js'
 import { MessageBox } from 'element-ui'
 import axios from 'axios'
 
+const routerPush = VueRouter.prototype.push
+VueRouter.prototype.push = function (location) {
+  return routerPush.call(this, location).catch(error => error)
+}
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -32,9 +37,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
-// http://129.204.177.180:8082/thirdlogin?loginname=sz777
-// 127.0.0.1:88/thirdlogin?loginname=sz777
 
 router.beforeEach((to, from, next) => {
   let islogin = sessionStorage.getItem('islogin')

@@ -146,10 +146,10 @@
     </div>
     <!-- 规划设计小结 -->
     <div class="box-content">
-      <div class="title">规划设计小结</div>
+      <div class="title">建筑设计小结</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">规划设计团队：<div class="right-content">{{form.buildteam}}</div></el-col>
-        <el-col :span="24" class="r-box">产业规划亮点：<div class="right-content">
+        <el-col :span="24" class="r-box r-box2">建筑设计团队：<div class="right-content">{{form.buildteam}}</div></el-col>
+        <el-col :span="24" class="r-box">建筑设计亮点：<div class="right-content">
             <span>{{form.designadvantage}}</span>
           </div>
           </el-col>

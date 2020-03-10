@@ -12,10 +12,7 @@
       </el-select>
     </el-form-item>
     <el-form-item label="项目地址" class="inline-3">
-      <el-cascader
-        v-model="form.position"
-        :options="positionMaps"
-        :props="{ expandTrigger: 'hover' }"></el-cascader>
+      <el-cascader v-model="form.position" :options="positionMaps" :props="{ expandTrigger: 'hover' }"></el-cascader>
     </el-form-item>
     <el-form-item label="开发时间" class="inline-3">
       <el-date-picker

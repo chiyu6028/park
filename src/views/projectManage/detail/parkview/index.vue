@@ -112,7 +112,9 @@
         </div>
       </el-col>
 
-      <el-col :span="24" class="r-box">园区荣誉：</span><span>{{form.parkhonor}}</span><div class="right-content">
+      <el-col :span="24" class="r-box">
+        <div class="right-content">
+          <div><span class="cont-title">园区荣誉：</span><span>{{form.parkhonor}}</span></div>
           <ul class="img-list list-phone">
             <li v-for="(tag,idx) in form.parkhonorimgArr" :key="idx">
                <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
