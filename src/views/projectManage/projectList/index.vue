@@ -3,11 +3,14 @@
     <el-col :span="24" class="list-row">
       <el-form ref="projectList" :model="form" :inline="true">
         <el-form-item class="inline-1">
-          <el-col :span="6"><el-input size="large" maxlength="30" v-model="form.parkName" placeholder="请输入园区名称"></el-input></el-col>
-          <el-col :span="18" class="padding-left-15"><el-button type="primary" class="inline" @click="getData">查询</el-button></el-col>
+          <el-col :span="10"><el-input size="large" maxlength="30" v-model="form.parkName" placeholder="请输入园区名称"></el-input></el-col>
+          <el-col :span="3" class="padding-left-15"><el-button type="primary" class="inline" @click="getData">查询</el-button></el-col>
+		  <el-button type="info" plain class="inline" @click="empty">清空</el-button>
         </el-form-item>
         <el-form-item label="项目地址" class="inline-1">
-          <el-cascader v-model="form.position" :props="positionProps" style="width: 50%;" ></el-cascader>
+			<el-col :span="12">
+          <el-cascader v-model="form.position" :props="positionProps"></el-cascader>
+			</el-col>
         </el-form-item>
         <el-form-item label="用地面积" class="inline-5">
           <el-select v-model="form.useArea" placeholder="请选择">
@@ -164,6 +167,25 @@ export default {
     this.getData()
   },
   methods: {
+	  empty(){
+	  	this.form = {
+	  	  parkName: '',
+	  	  position: [],
+	  	  province: '',
+	  	  city: '',
+	  	  region: '',
+	  	  street: '',
+	  	  useArea: '',
+	  	  buildArea: '',
+	  	  plotRatio: '',
+	  	  developTime: '',
+	  	  createTime: '',
+	  	  leadIndustry: '',
+	  	  devSubject: '',
+	  	  operMode: '',
+	  	  parkType: ''
+	  	}
+	  },
     getData () {
       this.loading = true
       this.$axios.post(URL['SELECT_PARK_INFO'], { ...this.form, parkstatus: 2, page: this.page, pageSize: this.pageSize }).then(resp => {

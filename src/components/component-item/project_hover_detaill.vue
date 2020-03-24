@@ -212,6 +212,7 @@ export default {
 <style lang="scss" scoped>
 .item {
   margin-bottom: 10px;
+  margin-left:20px;
   .title {
     display: inline-block;
     margin-top: 10px;
