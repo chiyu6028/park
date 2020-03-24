@@ -10,79 +10,98 @@
   <div class="topmap" ref="topmap">
 	<img class="big-map" src="../../assets/images/top.png" ref="imgSize">
     <div class="tips-click dot01"  ref="dotxy01" :style="dotxy01">
+		<a @click="detailProject(334)">
       <hover-detaill :title="'华强创意产业园'" :dotId="'334'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
+	  </a>
     </div>
     <div class="tips-click dot01"  ref="dotxy02" :style="dotxy02">
       <!-- 327 -->
       <!-- <span style="left: -44px;">宝能科技城</span> -->
-      <hover-detaill :title="'宝能科技城'" :titleStyle="'margin-left: -15px;'" :dotId="'327'"></hover-detaill>
+	  <a @click="detailProject(327)">
+      <hover-detaill :title="'宝能科技城'" :titleStyle="'margin-left: -15px;'" :dotId="'327'"  ></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
+	  </a>
     </div>
     <div class="tips-click dot01"  ref="dotxy03" :style="dotxy03">
       <!-- 129 -->
       <!-- <span style="left: -13px;">平湖恒路物流创新广场</span> -->
+	  <a @click="detailProject(129)">
       <hover-detaill :title="'平湖恒路物流创新广场'" :titleStyle="'margin-left: 35px;'" :dotId="'129'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
+	  </a>
     </div>
     <div class="tips-click dot01"  ref="dotxy04" :style="dotxy04">
       <!-- 136 -->
       <!-- <span>启迪协信科技园</span> -->
+	  <a  @click="detailProject(136)">
       <hover-detaill :title="'启迪协信科技园'" :dotId="'136'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
+	  </a>
     </div>
     <div class="tips-click dot01"  ref="dotxy05" :style="dotxy05">
       <!-- 131 -->
       <!-- <span style="left: -50px;">创智云城</span> -->
+	  <a @click="detailProject(131)">
       <hover-detaill :title="'创智云城'" :titleStyle="'margin-left: -30px;'" :dotId="'131'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
+	  </a>
     </div>
     <div class="tips-click dot01"  ref="dotxy06" :style="dotxy06">
       <!-- 162 -->
       <!-- <span style="left: -26px;">南山科技创新中心</span> -->
-      <hover-detaill :title="'南山科技创新中心'" :titleStyle="'margin-left: 20px;'"  :dotId="'162'"></hover-detaill>
+	  <a @click="detailProject(162)">
+      <hover-detaill :title="'南山科技创新中心'" :titleStyle="'margin-left: 20px;'"  :dotId="'162'" ></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
+	  </a>
     </div>
     <div class="tips-click dot01"  ref="dotxy07" :style="dotxy07">
       <!-- 235 -->
       <!-- <span style="left: -38px;">创智天地大厦</span> -->
-      <hover-detaill :title="'创智天地大厦'" :titleStyle="'margin-left: -10px;'" :dotId="'235'"></hover-detaill>
+	  <a @click="detailProject(235)">
+      <hover-detaill :title="'创智天地大厦'" :titleStyle="'margin-left: -10px;'" :dotId="'235'" ></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
+	  </a>
     </div>
     <div class="tips-click dot01"  ref="dotxy08" :style="dotxy08">
       <!-- 182 -->
       <!-- <span style="left: -20px;">长城开发彩田工业园</span> -->
+	  <a  @click="detailProject(182)">
       <hover-detaill :title="'长城开发彩田工业园'" :titleStyle="'margin-left: 20px;'" :dotId="'182'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
+	  </a>
     </div>
     <div class="tips-click dot01"  ref="dotxy09" :style="dotxy09">
       <!-- 177 -->
       <!-- <span style="left: -25px;">深圳湾科技生态园</span> -->
+	  <a  @click="detailProject(177)">
       <hover-detaill :title="'深圳湾科技生态园'" :titleStyle="'margin-left: 10px;'"  :dotId="'177'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
+	  </a>
     </div>
     <div class="tips-click dot01"  ref="dotxy10" :style="dotxy10">
       <!-- 159 -->
       <!-- <span style="left: -18px;">深圳市软件产业基地</span> -->
-      <hover-detaill :title="'深圳市软件产业基地'" :titleStyle="'margin-left: 30px;'" :dotId="'159'"></hover-detaill>
+	  <a @click="detailProject(159)">
+      <hover-detaill :title="'深圳市软件产业基地'" :titleStyle="'margin-left: 30px;'" :dotId="'159'" ></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
@@ -91,10 +110,12 @@
     <div class="tips-click dot01"  ref="dotxy11" :style="dotxy11">
       <!-- 160 -->
       <!-- <span style="left: -155px;">万科前海企业公馆</span> -->
-      <hover-detaill :title="'万科前海企业公馆'" :titleStyle="'margin-left: -250px;'" :dotId="'160'"></hover-detaill>
+	  <a @click="detailProject(160)">
+      <hover-detaill :title="'万科前海企业公馆'" :titleStyle="'margin-left: -250px;'" :dotId="'160'" ></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
+	  </a>
     </div>
     <!--<img src="@images/top.png" style="position: absolute;left: 0;top: 0;"> -->
     <!-- <img src="@images/bgright01.png" class="right-img" ref="rightImg" @load="loadImg">
@@ -346,6 +367,9 @@ export default {
     window.removeEventListener('resize', this.getHeight)
   },
   methods: {
+	detailProject (row) {
+	  this.$router.push({ path: `projectManage/detail/${row}`, query: { t: Date.now() } })
+	},
     topload () {
       // let imgWidth = this.$refs['imgSize'].offsetWidth;
       let topWidth = this.$refs.topmap.clientWidth
