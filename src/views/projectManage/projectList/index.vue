@@ -3,9 +3,10 @@
     <el-col :span="24" class="list-row">
       <el-form ref="projectList" :model="form" :inline="true">
         <el-form-item class="inline-1">
-          <el-col :span="10"><el-input size="large" maxlength="30" v-model="form.parkName" placeholder="请输入园区名称"></el-input></el-col>
-          <el-col :span="3" class="padding-left-15"><el-button type="primary" class="inline" @click="getData">查询</el-button></el-col>
-		  <el-button type="info" plain class="inline" @click="empty">清空</el-button>
+          <el-col :span="12"><el-input size="large" maxlength="30" v-model="form.parkName" placeholder="请输入园区名称"></el-input></el-col>
+          <el-col style="width: 100px;" class="padding-left-15"><el-button type="primary" icon="el-icon-search" class="inline" @click="getData">查询</el-button></el-col>
+		  <el-col style="width: 100px;" class="padding-left-15">
+		  <el-button type="info" plain class="inline" @click="empty">清空</el-button></el-col>
         </el-form-item>
         <el-form-item label="项目地址" class="inline-1">
 			<el-col :span="12">
