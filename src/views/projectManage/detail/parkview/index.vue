@@ -4,7 +4,7 @@
     <div class="box-content">
       <div class="title">基础信息</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">项目ID：<span>{{form.projectid}}</span></el-col>
+        <!-- <el-col :span="6" class="info-li">项目ID：<span>{{form.projectid}}</span></el-col> -->
         <el-col :span="6" class="info-li">项目编号：<span>{{form.projectbh}}</span></el-col>
         <el-col :span="6" class="info-li">园区名称：<span>{{form.parkname}}</span></el-col>
         <el-col :span="6" class="info-li">园区类型：<span v-if="parkTypeList[form.parktype]">{{parkTypeList[form.parktype].label}}</span></el-col>

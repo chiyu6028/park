@@ -41,7 +41,7 @@ body {
 	height: 100%;
 }
 .login-image {
-  background-image: url("~@images/login.png");
+  background-image: url("~@images/login.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -382,12 +382,12 @@ body {
       }
 
       .el-upload.el-upload--text {
-        width: calc(100% - 30px);
-        text-align: left;
-        border: 1px solid #E2E7EB;
-        padding-left: 20px;
-        padding-top: 20px;
-        padding-bottom: 36px;
+        // width: calc(100% - 30px);
+        // text-align: left;
+        // border: 1px solid #E2E7EB;
+        // padding-left: 20px;
+        // padding-top: 20px;
+        // padding-bottom: 36px;
       }
     }
   }

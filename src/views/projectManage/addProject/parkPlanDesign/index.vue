@@ -83,7 +83,10 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="onSubmit">保存</el-button>
+      <el-button type="primary" @click="onSubmit">
+        <span v-if="form.butflag=='add'">保存到草稿箱</span>
+        <span v-if="form.butflag!='add'">保存修改</span>
+      </el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -130,7 +133,8 @@ export default {
         impcontrolimg: '',
         impcontrolimgArr: [],
         planadvantage: '',
-        deficiencies: ''
+        deficiencies: '',
+        butflag: 'add'
       }
     }
   },
@@ -142,6 +146,7 @@ export default {
   mounted () {
     if (this.$route.path.indexOf('/editProject/') !== -1) {
       this.initForm(this.$route.params.id)
+      this.form.butflag = 'update'
     }
   },
   methods: {

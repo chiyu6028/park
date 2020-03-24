@@ -191,13 +191,13 @@ export default {
       })
     },
     editProject (row) {
-      this.$router.push({ path: `editProject/${row.projectid}`, query: { t: Date.now() } })
+      this.$router.push({ path: `editProject/${row.projectid}`, query: { t: Date.now(), pagetype: 'list' } })
     },
     detailProject (row) {
       this.$router.push({ path: `detail/${row.projectid}`, query: { t: Date.now() } })
     },
     deleteProject (row) {
-      this.$confirm('您确定要删除此项目吗？删除后将不可恢复！', '提示', {
+      this.$confirm('您确定永久删除此项目吗？删除后将不可恢复！', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'

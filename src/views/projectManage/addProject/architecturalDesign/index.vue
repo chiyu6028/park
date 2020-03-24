@@ -154,7 +154,7 @@
     <el-form-item prop="buildteam" label="建筑设计团队" class="inline-1">
       <el-input type="textarea" autosize v-model="form.buildteam"></el-input>
     </el-form-item>
-    <el-form-item type="textarea" autosize prop="designadvantage" label="项目亮点" class="inline-1">
+    <el-form-item type="textarea" autosize prop="designadvantage" label="建筑设计亮点" class="inline-1">
       <el-input v-model="form.designadvantage"></el-input>
     </el-form-item>
     <el-form-item type="textarea" autosize prop="deficiencies" label="建筑设计不足" class="inline-1">
@@ -162,7 +162,10 @@
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item class="inline-1">
-      <el-button type="primary" @click="onSubmit">保存</el-button>
+      <el-button type="primary" @click="onSubmit">
+        <span v-if="form.butflag=='add'">保存到草稿箱</span>
+        <span v-if="form.butflag!='add'">保存修改</span>
+      </el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -233,7 +236,8 @@ export default {
         factoryarea: '',
         busarea: '',
         flatsarea: '',
-        matarea: ''
+        matarea: '',
+        butflag: 'add'
       }
     }
   },
@@ -245,6 +249,7 @@ export default {
   mounted () {
     if (this.$route.path.indexOf('/editProject/') !== -1) {
       this.initForm(this.$route.params.id)
+      this.form.butflag = 'update'
     }
   },
   methods: {

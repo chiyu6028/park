@@ -101,7 +101,7 @@ export default {
       if (!after) {
         this.$message.error('无法获取文件名!')
       }
-      const reg = this.reg || ['png', 'jpg', 'gif', 'tiff']
+      const reg = this.reg || ['png', 'jpeg', 'jpg', 'gif', 'tiff']
       const isJPG = reg.includes(after)
       if (!isJPG) {
         this.$message.error(this.matchError ? this.matchError : '上传图片只能是PNG、JPG、GIF或TIFF格式!')

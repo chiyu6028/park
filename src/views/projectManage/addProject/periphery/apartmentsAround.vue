@@ -10,7 +10,7 @@
      <el-form-item label="周边介绍" class="inline-1" prop="villagedes">
       <el-input v-model="form.villagedes"></el-input>
     </el-form-item>
-    <el-form-item label="园区图册" class="inline-1">
+    <el-form-item label="小区图册" class="inline-1">
       <!-- <Upload :value="form.villageimgArr" @setFileList="value => setFileList('villageimg', value)"></Upload> -->
       <UploadDescBottom :value="form.villageimgArr" @setFileList="value => setFileList('villageimg', value)"></UploadDescBottom>
     </el-form-item>

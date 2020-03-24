@@ -39,7 +39,7 @@
     <el-form-item label="代表企业" class="inline-1" prop="deputyenterprise">
       <el-input v-model="form.deputyenterprise"></el-input>
     </el-form-item>
-    <el-form-item label="园区图册" class="inline-1">
+    <el-form-item label="小区图册" class="inline-1">
       <!-- <Upload :value="form.parkimgArr" @setFileList="value => setFileList('parkimg', value)"></Upload> -->
       <UploadDescBottom :value="form.parkimgArr" @setFileList="value => setFileList('parkimg', value)"></UploadDescBottom>
     </el-form-item>

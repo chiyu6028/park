@@ -1,23 +1,36 @@
 <template>
   <el-form ref="information" :model="form" :inline="false" label-position="top" style="padding-top: 23px;">
     <el-form-item label="产业规划方案">
-      <p>1、后台资料上传，可批量上传，每一类可上传最多5个文件；  2、上传文件类型包括PDF、压缩文件（rar）</p>
-      <UploadButton :reg="['pdf', 'rar']" matchError="只能上传PDF和RAR类型的文件！" :value="form.industryschemeArr" @setFileList="value => setFileList('industryscheme', value)"></UploadButton>
+      <p>* 后台资料上传，只能上传PDF和压缩格式文件（rar、zip、7z）</p>
+	  <div class="upload-outter">
+      <UploadButton :reg="['pdf', 'rar', 'zip', '7z']" matchError="只能上传PDF和压缩格式的文件！" :value="form.industryschemeArr" @setFileList="value => setFileList('industryscheme', value)"></UploadButton>
+	  </div>
     </el-form-item>
     <el-form-item label="规划设计方案">
-      <UploadButton :reg="['pdf', 'rar']" matchError="只能上传PDF和RAR类型的文件！" :value="form.planschemeArr" @setFileList="value => setFileList('planscheme', value)"></UploadButton>
+	<div class="upload-outter">
+      <UploadButton :reg="['pdf', 'rar', 'zip', '7z']" matchError="只能上传PDF和压缩格式的文件！" :value="form.planschemeArr" @setFileList="value => setFileList('planscheme', value)"></UploadButton>
+	  </div>
     </el-form-item>
     <el-form-item label="建筑设计方案">
-      <UploadButton :reg="['pdf', 'rar']" matchError="只能上传PDF和RAR类型的文件！" :value="form.buildschemeArr" @setFileList="value => setFileList('buildscheme', value)"></UploadButton>
+		<div class="upload-outter">
+      <UploadButton :reg="['pdf', 'rar', 'zip', '7z']" matchError="只能上传PDF和压缩格式的文件！" :value="form.buildschemeArr" @setFileList="value => setFileList('buildscheme', value)"></UploadButton>
+	  </div>
     </el-form-item>
     <el-form-item label="环境设计方案">
-      <UploadButton :reg="['pdf', 'rar']" matchError="只能上传PDF和RAR类型的文件！" :value="form.environschemeArr" @setFileList="value => setFileList('environscheme', value)"></UploadButton>
+		<div class="upload-outter">
+      <UploadButton :reg="['pdf', 'rar', 'zip', '7z']" matchError="只能上传PDF和压缩格式的文件！" :value="form.environschemeArr" @setFileList="value => setFileList('environscheme', value)"></UploadButton>
+	  </div>
     </el-form-item>
     <el-form-item label="招商运营方案">
-      <UploadButton :reg="['pdf', 'rar']" matchError="只能上传PDF和RAR类型的文件！" :value="form.investschemeArr" @setFileList="value => setFileList('investscheme', value)"></UploadButton>
+		<div class="upload-outter">
+      <UploadButton :reg="['pdf', 'rar', 'zip', '7z']" matchError="只能上传PDF和压缩格式的文件！" :value="form.investschemeArr" @setFileList="value => setFileList('investscheme', value)"></UploadButton>
+	  </div>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="onSubmit">保存</el-button>
+      <el-button type="primary" @click="onSubmit">
+        <span v-if="form.butflag=='add'">保存到草稿箱</span>
+        <span v-if="form.butflag!='add'">保存修改</span>
+      </el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -42,7 +55,8 @@ export default {
         environscheme: '',
         environschemeArr: [],
         investscheme: '',
-        investschemeArr: []
+        investschemeArr: [],
+        butflag: 'add'
       }
     }
   },
@@ -54,6 +68,7 @@ export default {
   mounted (id) {
     if (this.$route.path.indexOf('/editProject/') !== -1) {
       this.initForm(this.$route.params.id)
+      this.form.butflag = 'update'
     }
   },
   methods: {
@@ -90,5 +105,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.upload-outter{
+		width: calc(100% - 30px);
+	    text-align: left;
+	    border: 1px solid #E2E7EB;
+	    padding-left: 20px;
+	    padding-top: 36px;
+	    padding-bottom: 36px;
+}
 </style>

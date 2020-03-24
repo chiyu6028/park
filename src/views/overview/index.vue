@@ -1,51 +1,53 @@
 <template>
+<div class="park-outter">
   <div class="yqbg">
     <div class="btn-group">
       <el-button type="primary" v-if="isvisible"  round @click="dialogTableVisible = true">多维对比</el-button>
-      <el-button type="primary" v-if="!isvisible"  round @click="chooseDimen">选择维度</el-button>
+      <el-button type="primary" v-if="!isvisible"  round @click="chooseDimen">第二步：选择维度</el-button>
       <el-button type="primary" v-if="!isvisible"  round @click="exportResult">结果导出</el-button>
       <el-button type="info"  v-if="!isvisible" round @click="closeCompare">关闭对比</el-button>
     </div>
-  <div class="topmap">
-    <div class="tips-click dot01" style="top:55px;left:305px;">
+  <div class="topmap" ref="topmap">
+	<img class="big-map" src="../../assets/images/top.png" ref="imgSize">
+    <div class="tips-click dot01"  ref="dotxy01" :style="dotxy01">
       <hover-detaill :title="'华强创意产业园'" :dotId="'334'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
-    <div class="tips-click dot01" style="top:153px;left:443px;">
+    <div class="tips-click dot01"  ref="dotxy02" :style="dotxy02">
       <!-- 327 -->
       <!-- <span style="left: -44px;">宝能科技城</span> -->
-      <hover-detaill :title="'宝能科技城'" :titleStyle="'margin-left: -15px;'"  :dotId="'327'"></hover-detaill>
+      <hover-detaill :title="'宝能科技城'" :titleStyle="'margin-left: -15px;'" :dotId="'327'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
-    <div class="tips-click dot01" style="top:160px;left:563px;">
+    <div class="tips-click dot01"  ref="dotxy03" :style="dotxy03">
       <!-- 129 -->
       <!-- <span style="left: -13px;">平湖恒路物流创新广场</span> -->
-      <hover-detaill :title="'平湖恒路物流创新广场'"  :titleStyle="'margin-left: 35px;'" :dotId="'129'"></hover-detaill>
+      <hover-detaill :title="'平湖恒路物流创新广场'" :titleStyle="'margin-left: 35px;'" :dotId="'129'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
-    <div class="tips-click dot01" style="top:145px;left:670px;">
+    <div class="tips-click dot01"  ref="dotxy04" :style="dotxy04">
       <!-- 136 -->
       <!-- <span>启迪协信科技园</span> -->
-      <hover-detaill :title="'启迪协信科技园'"  :dotId="'136'"></hover-detaill>
+      <hover-detaill :title="'启迪协信科技园'" :dotId="'136'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
-    <div class="tips-click dot01" style="top:230px;left:293px;">
+    <div class="tips-click dot01"  ref="dotxy05" :style="dotxy05">
       <!-- 131 -->
       <!-- <span style="left: -50px;">创智云城</span> -->
-      <hover-detaill :title="'创智云城'" :titleStyle="'margin-left: -30px;'"  :dotId="'131'"></hover-detaill>
+      <hover-detaill :title="'创智云城'" :titleStyle="'margin-left: -30px;'" :dotId="'131'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
-    <div class="tips-click dot01" style="top:258px;left:293px;">
+    <div class="tips-click dot01"  ref="dotxy06" :style="dotxy06">
       <!-- 162 -->
       <!-- <span style="left: -26px;">南山科技创新中心</span> -->
       <hover-detaill :title="'南山科技创新中心'" :titleStyle="'margin-left: 20px;'"  :dotId="'162'"></hover-detaill>
@@ -53,23 +55,23 @@
       <b></b>
       <b></b>
     </div>
-    <div class="tips-click dot01" style="top:306px;left:285px;">
+    <div class="tips-click dot01"  ref="dotxy07" :style="dotxy07">
       <!-- 235 -->
       <!-- <span style="left: -38px;">创智天地大厦</span> -->
-      <hover-detaill :title="'创智天地大厦'" :titleStyle="'margin-left: -10px;'"  :dotId="'235'"></hover-detaill>
+      <hover-detaill :title="'创智天地大厦'" :titleStyle="'margin-left: -10px;'" :dotId="'235'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
-    <div class="tips-click dot01" style="top:290px;left:460px;">
+    <div class="tips-click dot01"  ref="dotxy08" :style="dotxy08">
       <!-- 182 -->
       <!-- <span style="left: -20px;">长城开发彩田工业园</span> -->
-      <hover-detaill :title="'长城开发彩田工业园'" :titleStyle="'margin-left: 20px;'"  :dotId="'182'"></hover-detaill>
+      <hover-detaill :title="'长城开发彩田工业园'" :titleStyle="'margin-left: 20px;'" :dotId="'182'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
-    <div class="tips-click dot01" style="top:327px;left:312px;">
+    <div class="tips-click dot01"  ref="dotxy09" :style="dotxy09">
       <!-- 177 -->
       <!-- <span style="left: -25px;">深圳湾科技生态园</span> -->
       <hover-detaill :title="'深圳湾科技生态园'" :titleStyle="'margin-left: 10px;'"  :dotId="'177'"></hover-detaill>
@@ -77,64 +79,84 @@
       <b></b>
       <b></b>
     </div>
-    <div class="tips-click dot01" style="top:352px;left:276px;">
+    <div class="tips-click dot01"  ref="dotxy10" :style="dotxy10">
       <!-- 159 -->
       <!-- <span style="left: -18px;">深圳市软件产业基地</span> -->
-      <hover-detaill :title="'深圳市软件产业基地'" :titleStyle="'margin-left: 30px;'"  :dotId="'159'"></hover-detaill>
+      <hover-detaill :title="'深圳市软件产业基地'" :titleStyle="'margin-left: 30px;'" :dotId="'159'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
+    </a>
     </div>
-    <div class="tips-click dot01" style="top:332px;left:239px;">
+    <div class="tips-click dot01"  ref="dotxy11" :style="dotxy11">
       <!-- 160 -->
       <!-- <span style="left: -155px;">万科前海企业公馆</span> -->
-      <hover-detaill :title="'万科前海企业公馆'" :titleStyle="'margin-left: -250px;'"  :dotId="'160'"></hover-detaill>
+      <hover-detaill :title="'万科前海企业公馆'" :titleStyle="'margin-left: -250px;'" :dotId="'160'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
     </div>
-    <img src="@images/top.png" style="position: absolute;left: 0;top: 0;">
-    <!-- <img src="@images/bgright01.png" class="right-img" ref="rightImg" @load="loadImg"> -->
-    <img src="@images/bgright.png" class="right-img" ref="rightImg" @load="loadImg">
+    <!--<img src="@images/top.png" style="position: absolute;left: 0;top: 0;"> -->
+    <!-- <img src="@images/bgright01.png" class="right-img" ref="rightImg" @load="loadImg">
+    <img src="@images/bgright.png" class="right-img" ref="rightImg" @load="loadImg">-->
     <div class="right-content" ref="rightContent" >
-      <div class="content-top" >
-        <div class="park-amount">
-          <span class="text desc">园区总量(个)</span>
-          <span class="text amout">{{parkTotal}}</span>
-          <span class="text">&nbsp;</span>
-        </div>
-      </div>
-      <div class="content-center">
-        <div class="area-amount">
-           <span class="text desc">用地面积</span>
-          <span class="text amout">{{sumLandUaeArea}}</span>
-        </div>
-        <div class="area-chart" id="areaChart" :style="{width: '320px', height: '400px'}"></div>
-      </div>
-      <div class="content-bottom">
-        <div class="pie-chart" id="pieChart" :style="{width: '320px', height: '280px'}"></div>
+    <div class="content-top" >
+      <div class="park-amount">
+        <span class="text desc">园区总量<a>（个）</a></span>
+        <span class="text amout" style="font-size: 72px;">{{parkTotal}}</span>
       </div>
     </div>
-  </div>
+    <ul class="item-list" :style="rightArea">
+      <li v-for="(item,index) in itemList" :key="index" @click="checkItem(index)">
+        <div class="li-item">
+          <span>{{item.content1}}<a>{{item.content2}}</a></span>
+          <i class="el-icon-arrow-down" style="color:#fff" v-if="idxShow !==index"></i>
+          <i class="el-icon-arrow-up" style="color:#fff" v-if="idxShow==index"></i>
+        </div>
+        <div class="item-box" v-show="idxShow==index">
+          <div class="content-center" style="height:330px">
+            <div class="area-amount">
+              <!-- <span class="text desc">用地面积</span> -->
+              <span class="text amout">{{item.total}}</span>
+            </div>
+            <div>
+            <div class="area-chart" :id="item.echartsId" :style="{width: '320px', height: item.height + 'px'}"></div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+      <!--<div class="content-bottom">
+        <div class="pie-chart" id="pieChart" :style="{width: '320px', height: '280px'}"></div>
+      </div>-->
+    </div>
+	</div>
   <div class="compareDiv" v-if="dialogTableVisible">
       <el-card class="box-card">
         <div class="content">
           <div class="item left">
-            <el-row class="title">选择项目</el-row>
+            <el-row class="title">第一步：选择项目</el-row>
             <el-row class="tip"><span style="color: red;">*</span>&nbsp;最多可选12个项目</el-row>
             <el-row style="width: 70%;margin-top: 20px;">
-               <el-cascader  v-model="form.project"  :options="projectList"  ref="project" :props="{ multiple: true }" clearable></el-cascader>
+               <el-cascader  v-model="form.project" :options="projectList" :show-all-levels="false"  ref="project" :props="{ multiple: true,checkStrictly: true }" clearable filterable></el-cascader>
             </el-row>
             <el-row style="text-align: center;margin-right: 100px;margin-top: 80px;">
               <img src="../../assets/images/project_left.png" style="width: 268px;height: 271px;"  alt="" srcset="">
             </el-row>
           </div>
           <div class="item right">
-            <el-row class="title">选择维度</el-row>
+            <el-row class="title">第二步：选择维度</el-row>
             <el-row class="tip"><span style="color: red;">*</span>&nbsp;最多可选10个维度</el-row>
              <el-row style="width: 70%;margin-top: 20px;">
                <div style="max-height: 300px;overflow: auto;">
-                 <el-cascader v-model="form.dimensions" :options="dimensionList" ref="dimension" :props="{ multiple: true }" clearable ></el-cascader>
+                 <el-cascader v-model="form.dimensions" :options="dimensionList" :show-all-levels="false" ref="dimension" class="myCascder" clearable>
+                   <template slot-scope="{ node, data }">
+                    <span v-if="!node.isLeaf">{{ data.label }}</span>
+                    <span v-else @click.stop="">
+                      <el-checkbox v-model="data.checked" @change="value => changeCascaderValue(value, data, node)">{{ data.label }}</el-checkbox>
+                    </span>
+                  </template>
+                 </el-cascader>
                </div>
             </el-row>
             <el-row style="text-align: center;margin-right: 100px;margin-top: 80px;">
@@ -162,6 +184,7 @@
     </div>
   <div class="clear"></div>
   </div>
+</div>
 </template>
 
 <script>
@@ -181,6 +204,102 @@ export default {
   name: 'Overview',
   data () {
     return {
+      dimensionsval: [],
+      dimensionslabel: [],
+      widthRate: '',
+      heightRate: '',
+	  topHeight: '',
+	  rightArea:{
+		  height:''
+	  },
+      dotxy01: {
+        top: '',
+        left: ''
+      },
+      dotxy02: {
+        top: '',
+        left: ''
+      },
+      dotxy03: {
+        top: '',
+        left: ''
+      },
+      dotxy04: {
+        top: '',
+        left: ''
+      },
+      dotxy05: {
+        top: '',
+        left: ''
+      },
+      dotxy06: {
+        top: '',
+        left: ''
+      },
+      dotxy07: {
+        top: '',
+        left: ''
+      },
+      dotxy08: {
+        top: '',
+        left: ''
+      },
+      dotxy09: {
+        top: '',
+        left: ''
+      },
+      dotxy10: {
+        top: '',
+        left: ''
+      },
+      dotxy11: {
+        top: '',
+        left: ''
+      },
+      itemList: [
+        {
+          content1: '用地面积',
+		  content2: '（m2）',
+          id: 1,
+          echartsId: 'useArea',
+          total: 0,
+          height: 260
+        },
+        {
+          content1: '总建筑面积',
+		  content2: '（m2）',
+          id: 2,
+          echartsId: 'totalBuild',
+          total: 0,
+          height: 260
+        },
+        {
+          content1: '企业家数',
+		  content2: '（家）',
+          id: 3,
+          echartsId: 'complateNum',
+          total: 0,
+          height: 260
+        },
+        {
+          content1: '投资规模',
+		  content2: '（亿元）',
+          id: 4,
+          echartsId: 'inVestNum',
+          total: 0,
+          height: 260
+        },
+        {
+          content1: '园区产值',
+		  content2: '（亿元）',
+          id: 5,
+          echartsId: 'parkNum',
+          total: 0,
+          height: 260
+        }
+      ],
+      idxShow: 0,
+	  tempShow: 999,
       contentStyleObj: {
         top: '',
         left: ''
@@ -209,113 +328,177 @@ export default {
     this.getProjectList()
     window.addEventListener('resize', this.getHeight)
     this.getHeight()
+    // window.addEventListener('topmap', this.changeXy)
+    // this.changeXy()
   },
   mounted () {
     this.getAreaChart()
+    var that = this
+    // this.changeXy()
+    that.topload()
+    that.changeXy()
+    window.onresize = function () { // 定义窗口大小变更通知事件
+      that.topload()
+      that.changeXy()
+    }
   },
   destroyed () {
     window.removeEventListener('resize', this.getHeight)
   },
   methods: {
+    topload () {
+      // let imgWidth = this.$refs['imgSize'].offsetWidth;
+      let topWidth = this.$refs.topmap.clientWidth
+      this.topHeight = this.$refs.topmap.clientHeight;
+      this.widthRate = topWidth / 1920
+      // this.heightRate = topHeight / 1080;
+      // this.widthRate = imgWidth / 1920;
+      // console.log(topHeight+'px //height')
+      // console.log(this.widthRate);
+      // console.log(this.heightRate);
+	    },
+    checkItem (idx) {
+      this.idxShow = idx
+	  if (idx === this.tempShow) {
+		  this.idxShow = 999
+		  this.tempShow = 999
+	  } else {
+		  this.tempShow = idx
+	  }
+    },
     getAreaChart () {
-      this.$axios.post(URL['selectProjectInfoMap'], {}).then(resp => {
+      // debugger
+      this.$axios.post(URL['selectMapRightInfo'], {}).then(resp => {
         if (resp.status === 200) {
           let _data = resp.data.data
           if (_data) {
             this.parkTotal = _data.parkTotal
             this.sumLandUaeArea = _data.sumLandUaeArea
-            this.getBar(_data)
-            this.getPie(_data.parkTypeInfo)
+            this.getBar(_data.userAreaMap, 'useArea', 0)
+            this.getBar(_data.buildAreaMap, 'totalBuild', 1)
+            this.getBar(_data.businessMap, 'complateNum', 2)
+            this.getBar(_data.investmentMap, 'inVestNum', 3)
+            this.getBar(_data.parkValueMap, 'parkNum', 4)
+            // this.getPie(_data.parkTypeInfo)
           }
         } else {
           this.$message.error('系统异常，请联系管理员！')
         }
       })
     },
-    getBar (_data) {
-      let dataObj = {}
-
-      _.map(_data.parkInfo, item => {
-        dataObj[item.parkname] = item.usearea
+    getBar (_data, eid, i_index) {
+      let dataObj = []
+      let top10CityList = []
+      let top10CityData = []
+      _.map(_data.datalist, item => {
+        // dataObj[item.parkname] = item.usearea
+        if (item.parkname && item.fieldvalue) {
+          let obj = {}
+          obj.name = item.parkname
+          obj.value = parseFloat(item.fieldvalue).toFixed(2)
+          top10CityList.push(item.parkname)
+          top10CityData.push(parseFloat(item.fieldvalue).toFixed(2))
+          dataObj.push(obj)
+        }
       })
+      // this.itemList[i_index].height = dataObj.length *50
+      this.itemList[i_index].total = _data.totalvalue
       let option = {
-        tooltip: {},
-        grid: [{
-          top: 20,
-          width: '100%',
-          bottom: '45%',
-          left: -100,
-          containLabel: true
-        }, {
-          top: '55%',
-          width: '100%',
-          bottom: 0,
-          left: -100,
-          containLabel: true
-        }],
-        xAxis: [{
-          type: 'value',
-          max: _data.sumLandUaeArea,
-          show: false,
-          splitLine: {
-            show: false
-          },
-          axisLine: {
-            show: true,
-            lineStyle: {
-              color: '#ffffff'
-            }
-          }
-        }],
+        title: {
+          show: false
+        },
+        tooltip: {
+          trigger: 'item'
+        },
+        grid: {
+          borderWidth: 0,
+          top: '10%',
+          left: '1%',
+          right: '30%',
+          bottom: '3%'
+        },
+        color: '#23BEFF',
         yAxis: [{
           type: 'category',
-          data: Object.keys(dataObj), // Object.keys(builderJson.charts),
-          axisLabel: {
-            interval: 0,
-            rotate: 30
-          },
-          show: false,
-          // position: 'right',
-          splitLine: {
+          inverse: true,
+
+          axisTick: {
             show: false
           },
           axisLine: {
+            show: false
+          },
+          axisLabel: {
+            show: false,
+            inside: false
+          },
+          data: top10CityList
+        }, {
+          type: 'category',
+          axisLine: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          },
+          axisLabel: {
             show: true,
-            lineStyle: {
-              color: '#ffffff'
+            inside: false,
+            textStyle: {
+              color: '#fff',
+              fontSize: '14',
+              fontFamily: 'PingFangSC-Regular'
+            }
+          },
+          splitArea: {
+            show: false
+          },
+          splitLine: {
+            show: false
+          },
+          data: top10CityData.reverse()
+        }],
+        xAxis: {
+          type: 'value',
+          axisTick: {
+            show: false
+          },
+          axisLine: {
+            show: false
+          },
+          splitLine: {
+            show: false
+          },
+          axisLabel: {
+            show: false
+          }
+        },
+        series: [{
+          name: '',
+          type: 'bar',
+          zlevel: 2,
+          barWidth: '12px',
+          data: dataObj,
+          animationDuration: 1500,
+          label: {
+            normal: {
+              color: '#fff',
+              show: true,
+              position: [0, '-22px'],
+              textStyle: {
+                fontSize: 14
+              },
+              formatter: function (a, b) {
+                return a.name
+              }
             }
           }
         }],
-        color: ['#23BEFF'],
-        series: [{
-          type: 'bar',
-          stack: 'chart',
-          z: 3,
-          label: {
-            normal: {
-              position: 'right',
-              show: true
-            }
-          },
-          barWidth: '10',
-          data: Object.keys(dataObj).map(function (key) {
-            return dataObj[key]
-          })
-        }, {
-          type: 'bar',
-          stack: 'chart',
-          silent: true,
-          itemStyle: {
-            normal: {
-              color: '#22323F'
-            }
-          },
-          data: Object.keys(dataObj).map(function (key) {
-            return _data.sumLandUaeArea - dataObj[key]
-          })
-        }]
+        animationEasing: 'cubicOut'
       }
-      let myChart = echarts.init(document.getElementById('areaChart'))
+      let myChart = echarts.init(document.getElementById(eid))
+      document.getElementById(eid).height = dataObj.length * 55 + 'px'
+      myChart.resize()
       myChart.setOption(option)
     },
     getPie (_data) {
@@ -389,9 +572,6 @@ export default {
         myChart.setOption(option)
       }
     },
-    loadImg () {
-      this.$refs.rightContent.style.width = this.$refs.rightImg.clientWidth + 'px'
-    },
     compareCancel () {
       this.isvisible = true
       this.dialogTableVisible = false
@@ -401,6 +581,33 @@ export default {
     getHeight () {
       this.contentStyleObj.top = window.innerHeight * 0.07 + 'px'
       this.contentStyleObj.left = window.innerWidth * 0.23 + 'px'
+    },
+    changeXy () {
+      // console.log(parseInt(curY01 * this.widthRate) + 'px');
+		  this.dotxy01.top = 405 * this.widthRate + 'px'
+	  	  this.dotxy01.left = 370 * this.widthRate + 'px'
+	  	  this.dotxy02.top = 535 * this.widthRate + 'px'
+	  	  this.dotxy02.left = 510 * this.widthRate + 'px'
+	  	  this.dotxy03.top = 555 * this.widthRate + 'px'
+	  	  this.dotxy03.left = 680 * this.widthRate + 'px'
+	  	  this.dotxy04.top = 525 * this.widthRate + 'px'
+	  	  this.dotxy04.left = 815 * this.widthRate + 'px'
+	  	  this.dotxy05.top = 640 * this.widthRate + 'px'
+	  	  this.dotxy05.left = 360 * this.widthRate + 'px'
+	  	  this.dotxy06.top = 680 * this.widthRate + 'px'
+	  	  this.dotxy06.left = 375 * this.widthRate + 'px'
+	  	  this.dotxy07.top = 720 * this.widthRate + 'px'
+	  	  this.dotxy07.left = 360 * this.widthRate + 'px'
+	  	  this.dotxy08.top = 690 * this.widthRate + 'px'
+	  	  this.dotxy08.left = 536 * this.widthRate + 'px'
+	  	  this.dotxy09.top = 740 * this.widthRate + 'px'
+	  	  this.dotxy09.left = 400 * this.widthRate + 'px'
+	  	  this.dotxy10.top = 760 * this.widthRate + 'px'
+	  	  this.dotxy10.left = 340 * this.widthRate + 'px'
+	  	  this.dotxy11.top = 770 * this.widthRate + 'px'
+	  	  this.dotxy11.left = 280 * this.widthRate + 'px'
+		  this.rightArea.height = (this.topHeight * 0.71 - 100 ) + 'px'
+		  //console.log(this.rightArea.height+'//right height')
     },
     exportResult () {
       require.ensure([], () => {
@@ -451,7 +658,7 @@ export default {
         })
         return
       }
-      if (!this.form.dimensions.length) {
+      if (this.dimensionsval.length == 0) {
         this.$alert('请选择维度', '标题', {
           confirmButtonText: '确定',
           callback: action => {
@@ -459,7 +666,7 @@ export default {
         })
         return
       }
-      if (this.form.dimensions.length > 10) {
+      if (this.dimensionsval.length > 10) {
         this.$alert('维度最多只能选择10个', '标题名称', {
           confirmButtonText: '确定',
           callback: action => {
@@ -477,13 +684,13 @@ export default {
       }
       this.dialogTableVisible = false
       this.isvisible = false
-      let dimen = []
+      let dimen = this.dimensionsval
       let fieldids = ''
       let projectArr = []
       let project = ''
-      for (let i = 0; i < this.form.dimensions.length; i++) {
-        dimen.push(this.form.dimensions[i][2])
-      }
+      // for (let i = 0; i < this.form.dimensions.length; i++) {
+      //   dimen.push(this.form.dimensions[i][2])
+      // }
       for (let i = 0; i < this.form.project.length; i++) {
         projectArr.push(this.form.project[i][1])
       }
@@ -571,11 +778,74 @@ export default {
           this.$message.error('系统异常，请联系管理员！')
         }
       })
+    },
+    changeCascaderValue (value, data, node) {
+      if (value) {
+        this.dimensionsval.push(data.value)
+        if (node.parent && node.parent.parent) {
+          this.dimensionslabel.push(node.parent.parent.label + '/' + node.parent.label + '/' + data.label)
+        } else {
+          this.dimensionslabel.push(data.label)
+        }
+      } else {
+        let index = this.dimensionsval.indexOf(data.value)
+        this.dimensionsval.splice(index, 1)
+        this.dimensionslabel.splice(index, 1)
+      }
+      this.$nextTick(() => {
+        document.querySelector(".myCascder input[type='text'].el-input__inner").value = this.dimensionslabel.join(',')
+      })
     }
   }
 }
 </script>
 <style  lang="scss">
+// .el-popper>.el-cascader-panel>.el-scrollbar>.el-cascader-menu__wrap>ul>li>label{
+// 	display:none;
+// }
+.el-popper .el-icon-check{display:none;}
+.el-popper .el-cascader-node__label{padding-left:0;}
+.area-chart{margin-top:-35px;}
+.item-list{
+  text-align:left;
+  height: 550px;
+  overflow: auto;
+  overflow-y: visible;
+  height: 450px;
+}
+.item-list li{
+  position:relative;
+    padding-left: 30px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 48px;
+    color: #fff;
+    border-top: 5px solid rgba(0,0,0,.3);
+    cursor: pointer;
+    padding-right: 20px;
+	background: rgba(19, 125, 240, 0.2);
+	overflow:hidden;
+}
+.item-list li::before{
+  position:absolute;
+  top: 24px;
+  left: 0;
+  margin-top: -2px;
+  content:'';
+  display:inline-block;
+  width:14px;
+  height:4px;
+  background:rgba(255, 525, 255, 0.38);
+}
+.item-list .li-item{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item-list .li-item span a{
+	font-size:16px;
+	font-weight:normal;
+}
  .compare-content table {
     thead tr th{
      background-color: #EFEFF0;
@@ -583,7 +853,7 @@ export default {
      height: 60px;
      text-align: center;
      color: #444444;
-     font-size: 16px;
+     font-size: 18px;
      &:first-child{
        text-align: left;
        padding-left: 10px;
@@ -600,20 +870,33 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+.park-outter{
+	background-color:#1f231d;
+	width:100%;
+	height:100%;
+}
 .topmap{
   width: 100%;
-  height: 100%;
+  max-width:1920px;
   overflow: hidden;
   position: relative;
+  margin-top: -100px;
+}
+.topmap img{
+	width:100%;
+	height:auto;
+	//margin-top: -100px;
 }
 .yqbg{
-  position:relative;
-  background-image:url("~@images/map.png");
+  // background:url("~@images/map2.png") no-repeat center center;
+  position: relative;
   height:100%;
   width:100%;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-color:#171717;
+  max-width:1920px;
+  margin:0 auto;
+  //background-size: 100%;
+  // background-repeat: no-repeat;
+  background-color:#1f231d;
   text-align:center;
   overflow: hidden;
 }
@@ -639,19 +922,21 @@ export default {
 }
 .right-img, .right-content{
   position:absolute;
-  right:20px;
-  top:-20px;
-  height:95%;
+  right:40px;
+  top:100px;
+  //height:81%;
+  width:375px;
+  //background: rgba(19, 125, 240,0.2)
 }
 .right-content {
   // border: 1px solid white;
   .content-top{
-    height: 24%;
-    margin-top: 20px;
+    height: 15%;
+	padding: 12% 0 2% 36px;
+	background: rgba(19, 125, 240, 0.2);
     // border-bottom: 1px solid white;
-    padding-left: 36px;
     .park-amount {
-      height: 100%;
+      //height: 100%;
       display:flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -660,10 +945,15 @@ export default {
       .text {
         text-align: left;
         &.desc {
-          font-size: 16px;
+          font-size: 18px;
+		  font-weight: bold;
         }
+		&.desc a{
+			font-weight:normal;
+			font-size:16px;
+		}
         &.amout {
-          font-size: 32px;
+          font-size: 44px;
           font-weight: bold;
         }
       }
@@ -672,7 +962,7 @@ export default {
   .content-center {
     height: 40%;
     // border-bottom: 1px solid white;
-    padding-left: 36px;
+    //padding-left: 36px;
     padding-top: 5px;
     .area-amount{
       display: flex;
@@ -683,12 +973,14 @@ export default {
       // justify-content: flex-start;
       .desc {
         display: flex;
-        font-size: 16px;
+        font-size: 18px;
         margin:5px 0px;
+		font-weight:bold;
       }
       .amout {
         display: flex;
-        font-size: 32px;
+        font-size: 44px;
+		margin: 10px 0 30px;
       }
     }
   }
@@ -697,6 +989,19 @@ export default {
     // border-bottom: 1px solid white;
     // background:;
   }
+}
+  ::-webkit-scrollbar {
+  width: 6px
+}
+  ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 5px rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.2);
+}
+  ::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+  border-radius: 0;
+  background: rgba(0,0,0,0.1);
 }
 .compareDiv {
   position: fixed;
@@ -758,7 +1063,8 @@ export default {
   width: 15px;
   height: 15px;
   cursor: pointer;
-  margin:120px auto 0;
+  //margin:120px auto 0;
+  //position: absolute;
 }
 .tips-click span{
   color: #fff;
@@ -792,6 +1098,7 @@ export default {
   -webkit-animation: click2 1s linear infinite;
   animation: click2 1s linear infinite;
   }
+
   @-webkit-keyframes click1 {
     0% {
       opacity: .8;
@@ -842,4 +1149,5 @@ export default {
           transform: scale(3);
       }
   }
+
 </style>

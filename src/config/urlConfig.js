@@ -55,6 +55,8 @@ const dataService = {
   'selectContrastField': `${nameSpace}/selectContrastField`,
   // 查询对比结果
   'selectContrastInfo': `${nameSpace}/selectContrastInfo`,
+  // 查询地图右侧结果
+  'selectMapRightInfo': `${nameSpace}/selectMapRightInfo`,
   // 根据城市查询项目
   'selectCityProject': `${nameSpace}/selectCityProject`,
   // 根据城市查询项目

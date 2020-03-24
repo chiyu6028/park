@@ -14,7 +14,7 @@
         <i class="el-icon-delete"></i>
         存为草稿
       </el-button> -->
-      <el-button type="primary" round @click="() => save(2)">
+      <el-button type="primary" round @click="() => save(2)"  v-if="this.pagetype=='draft'">
         <i class="el-icon-s-promotion"></i>
         确认发布
       </el-button>
@@ -45,7 +45,8 @@ export default {
     let activeName = _.head(addList).name
     return {
       addList,
-      activeName
+      activeName,
+      pagetype: 'list'
     }
   },
   computed: {
@@ -88,7 +89,12 @@ export default {
         }
       })
     } else {
+      console.log(this.$route.query.pagetype)
+      console.log(this.$route)
       this.setProjectId({ projectId: this.$route.params.id })
+      if (this.$route.query.pagetype === 'draft') {
+        this.pagetype = 'draft'
+      }
     }
   }
 }

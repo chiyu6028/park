@@ -6,56 +6,68 @@
     <div class="content">
       <el-row class="item">
         <el-col :span="24" >
-          <span class="title">{{item.parkname}}</span>
+          <a class="title" @click="detailProject(item)">{{item.parkname}}</a>
         </el-col>
       </el-row>
       <el-row class="item">
+		<el-col :span="12" class="col-item">
+		    <span class="label">园区类型:</span>
+		    <span class="value">{{item.parkTypeStr}}</span>
+		</el-col>
         <el-col :span="12" class="col-item">
           <span class="label">园区产值:</span>
           <span class="value">{{item.parkvalue}}&nbsp;亿元</span>
         </el-col>
-       <el-col :span="12">
-          <span class="label">用地面积:</span>
-          <span class="value">{{item.useArea}}&nbsp;公顷</span>
-        </el-col>
       </el-row>
       <el-row class="item">
-         <el-col :span="12">
-          <span class="label">主导功能:</span>
-          <span class="value">{{item.leadFuncStr}}</span>
-        </el-col>
-       <el-col :span="12">
-          <span class="label">总建筑面积:</span>
-          <span class="value">{{item.buildArea}}&nbsp;m²</span>
-        </el-col>
+		 <el-col :span="12">
+		     <span class="label">用地面积:</span>
+		     <span class="value">{{item.useArea}}&nbsp;公顷</span>
+		  </el-col>
+		<el-col :span="12">
+		   <span class="label">总建筑面积:</span>
+		   <span class="value">{{item.buildArea}}&nbsp;m²</span>
+		 </el-col>
       </el-row>
       <el-row class="item">
-         <el-col :span="12">
-          <span class="label">用地性质:</span>
-          <span class="value">{{item.useTypeStr}}</span>
-        </el-col>
-       <el-col :span="12">
-          <span class="label">投资规模:</span>
-          <span class="value">{{item.investmentMode}}&nbsp;亿元</span>
-        </el-col>
-      </el-row>
-      <el-row class="item">
+		  <el-col :span="12">
+		    <span class="label">用地性质:</span>
+		    <span class="value">{{item.useTypeStr}}</span>
+		  </el-col>
          <el-col :span="12">
           <span class="label">开发主体:</span>
           <span class="value">{{item.devSubjectStr}}</span>
         </el-col>
-        <el-col :span="12">
-          <span class="label">科研/研发机构:</span>
-          <span class="value">{{item.rdorg}}&nbsp;家</span>
-        </el-col>
       </el-row>
       <el-row class="item">
-        <el-col :span="22">
-          <span class="label">主导产业:</span>
-          <span class="value">{{item.leadIndustryStr}}</span>
+		  <el-col :span="12">
+		     <span class="label">投资规模:</span>
+		     <span class="value">{{item.investmentMode}}&nbsp;亿元</span>
+		   </el-col>
+        <el-col :span="12">
+          <span class="label">主导功能:</span>
+          <span class="value">{{item.leadFuncStr}}</span>
         </el-col>
       </el-row>
+	  <el-row class="item">
+		  <el-col :span="12">
+		    <span class="label">科研/研发机构:</span>
+		    <span class="value">{{item.rdorg}}&nbsp;家</span>
+		  </el-col>
+	  </el-row>
+	  <el-row class="item" style="line-height: 1.7;">
+	     <el-col :span="22">
+	      <span class="label">主导产业:</span>
+	      <span class="value" >{{item.leadIndustryStr}}</span>
+	    </el-col>
+	  </el-row>
     </div>
+	<el-row class="item" style="line-height: 1.7;">
+	  <el-col :span="22">
+	    <span class="label">园区地址:</span>
+	    <span class="value">{{item.positionMapStr}}</span>
+	  </el-col>
+	</el-row>
      <span slot="reference" :style="titleStyle">{{title}}</span>
   </el-popover>
 </template>
@@ -82,13 +94,17 @@ export default {
         projectid: '',
         rdorg: '',
         useArea: '',
-        useType: ''
+        useType: '',
+		parkType: '',
+		positionMap: ''
 
       },
       leadIndustryObj: _D.leadIndustryObj, // 主导产业
       leadfuncObj: _D.leadfuncObj, // 主导功能
       devSubjectObj: _D.devSubjectObj, // 开发主体
       usetypeObj: _D.usetypeObj,
+	  parkTypeObj: _D.parkTypeObj,
+	  positionMapObj: _D.positionMapOjb,
       popoverWidth: '500'
     }
   },
@@ -106,6 +122,9 @@ export default {
     }
   },
   methods: {
+    detailProject (row) {
+      this.$router.push({ path: `projectManage/detail/${row.projectid}`, query: { t: Date.now() } })
+    },
     showContent () {
       this.selectParkSurveyById()
     },
@@ -121,6 +140,22 @@ export default {
             let useTypeStr = '-'
             let devSubjectStr = '-'
             let leadFuncStr = '-'
+			let parkTypeStr = '-'
+			let positionMapStr = '-'
+			if (resData.positionMap) {
+			  positionMapStr = ''
+			  _.map(resData.positionMap.split(','), value => {
+			    positionMapyStr += this.positionMapObj[value] + '，'
+			  })
+			  positionMapStr = positionMapStr.substring(0, positionMapStr.length - 1)
+			}
+			if (resData.parkType) {
+			  parkTypeStr = ''
+			  _.map(resData.parkType.split(','), value => {
+			    parkTypeStr += this.parkTypeObj[value] + '，'
+			  })
+			  parkTypeStr = parkTypeStr.substring(0, parkTypeStr.length - 1)
+			}
             if (resData.leadIndustry) {
               leadIndustryStr = ''
               _.map(resData.leadIndustry.split(','), value => {
@@ -160,6 +195,8 @@ export default {
             this.item.useTypeStr = useTypeStr
             this.item.devSubjectStr = devSubjectStr
             this.item.leadFuncStr = leadFuncStr
+			this.item.parkTypeStr = parkTypeStr
+			this.item.positionMapStr = parkTypeStr
           } else {
             this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
           }
@@ -181,6 +218,9 @@ export default {
     margin-bottom: 0px;
     font-size: 18px;
     font-weight: bold;
+	color:#000;
+	text-decoration: underline;
+	cursor: pointer;
   }
   .label {
     color: #C5C5C5;
@@ -188,7 +228,7 @@ export default {
     margin-right: 10px;
   }
   .value {
-    // color: #959395;
+    color: #000;
   }
   .col-item {
     marin-right: 10px;

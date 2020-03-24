@@ -80,23 +80,29 @@ export default {
       })
     },
     editProject (row) {
-      this.$router.push({ path: `editProject/${row.projectid}`, query: { t: Date.now() } })
+      this.$router.push({ path: `editProject/${row.projectid}`, query: { t: Date.now(), pagetype: 'draft' } })
     },
     detailProject (row) {
       this.$router.push({ path: `detail/${row.projectid}`, query: { t: Date.now() } })
     },
     deleteProject (row) {
-      this.$axios.post(URL['DELETE_PROJECT_BASE'], { projectid: row.projectid }).then(resp => {
-        if (resp.status === 200) {
-          if (resp.data && resp.data.code === 1) {
-            this.$message.success(resp.data.msg || '操作成功！')
-            this.getData()
+      this.$confirm('您确定永久删除此项目吗？删除后将不可恢复！', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$axios.post(URL['DELETE_PROJECT_BASE'], { projectid: row.projectid }).then(resp => {
+          if (resp.status === 200) {
+            if (resp.data && resp.data.code === 1) {
+              this.$message.success(resp.data.msg || '操作成功！')
+              this.getData()
+            } else {
+              this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
+            }
           } else {
-            this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
+            this.$message.error('系统异常，请联系管理员！')
           }
-        } else {
-          this.$message.error('系统异常，请联系管理员！')
-        }
+        })
       })
     },
     changeSize (pageSize) {

@@ -1,6 +1,6 @@
 <template>
 <el-card>
-  <div class="notice" style="position: absolute;right: 5px;z-index: 999;">
+  <div class="notice" style="position: absolute;right: 15px;z-index: 999;">
     <el-button round @click="backToList" >
       <i class="el-icon-notebook-2"></i>
       返回列表

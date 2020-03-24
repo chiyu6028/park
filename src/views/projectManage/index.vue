@@ -76,6 +76,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+	.v-modal{
+		display:none;
+	}
 .project-container {
   .project-aside {
     position: absolute;
