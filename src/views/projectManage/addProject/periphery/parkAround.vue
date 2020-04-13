@@ -9,31 +9,31 @@
         <el-option v-for="item in parkTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="出租率(%)" class="inline-7" prop="rentalrate">
+    <el-form-item label="出租率（%）" class="inline-7" prop="rentalrate">
       <el-input v-model="form.rentalrate"></el-input>
     </el-form-item>
-    <el-form-item label="园区产值(亿元)" class="inline-7" prop="parkvalue">
+    <el-form-item label="园区产值（亿元）" class="inline-7" prop="parkvalue">
       <el-input v-model="form.parkvalue"></el-input>
     </el-form-item>
-    <el-form-item label="平均产值(亿元)" class="inline-7" prop="avgvalue">
+    <el-form-item label="平均产值（亿元/k㎡）" class="inline-7" prop="avgvalue">
       <el-input v-model="form.avgvalue"></el-input>
     </el-form-item>
-    <el-form-item label="租金水平(元/m²/月)" class="inline-7" prop="rentlevel">
+    <el-form-item label="租金水平（元/m²/月）" class="inline-7" prop="rentlevel">
       <el-input v-model="form.rentlevel"></el-input>
     </el-form-item>
-    <el-form-item label="用地面积(ha)" class="inline-7" prop="uselandarea">
+    <el-form-item label="用地面积（ha）" class="inline-7" prop="uselandarea">
       <el-input v-model="form.uselandarea"></el-input>
     </el-form-item>
-    <el-form-item label="总建筑面积(m²)" class="inline-7" prop="totalbuildarea">
+    <el-form-item label="总建筑面积（m²）" class="inline-7" prop="totalbuildarea">
       <el-input v-model="form.totalbuildarea"></el-input>
     </el-form-item>
-    <el-form-item label="容积率(%)" class="inline-7" prop="plotratio">
+    <el-form-item label="容积率（%）" class="inline-7" prop="plotratio">
       <el-input v-model="form.plotratio"></el-input>
     </el-form-item>
-    <el-form-item label="就业人口(万)" class="inline-7" prop="employmentpeople">
+    <el-form-item label="就业人口（万人）" class="inline-7" prop="employmentpeople">
       <el-input v-model="form.employmentpeople"></el-input>
     </el-form-item>
-    <el-form-item label="企业数量(家)" class="inline-7" prop="enterprisenum">
+    <el-form-item label="企业数量（家）" class="inline-7" prop="enterprisenum">
       <el-input v-model="form.enterprisenum"></el-input>
     </el-form-item>
     <el-form-item label="代表企业" class="inline-1" prop="deputyenterprise">

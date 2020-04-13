@@ -4,7 +4,7 @@
     <div class="box-content">
       <div class="title">基础信息</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">用地面积：<span>{{form.usearea}}（m²）</span></el-col>
+        <el-col :span="6" class="info-li">用地面积：<span>{{form.usearea}}（ha）</span></el-col>
         <el-col :span="6" class="info-li">总建筑面积：<span>{{form.buildarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">计容建筑面积：<span>{{form.meterbuildarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">容积率：<span>{{form.plotratio}}</span></el-col>
@@ -19,16 +19,16 @@
         <el-col :span="6" class="info-li">公寓面积：<span>{{form.flatsarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">配套面积：<span>{{form.matarea}}（m²）</span></el-col>
 
-        <el-col :span="24" class="r-box r-box2">停车位（地上/地下）：<div class="right-content">{{form.parkspaceup+form.parkspacedown}}</div></el-col>
+        <el-col :span="6" class="info-li">停车位（地上/地下）：<span>{{form.parkspaceup+form.parkspacedown}}</span></el-col>
       </el-row>
     </div>
     <!-- 规划设计方案 -->
     <div class="box-content">
-      <div class="title">规划设计方案</div>
+      <div class="title">建筑设计方案</div>
       <el-row :gutter="24">
         <el-col :span="24" class="r-box r-box2">
           <div class="right-content">
-             <div><span class="cont-title">规划设计理念与策略：</span><span>{{form.ideasstrategy}}</span></div>
+             <div><span class="cont-title">建筑设计理念与策略：</span><span>{{form.ideasstrategy}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.ideasstrategyimgArr" :key="idx">
               <el-image  style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
@@ -156,15 +156,21 @@
     <div class="box-content">
       <div class="title">建筑设计小结</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">建筑设计团队：<div class="right-content">{{form.buildteam}}</div></el-col>
-        <el-col :span="24" class="r-box">建筑设计亮点：<div class="right-content">
-            <span>{{form.designadvantage}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">建筑设计团队：</span><span>{{form.buildteam}}</span>
           </div>
-          </el-col>
-          <el-col :span="24" class="r-box">建筑设计不足：<div class="right-content">
-            <span>{{form.deficiencies}}</span>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">建筑设计亮点：</span><span>{{form.designadvantage}}</span>
           </div>
-          </el-col>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">建筑设计不足：</span><span>{{form.deficiencies}}</span>
+          </div>
+        </el-col>
       </el-row>
     </div>
   </div>
@@ -323,11 +329,11 @@ export default {
     flex: 1;
     line-height: 24px;
     .cont-title{
-      font-weight: bold;
+      color:#999999;
     }
   }
   .img-list{
-    padding:20px 0 10px;
+    margin: 10px 15px 0px -10px;
     // display: flex;
     margin-left: -10px;
     &.tb{

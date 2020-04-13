@@ -30,11 +30,11 @@ const validInt = (rule, value, callback) => {
 export default {
   // 周边条件表单
   neardes: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   // 周边园林表单
   parkname: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   rentalrate: [
     { validator: validNumber, trigger: 'blur' }
@@ -64,11 +64,11 @@ export default {
     { validator: validInt, trigger: 'blur' }
   ],
   deputyenterprise: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   // 周边住宅表单
   villagename: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   housprice: [
     { validator: validNumber, trigger: 'blur' }

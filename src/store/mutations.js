@@ -19,6 +19,9 @@ const mutations = {
   },
   setIslogin (state, value) {
     state.islogin = value
+  },
+  setHeaderIndex (state, value) {
+    state.headerIndex = value
   }
 }
 

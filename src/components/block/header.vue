@@ -7,7 +7,7 @@
     </el-col>
     <el-col :span="8">
       <el-menu
-        :default-active="activeIndex"
+        :default-active="headerIndex"
         class="header-menu"
         mode="horizontal"
         @select="handleSelect"
@@ -45,15 +45,30 @@ export default {
       })
       headerList = [item]
     }
-    let activeIndex = headerList.length > 0 ? _.head(headerList).index : null
+    // let activeIndex = headerList.length > 0 ? _.head(headerList).index : null
     return {
-      activeIndex,
+      // activeIndex,
       headerList: headerList,
-      userName: ''
+      userName: '',
+      currentRouter: '/'
+    }
+  },
+  computed: {
+    headerIndex () {
+      return this.$store.state.headerIndex
     }
   },
   mounted () {
     this.userName = JSON.parse(this.$store.state.user).userName
+    if (this.$route.path.indexOf('overview') > 0) {
+      this.activeIndex = '1'
+    }
+    if (this.$route.path.indexOf('projectManage') > 0) {
+      this.activeIndex = '2'
+    }
+    if (this.$route.path.indexOf('systemManage') > 0) {
+      this.activeIndex = '3'
+    }
   },
   methods: {
     handleSelect (key) {
@@ -64,6 +79,7 @@ export default {
         }
       })
       this.$router.push({ path })
+      this.$store.commit('setHeaderIndex', key)
     },
     exit () {
       this.$confirm('是否退出系统?', '提示', {

@@ -1,6 +1,6 @@
 <template>
    <el-popover
-    placement="top-start"
+    placement="bottom-start"
     :width="popoverWidth"
     trigger="hover" @show="showContent">
     <div class="content">
@@ -16,24 +16,24 @@
 		</el-col>
         <el-col :span="12" class="col-item">
           <span class="label">园区产值:</span>
-          <span class="value">{{item.parkvalue}}&nbsp;亿元</span>
+          <span class="value">{{item.parkValue}}</span>
         </el-col>
       </el-row>
       <el-row class="item">
 		 <el-col :span="12">
 		     <span class="label">用地面积:</span>
-		     <span class="value">{{item.useArea}}&nbsp;公顷</span>
+		     <span class="value">{{item.useArea}}</span>
 		  </el-col>
 		<el-col :span="12">
 		   <span class="label">总建筑面积:</span>
-		   <span class="value">{{item.buildArea}}&nbsp;m²</span>
+		   <span class="value">{{item.buildArea}}</span>
 		 </el-col>
       </el-row>
       <el-row class="item">
-		  <el-col :span="12">
-		    <span class="label">用地性质:</span>
-		    <span class="value">{{item.useTypeStr}}</span>
-		  </el-col>
+        <el-col :span="12">
+          <span class="label">企业数量:</span>
+          <span class="value">{{item.compNum}}</span>
+        </el-col>
          <el-col :span="12">
           <span class="label">开发主体:</span>
           <span class="value">{{item.devSubjectStr}}</span>
@@ -42,7 +42,7 @@
       <el-row class="item">
 		  <el-col :span="12">
 		     <span class="label">投资规模:</span>
-		     <span class="value">{{item.investmentMode}}&nbsp;亿元</span>
+		     <span class="value">{{item.investmentMode}}</span>
 		   </el-col>
         <el-col :span="12">
           <span class="label">主导功能:</span>
@@ -52,9 +52,15 @@
 	  <el-row class="item">
 		  <el-col :span="12">
 		    <span class="label">科研/研发机构:</span>
-		    <span class="value">{{item.rdorg}}&nbsp;家</span>
+		    <span class="value">{{item.rdorg}}</span>
 		  </el-col>
 	  </el-row>
+        <el-row class="item" style="line-height: 1.7;">
+      <el-col :span="22">
+        <span class="label">用地性质:</span>
+        <span class="value">{{item.usetype}}</span>
+      </el-col>
+    </el-row>
 	  <el-row class="item" style="line-height: 1.7;">
 	     <el-col :span="22">
 	      <span class="label">主导产业:</span>
@@ -65,7 +71,7 @@
 	<el-row class="item" style="line-height: 1.7;">
 	  <el-col :span="22">
 	    <span class="label">园区地址:</span>
-	    <span class="value">{{item.positionMapStr}}</span>
+	    <span class="value">{{item.positionMap}}</span>
 	  </el-col>
 	</el-row>
      <span slot="reference" :style="titleStyle">{{title}}</span>
@@ -78,6 +84,7 @@ import * as _ from 'lodash'
 import * as D from '@config/default.js'
 import URL from '@config/urlConfig.js'
 import * as _D from '@config/dictionaries'
+import T from '@utils/tools'
 
 export default {
   data () {
@@ -95,16 +102,14 @@ export default {
         rdorg: '',
         useArea: '',
         useType: '',
+        compNum: '',
 		parkType: '',
 		positionMap: ''
-
       },
       leadIndustryObj: _D.leadIndustryObj, // 主导产业
       leadfuncObj: _D.leadfuncObj, // 主导功能
       devSubjectObj: _D.devSubjectObj, // 开发主体
-      usetypeObj: _D.usetypeObj,
 	  parkTypeObj: _D.parkTypeObj,
-	  positionMapObj: _D.positionMapOjb,
       popoverWidth: '500'
     }
   },
@@ -137,18 +142,11 @@ export default {
           if (resp.data && resp.data.code === 1 && resp.data.data) {
             let resData = resp.data.data
             let leadIndustryStr = '-'
-            let useTypeStr = '-'
+            let usetype = '-'
             let devSubjectStr = '-'
             let leadFuncStr = '-'
+            let usetypeConvert = T.getConvert(_D.usetypeList)
 			let parkTypeStr = '-'
-			let positionMapStr = '-'
-			if (resData.positionMap) {
-			  positionMapStr = ''
-			  _.map(resData.positionMap.split(','), value => {
-			    positionMapyStr += this.positionMapObj[value] + '，'
-			  })
-			  positionMapStr = positionMapStr.substring(0, positionMapStr.length - 1)
-			}
 			if (resData.parkType) {
 			  parkTypeStr = ''
 			  _.map(resData.parkType.split(','), value => {
@@ -163,13 +161,15 @@ export default {
               })
               leadIndustryStr = leadIndustryStr.substring(0, leadIndustryStr.length - 1)
             }
-            if (resData.useType) {
-              useTypeStr = ''
-              _.map(resData.useType.split(','), value => {
-                useTypeStr += this.usetypeObj[value] + '，'
-              })
-              useTypeStr = useTypeStr.substring(0, useTypeStr.length - 1)
+
+             if(resData.usetype) { 
+              _.map(data, v => ({
+              ...v,
+              _usetype: v.usetype,
+              usetype: T.getConvertValue2(v.usetype, usetypeConvert)
+            }))
             }
+
             if (resData.devSubject) {
               devSubjectStr = ''
               _.map(resData.devSubject.split(','), value => {
@@ -184,19 +184,22 @@ export default {
               })
               leadFuncStr = leadFuncStr.substring(0, leadFuncStr.length - 1)
             }
-            resData.parkvalue = resData.parkvalue ? resData.parkvalue : '0'
-            resData.useArea = resData.useArea ? resData.useArea : '0'
-            resData.buildArea = resData.buildArea ? resData.buildArea : '0'
-            resData.investmentMode = resData.investmentMode ? resData.investmentMode : '0'
-            resData.rdorg = resData.rdorg ? resData.rdorg : '0'
+            resData.parkValue = resData.parkValue ? parseFloat(resData.parkValue).toFixed(2)+' 亿元' : '-'
+            resData.buildArea = resData.buildArea ? parseFloat(resData.buildArea).toFixed(2)+' m²' : '-'
+            resData.investmentMode = resData.investmentMode ? parseFloat(resData.investmentMode).toFixed(2)+' 亿元' : '-'
+            resData.rdorg = resData.rdorg ? resData.rdorg + ' 家' : '-'
+            resData.compNum = resData.compNum ? resData.compNum + ' 家' : '-'
+            resData.useArea = resData.useArea ? parseFloat(resData.useArea).toFixed(2)+' ha' : '-'
 
             this.item = resData
             this.item.leadIndustryStr = leadIndustryStr
             this.item.useTypeStr = useTypeStr
             this.item.devSubjectStr = devSubjectStr
             this.item.leadFuncStr = leadFuncStr
-			this.item.parkTypeStr = parkTypeStr
-			this.item.positionMapStr = parkTypeStr
+			      this.item.parkTypeStr = parkTypeStr
+			      this.item.positionMapStr = parkTypeStr
+            this.item.positionMapStr = this.item.positionMapStr ? this.item.positionMapStr : '-'
+
           } else {
             this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
           }

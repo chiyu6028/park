@@ -22,6 +22,22 @@ const getConvertValue = (v, convert = {}) => {
   return v && convert && convert[v] !== undefined ? convert[v] : v
 }
 
+const getConvertValue2 = (v, convert = {}) => {
+  let retstr = ''
+  if (v && convert) {
+    let vArr = v.split(',')
+    for (let i = 0; i < vArr.length; i++) {
+      if (convert[vArr[i]]) {
+        if (retstr.length > 0) {
+          retstr = retstr + ','
+        }
+        retstr = retstr + convert[vArr[i]]
+      }
+    }
+  }
+  return retstr
+}
+
 const getStringLen = string => {
   // 强转为字符串
   string = string ? string + '' : ''
@@ -33,6 +49,7 @@ const tools = {
   getWinSize,
   getConvert,
   getConvertValue,
+  getConvertValue2,
   getStringLen
 }
 

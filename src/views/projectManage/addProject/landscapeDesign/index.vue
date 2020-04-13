@@ -50,7 +50,7 @@
     </el-form-item>
 
     <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item label="公共平台/空间设计" class="inline-1" prop="pubspacedesign">
+    <el-form-item label="公共平台/连廊空间设计" class="inline-1" prop="pubspacedesign">
       <el-input type="textarea" autosize  v-model="form.pubspacedesign" ></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
@@ -59,7 +59,7 @@
     </el-form-item>
 
     <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item label="屋顶景观设计" class="inline-1" prop="roofdesign">
+    <el-form-item label="屋顶绿化设计" class="inline-1" prop="roofdesign">
       <el-input type="textarea" autosize  v-model="form.roofdesign" ></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
@@ -68,7 +68,7 @@
     </el-form-item>
 
     <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item label="外立面景观设计" class="inline-1" prop="sketchdesign">
+    <el-form-item label="景观小品设计" class="inline-1" prop="sketchdesign">
       <el-input type="textarea" autosize  v-model="form.sketchdesign"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">

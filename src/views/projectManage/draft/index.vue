@@ -1,26 +1,26 @@
 <template>
-  <el-row class="form-table-list">
+  <el-row class="form-table-list" style="height: auto;">
     <el-col :span="24" class="margin-bottom-15">
       <span class="title margin-right-10">草稿箱</span>
       <span class="result">检索结果共<span class="num">{{ total }}</span>条</span>
     </el-col>
     <el-col :span="24">
-      <el-table v-loading="loading" :data="tableData" @row-dblclick="viewDetail" style="width: 100%">
-        <el-table-column align="center" prop="projectid" label="项目ID"></el-table-column>
+      <el-table v-loading="loading" :data="tableData" style="width: 100%" class="objlist">
+        <el-table-column align="center" width="80" prop="projectbh" label="项目编号"></el-table-column>
         <el-table-column align="center" prop="parkname" label="园区名称">
           <template slot-scope="{row}">
             <i @click="detailProject(row)">{{row.parkname}}</i>
           </template>
         </el-table-column>
         <el-table-column align="center" prop="parktype" label="园区类型"></el-table-column>
-        <el-table-column align="center" width="300" prop="location" label="项目地址"></el-table-column>
-        <el-table-column align="center" prop="usetype" label="用地性质"></el-table-column>
-        <el-table-column align="center" prop="usearea" label="用地面积（万公顷）"></el-table-column>
-        <el-table-column align="center" prop="buildArea" label="建筑面积（万公顷）"></el-table-column>
-        <el-table-column align="center" prop="updatetime" label="发布时间"></el-table-column>
-        <el-table-column align="center" prop="operate" label="编辑">
+        <el-table-column align="center" width="250" prop="location" label="项目地址"></el-table-column>
+        <el-table-column align="center" prop="usetype" width="130" label="用地性质"></el-table-column>
+        <el-table-column align="center" width="100" prop="usearea" label="用地面积(ha)"></el-table-column>
+        <el-table-column align="center" width="110" prop="buildArea" label="总建筑面积(㎡)"></el-table-column>
+        <el-table-column align="center" width="100" prop="updatetime" label="发布时间"></el-table-column>
+        <el-table-column align="center" prop="operate" label="操作">
           <template slot-scope="{row}">
-            <i class="el-icon-edit pointer" title="操作" @click="editProject(row)"></i>
+            <i class="el-icon-edit pointer" title="编辑" @click="editProject(row)"></i>
             <i class="el-icon-delete pointer padding-left-10" title="删除" @click="deleteProject(row)"></i>
           </template>
           </el-table-column>
@@ -67,7 +67,7 @@ export default {
               _parktype: v.parktype,
               parktype: T.getConvertValue(v.parktype, typeConvert),
               _usetype: v.usetype,
-              usetype: T.getConvertValue(v.usetype, usetypeConvert)
+              usetype: T.getConvertValue(v.usetype, usetypeConvert).substring(0,8)
             }))
             this.page = resp.data.curPage
             this.total = resp.data.total
@@ -83,7 +83,8 @@ export default {
       this.$router.push({ path: `editProject/${row.projectid}`, query: { t: Date.now(), pagetype: 'draft' } })
     },
     detailProject (row) {
-      this.$router.push({ path: `detail/${row.projectid}`, query: { t: Date.now() } })
+      let routeData = this.$router.resolve({ path: `detail/${row.projectid}`, query: { t: Date.now() } })
+      window.open(routeData.href, '_blank')
     },
     deleteProject (row) {
       this.$confirm('您确定永久删除此项目吗？删除后将不可恢复！', '提示', {

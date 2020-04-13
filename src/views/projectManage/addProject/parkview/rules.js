@@ -12,7 +12,7 @@ const validStringLen = len => {
 export default {
   parkname: [
     { required: true, message: '请输入园区名称', trigger: 'blur' },
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   parktype: [
     { required: true, message: '请输入园区类型', trigger: 'blur' }
@@ -21,18 +21,18 @@ export default {
     { required: true, message: '请输入项目编号', trigger: 'blur' }
   ],
   parkdes: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   landscope: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   generallayout: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   realphotos: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   parkhonor: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ]
 }

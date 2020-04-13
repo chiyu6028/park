@@ -2,11 +2,10 @@
   <div class="park-content" v-loading="isloading" element-loading-text="下载中......">
     <div class="box-content">
       <el-row :gutter="24">
-        <div class="info-title">产业规划方案</div>
-        <el-col :span="24" class="r-box">
+        <div class="title">产业规划方案</div>
+        <el-col :span="24" class="r-box" style="padding:20px;">
           <div class="right-content">
             <ul class="img-list">
-              <li v-if="isPermission"><el-button :type="industryschemeFlag" @click="downLoadAll(form.industryschemeArr,'产业规划方案')">下载全部</el-button></li>
               <li v-for="(tag,idx) in form.industryschemeArr" :key="idx">
                 <span>
                   <i class="el-icon-paperclip attapath-icon-first"></i>
@@ -14,16 +13,16 @@
                   <a v-if="isPermission" :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
                 </span>
               </li>
+              <li v-if="isPermission"><el-button icon="el-icon-download" size="mini" plain :type="industryschemeFlag" @click="downLoadAll(form.industryschemeArr,'产业规划方案')">下载全部</el-button></li>
             </ul>
           </div>
         </el-col>
       </el-row>
       <el-row :gutter="24">
-        <div class="info-title">规划设计方案</div>
-        <el-col :span="24" class="r-box">
+        <div class="title">规划设计方案</div>
+        <el-col :span="24" class="r-box" style="padding:20px;">
           <div class="right-content">
-            <ul class="img-list">
-              <li v-if="isPermission"><el-button :type="planschemeFlag" @click="downLoadAll(form.planschemeArr,'规划设计方案')">下载全部</el-button></li>
+            <ul class="img-list"> 
               <li v-for="(tag,idx) in form.planschemeArr" :key="idx">
                  <span>
                   <i class="el-icon-paperclip attapath-icon-first"></i>
@@ -31,15 +30,15 @@
                   <a v-if="isPermission" :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
                 </span>
               </li>
+              <li v-if="isPermission"><el-button icon="el-icon-download" size="mini" plain :type="planschemeFlag" @click="downLoadAll(form.planschemeArr,'规划设计方案')">下载全部</el-button></li>
             </ul>
           </div>
         </el-col>
       </el-row>
       <el-row :gutter="24">
-        <div class="info-title">建筑设计方案</div>
-        <el-col :span="24" class="r-box"><div class="right-content">
+        <div class="title">建筑设计方案</div>
+        <el-col :span="24" class="r-box" style="padding:20px;"><div class="right-content">
           <ul class="img-list">
-            <li v-if="isPermission"><el-button :type="buildschemeFlag" @click="downLoadAll(form.buildschemeArr,'建筑设计方案')">下载全部</el-button></li>
             <li v-for="(tag,idx) in form.buildschemeArr" :key="idx">
                <span>
                   <i class="el-icon-paperclip attapath-icon-first"></i>
@@ -47,15 +46,15 @@
                   <a v-if="isPermission" :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
                 </span>
             </li>
+            <li v-if="isPermission"><el-button icon="el-icon-download" size="mini" plain :type="buildschemeFlag" @click="downLoadAll(form.buildschemeArr,'建筑设计方案')">下载全部</el-button></li>
           </ul>
         </div>
         </el-col>
       </el-row>
       <el-row :gutter="24">
-        <div class="info-title">环境设计方案</div>
-        <el-col :span="24" class="r-box"><div class="right-content">
+        <div class="title">环境设计方案</div>
+        <el-col :span="24" class="r-box" style="padding:20px;"><div class="right-content">
           <ul class="img-list">
-            <li v-if="isPermission"><el-button :type="environschemeFlag" @click="downLoadAll(form.environschemeArr,'环境设计方案')">下载全部</el-button></li>
             <li v-for="(tag,idx) in form.environschemeArr" :key="idx">
               <span>
                   <i class="el-icon-paperclip attapath-icon-first"></i>
@@ -63,15 +62,15 @@
                   <a v-if="isPermission" :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
                 </span>
             </li>
+            <li v-if="isPermission"><el-button icon="el-icon-download" size="mini" plain :type="environschemeFlag" @click="downLoadAll(form.environschemeArr,'环境设计方案')">下载全部</el-button></li>
           </ul>
         </div>
         </el-col>
       </el-row>
       <el-row :gutter="24">
-        <div class="info-title">招商运营方案</div>
-        <el-col :span="24" class="r-box"><div class="right-content">
+        <div class="title">招商运营方案</div>
+        <el-col :span="24" class="r-box" style="padding:20px;"><div class="right-content">
           <ul class="img-list">
-            <li v-if="isPermission"><el-button :type="investschemeFlag" @click="downLoadAll(form.investschemeArr,'招商运营方案')">下载全部</el-button></li>
             <li v-for="(tag,idx) in form.investschemeArr" :key="idx">
               <span>
                   <i class="el-icon-paperclip attapath-icon-first"></i>
@@ -79,6 +78,7 @@
                   <a v-if="isPermission" :href="url + tag.attpath" :download="tag.attrealname"><i class="el-icon-download attapath-icon-second"></i></a>
                 </span>
             </li>
+            <li v-if="isPermission"><el-button icon="el-icon-download" size="mini" plain :type="investschemeFlag" @click="downLoadAll(form.investschemeArr,'招商运营方案')">下载全部</el-button></li>
           </ul>
         </div>
         </el-col>

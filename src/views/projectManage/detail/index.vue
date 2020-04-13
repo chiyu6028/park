@@ -5,6 +5,10 @@
       <i class="el-icon-notebook-2"></i>
       返回列表
     </el-button>
+    <el-button type="primary" round @click="editProject()" v-if="enable">
+      <i class="el-icon-edit"></i>
+      编辑
+    </el-button>
     <!-- <el-button type="info" round @click="() => save(1)">
       <i class="el-icon-delete"></i>
       存为草稿
@@ -34,22 +38,30 @@ export default {
   data () {
     const detailList = D.addProjectTab
     return {
+      enable: true,
       tabVal: '1',
       detailList,
       isPermission: false
     }
   },
   created () {
+    if (this.$store.state.role === '3' || this.$store.state.role === '2') {
+      this.enable = false
+    };
   },
   mounted () {
     let role = this.$store.state.role
     if (role === '1') {
       this.isPermission = true
-    }
+    };
   },
   methods: {
     backToList () {
       this.$router.push({ path: '/index/projectManage/projectList' })
+    },
+    editProject () {
+      let editHref = this.$router.resolve({ path: `../editProject/${this.$route.params.id}`, query: { t: Date.now(), pagetype: 'list' } })
+      window.open(editHref.href, '_blank')
     },
     handleClick (tab, event) {
 
@@ -74,11 +86,11 @@ export default {
   margin-bottom: 15px;
 }
 .info-li{
-  font-size: 12px;
+  font-size: 13px;
 }
 .r-box,.info-li{
   color: #999999 !important;
-  font-size: 12px !important;
+  font-size: 13px !important;
 }
 .r-box .right-content,.info-li span{
   color: #000000 !important;
@@ -86,7 +98,7 @@ export default {
 .r-box{
   display: block !important;
   float: left !important;
-  font-size: 12px !important;
+  font-size: 13px !important;
   padding-bottom: 20px;
 }
 .r-box .img-list{

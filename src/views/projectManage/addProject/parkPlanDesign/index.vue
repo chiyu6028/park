@@ -3,10 +3,10 @@
     <el-form-item>
       <TitleBlock title="基本信息"></TitleBlock>
     </el-form-item>
-    <el-form-item label="用地性质" prop="usetype">
-      <el-select v-model="form.usetype" placeholder="请选择" :clearable="true">
-        <el-option v-for="item in usetypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
-      </el-select>
+    <el-form-item label="用地性质">
+      <el-checkbox-group v-model="form.usetypeArr" >
+        <el-checkbox v-for="item in usetypeList" :key="item.value" :label="item.value">{{ item.label }}</el-checkbox>
+      </el-checkbox-group>
     </el-form-item>
     <el-form-item prop="nearproject" label="周边项目">
       <el-input type="textarea" autosize  v-model="form.nearproject"></el-input>
@@ -108,6 +108,7 @@ export default {
       usetypeList: _D.usetypeList,
       rules,
       form: {
+        usetypeArr: [],
         usetype: '',
         nearproject: '',
         designteam: '',
@@ -141,7 +142,10 @@ export default {
   computed: {
     ...mapState('addProject', {
       projectid: state => state.project_id
-    })
+    }),
+    usetype () {
+      return this.form.usetypeArr.join(',')
+    }
   },
   mounted () {
     if (this.$route.path.indexOf('/editProject/') !== -1) {
@@ -155,7 +159,9 @@ export default {
         this.loading = false
         if (resp.status === 200) {
           if (resp.data && resp.data.data && resp.data.code === 1) {
-            this.form = resp.data.data
+            let data = resp.data.data
+            data.usetypeArr = _.map((data.usetype || '').split(','), v => v || '')
+            this.form = data
           }
         } else {
           this.$message.error('系统异常，请联系管理员！')
@@ -168,7 +174,7 @@ export default {
     onSubmit () {
       this.$refs.parkPlanDesign.validate(isValid => {
         if (isValid) {
-          this.$axios.post(URL['INSERT_PLAN_DESIGN'], { ...this.form, projectid: this.projectid }).then(resp => {
+          this.$axios.post(URL['INSERT_PLAN_DESIGN'], { ...this.form, projectid: this.projectid, usetype: this.usetype }).then(resp => {
             if (resp.status === 200) {
               if (resp.data && resp.data.code === 1) {
                 this.$message.success(resp.data.msg)

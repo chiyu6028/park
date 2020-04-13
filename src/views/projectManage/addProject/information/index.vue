@@ -1,7 +1,7 @@
 <template>
   <el-form ref="information" :model="form" :inline="false" label-position="top" style="padding-top: 23px;">
+    <p>* 后台资料上传，只能上传PDF和压缩格式文件（rar、zip、7z）,文件大小不超过500M</p>
     <el-form-item label="产业规划方案">
-      <p>* 后台资料上传，只能上传PDF和压缩格式文件（rar、zip、7z）</p>
 	  <div class="upload-outter">
       <UploadButton :reg="['pdf', 'rar', 'zip', '7z']" matchError="只能上传PDF和压缩格式的文件！" :value="form.industryschemeArr" @setFileList="value => setFileList('industryscheme', value)"></UploadButton>
 	  </div>
@@ -105,6 +105,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.el-form-item label{
+  font-weight: bold;
+  font-size:14px;
+}
+.el-form p{
+  margin-left: 20px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #959595;
+}
 .upload-outter{
 		width: calc(100% - 30px);
 	    text-align: left;

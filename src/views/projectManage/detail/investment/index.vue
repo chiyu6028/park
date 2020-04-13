@@ -2,33 +2,35 @@
   <div class="park-content">
     <!-- 基础信息 -->
     <div class="box-content">
-      <div class="title">基础信息</div>
+      <div class="title">园区效益</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2" style="color: #999999;">主导产业：
+        <el-col :span="24" class="r-box r-box2">
           <div class="right-content">
-          <span style="color: #000;" v-for="(item, idx) in form.leadindustryArray" :key="idx">
-            {{ item }}
-          </span>
-          </div></el-col>
+          <span class="cont-title">主导产业：</span><span v-for="(item, idx) in form.leadindustryArray" :key="idx">{{ item }} </span>
+          </div>
+        </el-col>
         <el-col :span="6" class="info-li">主要功能：<span >{{ form.leadfunc }}</span></el-col>
         <el-col :span="6" class="info-li">园区产值：<span>{{form.parkvalue}}（亿元）</span></el-col>
-        <el-col :span="6" class="info-li">平均产值：<span>{{form.avgvalue}}（亿元）</span></el-col>
+        <el-col :span="6" class="info-li">平均产值：<span>{{form.avgvalue}}（亿元/k㎡）</span></el-col>
         <el-col :span="6" class="info-li">贡献税收：<span>{{form.devotetax}}（亿元）</span></el-col>
-        <el-col :span="6" class="info-li">就业人口：<span>{{form.employmentpeople}}（万）</span></el-col>
+        <el-col :span="6" class="info-li">就业人口：<span>{{form.employmentpeople}}（万人）</span></el-col>
         <el-col :span="6" class="info-li">企业数量：<span>{{form.enterprisenum}}（家）</span></el-col>
-        <el-col :span="6" class="info-li">高薪企业：<span>{{form.nhenterprisenum}}（家）</span></el-col>
+        <el-col :span="6" class="info-li">高新企业：<span>{{form.nhenterprisenum}}（家）</span></el-col>
         <el-col :span="6" class="info-li">科研/研发机构：<span>{{form.rdorg}}（家）</span></el-col>
-        <el-col :span="6" class="info-li">知识产权：<span>{{form.knowledgeproperty}}(件)</span></el-col>
+        <el-col :span="6" class="info-li">知识产权：<span>{{form.knowledgeproperty}}（件）</span></el-col>
         <el-col :span="6" class="info-li">租赁性质：<span>{{form.leasenature}}</span></el-col>
-        <el-col :span="6" class="info-li">租赁比例：<span>{{form.leaseproportion}}(%)</span></el-col>
+        <el-col :span="6" class="info-li">租赁比例：<span>{{form.leaseproportion}}（%）</span></el-col>
         <el-col :span="6" class="info-li">出售价格：<span>{{form.sellprice}}（万元/㎡）</span></el-col>
         <el-col :span="6" class="info-li">出售面积：<span>{{form.sellarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">租金水平：<span>{{form.rentlevel}}（元/m²/月）</span></el-col>
         <el-col :span="6" class="info-li">已租出面积：<span>{{form.leasedarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">剩余出租面积：<span>{{form.surplusleasearea}}（m²）</span></el-col>
-        <el-col :span="6" class="info-li">出租率：<span>{{form.rentalrate}}(%)</span></el-col>
+        <el-col :span="6" class="info-li">出租率：<span>{{form.rentalrate}}（%）</span></el-col>
         <el-col :span="6" class="info-li">物业管理费：<span>{{form.propertyfee}}（元/m²/月）</span></el-col>
-        <el-col :span="24" class="r-box">典型企业：<div class="right-content">
+        <el-col :span="6" class="info-li">更新时间：<span>{{form.updatedate}}</span></el-col>
+        <el-col :span="24" class="r-box">
+          <div class="right-content">
+          <div><span class="cont-title">典型企业：</span><span>{{form.typicalenterprises_t}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.typicalenterprisesArr" :key="idx">
               <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
@@ -37,7 +39,9 @@
           </ul>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box">典型科研/研发机构：<div class="right-content">
+        <el-col :span="24" class="r-box">
+          <div class="right-content">
+          <div><span class="cont-title">典型科研/研发机构：</span><span>{{form.typicalrdorg}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.typicalrdorgimgArr" :key="idx">
               <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
@@ -52,24 +56,56 @@
     <div class="box-content">
       <div class="title">投资开发运营招商</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">投资主体：<span v-if="devSubjectList[form.devsubject]">{{devSubjectList[form.devsubject].label}}</span></el-col>
+        <el-col :span="6" class="info-li">投资主体属性：<span v-if="devSubjectList[form.devsubject]">{{devSubjectList[form.devsubject].label}}</span></el-col>
         <el-col :span="6" class="info-li">开发主体：<span>{{form.investors}}</span></el-col>
-        <el-col :span="6" class="info-li">投资主体属性：<span>{{form.investorattr}}</span></el-col>
-        <el-col :span="6" class="info-li">土地获得方式：<span>{{form.rentlevel}}</span></el-col>
-        <el-col :span="6" class="info-li">开发方式：<span v-if="depmethodList[form.depmethod]">{{depmethodList[form.depmethod].label}}</span></el-col>
+        <el-col :span="6" class="info-li">投资主体：<span>{{form.investorattr}}</span></el-col>
+        <el-col :span="6" class="info-li">土地获得方式：<span>{{form.landmethod}}</span></el-col>
         <el-col :span="6" class="info-li">投资规模：<span>{{form.investmentmode}}(亿元)</span></el-col>
-        <el-col :span="6" class="info-li">招商方式：<span v-if="investModeList[form.investmode]">{{investModeList[form.investmode].label}}</span></el-col>
         <el-col :span="6" class="info-li">招商团队：<span>{{form.investteam}}</span></el-col>
         <el-col :span="6" class="info-li">招商策略：<span>{{form.investstrategy}}</span></el-col>
         <el-col :span="6" class="info-li">运营主体：<span>{{form.operubject}}</span></el-col>
         <el-col :span="6" class="info-li">运营模式：<span v-if="operModeList[form.opermode]">{{operModeList[form.opermode].label}}</span></el-col>
         <el-col :span="6" class="info-li">运营团队：<span>{{form.operteam}}</span></el-col>
-        <el-col :span="24" class="r-box r-box2">优惠政策：<div class="right-content">{{form.favouredpolicy}}</div></el-col>
-        <el-col :span="24" class="r-box r-box2">智慧园区平台：<div class="right-content">{{form.witplatform}}</div></el-col>
-        <el-col :span="24" class="r-box r-box2">园区服务：<div class="right-content">{{form.parkservice}}</div></el-col>
-        <el-col :span="24" class="r-box r-box2">运营成本：<div class="right-content">{{form.opercost}}</div></el-col>
-        <el-col :span="24" class="r-box r-box2">运营收益：<div class="right-content">{{form.operprofit}}</div></el-col>
-        <el-col :span="24" class="r-box r-box2">园区活动：<div class="right-content">
+
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">开发方式：</span><span>{{form.depmethod}}</span>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">招商方式：</span><span>{{form.investmode}}</span>
+          </div>
+        </el-col>
+
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">优惠政策：</span><span>{{form.favouredpolicy}}</span>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">智慧园区：</span><span>{{form.witplatform}}</span>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">园区服务：</span><span>{{form.parkservice}}</span>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">运营成本：</span><span>{{form.opercost}}</span>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">运营收益：</span><span>{{form.operprofit}}</span>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box">
+          <div class="right-content">
+          <div><span class="cont-title">园区活动：</span><span>{{form.parkactivity}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.parkactivityimgArr" :key="idx">
               <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
@@ -144,14 +180,16 @@
     <div class="box-content">
       <div class="title">投资运营小结</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box">项目亮点：<div class="right-content">
-            <span>{{form.investadvantage}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">投资运营亮点：</span><span>{{form.investadvantage}}</span>
           </div>
-          </el-col>
-          <el-col :span="24" class="r-box">面临困境：<div class="right-content">
-            <span>{{form.deficiencies}}</span>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">投资运营困境：</span><span>{{form.deficiencies}}</span>
           </div>
-          </el-col>
+        </el-col>
       </el-row>
     </div>
   </div>
@@ -174,6 +212,7 @@ export default {
       leadfuncList: _D.leadfuncList,
       url: '/downloadFile?filePath=',
       form: {
+        updatedate:'',
         leadindustryArray: [],
         leadindustry: '',
         leadfunc: '',
@@ -194,8 +233,10 @@ export default {
         enterprisenum: '',
         nhenterprisenum: '',
         rdorg: '',
+        typicalenterprises_t: '',
         typicalenterprises: '',
         typicalenterprisesArr: [],
+        typicalrdorg:'',
         typicalrdorgimg: '',
         typicalrdorgimgArr: [],
         investors: '',
@@ -215,6 +256,7 @@ export default {
         parkservice: '',
         opercost: '',
         operprofit: '',
+        parkactivity:'',
         parkactivityimg: '',
         parkactivityimgArr: [],
         businessfacilities: '',
@@ -316,8 +358,8 @@ export default {
 }
 .r-box{
   //display: flex;
-  border-bottom: 1px solid #ECF1F2;
-  padding: 20px 0 10px;
+  //border-bottom: 1px solid #ECF1F2;
+  padding: 10px 0 0px;
   &.r-box2{
     border-bottom:none;
     padding-top: 10px;
@@ -326,11 +368,11 @@ export default {
     flex: 1;
     line-height: 24px;
     .cont-title{
-      font-weight: bold;
+      color:#999999;
     }
   }
   .img-list{
-    padding:20px 0 10px;
+    margin: 10px 15px 0px -10px;
     // display: flex;
     margin-left: -10px;
     &.tb{

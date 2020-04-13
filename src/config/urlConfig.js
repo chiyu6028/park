@@ -6,6 +6,8 @@ const dataService = {
   // 上传附件
   'UPLOAD': `${nameSpace}/uploadFile`,
   'UPDATE_FILEDES': `${nameSpace}/updateFileDes`,
+  'SELECT_FILETOKEN': `${nameSpace}/selectAttInfoByToken`,
+  'UPDATE_FILEUID': `${nameSpace}/updateAttachmentByToken`,
   // 添加项目
   'GET_PARK_PROJECTID': `${nameSpace}/getParkProjectId`,
   'GET_SELECT_AREA': `${nameSpace}/selectArea`,

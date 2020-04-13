@@ -4,6 +4,7 @@ import AddProject from './addProject'
 import Draft from './draft'
 import Detail from './detail'
 
+
 export default {
   path: 'projectManage',
   component: Index,
@@ -15,4 +16,5 @@ export default {
     { path: 'detail/:id', component: Detail },
     { path: 'editProject/:id', component: AddProject, props: { flag: 'edit' } }
   ]
+
 }
