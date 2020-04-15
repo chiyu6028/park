@@ -122,6 +122,7 @@
 import { mapState } from 'vuex'
 import URL from '@config/urlConfig.js'
 import * as _D from '@config/dictionaries'
+import T from '@utils/tools'
 
 export default {
   name: 'parkPlanDesign',
@@ -222,6 +223,10 @@ export default {
         if (resp.status === 200) {
           if (resp.data && resp.data.data && resp.data.code === 1) {
             this.form = resp.data.data
+            let usetypeConvert = T.getConvert(_D.usetypeList)
+           if (this.form.usetype) {
+                this.form.usetype = T.getConvertValue2(this.form.usetype, usetypeConvert).replace(/,/g, '，')
+              }
           }
         } else {
           this.$message.error('系统异常，请联系管理员！')
@@ -240,6 +245,7 @@ export default {
     },
     setFileList (column, value) {
       this.form[column] = value
+
     }
   }
 }

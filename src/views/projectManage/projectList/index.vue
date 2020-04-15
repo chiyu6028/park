@@ -38,55 +38,56 @@
           </el-select>
         </el-form-item>
         <el-form-item label="运营模式" class="inline-3">
+          <label slot="label">运营模式&nbsp;&nbsp;&nbsp;</label>
           <el-select v-model="form.operMode" placeholder="请选择">
             <el-option v-for="item in operModeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
 
-        <el-form-item label="开发开始时间" class="inline-3">
+        <el-form-item label="开发时间" class="inline-3">
           <el-date-picker
             v-model="form.startDevDate"
             type="year"
             format="yyyy"
             value-format="yyyy"
-            placeholder="选择年">
+            placeholder="请选择开始时间">
           </el-date-picker>
-        </el-form-item>
-        <el-form-item label="开发结束时间" class="inline-3">
+          </el-form-item>
+          <el-form-item label="-" class="inline-3" style="margin-left: -43px;">
           <el-date-picker
             v-model="form.endDevDate"
             type="year"
             format="yyyy"
             value-format="yyyy"
-            placeholder="选择年">
+            placeholder="请选择结束时间">
           </el-date-picker>
         </el-form-item>
-        <el-form-item label="园区类型 " class="inline-3">
+        <el-form-item label="园区类型 " class="inline-3" style="margin-left: -43px;">
           <label slot="label">园区类型&nbsp;&nbsp;&nbsp;</label>
           <el-select v-model="form.parkType" placeholder="请选择">
             <el-option v-for="item in parkTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="建成开始时间" class="inline-3">
+        <el-form-item label="建成时间" class="inline-3">
           <el-date-picker
             v-model="form.startCreateDate"
             type="year"
             format="yyyy"
             value-format="yyyy"
-            placeholder="选择年">
+            placeholder="请选择开始时间">
           </el-date-picker>
-        </el-form-item>
-        <el-form-item label="建成结束时间" class="inline-3">
+          </el-form-item>
+          <el-form-item label="-" class="inline-3" style="margin-left: -43px;">
           <el-date-picker
             v-model="form.endCreateDate"
             type="year"
             format="yyyy"
             value-format="yyyy"
-            placeholder="选择年">
+            placeholder="请选择结束时间">
           </el-date-picker>
         </el-form-item>
-        <el-form-item label="投资主体属性" class="inline-3" style="width: 60%;">
-          <el-select v-model="form.devSubject" placeholder="请选择" style="width:44%;">
+        <el-form-item label="投资主体属性" class="inline-3" style="margin-left: -43px;">
+          <el-select v-model="form.devSubject" placeholder="请选择" style="width:93%;">
             <el-option v-for="item in devSubjectList" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>

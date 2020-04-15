@@ -12,7 +12,7 @@
         :limit="15"
         :on-exceed="handleExceed"
         :file-list="fileList">
-        
+
           <i slot="default" class="el-icon-plus"></i>
           <div slot="file" slot-scope="{file}" class="park-upload-block">
             <div class="el-upload--picture-card">
@@ -34,10 +34,10 @@
               </span>
             </span>
             <el-input class="attid"
-            maxlength ="2"
-            type="number"
-            v-model=""
-            @change="changeDesc(file)"
+              maxlength ="2"
+              type="number"
+              @change="changeOrder(file)"
+              v-model="describle[file.uid + 'px']"
             >
             </el-input>
             <el-input
@@ -47,7 +47,7 @@
               @input="limitLength(file)"
               @change="changeDesc(file)"></el-input>
           </div>
-          
+
       </el-upload>
     <el-dialog :visible.sync="dialogVisible">
       <img width="100%" :src="dialogImageUrl" alt="">
@@ -95,14 +95,18 @@ export default {
   methods: {
     initFileList () {
       let fileIds = []; let fileList = []; let describle = {}
+      console.log(this.value)
       _.each(this.value || [], v => {
         fileIds.push(v.attid)
         fileList.push({
           id: v.attid,
           uid: v.attid,
+          px: v.px ? v.px : '0',
           name: v.attrealname,
           url: `/downloadFile?filePath=${window.encodeURIComponent(v.attpath)}`
         })
+
+        describle[v.attid + 'px'] = v.px
         describle[v.attid] = v.attdis
         describle[v.attid + 'disabled'] = true
         describle[v.attid + 'placeholder'] = '请输入'
@@ -166,7 +170,7 @@ export default {
                     this.$emit('setFileList', this.ids)
                     this.describle[item.uid + 'disabled'] = true
                     this.describle[item.uid + 'placeholder'] = '请输入'
-                  }  
+                  }
                 }
               }
             })
@@ -200,6 +204,19 @@ export default {
         }
         this.describle[file.uid] = string
         this.$message.warning(`描述长度不能超过${limit}`)
+      }
+    },
+    changeOrder (file) {
+      if (file.response && file.response.data && file.response.data.fileid) {
+        this.$axios.post(URL['updateAttPxByAttid'], {
+          attid: file.response.data.fileid,
+          px: this.describle[file.uid]
+        }, { $cancelToken: true })
+      } else if (file.id) {
+        this.$axios.post(URL['updateAttPxByAttid'], {
+          attid: file.id,
+          px: this.describle[file.uid + 'px']
+        }, { $cancelToken: true })
       }
     },
     changeDesc (file) {

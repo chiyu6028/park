@@ -166,8 +166,8 @@
             </el-row>
           </div>
           <div class="item right">
-            <el-row class="title">第二步：选择维度</el-row>
-            <el-row class="tip"><span style="color: red;">*</span>&nbsp;最多可选10个维度</el-row>
+            <el-row class="title">第二步：选择指标</el-row>
+            <el-row class="tip"><span style="color: red;">*</span>&nbsp;最多可选10个指标</el-row>
              <el-row style="width: 70%;margin-top: 20px;">
 				<el-cascader  v-model="form.dimensions" :options="dimensionList" :show-all-levels="false" ref="dimension" :props="{ multiple: true,checkStrictly: true,expandTrigger: 'hover',}" clearable filterable popper-class="popper02"></el-cascader>
             </el-row>
@@ -648,7 +648,7 @@ export default {
     exportResult () {
       require.ensure([], () => {
         const { export_json_to_excel } = require('../../vender/Export2Excel.js')
-        let tHeader = ['维度']
+        let tHeader = ['指标']
         let filterVal = ['fieldName']
         let tablePro = this.tableHead
         for (let i = 0; i < tablePro.length; i++) {
@@ -695,7 +695,7 @@ export default {
         return
       }
       if (this.form.dimensions.length == 0) {
-        this.$alert('请选择维度', '维度未选择', {
+        this.$alert('请选择指标', '指标未选择', {
           confirmButtonText: '确定',
           callback: action => {
           }
@@ -703,7 +703,7 @@ export default {
         return
       }
       if (this.form.dimensions.length > 10) {
-        this.$alert('维度最多只能选择10个', '维度选择太多', {
+        this.$alert('指标最多只能选择10个', '指标选择太多', {
           confirmButtonText: '确定',
           callback: action => {
           }

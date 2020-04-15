@@ -67,7 +67,7 @@ export default {
               _parktype: v.parktype,
               parktype: T.getConvertValue(v.parktype, typeConvert),
               _usetype: v.usetype,
-              usetype: T.getConvertValue(v.usetype, usetypeConvert).substring(0,8)
+              usetype: T.getConvertValue2(v.usetype, usetypeConvert).substring(0,8)
             }))
             this.page = resp.data.curPage
             this.total = resp.data.total
