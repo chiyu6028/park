@@ -38,6 +38,17 @@ const router = new VueRouter({
   routes
 })
 
+const routeId = new VueRouter({
+
+    routes: [
+        {
+            path: '/detail/:projectid',
+            component: projectManage
+        },
+
+    ]
+  })
+
 router.beforeEach((to, from, next) => {
   let islogin = sessionStorage.getItem('islogin')
   let pathname = to.path

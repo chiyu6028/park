@@ -47,6 +47,9 @@ export default {
       return name
     }
   },
+  mounted () {
+    this.$store.commit('setHeaderIndex', '3')
+  },
   methods: {
     handleSelect (key) {
       let path = ''

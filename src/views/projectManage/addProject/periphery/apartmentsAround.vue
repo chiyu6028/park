@@ -7,7 +7,7 @@
     <el-form-item label="房价水平(万/m²)" class="inline-1" prop="housprice">
       <el-input v-model="form.housprice" class="inline-4"></el-input>
     </el-form-item>
-     <el-form-item label="周边介绍" class="inline-1" prop="villagedes">
+     <el-form-item label="小区介绍" class="inline-1" prop="villagedes">
       <el-input v-model="form.villagedes"></el-input>
     </el-form-item>
     <el-form-item label="小区图册" class="inline-1">

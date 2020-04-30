@@ -108,12 +108,29 @@ export const depmethodList = [
 // 用地性质
 export const usetypeList = [
   { value: '1', label: 'M1普通工业用地' },
-  { value: '2', label: 'M0新型产业用地' }
+  { value: '2', label: 'M0新型产业用地' },
+  { value: '3', label: 'C商业服务用地地' },
+  { value: '4', label: 'R居住用地' },
+  { value: '5', label: 'GIC公共管理与服务设施用地' },
+  { value: '6', label: 'W物流仓储用地' },
+  { value: '7', label: 'U公共设施用地' },
+  { value: '8', label: 'G绿地与广场用地' },
+  { value: '9', label: 'S交通设施用地' },
+  { value: '10', label: 'E其他用地' }
 ]
 
 export const usetypeObj = {
   '1': 'M1普通工业用地',
-  '2': 'M0新型产业用地'
+  '2': 'M0新型产业用地',
+  '3': 'C商业服务用地地',
+  '4': 'R居住用地',
+  '5': 'GIC公共管理与服务设施用地',
+  '6': 'W物流仓储用地',
+  '7': 'U公共设施用地',
+  '8': 'G绿地与广场用地',
+  '9': 'S交通设施用地',
+  '10': 'E其他用地'
+
 }
 
 // 主导功能

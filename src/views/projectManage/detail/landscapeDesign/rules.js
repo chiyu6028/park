@@ -11,36 +11,36 @@ const validStringLen = len => {
 
 export default {
   designteam: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   gideasstrategy: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   generallayout: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   gfuncstructure: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   coredesign: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   entrydesign: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   pubspacedesign: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   roofdesign: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   sketchdesign: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   gardenadvantage: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   deficiencies: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ]
 }

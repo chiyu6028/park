@@ -17,7 +17,7 @@
         </el-col>
         <el-col :span="24" class="r-box r-box2">
           <div class="right-content">
-            <div><span class="cont-title">总平面图：</span><span>{{form.generallayout}}</span></div>
+            <div><span class="cont-title">景观总平面图：</span><span>{{form.generallayout}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.generallayoutimgArr" :key="idx">
               <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
@@ -28,7 +28,7 @@
         </el-col>
         <el-col :span="24" class="r-box r-box2">
           <div class="right-content">
-            <div><span class="cont-title">功能结构：</span><span>{{form.gfuncstructure}}</span></div>
+            <div><span class="cont-title">景观功能结构：</span><span>{{form.gfuncstructure}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.gfuncstructureimgArr" :key="idx">
               <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
@@ -43,7 +43,11 @@
     <div class="box-content">
       <div class="title">重要节点景观设计</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">核心景观设计：<div class="right-content">{{form.coredesign}}</div></el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">核心景观设计：</span><span>{{form.coredesign}}</span>
+          </div>
+        </el-col>
         <el-col :span="24" class="r-box r-box2">
           <div class="right-content">
             <div><span class="cont-title">园区入口设计：</span><span>{{form.entrydesign}}</span></div>
@@ -57,7 +61,7 @@
         </el-col>
         <el-col :span="24" class="r-box r-box2">
           <div class="right-content">
-            <div><span class="cont-title">公共平台/空间设计：</span><span>{{form.pubspacedesign}}</span></div>
+            <div><span class="cont-title">公共平台/连廊空间设计：</span><span>{{form.pubspacedesign}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.pubspacedesignimgArr" :key="idx">
               <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
@@ -68,7 +72,7 @@
         </el-col>
         <el-col :span="24" class="r-box r-box2">
           <div class="right-content">
-            <div><span class="cont-title">屋顶景观设计：</span><span>{{form.roofdesign}}</span></div>
+            <div><span class="cont-title">屋顶绿化设计：</span><span>{{form.roofdesign}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.roofdesignimgArr" :key="idx">
               <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
@@ -79,7 +83,7 @@
         </el-col>
         <el-col :span="24" class="r-box r-box2">
           <div class="right-content">
-            <div><span class="cont-title">外立面景观设计：</span><span>{{form.sketchdesign}}</span></div>
+            <div><span class="cont-title">景观小品设计：</span><span>{{form.sketchdesign}}</span></div>
           <ul class="img-list">
             <li v-for="(tag,idx) in form.sketchdesignimgArr" :key="idx">
               <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
@@ -94,17 +98,19 @@
     <div class="box-content">
       <div class="title">景观设计小结</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">景观设计团队：
-          <div class="right-content">{{form.designteam}}</div>
-        </el-col>
-        <el-col :span="24" class="r-box">景观设计亮点：
+        <el-col :span="24" class="r-box r-box2">
           <div class="right-content">
-            <span>{{form.gardenadvantage}}</span>
+          <span class="cont-title">景观设计团队：</span><span>{{form.designteam}}</span>
           </div>
         </el-col>
-        <el-col :span="24" class="r-box">景观设计不足：
+        <el-col :span="24" class="r-box r-box2">
           <div class="right-content">
-            <span>{{form.deficiencies}}</span>
+          <span class="cont-title">景观设计亮点：</span><span>{{form.gardenadvantage}}</span>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">景观设计不足：</span><span>{{form.deficiencies}}</span>
           </div>
         </el-col>
       </el-row>
@@ -240,11 +246,11 @@ export default {
     flex: 1;
     line-height: 24px;
      .cont-title{
-      font-weight: bold;
+      color:#999999;
     }
   }
   .img-list{
-    padding:20px 0 10px;
+    margin: 10px 15px 0px -10px;
     // display: flex;
     margin-left: -10px;
     &.tb{

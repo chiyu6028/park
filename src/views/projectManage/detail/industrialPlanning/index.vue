@@ -4,13 +4,41 @@
     <div class="box-content">
       <div class="title">产业规划</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">产业规划理念：<div class="right-content">{{form.planconcept}}</div></el-col>
-        <el-col :span="24" class="r-box r-box2">产业定位：<div class="right-content">{{form.planlocation}}</div></el-col>
-        <el-col :span="24" class="r-box r-box2">发展目标：<div class="right-content">{{form.depgoal}}</div></el-col>
-        <el-col :span="24" class="r-box r-box2">产业体系：<div class="right-content">{{form.industrysystem}}</div></el-col>
-        <el-col :span="24" class="r-box r-box2">业态组成：<div class="right-content">{{form.formatcomposition}}</div></el-col>
-        <el-col :span="24" class="r-box r-box2">产业发展路径：<div class="right-content">{{form.deppath}}</div></el-col>
-        <el-col :span="24" class="r-box r-box2">产业政策：<div class="right-content">{{form.deppolicy}}</div></el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">产业规划理念：</span><span>{{form.planconcept}}</span>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">产业定位：</span><span>{{form.planlocation}}</span>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">发展目标：</span><span>{{form.depgoal}}</span>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">产业体系：</span><span>{{form.industrysystem}}</span>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">业态组成：</span><span>{{form.formatcomposition}}</span>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">产业发展路径：</span><span>{{form.deppath}}</span>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">产业政策：</span><span>{{form.deppolicy}}</span>
+          </div>
+        </el-col>
         <el-col :span="24" class="r-box">
           <div class="right-content">
             <div><span class="cont-title">项目区位：</span><span>{{form.location}}</span></div>
@@ -26,17 +54,24 @@
     </div>
     <!-- 产业规划小结 -->
     <div class="box-content">
+
       <div class="title">产业规划小结</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box">产业规划团队：<div class="right-content">{{form.depteam}}</div></el-col>
-        <el-col :span="24" class="r-box">产业规划亮点：<div class="right-content">
-            <span>{{form.planadvantage}}</span>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">产业规划团队：</span><span>{{form.depteam}}</span>
           </div>
-          </el-col>
-          <el-col :span="24" class="r-box">产业规划不足：<div class="right-content">
-            <span>{{form.deficiencies}}</span>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">产业规划亮点：</span><span>{{form.planadvantage}}</span>
           </div>
-          </el-col>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">产业规划不足：</span><span>{{form.deficiencies}}</span>
+          </div>
+        </el-col>
       </el-row>
     </div>
   </div>
@@ -147,8 +182,8 @@ export default {
 }
 .r-box{
   //display: flex;
-  border-bottom: 1px solid #ECF1F2;
-  padding: 20px 0 10px;
+  //border-bottom: 1px solid #ECF1F2;
+      padding: 10px 0 0px;
   &.r-box2{
     border-bottom:none;
     padding-top: 10px;
@@ -157,11 +192,11 @@ export default {
     flex: 1;
     line-height: 24px;
     .cont-title{
-      font-weight: bold;
+      color:#999999;
     }
   }
   .img-list{
-    padding:20px 0 10px;
+    margin: 10px 15px 0px -10px;
     // display: flex;
     margin-left: -10px;
     &.tb{

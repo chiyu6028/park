@@ -11,36 +11,36 @@ const validStringLen = len => {
 
 export default {
   planconcept: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   planlocation: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   depgoal: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   industrysystem: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   formatcomposition: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   deppath: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   deppolicy: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   depteam: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   location: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   planadvantage: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   deficiencies: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ]
 }

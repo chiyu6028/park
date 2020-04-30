@@ -1,44 +1,54 @@
 <template>
   <div>
-    <el-upload
-      class="park-upload"
-      :action="actionUrl"
-      list-type="picture-card"
-      :auto-upload="true"
-      :on-success="uploadSuccess"
-      :before-remove="beforeRemove"
-      :before-upload="beforeUpload"
-      :limit="15"
-      :on-exceed="handleExceed"
-      :file-list="fileList">
-        <i slot="default" class="el-icon-plus"></i>
-        <div slot="file" slot-scope="{file}" class="park-upload-block">
-          <div class="el-upload--picture-card">
-            <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
+      <el-upload
+        class="park-upload"
+        :multiple="true"
+        :action="getActionUrl()"
+        list-type="picture-card"
+        :auto-upload="true"
+        :on-success="uploadSuccess"
+        :before-remove="beforeRemove"
+        :before-upload="beforeUpload"
+        :limit="15"
+        :on-exceed="handleExceed"
+        :file-list="fileList">
+
+          <i slot="default" class="el-icon-plus"></i>
+          <div slot="file" slot-scope="{file}" class="park-upload-block">
+            <div class="el-upload--picture-card">
+              <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
+            </div>
+            <span class="el-upload-list__item-actions">
+              <span
+                class="el-upload-list__item-preview"
+                @click="handlePictureCardPreview(file)"
+              >
+                <i class="el-icon-zoom-in"></i>
+              </span>
+              <span
+                v-if="!disabled"
+                class="el-upload-list__item-delete"
+                @click="handleRemove(file)"
+              >
+                <i class="el-icon-delete"></i>
+              </span>
+            </span>
+            <el-input class="attid"
+              maxlength ="2"
+              type="number"
+              @change="changeOrder(file)"
+              v-model="describle[file.uid + 'px']"
+            >
+            </el-input>
+            <el-input
+              v-model="describle[file.uid]"
+              :disabled="!describle[file.uid + 'disabled']"
+              :placeholder="describle[file.uid + 'placeholder'] || '等待上传成功'"
+              @input="limitLength(file)"
+              @change="changeDesc(file)"></el-input>
           </div>
-          <span class="el-upload-list__item-actions">
-            <span
-              class="el-upload-list__item-preview"
-              @click="handlePictureCardPreview(file)"
-            >
-              <i class="el-icon-zoom-in"></i>
-            </span>
-            <span
-              v-if="!disabled"
-              class="el-upload-list__item-delete"
-              @click="handleRemove(file)"
-            >
-              <i class="el-icon-delete"></i>
-            </span>
-          </span>
-          <el-input
-            v-model="describle[file.uid]"
-            :disabled="!describle[file.uid + 'disabled']"
-            :placeholder="describle[file.uid + 'placeholder'] || '等待上传成功'"
-            @input="limitLength(file)"
-            @change="changeDesc(file)"></el-input>
-        </div>
-    </el-upload>
+
+      </el-upload>
     <el-dialog :visible.sync="dialogVisible">
       <img width="100%" :src="dialogImageUrl" alt="">
     </el-dialog>
@@ -67,7 +77,8 @@ export default {
   },
   data () {
     return {
-      actionUrl: URL['UPLOAD'],
+      token: '',
+      actionUrl: URL['UPLOAD'] + '?token=' + this.token,
       dialogImageUrl: '',
       dialogVisible: false,
       disabled: false,
@@ -84,14 +95,18 @@ export default {
   methods: {
     initFileList () {
       let fileIds = []; let fileList = []; let describle = {}
+      console.log(this.value)
       _.each(this.value || [], v => {
         fileIds.push(v.attid)
         fileList.push({
           id: v.attid,
           uid: v.attid,
+          px: v.px ? v.px : '0',
           name: v.attrealname,
           url: `/downloadFile?filePath=${window.encodeURIComponent(v.attpath)}`
         })
+
+        describle[v.attid + 'px'] = v.px
         describle[v.attid] = v.attdis
         describle[v.attid + 'disabled'] = true
         describle[v.attid + 'placeholder'] = '请输入'
@@ -113,7 +128,7 @@ export default {
       if (!after) {
         this.$message.error('无法获取文件名!')
       }
-      const reg = this.reg || ['png','jpeg','jpg', 'gif', 'tiff']
+      const reg = this.reg || ['png', 'jpeg', 'jpg', 'gif', 'tiff']
       const isJPG = reg.includes(after)
       if (!isJPG) {
         this.$message.error(this.matchError ? this.matchError : '上传图片只能是PNG、JPG、GIF或TIFF格式!')
@@ -136,19 +151,35 @@ export default {
     },
     uploadSuccess (response, file, fileList) {
       if (response.code === 1) {
-        let data = response.data || {}
-        if (data.fileid) { // filepath
-          file.id = data.fileid
-          this.fileList.push(file)
-          this.fileIds.push(data.fileid)
-          this.$emit('setFileList', this.ids)
-          this.describle[file.uid + 'disabled'] = true
-          this.describle[file.uid + 'placeholder'] = '请输入'
+        this.$axios.post(URL['UPDATE_FILEUID'], {
+          token: this.token,
+          uid: file.uid,
+          attRealName: file.name
+        }, { $cancelToken: true })
+        if (fileList.length > 0) {
+          if (file.uid === fileList[fileList.length - 1].uid) {
+            this.$axios.post(URL['SELECT_FILETOKEN'], { token: this.token }).then(resp => {
+              let data = resp.data && resp.data.data ? resp.data.data : []
+              for (let i = 0; i < data.length; i++) {
+                let dataItem = data[i]
+                for (let j = 0; j < fileList.length; j++) {
+                  let item = fileList[j]
+                  if (dataItem.uid === (item.uid + '')) {
+                    this.fileList.push(item)
+                    this.fileIds.push(dataItem.attid)
+                    this.$emit('setFileList', this.ids)
+                    this.describle[item.uid + 'disabled'] = true
+                    this.describle[item.uid + 'placeholder'] = '请输入'
+                  }
+                }
+              }
+            })
+          }
         }
       }
     },
     limitLength1 (file) {
-      const limit = 1000
+      const limit = 5000
       let string = this.describle[file.uid]
       let len = T.getStringLen(string)
       // 验证长度
@@ -175,6 +206,19 @@ export default {
         this.$message.warning(`描述长度不能超过${limit}`)
       }
     },
+    changeOrder (file) {
+      if (file.response && file.response.data && file.response.data.fileid) {
+        this.$axios.post(URL['updateAttPxByAttid'], {
+          attid: file.response.data.fileid,
+          px: this.describle[file.uid]
+        }, { $cancelToken: true })
+      } else if (file.id) {
+        this.$axios.post(URL['updateAttPxByAttid'], {
+          attid: file.id,
+          px: this.describle[file.uid + 'px']
+        }, { $cancelToken: true })
+      }
+    },
     changeDesc (file) {
       if (file.response && file.response.data && file.response.data.fileid) {
         this.$axios.post(URL['UPDATE_FILEDES'], {
@@ -187,6 +231,11 @@ export default {
           filedes: this.describle[file.uid]
         }, { $cancelToken: true })
       }
+    },
+    getActionUrl () {
+      this.token = Date.now()
+      this.actionUrl = URL['UPLOAD'] + '?token=' + this.token
+      return this.actionUrl
     }
   },
   watch: {
@@ -197,13 +246,22 @@ export default {
 }
 </script>
 <style>
-  .el-upload--picture-card img{
-    max-width: 240px;
-    max-height: 160px;
+  .attid{
+    width: 14% !important;
+    position: absolute  !important;
+    left: 8px;
+    top: 113px;
+  }
+  .attid input{
+    padding: 0 8px !important;
+    height: 30px !important;
+    text-align: center;
+    maxlength:2;
+  }
+  .attid input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
+    -webkit-appearance:none;
   }
   .el-upload--picture-card img{
-    width: auto !important;
-    height: auto !important;
     border-radius: 0 !important;
     border: 0 !important;
   }

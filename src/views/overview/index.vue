@@ -2,8 +2,8 @@
 <div class="park-outter">
   <div class="yqbg">
     <div class="btn-group">
-      <el-button type="primary" v-if="isvisible"  round @click="dialogTableVisible = true">多维对比</el-button>
-      <el-button type="primary" v-if="!isvisible"  round @click="chooseDimen">第二步：选择维度</el-button>
+      <el-button type="primary" v-if="isvisible"  round @click="dialogTableVisible = true">园区指标对比</el-button>
+      <el-button type="primary" v-if="!isvisible"  round @click="chooseDimen">重新对比</el-button>
       <el-button type="primary" v-if="!isvisible"  round @click="exportResult">结果导出</el-button>
       <el-button type="info"  v-if="!isvisible" round @click="closeCompare">关闭对比</el-button>
     </div>
@@ -124,7 +124,7 @@
     <div class="content-top" >
       <div class="park-amount">
         <span class="text desc">园区总量<a>（个）</a></span>
-        <span class="text amout" style="font-size: 72px;">{{parkTotal}}</span>
+        <span class="text amout" style="font-size: 72px;margin-top: 30px;">{{parkTotal}}</span>
       </div>
     </div>
     <ul class="item-list" :style="rightArea">
@@ -138,7 +138,7 @@
           <div class="content-center" style="height:330px">
             <div class="area-amount">
               <!-- <span class="text desc">用地面积</span> -->
-              <span class="text amout">{{item.total}}</span>
+              <span class="text amout">{{item.total}}<i>（总计）</i></span>
             </div>
             <div>
             <div class="area-chart" :id="item.echartsId" :style="{width: '320px', height: item.height + 'px'}"></div>
@@ -159,26 +159,17 @@
             <el-row class="title">第一步：选择项目</el-row>
             <el-row class="tip"><span style="color: red;">*</span>&nbsp;最多可选12个项目</el-row>
             <el-row style="width: 70%;margin-top: 20px;">
-               <el-cascader  v-model="form.project" :options="projectList" :show-all-levels="false"  ref="project" :props="{ multiple: true,checkStrictly: true }" clearable filterable></el-cascader>
+               <el-cascader  v-model="form.project" :options="projectList" :show-all-levels="false" ref="project" :props="{ multiple: true,checkStrictly: true,expandTrigger: 'hover',}" clearable filterable popper-class="popper01"></el-cascader>
             </el-row>
             <el-row style="text-align: center;margin-right: 100px;margin-top: 80px;">
               <img src="../../assets/images/project_left.png" style="width: 268px;height: 271px;"  alt="" srcset="">
             </el-row>
           </div>
           <div class="item right">
-            <el-row class="title">第二步：选择维度</el-row>
-            <el-row class="tip"><span style="color: red;">*</span>&nbsp;最多可选10个维度</el-row>
+            <el-row class="title">第二步：选择指标</el-row>
+            <el-row class="tip"><span style="color: red;">*</span>&nbsp;最多可选10个指标</el-row>
              <el-row style="width: 70%;margin-top: 20px;">
-               <div style="max-height: 300px;overflow: auto;">
-                 <el-cascader v-model="form.dimensions" :options="dimensionList" :show-all-levels="false" ref="dimension" class="myCascder" clearable>
-                   <template slot-scope="{ node, data }">
-                    <span v-if="!node.isLeaf">{{ data.label }}</span>
-                    <span v-else @click.stop="">
-                      <el-checkbox v-model="data.checked" @change="value => changeCascaderValue(value, data, node)">{{ data.label }}</el-checkbox>
-                    </span>
-                  </template>
-                 </el-cascader>
-               </div>
+				<el-cascader  v-model="form.dimensions" :options="dimensionList" :show-all-levels="false" ref="dimension" :props="{ multiple: true,checkStrictly: true,expandTrigger: 'hover',}" clearable filterable popper-class="popper02"></el-cascader>
             </el-row>
             <el-row style="text-align: center;margin-right: 100px;margin-top: 80px;">
               <img src="../../assets/images/project_right.png" style="width: 268px;height: 271px;" alt="" srcset="">
@@ -193,11 +184,11 @@
         </div>
       </el-card>
     </div>
-    <div class="compareDiv" v-if="!isvisible">
+    <div class="compareDiv" v-if="!isvisible" :style="'height:'+compareArea+'px;'">
       <el-card class="box-card">
         <div class="compare-content">
-          <el-table :data="tableData" style="width: 100%" border>
-            <el-table-column  prop="fieldName" label="对比维度" fixed width="240px"></el-table-column>
+          <el-table :data="tableData" style="width: 100%;" :height="compareArea" border>
+            <el-table-column  prop="fieldName" label="对比指标" fixed width="240px"></el-table-column>
             <el-table-column v-for="(item, index) in tableHead" :prop="item.filed"  min-width="200px"  :label="item.label" max-width="120px" :key="index"></el-table-column>
           </el-table>
         </div>
@@ -225,13 +216,14 @@ export default {
   name: 'Overview',
   data () {
     return {
+      compareArea: '',
       dimensionsval: [],
       dimensionslabel: [],
       widthRate: '',
       heightRate: '',
-	  topHeight: '',
-	  rightArea:{
-		  height:''
+	  // topHeight: '',
+	  rightArea: {
+		  height: ''
 	  },
       dotxy01: {
         top: '',
@@ -280,7 +272,7 @@ export default {
       itemList: [
         {
           content1: '用地面积',
-		  content2: '（m2）',
+		  content2: '（ha）',
           id: 1,
           echartsId: 'useArea',
           total: 0,
@@ -288,7 +280,7 @@ export default {
         },
         {
           content1: '总建筑面积',
-		  content2: '（m2）',
+		  content2: '（m²）',
           id: 2,
           echartsId: 'totalBuild',
           total: 0,
@@ -347,33 +339,38 @@ export default {
   created () {
     this.getDimensionList()
     this.getProjectList()
-    window.addEventListener('resize', this.getHeight)
+    window.addEventListener('onresize', this.getHeight)
     this.getHeight()
     // window.addEventListener('topmap', this.changeXy)
     // this.changeXy()
   },
   mounted () {
     this.getAreaChart()
+    this.topload()
+    this.changeXy()
     var that = this
-    // this.changeXy()
-    that.topload()
-    that.changeXy()
+    let bodyHeight = document.documentElement.clientHeight || document.body.clientHeight
+    this.compareArea = bodyHeight * 0.8 - 50
+    // console.log(this.compareArea + '<-- 对比框高度01')
     window.onresize = function () { // 定义窗口大小变更通知事件
       that.topload()
       that.changeXy()
+      let bodyHeight = document.documentElement.clientHeight || document.body.clientHeight
+      this.compareArea = bodyHeight * 0.8 - 50
+      // console.log(this.compareArea + '<-- 对比框高度02')
     }
   },
   destroyed () {
-    window.removeEventListener('resize', this.getHeight)
+    window.removeEventListener('onresize', this.getHeight)
   },
   methods: {
-	detailProject (row) {
+    detailProject (row) {
 	  this.$router.push({ path: `projectManage/detail/${row}`, query: { t: Date.now() } })
-	},
+    },
     topload () {
       // let imgWidth = this.$refs['imgSize'].offsetWidth;
       let topWidth = this.$refs.topmap.clientWidth
-      this.topHeight = this.$refs.topmap.clientHeight;
+      // this.topHeight = this.$refs.topmap.clientHeight
       this.widthRate = topWidth / 1920
       // this.heightRate = topHeight / 1080;
       // this.widthRate = imgWidth / 1920;
@@ -419,14 +416,22 @@ export default {
         if (item.parkname && item.fieldvalue) {
           let obj = {}
           obj.name = item.parkname
-          obj.value = parseFloat(item.fieldvalue).toFixed(2)
+          obj.value = item.fieldvalue
+
           top10CityList.push(item.parkname)
-          top10CityData.push(parseFloat(item.fieldvalue).toFixed(2))
+          if (eid === 'complateNum') {
+            top10CityData.push(parseFloat(obj.value))
+          } else {
+            top10CityData.push(parseFloat(obj.value).toFixed(2))
+          }
           dataObj.push(obj)
         }
       })
       // this.itemList[i_index].height = dataObj.length *50
       this.itemList[i_index].total = _data.totalvalue
+      this.itemList[0].total = parseFloat(this.itemList[0].total).toFixed(2)
+      this.itemList[1].total = parseFloat(this.itemList[1].total).toFixed(2)
+      this.itemList[3].total = parseFloat(this.itemList[3].total).toFixed(2)
       let option = {
         title: {
           show: false
@@ -630,13 +635,20 @@ export default {
 	  	  this.dotxy10.left = 340 * this.widthRate + 'px'
 	  	  this.dotxy11.top = 770 * this.widthRate + 'px'
 	  	  this.dotxy11.left = 280 * this.widthRate + 'px'
-		  this.rightArea.height = (this.topHeight * 0.71 - 100 ) + 'px'
-		  //console.log(this.rightArea.height+'//right height')
+      setTimeout(() => {
+        let topHeight = document.getElementsByClassName('topmap')[0].clientHeight
+        this.rightArea.height = (topHeight - 200) + 'px'
+        // this.compareArea = bodyHeight * 0.8 - 50
+        // console.log(this.bodyHeight+'的bodyheight')
+        // console.log(this.compareArea+'在不在')
+      }, 1000)
+
+		 // console.log(this.rightArea.height+'//right height')
     },
     exportResult () {
       require.ensure([], () => {
         const { export_json_to_excel } = require('../../vender/Export2Excel.js')
-        let tHeader = ['维度']
+        let tHeader = ['指标']
         let filterVal = ['fieldName']
         let tablePro = this.tableHead
         for (let i = 0; i < tablePro.length; i++) {
@@ -675,23 +687,31 @@ export default {
     selectContrastInfoFun () {
       this.tableHead = []
       if (!this.form.project.length) {
-        this.$alert('请选择项目', '标题', {
+        this.$alert('请选择项目', '项目未选择', {
           confirmButtonText: '确定',
           callback: action => {
           }
         })
         return
       }
-      if (this.dimensionsval.length == 0) {
-        this.$alert('请选择维度', '标题', {
+      if (this.form.dimensions.length == 0) {
+        this.$alert('请选择指标', '指标未选择', {
           confirmButtonText: '确定',
           callback: action => {
           }
         })
         return
       }
-      if (this.dimensionsval.length > 10) {
-        this.$alert('维度最多只能选择10个', '标题名称', {
+      if (this.form.dimensions.length > 10) {
+        this.$alert('指标最多只能选择10个', '指标选择太多', {
+          confirmButtonText: '确定',
+          callback: action => {
+          }
+        })
+        return
+      }
+      if (this.form.project.length < 2) {
+        this.$alert('最少必须选择2个项目进行对比', '项目数量太少', {
           confirmButtonText: '确定',
           callback: action => {
           }
@@ -699,7 +719,7 @@ export default {
         return
       }
       if (this.form.project.length > 12) {
-        this.$alert('项目最多只能选择12个', '标题名称', {
+        this.$alert('项目最多只能选择12个', '项目数量大多', {
           confirmButtonText: '确定',
           callback: action => {
           }
@@ -712,9 +732,9 @@ export default {
       let fieldids = ''
       let projectArr = []
       let project = ''
-      // for (let i = 0; i < this.form.dimensions.length; i++) {
-      //   dimen.push(this.form.dimensions[i][2])
-      // }
+      for (let i = 0; i < this.form.dimensions.length; i++) {
+        dimen.push(this.form.dimensions[i][2])
+      }
       for (let i = 0; i < this.form.project.length; i++) {
         projectArr.push(this.form.project[i][1])
       }
@@ -731,7 +751,7 @@ export default {
             let headObj = resData[0]
             for (let item in headObj) {
               if (headObj.hasOwnProperty(item)) {
-                if (headObj[item] === '对比维度') {
+                if (headObj[item] === '对比指标') {
                   // this.tableHead.unshift({ filed: item, label: headObj[item] })
                 } else {
                   this.tableHead.push({ filed: item, label: headObj[item] })
@@ -824,11 +844,20 @@ export default {
 }
 </script>
 <style  lang="scss">
-// .el-popper>.el-cascader-panel>.el-scrollbar>.el-cascader-menu__wrap>ul>li>label{
-// 	display:none;
-// }
-.el-popper .el-icon-check{display:none;}
-.el-popper .el-cascader-node__label{padding-left:0;}
+.compareDiv .el-card .el-card__body .compare-content, .el-table{width:99.9% !important;}
+.compareDiv .el-table__body, .el-table__footer, .el-table__header{font-size:14px !important;}
+.el-table__row td:nth-child(1){font-weight:bold;}
+.yqbg .el-button span{font-size:14px !important;}
+.el-popper>.el-cascader-panel>.el-scrollbar:nth-child(1) label,.popper02 .el-cascader-panel>.el-scrollbar:nth-child(2) label{
+display:none;
+}
+.popper01>.el-cascader-panel>.el-scrollbar:nth-child(2) label,.popper02 .el-cascader-panel>.el-scrollbar:nth-child(3) label{
+width: 140px;
+}
+.popper01>.el-cascader-panel>.el-scrollbar:nth-child(2) li>span,.popper02 .el-cascader-panel>.el-scrollbar:nth-child(3) li>span{
+margin-left: -128px;
+}
+//.el-popper .el-icon-check{display:none;}
 .area-chart{margin-top:-35px;}
 .item-list{
   text-align:left;
@@ -955,8 +984,8 @@ export default {
 .right-content {
   // border: 1px solid white;
   .content-top{
-    height: 15%;
-	padding: 12% 0 2% 36px;
+    height: 105px;
+    padding: 38px 0 20px 36px;
 	background: rgba(19, 125, 240, 0.2);
     // border-bottom: 1px solid white;
     .park-amount {
@@ -1005,6 +1034,12 @@ export default {
         display: flex;
         font-size: 44px;
 		margin: 10px 0 30px;
+      i{
+        font-size: 14px;
+        margin-top: 10px;
+        font-style:normal;
+        font-weight:normal;
+      }
       }
     }
   }
@@ -1029,19 +1064,19 @@ export default {
 }
 .compareDiv {
   position: fixed;
-  top: 0;
+  top: 20vh;
   right: 0;
   bottom: 0;
   left: 0;
   overflow: auto;
   margin: 0;
   z-index: 2001;
-  margin-top: 20vh;
+  //margin-top: 20vh;
   width: 100%;
   height: 70vh;
   text-align: center;
   .box-card {
-    width: 78%;
+    width: 77%;
     height: 100%;
     margin: 0 auto;
     position: relative;

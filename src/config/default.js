@@ -15,7 +15,7 @@ export const systemManageAside = [
 ]
 
 export const addProjectTab = [
-  { name: '1', label: '园区概览', componentId: 'parkview' },
+  { name: '1', label: '项目概览', componentId: 'parkview' },
   { name: '2', label: '投资运营', componentId: 'investment' },
   { name: '3', label: '产业规划', componentId: 'industrialPlanning' },
   { name: '4', label: '规划设计', componentId: 'parkPlanDesign' },

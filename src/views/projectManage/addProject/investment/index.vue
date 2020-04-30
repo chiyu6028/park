@@ -4,7 +4,7 @@
       <TitleBlock title="园区效益"></TitleBlock>
     </el-form-item>
     <el-form-item label="主导产业" class="inline-1 form-leadindustry">
-      <el-checkbox-group v-model="form.leadindustryArray">
+      <el-checkbox-group v-model="form.leadindustryArray" >
         <el-checkbox v-for="item in leadindustryList" :key="item.value" :label="item.value">{{ item.label }}</el-checkbox>
       </el-checkbox-group>
     </el-form-item>
@@ -16,10 +16,10 @@
     <el-form-item prop="parkvalue" label="园区产值（亿元）" class="inline-7">
       <el-input v-model="form.parkvalue"></el-input>
     </el-form-item>
-    <el-form-item prop="avgvalue" label="平均产值（亿元）" class="inline-7">
+    <el-form-item prop="avgvalue" label="平均产值（亿元/k㎡）" class="inline-7">
       <el-input v-model="form.avgvalue"></el-input>
     </el-form-item>
-    <el-form-item prop="employmentpeople" label="就业人口（万）" class="inline-7">
+    <el-form-item prop="employmentpeople" label="就业人口（万人）" class="inline-7">
       <el-input v-model="form.employmentpeople"></el-input>
     </el-form-item>
     <el-form-item prop="devotetax" label="贡献税收（亿元）" class="inline-7">
@@ -64,18 +64,32 @@
     <el-form-item prop="rdorg" label="科研/研发机构（家）" class="inline-7">
       <el-input v-model="form.rdorg"></el-input>
     </el-form-item>
-    <el-form-item label="典型企业" class="inline-1">
+    <el-form-item prop="rdorg" label="更新时间" class="inline-7">
+    <el-date-picker
+      v-model="form.updatedate"
+      type="date"
+      placeholder="选择日期"
+      format="yyyy-MM-dd"
+      value-format="yyyyMMdd">
+    </el-date-picker>
+    </el-form-item>
+    <el-form-item prop="typicalenterprises_t" label="典型企业" class="inline-1">
+      <el-input type="textarea" autosize v-model="form.typicalenterprises_t"></el-input>
+    </el-form-item>
+    <el-form-item class="inline-1">
       <UploadDescBottom :value="form.typicalenterprisesArr" @setFileList="value => setFileList('typicalenterprises', value)"></UploadDescBottom>
     </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item label="典型科研/研发机构" class="inline-1">
+    <el-form-item prop="typicalrdorg" label="典型科研/研发机构" class="inline-1">
+      <el-input type="textarea" autosize v-model="form.typicalrdorg"></el-input>
+    </el-form-item>
+    <el-form-item class="inline-1">
       <UploadDescBottom :value="form.typicalrdorgimgArr" @setFileList="value => setFileList('typicalrdorgimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item class="inline-1">
       <TitleBlock title="投资开发运营招商"></TitleBlock>
     </el-form-item>
-    <el-form-item label="投资主体" class="inline-7">
+    <el-form-item label="投资主体属性" class="inline-7">
       <el-select v-model="form.devsubject" placeholder="请选择" :clearable="true">
         <el-option v-for="item in devSubjectList" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>
@@ -86,21 +100,12 @@
     <el-form-item prop="landmethod" label="土地获得方式" class="inline-7">
       <el-input v-model="form.landmethod"></el-input>
     </el-form-item>
-    <el-form-item prop="investorattr" label="投资主体属性" class="inline-7">
+    <el-form-item prop="investorattr" label="投资主体" class="inline-7">
       <el-input v-model="form.investorattr"></el-input>
     </el-form-item>
-    <el-form-item label="开发方式" class="inline-7">
-      <el-select v-model="form.depmethod" placeholder="请选择" :clearable="true">
-        <el-option v-for="item in depmethodList" :key="item.value" :label="item.label" :value="item.value"></el-option>
-      </el-select>
-    </el-form-item>
+    
     <el-form-item prop="investmentmode" label="投资规模(亿元)" class="inline-7">
       <el-input v-model="form.investmentmode"></el-input>
-    </el-form-item>
-    <el-form-item label="招商方式" class="inline-7">
-      <el-select v-model="form.investmode" placeholder="请选择" :clearable="true">
-        <el-option v-for="item in investModeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
-      </el-select>
     </el-form-item>
     <el-form-item prop="investteam" label="招商团队" class="inline-7">
       <el-input v-model="form.investteam"></el-input>
@@ -119,10 +124,18 @@
     <el-form-item prop="operteam" label="运营团队" class="inline-7">
       <el-input v-model="form.operteam"></el-input>
     </el-form-item>
+    <el-form-item prop="depmethod" label="开发方式" class="inline-1">
+      <el-input type="textarea" autosize v-model="form.depmethod"></el-input>
+      </el-select>
+    </el-form-item>
+    <el-form-item prop="investmode" label="招商方式" class="inline-1">
+        <el-input type="textarea" autosize v-model="form.investmode"></el-input>
+      </el-select>
+    </el-form-item>
     <el-form-item prop="favouredpolicy" label="优惠政策" class="inline-1">
       <el-input type="textarea" autosize v-model="form.favouredpolicy"></el-input>
     </el-form-item>
-    <el-form-item prop="witplatform" label="智慧园区平台" class="inline-1">
+    <el-form-item prop="witplatform" label="智慧园区" class="inline-1">
       <el-input type="textarea" autosize v-model="form.witplatform"></el-input>
     </el-form-item>
     <el-form-item prop="parkservice" label="园区服务" class="inline-1">
@@ -134,7 +147,10 @@
     <el-form-item prop="operprofit" label="运营收益" class="inline-1">
       <el-input type="textarea" autosize v-model="form.operprofit"></el-input>
     </el-form-item>
-    <el-form-item label="园区活动" class="inline-1">
+    <el-form-item prop="parkactivity" label="园区活动" class="inline-1">
+      <el-input type="textarea" autosize v-model="form.parkactivity"></el-input>
+    </el-form-item>
+    <el-form-item class="inline-1">
       <UploadDescBottom :value="form.parkactivityimgArr" @setFileList="value => setFileList('parkactivityimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
@@ -147,30 +163,24 @@
     <el-form-item class="inline-1">
       <UploadDescBottom :value="form.businessfacilitiesimgArr" @setFileList="value => setFileList('businessfacilitiesimg', value)"></UploadDescBottom>
     </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="accommodations" label="居住设施" class="inline-1">
       <el-input type="textarea" autosize v-model="form.accommodations"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <UploadDescBottom :value="form.accommodationsimgArr" @setFileList="value => setFileList('accommodationsimg', value)"></UploadDescBottom>
     </el-form-item>
-    <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="conferencehall" label="会议展厅" class="inline-1">
       <el-input type="textarea" autosize v-model="form.conferencehall"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <UploadDescBottom :value="form.conferencehallimgArr" @setFileList="value => setFileList('conferencehallimg', value)"></UploadDescBottom>
     </el-form-item>
-
-    <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="parkfacility" label="停车设施" class="inline-1">
       <el-input type="textarea" autosize v-model="form.parkfacility"></el-input>
     </el-form-item>
     <el-form-item class="inline-1">
       <UploadDescBottom :value="form.parkfacilityimgArr" @setFileList="value => setFileList('parkfacilityimg', value)"></UploadDescBottom>
     </el-form-item>
-
-    <el-form-item class="like-hr inline-1"></el-form-item>
     <el-form-item prop="publicfacilities" label="公共服务设施" class="inline-1">
       <el-input type="textarea" autosize v-model="form.publicfacilities"></el-input>
     </el-form-item>
@@ -181,10 +191,10 @@
     <el-form-item class="inline-1">
       <TitleBlock title="投资运营小结 "></TitleBlock>
     </el-form-item>
-    <el-form-item prop="investadvantage" label="项目亮点" class="inline-1">
+    <el-form-item prop="investadvantage" label="投资运营亮点" class="inline-1">
       <el-input type="textarea" autosize v-model="form.investadvantage"></el-input>
     </el-form-item>
-    <el-form-item prop="deficiencies" label="面临困境" class="inline-1">
+    <el-form-item prop="deficiencies" label="投资运营困境" class="inline-1">
       <el-input type="textarea" autosize v-model="form.deficiencies"></el-input>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
@@ -219,6 +229,7 @@ export default {
       leadfuncList: _D.leadfuncList,
       rules,
       form: {
+        updatedate:'',
         leadindustryArray: [],
         leadindustry: '',
         leadfunc: '',
@@ -239,8 +250,10 @@ export default {
         enterprisenum: '',
         nhenterprisenum: '',
         rdorg: '',
+        typicalenterprises_t:'',
         typicalenterprises: '',
         typicalenterprisesArr: [],
+        typicalrdorg:'',
         typicalrdorgimg: '',
         typicalrdorgimgArr: [],
         investors: '',
@@ -260,6 +273,7 @@ export default {
         parkservice: '',
         opercost: '',
         operprofit: '',
+        parkactivity:'',
         parkactivityimg: '',
         parkactivityimgArr: [],
         businessfacilities: '',
@@ -339,5 +353,8 @@ export default {
 <style lang="scss" scoped>
 .form-leadindustry .el-checkbox{
   width: calc(10%)
+}
+.el-checkbox__label{
+  font-size: 12px !important;
 }
 </style>

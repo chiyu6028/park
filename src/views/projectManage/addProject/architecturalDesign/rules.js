@@ -60,46 +60,46 @@ export default {
     { validator: validInt, trigger: 'blur' }
   ],
   buildteam: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   ideasstrategy: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   neardes: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   designsketch: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   generallayout: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   funclayout: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   streamlineanalysis: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   curtain: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   structure: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   electromechanical: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   hvac: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   drainage: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   designadvantage: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   deficiencies: [
-    { validator: validStringLen(1000), trigger: 'blur' }
+    { validator: validStringLen(5000), trigger: 'blur' }
   ],
   devarea: [
     { validator: validNumber, trigger: 'blur' }

@@ -1,6 +1,27 @@
 html,
 body {
-  font-family: 'Microsoft YaHei';
+  font-family: "Microsoft YaHei","Open Sans",Arial,"Hiragino Sans GB",STHeiti,"WenQuanYi Micro Hei",SimSun,sans-serif !important;
+}
+.el-table .cell .caret-wrapper{
+  display: none !important;
+}
+.el-range-input{
+  font-size: 12px !important;
+}
+.el-date-editor.el-input, .el-date-editor.el-input__inner{
+  width:auto !important;
+}
+.objlist.el-table th>.cell{
+  font-size: 12px !important;
+}
+.objlist .el-switch__label span{
+  font-size: 12px;
+}
+.v-modal{
+	display:none;
+}
+.el-checkbox-group .el-checkbox .el-checkbox__label{
+  font-size:12px;
 }
 .el-table__header .is-leaf{
 	background-color: #dbdbdc !important;
@@ -65,13 +86,22 @@ body {
     border-right-width: 0px !important;
   }
 }
-
-.el-button.el-button--primary {
-  background-color: #1580F8 !important;
-
-  &:active {
-    background-color: #0765cf !important;
-  }
+.right-content span:nth-child(2){
+  line-height:28px;
+  white-space: pre-wrap;
+}
+.box-content{
+      border-bottom: 1px solid #ECF1F2;
+    padding-bottom: 20px;
+}
+.box-content .title{
+  margin-bottom: 5px;
+}
+.r-box .list-phone{
+  margin: 0px 15px 0px -10px;
+}
+.cont-title{
+  color:#999999;
 }
 
 .el-input__inner{
@@ -309,10 +339,10 @@ body {
       line-height: 40px;
 
       &.is-active {
-        border-radius: 4px 4px 0;
+        border-radius: 4px 4px 0 0;
         padding-bottom: 0;
-        height: 55px;
-        line-height: 55px;
+        height: 48px;
+        line-height: 41px;
         background-color: #fff;
         color: #000;
       }
@@ -339,7 +369,7 @@ body {
     margin-bottom: 18px;
 
     &.inline-7 {
-      width: calc(12%);
+      width: calc(13%);
     }
 
     .inline-4 {
@@ -421,7 +451,12 @@ body {
     }
   }
 }
-
+.img-list li .el-image img,.park-upload ul li .el-upload--picture-card img{
+  object-fit: cover;
+}
+.img-list {
+  margin-top: -15px;
+}
 .park-upload ul.el-upload-list li {
   height: 198px;
   border-width: 0;

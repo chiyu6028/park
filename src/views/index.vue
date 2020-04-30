@@ -38,8 +38,5 @@ export default {
 <style lang="scss" scoped>
 .park-main {
   height: 100%;
-  width: 100%;
-  //max-width: 1920px;
-  //margin: 0 auto;
 }
 </style>

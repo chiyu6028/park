@@ -55,9 +55,9 @@
       <UploadDescBottom :value="form.realphotosimgArr" @setFileList="value => setFileList('realphotosimg', value)"></UploadDescBottom>
     </el-form-item>
     <el-form-item class="like-hr inline-1"></el-form-item>
-    <el-form-item label="多媒体宣传片" class="inline-1">
-      <!-- <UploadButton :value="form.multimediapromoArr" @setFileList="value => setFileList('multimediapromo', value)"></UploadButton> -->
-      <uploader ref="uploader" :options="options" :autoStart="false" @file-added="onFileAdded" @file-success="onFileSuccess" @file-progress="onFileProgress" @file-error="onFileError" class="uploader-app">
+    <el-form-item label="园区宣传片" class="inline-1">
+      <UploadButton :value="form.multimediapromoArr" @setFileList="value => setFileList('multimediapromo', value)"></UploadButton>
+      <!-- <uploader ref="uploader" :options="options" :autoStart="false" @file-added="onFileAdded" @file-success="onFileSuccess" @file-progress="onFileProgress" @file-error="onFileError" class="uploader-app">
           <uploader-unsupport></uploader-unsupport>
           <uploader-btn id="global-uploader-btn" :attrs="attrs" ref="uploadBtn">选择文件</uploader-btn>
           <uploader-list v-show="panelShow">
@@ -73,9 +73,9 @@
                   </ul>
               </div>
           </uploader-list>
-        </uploader>
+        </uploader> -->
     </el-form-item>
-    <el-form-item label="航拍短视频" class="inline-1">
+    <el-form-item label="园区航拍" class="inline-1">
       <UploadButton :value="form.shortvideoArr" @setFileList="value => setFileList('shortvideo', value)"></UploadButton>
     </el-form-item>
     <el-form-item label="园区荣誉" class="inline-1" prop="parkhonor">
@@ -165,7 +165,7 @@ export default {
       },
       attrs: {
         // 接受的文件类型，形如['.png', '.jpg', '.jpeg', '.gif', '.bmp'...] 这里我封装了一下
-        accept: ['.mp4', '.rmvb', '.rm', '.mtv', '.wmv', '3gp', 'rmvb', 'mpg14']
+        accept: ['.mp4', '.rmvb', '.rm', '.mtv', '.wmv', '.3gp', '.rmvb', '.mpg14']
       },
       cflag: false,
       panelShow: false // 选择文件后，展示上传panel
@@ -271,7 +271,7 @@ export default {
             let data = resp.data.data
             const { province = '', city = '', region = '', street = '' } = data
             data.position = [province, city, region, street]
-            this.$refs.uploader.uploader.fileList = data.multimediapromoArr
+            //this.$refs.uploader.uploader.fileList = data.multimediapromoArr
             // this.panelShow = true
             this.form = data
           }
@@ -289,7 +289,7 @@ export default {
           this.form.city = city || ''
           this.form.region = region || ''
           this.form.street = street || ''
-          this.form.multimediapromo = this.form.multimediapromo.substring(0, this.form.multimediapromo.length - 1)
+          //this.form.multimediapromo = this.form.multimediapromo.substring(0, this.form.multimediapromo.length - 1)
           this.$axios.post(URL['INSERT_PROJECT_BASE'], { ...this.form, projectid: this.projectid }).then(resp => {
             if (resp.status === 200) {
               if (resp.data && resp.data.code === 1) {

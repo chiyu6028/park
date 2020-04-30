@@ -4,7 +4,11 @@
     <div class="box-content">
       <div class="title">周边条件</div>
       <el-row :gutter="24">
-        <el-col :span="24" class="r-box r-box2">周边概述：<div class="right-content">{{form.neardes}}</div></el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">周边概述：</span><span>{{form.neardes}}</span>
+          </div>
+        </el-col>
       </el-row>
     </div>
     <!-- 周边园区 -->
@@ -12,17 +16,17 @@
       <div class="title">周边园区</div>
       <el-row :gutter="24" v-for="(item,idx) in form.parkNearGarden" :key="idx">
         <el-col :span="6" class="info-li">园区名称：<span>{{item.parkname}}</span></el-col>
-        <el-col :span="6" class="info-li">用地面积：<span>{{item.uselandarea}}(ha)</span></el-col>
-        <el-col :span="6" class="info-li">总建筑面积：<span>{{item.totalbuildarea}}(m²)</span></el-col>
-        <el-col :span="6" class="info-li">容积率：<span>{{item.plotratio}}%</span></el-col>
+        <el-col :span="6" class="info-li">用地面积：<span>{{item.uselandarea}}（ha）</span></el-col>
+        <el-col :span="6" class="info-li">总建筑面积：<span>{{item.totalbuildarea}}（m²）</span></el-col>
+        <el-col :span="6" class="info-li">容积率：<span>{{item.plotratio}}（%）</span></el-col>
         <el-col :span="6" class="info-li">园区类型：<span v-if="parkTypeList[item.parktype]">{{parkTypeList[item.parktype].label}}</span></el-col>
-        <el-col :span="6" class="info-li">园区产值：<span>{{item.parkvalue}}园区产值(亿元)</span></el-col>
-        <el-col :span="6" class="info-li">平均产值：<span>{{item.avgvalue}}(亿元)</span></el-col>
-        <el-col :span="6" class="info-li">就业人口：<span>{{item.employmentpeople}}(万)</span></el-col>
-        <el-col :span="6" class="info-li">企业数量：<span>{{item.enterprisenum}}(家)</span></el-col>
+        <el-col :span="6" class="info-li">园区产值：<span>{{item.parkvalue}}园区产值（亿元）</span></el-col>
+        <el-col :span="6" class="info-li">平均产值：<span>{{item.avgvalue}}（亿元/k㎡）</span></el-col>
+        <el-col :span="6" class="info-li">就业人口：<span>{{item.employmentpeople}}（万人）</span></el-col>
+        <el-col :span="6" class="info-li">企业数量：<span>{{item.enterprisenum}}（家）</span></el-col>
         <el-col :span="6" class="info-li">代表企业：<span>{{item.deputyenterprise}}</span></el-col>
         <el-col :span="6" class="info-li">租金水平：<span>{{item.rentlevel}}</span></el-col>
-        <el-col :span="6" class="info-li">出租率：<span>{{item.rentalrate}}(%)</span></el-col>
+        <el-col :span="6" class="info-li">出租率：<span>{{item.rentalrate}}（%）</span></el-col>
         <el-col :span="24" class="r-box r-box2">园区图册：<div class="right-content">
           <ul class="img-list">
             <li v-for="(tag,idx) in item.parkimgArr" :key="idx">
@@ -40,8 +44,12 @@
       <div class="title">周边住宅</div>
       <el-row :gutter="24" v-for="(item,idx) in form.parkNearHouse" :key="idx">
         <el-col :span="6" class="info-li">小区名称：<span>{{item.villagename}}</span></el-col>
-        <el-col :span="6" class="info-li">房价水平：<span>{{item.housprice}}</span></el-col>
-        <el-col :span="24" class="r-box r-box2">周边介绍：<div class="right-content">{{item.villagedes}}</div></el-col>
+        <el-col :span="6" class="info-li">房价水平：<span>{{item.housprice}}（万/m²）</span></el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">小区介绍：</span><span>{{item.villagedes}}</span>
+          </div>
+        </el-col>
         <el-col :span="24" class="r-box r-box2">小区图册：<div class="right-content">
           <ul class="img-list">
             <li v-for="(tag,idx) in item.villageimgArr" :key="idx">
@@ -177,7 +185,7 @@ export default {
     line-height: 24px;
   }
   .img-list{
-    padding:20px 0 10px;
+    margin: 10px 15px 0px -10px;
     // display: flex;
     margin-left: -10px;
     &.tb{

@@ -8,10 +8,14 @@
         <el-col :span="6" class="info-li">项目编号：<span>{{form.projectbh}}</span></el-col>
         <el-col :span="6" class="info-li">园区名称：<span>{{form.parkname}}</span></el-col>
         <el-col :span="6" class="info-li">园区类型：<span v-if="parkTypeList[form.parktype]">{{parkTypeList[form.parktype].label}}</span></el-col>
-        <el-col :span="6" class="info-li">项目地址：<span v-if="positionMaps[form.province]">{{positionMaps[form.province].label}}</span></el-col>
-        <el-col :span="6" class="info-li">发布时间：<span>{{form.developtime}}</span></el-col>
         <el-col :span="6" class="info-li">建成时间：<span>{{form.createtime}}</span></el-col>
-        <el-col :span="24" class="r-box" style="color: #999999;">园区介绍：<div class="right-content" style="color: #000;">{{form.parkdes}}</div></el-col>
+        <el-col :span="6" class="info-li">开发时间：<span>{{form.developtime}}</span></el-col>
+        <el-col :span="12" class="info-li">项目地址：<span>{{form.locationAddr}}</span></el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">园区介绍：</span><span>{{form.parkdes}}</span>
+          </div>
+        </el-col>
       </el-row>
     </div>
     <!-- 技术指标 -->
@@ -19,30 +23,33 @@
       <div class="title">技术指标</div>
       <el-row :gutter="24">
         <el-col :span="6" class="info-li">用地性质：<span v-if="usetypeList[form.usetype]">{{usetypeList[form.usetype].label}}</span></el-col>
-        <el-col :span="6" class="info-li">用地面积：<span>{{form.usearea}}</span>（万m²）</el-col>
-        <el-col :span="6" class="info-li">总建筑面积：<span>{{form.buildarea}}</span>（万m²）</el-col>
-        <el-col :span="6" class="info-li">绿化率：<span>{{form.greenrate}}</span>（%）</el-col>
-        <el-col :span="6" class="info-li">容积率：<span>{{form.plotratio}}</span>（%）</el-col>
-        <el-col :span="24" class="r-box">
+        <el-col :span="6" class="info-li">用地面积：<span>{{form.usearea}}（ha）</span></el-col>
+        <el-col :span="6" class="info-li">总建筑面积：<span>{{form.buildarea}}（m²）</span></el-col>
+        <el-col :span="6" class="info-li">绿化率：<span>{{form.greenrate}}（%）</span></el-col>
+        <el-col :span="6" class="info-li">容积率：<span>{{form.plotratio}}（%）</span></el-col>
+        <el-col :span="24" class="r-box r-box2">
           <div class="right-content">
-             <div><span class="cont-title">项目区位：</span><span>{{form.location}}</span></div>
-          <ul class="img-list">
+          <span class="cont-title">项目区位：</span><span>{{form.location}}</span>
+           </div>
+          <ul class="img-list" style="padding-top: 15px;">
             <li v-for="(tag,idx) in form.locationimgesArr" :key="idx">
                <el-image style="width: 300px; height: 180px;" class="img"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
                <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
-          </div></el-col>
-        <el-col :span="24" class="r-box">
+         
+        </el-col>
+
+        <el-col :span="24" class="r-box r-box2">
           <div class="right-content">
-            <div><span class="cont-title">用地范围：</span><span>{{form.landscope}}</span></div>
-            <ul class="img-list">
+          <span class="cont-title">用地范围：</span><span>{{form.landscope}}</span>
+           </div>
+          <ul class="img-list" style="padding-top: 15px;">
               <li v-for="(tag,idx) in form.landscopeimgArr" :key="idx">
                 <el-image style="width: 300px; height: 180px;" :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
                 <div class="text">{{tag.attdis}}</div>
               </li>
             </ul>
-          </div>
         </el-col>
       </el-row>
     </div>
@@ -50,14 +57,14 @@
     <div class="box-content">
       <div class="title">园区经济指标</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">主导产业：<span>{{form.leadindustry}}</span></el-col>
+        <el-col :span="6" class="info-li">园区产值：<span>{{form.parkvalue}}(亿元)</span></el-col>
         <el-col :span="6" class="info-li">主导功能：<span>{{form.leadfunc}}</span></el-col>
         <el-col :span="6" class="info-li">投资主体：<span>{{form.investors}}</span></el-col>
         <el-col :span="6" class="info-li">运营主体：<span>{{form.operubject}}</span></el-col>
         <el-col :span="6" class="info-li">运营模式：<span v-if="operModeList[form.opermode]">{{operModeList[form.opermode].label}}</span></el-col>
         <el-col :span="6" class="info-li">企业数量：<span>{{form.nhenterprisenum}}(家)</span></el-col>
         <el-col :span="6" class="info-li">投资规模：<span>{{form.investmentmode}}(亿元)</span></el-col>
-        <el-col :span="6" class="info-li">园区产值：<span>{{form.parkvalue}}园区产值</span></el-col>
+        <el-col :span="24" class="info-li">主导产业：<span>{{form.leadindustry}}</span></el-col>
       </el-row>
     </div>
     <!-- 相册 -->
@@ -94,35 +101,99 @@
 
       <el-col :span="24" class="r-box">园区宣传片<div class="right-content">
         <ul class="img-list list-phone">
-          <li v-for="(tag,idx) in form.multimediapromoArr" :key="idx">
-             <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+          <li style="width: 300px; height: 180px;" v-for="(tag,idx) in form.multimediapromoArr" :key="idx">
+             <!-- <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image> -->
+       <video-player class="video-player vjs-custom-skin"
+                   ref="videoPlayer"
+                   :playsinline="true"
+                   :options="{
+                    muted: true,
+                    language: 'zh-CN',
+                    playbackRates: [0.7, 1.0, 1.5, 2.0],
+                    autoplay: false, //如果true,则自动播放
+                    loop: false, // 循环播放
+                    preload: 'auto',
+                    aspectRatio: '16:9',
+                    fluid: true,
+                    sources: [{
+                      type: 'video/mp4',
+                      type: 'video/ogg',
+                      type: 'video/webm',
+                      src: url+tag.attpath
+                    }],
+              controlBar: {       
+                timeDivider: false,
+                durationDisplay: false,
+                remainingTimeDisplay: false,
+                currentTimeDisplay: false, // 当前时间
+                volumeControl: false, // 声音控制键
+                playToggle: false, // 暂停和播放键
+                progressControl: true, // 进度条
+                fullscreenToggle: true // 全屏按钮          
+              }
+                   }"
+               ></video-player>
             <div class="text">{{tag.attdis}}</div>
           </li>
+      <li>
+      
+      </li>
         </ul>
         </div>
       </el-col>
 
       <el-col :span="24" class="r-box">园区航拍<div class="right-content">
         <ul class="img-list list-phone">
-          <li v-for="(tag,idx) in form.shortvideoArr" :key="idx">
-             <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
+          <li style="width: 300px; height: 180px;" v-for="(tag,idx) in form.shortvideoArr" :key="idx">
+             <!-- <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image> -->
+       <video-player class="video-player vjs-custom-skin"
+                   ref="videoPlayer"
+                   :playsinline="true"
+                   :options="{
+                    muted: true,
+                    language: 'zh-CN',
+                    playbackRates: [0.7, 1.0, 1.5, 2.0],
+                    autoplay: false, //如果true,则自动播放
+                    loop: false, // 循环播放
+                    preload: 'auto',
+                    aspectRatio: '16:9',
+                    fluid: true,
+                    sources: [{
+                      type: 'video/mp4',
+                      type: 'video/ogg',
+                      type: 'video/webm',
+                      src: url+tag.attpath
+                    }],
+              controlBar: {       
+                timeDivider: false,
+                durationDisplay: false,
+                remainingTimeDisplay: false,
+                currentTimeDisplay: false, // 当前时间
+                volumeControl: false, // 声音控制键
+                playToggle: false, // 暂停和播放键
+                progressControl: true, // 进度条
+                fullscreenToggle: true // 全屏按钮          
+              }
+                   }"
+               ></video-player>
             <div class="text">{{tag.attdis}}</div>
           </li>
         </ul>
         </div>
       </el-col>
 
-      <el-col :span="24" class="r-box">
-        <div class="right-content">
-          <div><span class="cont-title">园区荣誉：</span><span>{{form.parkhonor}}</span></div>
-          <ul class="img-list list-phone">
+      <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">园区荣誉：</span><span>{{form.parkhonor}}</span>
+           </div>
+          <ul class="img-list" style="padding-top: 15px;">
             <li v-for="(tag,idx) in form.parkhonorimgArr" :key="idx">
                <el-image style="width: 300px; height: 180px;"  :src="url+tag.attpath" :preview-src-list="[url+tag.attpath]"></el-image>
               <div class="text">{{tag.attdis}}</div>
             </li>
           </ul>
-          </div>
         </el-col>
+        <div style="clear: both;width:100%;"></div>
     </div>
   </div>
 </template>
@@ -131,12 +202,13 @@ import { mapState } from 'vuex'
 import URL from '@config/urlConfig.js'
 import * as _D from '@config/dictionaries'
 import positionMaps from '@config/maps.js'
+import { videoPlayer } from 'vue-video-player'
 
 export default {
   name: 'parkViewdetail',
   data () {
     return {
-      url: '/downloadFile?filePath=',
+      url: '/downloadVideoFile?filePath=',
       parkTypeList: _D.parkTypeList,
       usetypeList: _D.usetypeList,
       operModeList: _D.operModeList,
@@ -184,7 +256,8 @@ export default {
         opermode: '',
         nhenterprisenum: '',
         investmentmode: '',
-        parkvalue: ''
+        parkvalue: '',
+        locationAddr: ''
       }
 
     }
@@ -192,12 +265,34 @@ export default {
   computed: {
     ...mapState('addProject', {
       projectid: state => state.project_id
-    })
+    }),
+  player() {
+      return this.$refs.videoPlayer.player
+  }
   },
   mounted () {
     this.initForm(this.$route.params.id)
+  //this.videoUrl()
   },
+   components: {
+      videoPlayer
+    },
   methods: {
+    // onPlayerPlay(player) {
+    //       alert("play");
+    //     },
+    //     onPlayerPause(player){
+    //       alert("pause");
+    //     },
+  // videoUrl(){
+  //  if (this.data.multimediapromoArr && this.data.multimediapromoArr.length > 0) {
+  //      for (let i = 0; i < this.data.multimediapromoArr.length; i++) {
+  //          let attinfo = this.data.multimediapromoArr[i]
+  //          let videoinfo = { muted: true, playbackRates: [0.7, 1.0, 1.5, 2.0], sources: [{ type: 'video/mp4', src: this.url + attinfo.attpath }], language: 'zh-CN' }
+  //          this.option01.push(videoinfo)
+  //      }
+  //  }
+  // },
     initForm (id) {
       this.$axios.post(URL['SELECT_PROJECT_BASE_EXT_INFO'], { projectid: id || this.projectid }).then(resp => {
         this.loading = false
@@ -242,6 +337,11 @@ export default {
   }
 </style>
 <style scoped lang="scss">
+  .video-js .vjs-icon-placeholder {
+      width: 300px;
+      height: 180px;
+      display: block;
+  }
 .park-content{
   padding:0 20px;
 }
@@ -285,7 +385,7 @@ export default {
 }
 .r-box{
   //display: flex;
-  border-bottom: 1px solid #ECF1F2;
+  //border-bottom: 1px solid #ECF1F2;
   color: #999;
   font-size: 12px;
   padding: 20px 0 10px;
@@ -294,7 +394,7 @@ export default {
     line-height: 24px;
     color: #000;
     .cont-title{
-      font-weight: bold;
+      color:#999999;
     }
   }
   .img-list{
@@ -315,8 +415,7 @@ export default {
     }
   }
   .list-phone{
-    margin-left: 10px;
-    margin-top: 20px;
+    margin: 10px 15px 0px -10px;
   }
 }
 </style>

@@ -12,6 +12,9 @@
           <el-form-item label="" prop="userName">
            <el-input v-model="queryForm.userName" placeholder="员工ID/用户名"></el-input>
           </el-form-item>
+          <el-form-item label="" prop="userDep">
+           <el-input v-model="queryForm.userDep" placeholder="部门"></el-input>
+          </el-form-item>
           <el-form-item>
             <el-button type="primary" size="medium" @click="queryData()">查询</el-button>
             <el-button @click="resetForm" size="medium">重置</el-button>
@@ -20,7 +23,7 @@
       </div>
     </el-col>
     <el-col :span="24">
-      <el-table class="data-table"  v-loading="loading" :data="tableData"  style="width: 100%">
+      <el-table class="data-table objlist"  v-loading="loading" :data="tableData" style="width: 100%">
         <el-table-column align="center" prop="userId" label="员工ID"></el-table-column>
         <el-table-column align="center" prop="userName" label="用户名"></el-table-column>
         <el-table-column align="center" prop="userDep" label="部门"></el-table-column>

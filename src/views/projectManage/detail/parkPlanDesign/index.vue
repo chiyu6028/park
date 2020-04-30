@@ -4,12 +4,20 @@
     <div class="box-content">
       <div class="title">基础信息</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">用地性质：<span v-if="usetypeList[form.usetype]">{{usetypeList[form.usetype].label}}</span></el-col>
-        <el-col :span="6" class="info-li">用地面积：<span>{{form2.usearea}}（万m²）</span></el-col>
-        <el-col :span="6" class="info-li">总建筑面积：<span>{{form2.buildarea}}（万m²）</span></el-col>
-        <el-col :span="6" class="info-li">容积率：<span>{{form2.plotratio}}%</span></el-col>
-        <el-col :span="6" class="info-li">绿化率：<span>{{form2.greenrate}}%</span></el-col>
-        <el-col :span="24" class="r-box r-box2">周边项目：<div class="right-content">{{form.nearproject}}</div></el-col>
+        <el-col :span="6" class="info-li">用地面积：<span>{{form2.usearea}}（ha）</span></el-col>
+        <el-col :span="6" class="info-li">总建筑面积：<span>{{form2.buildarea}}（m²）</span></el-col>
+        <el-col :span="6" class="info-li">容积率：<span>{{form2.plotratio}}（%）</span></el-col>
+        <el-col :span="6" class="info-li">绿化率：<span>{{form2.greenrate}}（%）</span></el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">用地性质：</span><span>{{form.usetype}}</span>
+          </div>
+        </el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">周边项目：</span><span>{{form.nearproject}}</span>
+          </div>
+        </el-col>
       </el-row>
     </div>
     <!-- 规划设计方案 -->
@@ -114,6 +122,7 @@
 import { mapState } from 'vuex'
 import URL from '@config/urlConfig.js'
 import * as _D from '@config/dictionaries'
+import T from '@utils/tools'
 
 export default {
   name: 'parkPlanDesign',
@@ -214,6 +223,10 @@ export default {
         if (resp.status === 200) {
           if (resp.data && resp.data.data && resp.data.code === 1) {
             this.form = resp.data.data
+            let usetypeConvert = T.getConvert(_D.usetypeList)
+           if (this.form.usetype) {
+                this.form.usetype = T.getConvertValue2(this.form.usetype, usetypeConvert).replace(/,/g, '，')
+              }
           }
         } else {
           this.$message.error('系统异常，请联系管理员！')
@@ -232,6 +245,7 @@ export default {
     },
     setFileList (column, value) {
       this.form[column] = value
+
     }
   }
 }
@@ -288,8 +302,8 @@ export default {
 }
 .r-box{
   //display: flex;
-  border-bottom: 1px solid #ECF1F2;
-  padding: 20px 0 10px;
+  //border-bottom: 1px solid #ECF1F2;
+      padding: 10px 0 0px;
   &.r-box2{
     border-bottom:none;
     padding-top: 10px;
@@ -298,11 +312,11 @@ export default {
     flex: 1;
     line-height: 24px;
     .cont-title{
-      font-weight: bold;
+      color:#999999;
     }
   }
   .img-list{
-    padding:20px 0 10px;
+    margin: 10px 15px 0px -10px;
     // display: flex;
     margin-left: -10px;
     &.tb{

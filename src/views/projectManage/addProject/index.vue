@@ -103,8 +103,8 @@ export default {
 <style lang="scss" scoped>
 .notice{
   position: absolute;
-  top: 78px;
-  right: 90px;
+  top: 32px;
+  right: 13px;
   z-index: 12;
 }
 .el-checkbox__label{

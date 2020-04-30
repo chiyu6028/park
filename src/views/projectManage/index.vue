@@ -10,8 +10,8 @@
       </el-menu>
     </el-aside>
     <el-container class="project-content" style="overflow:auto">
-      <el-main class="content-main padding-0">
-        <el-breadcrumb separator-class="el-icon-arrow-right" class="beeadrumb">
+      <el-main class="content-main padding-0" style="margin-top: 30px;">
+        <el-breadcrumb separator-class="el-icon-arrow-right" class="beeadrumb" style="display: none;">
           <el-breadcrumb-item>项目管理</el-breadcrumb-item>
           <el-breadcrumb-item>{{ pageName }}</el-breadcrumb-item>
         </el-breadcrumb>
@@ -44,10 +44,16 @@ export default {
     }
   },
   mounted () {
+    this.$store.commit('setHeaderIndex', '2')
     let role = this.$store.state.role
     if (role === '1') {
       this.isPermission = true
     }
+    _.each(D.projectManageAside, v => {
+      if (this.$route.path === v.path) {
+        this.activeIndex = v.index
+      }
+    })
   },
   computed: {
     pageName () {
@@ -76,9 +82,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	.v-modal{
-		display:none;
-	}
 .project-container {
   .project-aside {
     position: absolute;
