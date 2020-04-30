@@ -40,12 +40,11 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   let islogin = sessionStorage.getItem('islogin')
-  let pathname = window.location.pathname
-  if (pathname === '/thirdlogin' && islogin === '1') {
-    next()
-  } else if (pathname === '/thirdlogin') {
+  let pathname = to.path
+  if (pathname === '/thirdlogin') {
     sessionStorage.clear()
-    thirdlogin(pathname)
+    let loginname = to.query ? to.query.loginname : ''
+    thirdlogin(pathname, loginname)
   } else {
     if (to.path !== '/login') { // 是否跳转登录页面
       if (islogin !== '1') { // 如果没有登录
@@ -65,13 +64,10 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-let thirdlogin = (pathname) => {
-  let search = window.location.search
-  search = search.substring(1)
-  let searchArr = search.split('=')
-  if (searchArr[1]) {
+let thirdlogin = (pathname, loginname) => {
+  if (loginname) {
     let searchObj = {
-      'username': searchArr[1],
+      'username': loginname,
       'password': '123456'
     }
     axios.post(URL['LOGIN'], searchObj).then(resp => {
