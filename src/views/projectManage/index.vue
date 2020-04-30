@@ -29,18 +29,18 @@ export default {
   name: 'ProjectManage',
   data () {
     let asideList = D.projectManageAside
-    // let item = {}
-    // if (this.$store.state.role === '2' || this.$store.state.role === '3') {
-    //   item = asideList.find(elem => {
-    //     return elem.index === '1'
-    //   })
-    //   asideList = [item]
-    // }
+    let item = {}
+    if (this.$store.state.role === '2' || this.$store.state.role === '3') {
+      item = asideList.find(elem => {
+        return elem.index === '1'
+      })
+      asideList = [item]
+    }
     let activeIndex = _.head(asideList).index
     return {
       activeIndex,
       asideList,
-      isPermission: false
+      isPermission: true
     }
   },
   mounted () {

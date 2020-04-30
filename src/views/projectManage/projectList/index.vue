@@ -2,7 +2,7 @@
   <el-row class="form-table-list" style="height: auto !important;">
     <el-col :span="24" class="list-row">
       <el-form ref="projectList" :model="form" :inline="true">
-        <router-link tag='a' :to="'/index/projectManage/addProject'" ><el-button type="primary" style="position: absolute;top:30px;right:30px;">新增项目</el-button></router-link>
+        <router-link tag='a' :to="'/index/projectManage/addProject'" ><el-button type="primary"  v-if="enable" style="position: absolute;top:30px;right:30px;">新增项目</el-button></router-link>
         <el-form-item class="inline-1">
           <el-col :span="12"><el-input size="large" maxlength="30" v-model="form.parkName" placeholder="请输入园区名称"></el-input></el-col>
           <el-col style="width: 100px;" class="padding-left-15"><el-button type="primary" icon="el-icon-search" class="inline" @click="getData">查询</el-button></el-col>
