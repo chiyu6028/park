@@ -7,7 +7,7 @@
         <!-- <el-col :span="6" class="info-li">项目ID：<span>{{form.projectid}}</span></el-col> -->
         <el-col :span="6" class="info-li">项目编号：<span>{{form.projectbh}}</span></el-col>
         <el-col :span="6" class="info-li">园区名称：<span>{{form.parkname}}</span></el-col>
-        <el-col :span="6" class="info-li">园区类型：<span v-if="parkTypeList[form.parktype]">{{parkTypeList[form.parktype].label}}</span></el-col>
+        <el-col :span="6" class="info-li">园区类型：<span>{{form.parktype}}</span></el-col>
         <el-col :span="6" class="info-li">建成时间：<span>{{form.createtime}}</span></el-col>
         <el-col :span="6" class="info-li">开发时间：<span>{{form.developtime}}</span></el-col>
         <el-col :span="12" class="info-li">项目地址：<span>{{form.locationAddr}}</span></el-col>
@@ -22,11 +22,15 @@
     <div class="box-content">
       <div class="title">技术指标</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">用地性质：<span v-if="usetypeList[form.usetype]">{{usetypeList[form.usetype].label}}</span></el-col>
         <el-col :span="6" class="info-li">用地面积：<span>{{form.usearea}}（ha）</span></el-col>
         <el-col :span="6" class="info-li">总建筑面积：<span>{{form.buildarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">绿化率：<span>{{form.greenrate}}（%）</span></el-col>
         <el-col :span="6" class="info-li">容积率：<span>{{form.plotratio}}（%）</span></el-col>
+        <el-col :span="24" class="r-box r-box2">
+          <div class="right-content">
+          <span class="cont-title">用地性质：</span><span>{{form.usetype}}</span>
+          </div>
+        </el-col>
         <el-col :span="24" class="r-box r-box2">
           <div class="right-content">
           <span class="cont-title">项目区位：</span><span>{{form.location}}</span>
@@ -203,6 +207,7 @@ import URL from '@config/urlConfig.js'
 import * as _D from '@config/dictionaries'
 import positionMaps from '@config/maps.js'
 import { videoPlayer } from 'vue-video-player'
+import T from '@utils/tools'
 
 export default {
   name: 'parkViewdetail',
@@ -299,6 +304,7 @@ export default {
         if (resp.status === 200) {
           if (resp.data && resp.data.data && resp.data.code === 1) {
             let data = resp.data.data
+            
             const { province = '', city = '', region = '', street = '' } = data
             data.position = [province, city, region, street]
             // data.developtime = data.developtime ? new Date(data.developtime + '').toJSON() : ''
@@ -313,6 +319,14 @@ export default {
             data.leadindustry = leadStr.substr(0, leadStr.length - 1)
             data.leadfunc = _D.leadfuncObj[data.leadfunc + '']
             this.form = data
+            let usetypeConvert = T.getConvert(_D.usetypeList)
+           if (this.form.usetype) {
+                this.form.usetype = T.getConvertValue2(this.form.usetype, usetypeConvert).replace(/,/g, '，')
+              }
+              let parktypeConvert = T.getConvert(_D.parktypeList)
+           if (this.form.parktype) {
+                this.form.parktype = T.getConvertValue(this.form.parktype, parktypeConvert).replace(/,/g, '，')
+              }
           } else {
             this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
           }

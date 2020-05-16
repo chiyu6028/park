@@ -109,7 +109,7 @@ export const depmethodList = [
 export const usetypeList = [
   { value: '1', label: 'M1普通工业用地' },
   { value: '2', label: 'M0新型产业用地' },
-  { value: '3', label: 'C商业服务用地地' },
+  { value: '3', label: 'C商业服务用地' },
   { value: '4', label: 'R居住用地' },
   { value: '5', label: 'GIC公共管理与服务设施用地' },
   { value: '6', label: 'W物流仓储用地' },
@@ -122,7 +122,7 @@ export const usetypeList = [
 export const usetypeObj = {
   '1': 'M1普通工业用地',
   '2': 'M0新型产业用地',
-  '3': 'C商业服务用地地',
+  '3': 'C商业服务用地',
   '4': 'R居住用地',
   '5': 'GIC公共管理与服务设施用地',
   '6': 'W物流仓储用地',

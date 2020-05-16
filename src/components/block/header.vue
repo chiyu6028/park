@@ -40,10 +40,10 @@ export default {
     let headerList = D.headerList
     let item = {}
     if (this.$store.state.role === '2' || this.$store.state.role === '3') {
-      item = headerList.find(elem => {
-        return elem.index === '2'
+      headerList = headerList.filter(elem => {
+        return elem.index === '2' || elem.index === '1'
       })
-      headerList = [item]
+      //headerList = [item]
     }
     // let activeIndex = headerList.length > 0 ? _.head(headerList).index : null
     return {

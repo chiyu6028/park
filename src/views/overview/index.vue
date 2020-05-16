@@ -19,9 +19,9 @@
     </div>
     <div class="tips-click dot01"  ref="dotxy02" :style="dotxy02">
       <!-- 327 -->
-      <!-- <span style="left: -44px;">宝能科技城</span> -->
+      <!-- <span style="left: -44px;">宝能科技园</span> -->
 	  <a @click="detailProject(327)">
-      <hover-detaill :title="'宝能科技城'" :titleStyle="'margin-left: -15px;'" :dotId="'327'"  ></hover-detaill>
+      <hover-detaill :title="'宝能科技园'" :titleStyle="'margin-left: -15px;'" :dotId="'327'"  ></hover-detaill>
       <b></b>
       <b></b>
       <b></b>

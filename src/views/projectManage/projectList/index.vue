@@ -93,7 +93,7 @@
         </el-form-item>
       </el-form>
     </el-col>
-  <h3 style="margin-bottom: 20px;">项目列表</h3>
+  <h3 style="margin-bottom: 20px;display: none;">项目列表</h3>
     <el-col :span="24">
       <el-table v-loading="loading" :data="tableData" stripe style="width: 100%" :default-sort = "{prop: 'updatetime', order: 'descending'}" class="objlist">
         <el-table-column class="tbhd" min-width="75" align="center" prop="projectbh" label="项目编号"></el-table-column>

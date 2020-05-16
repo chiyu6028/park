@@ -51,7 +51,7 @@ module.exports = {
     open: true,
     hot: true,
     // proxy: 'http://129.204.177.180:8082'
-    proxy: 'http://129.204.177.180:8082'
+    proxy: 'http://mao.mao.la:8082'
   },
   configureWebpack: config => {
     // config.module.rules.push({})
