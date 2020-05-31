@@ -28,8 +28,10 @@ module.exports = {
   // publicPath: '/',
   publicPath: './',
   outputDir: 'dist',
+  productionSourceMap: false,
   pages: {
     index: {
+      //entry: ['babel-polyfill','src/index.js'],
       entry: 'src/index.js',
       template: 'public/index.html',
       filename: 'index.html',
@@ -51,7 +53,7 @@ module.exports = {
     open: true,
     hot: true,
     // proxy: 'http://129.204.177.180:8082'
-    proxy: 'http://mao.mao.la:8082'
+    proxy: 'http://192.168.188.21:8082'
   },
   configureWebpack: config => {
     // config.module.rules.push({})

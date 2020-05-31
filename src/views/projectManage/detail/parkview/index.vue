@@ -65,8 +65,8 @@
         <el-col :span="6" class="info-li">主导功能：<span>{{form.leadfunc}}</span></el-col>
         <el-col :span="6" class="info-li">投资主体：<span>{{form.investors}}</span></el-col>
         <el-col :span="6" class="info-li">运营主体：<span>{{form.operubject}}</span></el-col>
-        <el-col :span="6" class="info-li">运营模式：<span v-if="operModeList[form.opermode]">{{operModeList[form.opermode].label}}</span></el-col>
-        <el-col :span="6" class="info-li">企业数量：<span>{{form.nhenterprisenum}}(家)</span></el-col>
+        <el-col :span="6" class="info-li">运营模式：<span v-if="operModeList[form.opermode]">{{operModeList[form.opermode]}}</span></el-col>
+        <el-col :span="6" class="info-li">企业数量：<span>{{form.enterprisenum}}(家)</span></el-col>
         <el-col :span="6" class="info-li">投资规模：<span>{{form.investmentmode}}(亿元)</span></el-col>
         <el-col :span="24" class="info-li">主导产业：<span>{{form.leadindustry}}</span></el-col>
       </el-row>
@@ -216,7 +216,7 @@ export default {
       url: '/downloadVideoFile?filePath=',
       parkTypeList: _D.parkTypeList,
       usetypeList: _D.usetypeList,
-      operModeList: _D.operModeList,
+      operModeList: _D.operModeObj,
       leadindustryObj: _D.leadIndustryObj,
       positionMaps,
       form: {
@@ -259,7 +259,7 @@ export default {
         investors: '',
         operubject: '',
         opermode: '',
-        nhenterprisenum: '',
+        enterprisenum: '',
         investmentmode: '',
         parkvalue: '',
         locationAddr: ''
@@ -320,13 +320,13 @@ export default {
             data.leadfunc = _D.leadfuncObj[data.leadfunc + '']
             this.form = data
             let usetypeConvert = T.getConvert(_D.usetypeList)
-           if (this.form.usetype) {
-                this.form.usetype = T.getConvertValue2(this.form.usetype, usetypeConvert).replace(/,/g, '，')
-              }
-              let parktypeConvert = T.getConvert(_D.parktypeList)
-           if (this.form.parktype) {
-                this.form.parktype = T.getConvertValue(this.form.parktype, parktypeConvert).replace(/,/g, '，')
-              }
+            if (this.form.usetype) {
+              this.form.usetype = T.getConvertValue2(this.form.usetype, usetypeConvert).replace(/,/g, '，')
+            }
+            let parktypeConvert = T.getConvert(_D.parkTypeList)
+            if (this.form.parktype) {
+              this.form.parktype = T.getConvertValue(this.form.parktype, parktypeConvert)
+            }
           } else {
             this.$message.error(resp.data && resp.data.msg ? resp.data.msg : '处理失败')
           }

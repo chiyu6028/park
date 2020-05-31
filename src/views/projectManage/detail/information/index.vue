@@ -193,7 +193,9 @@ export default {
   ul{
     list-style: none;
   }
-
+.el-button--primary.is-plain{
+  padding:0 4px;
+}
 .park-content{
   padding:0 20px;
 }

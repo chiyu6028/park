@@ -20,6 +20,7 @@
         type="year"
         format="yyyy"
         value-format="yyyy"
+        :default-value="form.startDate"
         placeholder="选择年">
       </el-date-picker>
     </el-form-item>
@@ -29,6 +30,7 @@
         format="yyyy"
         value-format="yyyy"
         type="year"
+        :default-value="form.startDate"
         placeholder="选择年">
       </el-date-picker>
     </el-form-item>
@@ -113,6 +115,7 @@ export default {
       rules,
       positionMaps,
       form: {
+        startDate:new Date('2018'),
         parkname: '',
         parktype: '',
         position: [],

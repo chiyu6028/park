@@ -88,10 +88,10 @@
 	  </a>
     </div>
     <div class="tips-click dot01"  ref="dotxy09" :style="dotxy09">
-      <!-- 177 -->
+      <!-- 811 -->
       <!-- <span style="left: -25px;">深圳湾科技生态园</span> -->
-	  <a  @click="detailProject(177)">
-      <hover-detaill :title="'深圳湾科技生态园'" :titleStyle="'margin-left: 10px;'"  :dotId="'177'"></hover-detaill>
+	  <a  @click="detailProject(811)">
+      <hover-detaill :title="'深圳湾科技生态园'" :titleStyle="'margin-left: 10px;'"  :dotId="'811'"></hover-detaill>
       <b></b>
       <b></b>
       <b></b>
@@ -287,7 +287,7 @@ export default {
           height: 260
         },
         {
-          content1: '企业家数',
+          content1: '企业数量',
 		  content2: '（家）',
           id: 3,
           echartsId: 'complateNum',

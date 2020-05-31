@@ -4,6 +4,7 @@ import '@utils/axios'
 import App from './App.vue'
 import router from './views/router.js'
 import store from './store'
+//import 'babel-polyfill'
 // import echarts from 'echarts'
 
 import 'element-ui/lib/theme-chalk/index.css'

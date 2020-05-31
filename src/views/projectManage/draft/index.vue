@@ -83,7 +83,7 @@ export default {
       this.$router.push({ path: `editProject/${row.projectid}`, query: { t: Date.now(), pagetype: 'draft' } })
     },
     detailProject (row) {
-      let routeData = this.$router.resolve({ path: `detail/${row.projectid}`, query: { t: Date.now() } })
+      let routeData = this.$router.resolve({ path: `detail/${row.projectid}`, query: { t: Date.now(),pagetype: 'draft' } })
       window.open(routeData.href, '_blank')
     },
     deleteProject (row) {

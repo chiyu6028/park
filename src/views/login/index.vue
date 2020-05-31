@@ -96,6 +96,8 @@ export default {
                         this.$router.push({ path: '/index' })
                         break
                       case '2':
+                        this.$router.push({ path: '/index/projectManage/projectList' })
+                        break
                       case '3':
                         this.$router.push({ path: '/index/projectManage/projectList' })
                         break

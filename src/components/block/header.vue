@@ -2,7 +2,7 @@
   <el-row class="park-header">
     <el-col :span="9">
       <div class="img-block">
-        <img class="mark" src="@images/mark.png" />
+        <img class="mark" src="@images/mark.jpg" />
       </div>
     </el-col>
     <el-col :span="8">

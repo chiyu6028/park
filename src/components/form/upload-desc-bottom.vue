@@ -43,7 +43,7 @@
             <el-input
               v-model="describle[file.uid]"
               :disabled="!describle[file.uid + 'disabled']"
-              :placeholder="describle[file.uid + 'placeholder'] || '等待上传成功'"
+              :placeholder="describle[file.uid + 'placeholder'] || '上传中...'"
               @input="limitLength(file)"
               @change="changeDesc(file)"></el-input>
           </div>
@@ -95,7 +95,6 @@ export default {
   methods: {
     initFileList () {
       let fileIds = []; let fileList = []; let describle = {}
-      console.log(this.value)
       _.each(this.value || [], v => {
         fileIds.push(v.attid)
         fileList.push({
@@ -155,27 +154,28 @@ export default {
           token: this.token,
           uid: file.uid,
           attRealName: file.name
-        }, { $cancelToken: true })
-        if (fileList.length > 0) {
-          if (file.uid === fileList[fileList.length - 1].uid) {
-            this.$axios.post(URL['SELECT_FILETOKEN'], { token: this.token }).then(resp => {
-              let data = resp.data && resp.data.data ? resp.data.data : []
-              for (let i = 0; i < data.length; i++) {
-                let dataItem = data[i]
-                for (let j = 0; j < fileList.length; j++) {
-                  let item = fileList[j]
-                  if (dataItem.uid === (item.uid + '')) {
-                    this.fileList.push(item)
-                    this.fileIds.push(dataItem.attid)
-                    this.$emit('setFileList', this.ids)
-                    this.describle[item.uid + 'disabled'] = true
-                    this.describle[item.uid + 'placeholder'] = '请输入'
+        }, { $cancelToken: true }).then(res => {
+          if (fileList.length > 0) {
+            if (file.uid === fileList[fileList.length - 1].uid) {
+              this.$axios.post(URL['SELECT_FILETOKEN'], { token: this.token }).then(resp => {
+                let data = resp.data && resp.data.data ? resp.data.data : []
+                for (let i = 0; i < data.length; i++) {
+                  let dataItem = data[i]
+                  for (let j = 0; j < fileList.length; j++) {
+                    let item = fileList[j]
+                    if (dataItem.uid === (item.uid + '')) {
+                      this.fileList.push(item)
+                      this.fileIds.push(dataItem.attid)
+                      this.$emit('setFileList', this.ids)
+                      this.describle[item.uid + 'disabled'] = true
+                      this.describle[item.uid + 'placeholder'] = '请输入'
+                    }
                   }
                 }
-              }
-            })
+              })
+            }
           }
-        }
+        })
       }
     },
     limitLength1 (file) {
@@ -283,8 +283,5 @@ export default {
   }
   .park-upload-block .el-input{
     margin-top: 10px;
-  }
-  .park-upload {
-    display: flex;
   }
 </style>

@@ -56,7 +56,7 @@
     <div class="box-content">
       <div class="title">投资开发运营招商</div>
       <el-row :gutter="24">
-        <el-col :span="6" class="info-li">投资主体属性：<span v-if="devSubjectList[form.devsubject]">{{devSubjectList[form.devsubject].label}}</span></el-col>
+        <el-col :span="6" class="info-li">投资主体属性：<span v-if="devSubjectList[form.devsubject]">{{devSubjectList[form.devsubject]}}</span></el-col>
         <el-col :span="6" class="info-li">开发主体：<span>{{form.investors}}</span></el-col>
         <el-col :span="6" class="info-li">投资主体：<span>{{form.investorattr}}</span></el-col>
         <el-col :span="6" class="info-li">土地获得方式：<span>{{form.landmethod}}</span></el-col>
@@ -64,7 +64,7 @@
         <el-col :span="6" class="info-li">招商团队：<span>{{form.investteam}}</span></el-col>
         <el-col :span="6" class="info-li">招商策略：<span>{{form.investstrategy}}</span></el-col>
         <el-col :span="6" class="info-li">运营主体：<span>{{form.operubject}}</span></el-col>
-        <el-col :span="6" class="info-li">运营模式：<span v-if="operModeList[form.opermode]">{{operModeList[form.opermode].label}}</span></el-col>
+        <el-col :span="6" class="info-li">运营模式：<span v-if="operModeList[form.opermode]">{{operModeList[form.opermode]}}</span></el-col>
         <el-col :span="6" class="info-li">运营团队：<span>{{form.operteam}}</span></el-col>
 
         <el-col :span="24" class="r-box r-box2">
@@ -205,14 +205,14 @@ export default {
     return {
       leadindustryObj: _D.leadIndustryObj,
       leadfuncObj: _D.leadfuncObj,
-      devSubjectList: _D.devSubjectList,
+      devSubjectList: _D.devSubjectObj,
       depmethodList: _D.depmethodList,
       investModeList: _D.investModeList,
-      operModeList: _D.operModeList,
+      operModeList: _D.operModeObj,
       leadfuncList: _D.leadfuncList,
       url: '/downloadFile?filePath=',
       form: {
-        updatedate:'',
+        updatedate: '',
         leadindustryArray: [],
         leadindustry: '',
         leadfunc: '',
@@ -236,7 +236,7 @@ export default {
         typicalenterprises_t: '',
         typicalenterprises: '',
         typicalenterprisesArr: [],
-        typicalrdorg:'',
+        typicalrdorg: '',
         typicalrdorgimg: '',
         typicalrdorgimgArr: [],
         investors: '',
@@ -256,7 +256,7 @@ export default {
         parkservice: '',
         opercost: '',
         operprofit: '',
-        parkactivity:'',
+        parkactivity: '',
         parkactivityimg: '',
         parkactivityimgArr: [],
         businessfacilities: '',
@@ -344,7 +344,7 @@ export default {
   color: #999999;
 }
 .info-li span{
-	color: #000000;
+  color: #000000;
 }
 .box-content{
   margin-bottom: 20px;

@@ -5,7 +5,11 @@
       <i class="el-icon-notebook-2"></i>
       返回列表
     </el-button>
-    <el-button type="primary" round @click="editProject()" v-if="enable">
+    <el-button type="primary" round @click="editProject()" v-if="enable&&this.pagetype=='publish'">
+      <i class="el-icon-edit"></i>
+      编辑
+    </el-button>
+    <el-button type="primary" round @click="editDraftProject()" v-if="enable&&this.pagetype=='draft'">
       <i class="el-icon-edit"></i>
       编辑
     </el-button>
@@ -41,6 +45,7 @@ export default {
       enable: true,
       tabVal: '1',
       detailList,
+      pagetype: 'publish',
       isPermission: false
     }
   },
@@ -54,13 +59,25 @@ export default {
     if (role === '1') {
       this.isPermission = true
     };
+    if (this.$route.query.pagetype === 'draft') {
+        this.pagetype = 'draft'
+      }
   },
   methods: {
     backToList () {
-      this.$router.push({ path: '/index/projectManage/projectList' })
+      if (this.pagetype=='publish') {
+        this.$router.push({ path: '/index/projectManage/projectList'})
+      }else{
+        this.$router.push({ path: '/index/projectManage/draft'})
+      }
+      
     },
     editProject () {
       let editHref = this.$router.resolve({ path: `../editProject/${this.$route.params.id}`, query: { t: Date.now(), pagetype: 'list' } })
+      window.open(editHref.href, '_blank')
+    },
+    editDraftProject () {
+      let editHref = this.$router.resolve({ path: `../editProject/${this.$route.params.id}`, query: { t: Date.now(), pagetype: 'draft' } })
       window.open(editHref.href, '_blank')
     },
     handleClick (tab, event) {

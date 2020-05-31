@@ -83,6 +83,11 @@ export const operModeList = [
   { value: '2', label: '委托运营' },
   { value: '3', label: '混合运营' }
 ]
+export const operModeObj = {
+  '1': '自主运营',
+  '2': '委托运营',
+  '3': '混合运营'
+}
 // 园区类型
 export const parkTypeList = [
   { value: '1', label: '科创产业园区' },

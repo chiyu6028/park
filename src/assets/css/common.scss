@@ -9,7 +9,7 @@ body {
   font-size: 12px !important;
 }
 .el-date-editor.el-input, .el-date-editor.el-input__inner{
-  width:auto !important;
+  width:150px !important;
 }
 .objlist.el-table th>.cell{
   font-size: 12px !important;
@@ -104,6 +104,10 @@ body {
   color:#999999;
 }
 
+.form-table-list .el-input__inner{
+height:30px !important;
+line-height:30px !important;
+}
 .el-input__inner{
   font-size:12px !important;
 }
@@ -428,7 +432,7 @@ body {
   height: calc(100% - 100px);
 
   .el-form-item {
-    margin-bottom: 18px;
+    margin-bottom: 10px;
     margin-right: 0;
 
     &.inline-5 {

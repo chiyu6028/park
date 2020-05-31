@@ -1,13 +1,13 @@
 <template>
-  <el-row class="form-table-list" style="height: auto !important;">
+  <el-row class="form-table-list" style="height: auto !important;margin-top: -5px;">
     <el-col :span="24" class="list-row">
       <el-form ref="projectList" :model="form" :inline="true">
         <router-link tag='a' :to="'/index/projectManage/addProject'" ><el-button type="primary"  v-if="enable" style="position: absolute;top:30px;right:30px;">新增项目</el-button></router-link>
         <el-form-item class="inline-1">
           <el-col :span="12"><el-input size="large" maxlength="30" v-model="form.parkName" placeholder="请输入园区名称"></el-input></el-col>
-          <el-col style="width: 100px;" class="padding-left-15"><el-button type="primary" icon="el-icon-search" class="inline" @click="getData">查询</el-button></el-col>
-		  <el-col style="width: 100px;" class="padding-left-15">
-		  <el-button type="button" plain class="inline el-button el-button--default" @click="empty">重置</el-button></el-col>
+          <el-col style="width: 80px;" class="padding-left-15"><el-button type="primary" style="height: 30px;line-height: 6px;" class="inline" @click="getData">查询</el-button></el-col>
+      <el-col style="width: 100px;" class="padding-left-15">
+      <el-button type="button" plain class="inline el-button el-button--default" style="height: 30px;line-height: 6px;" @click="empty">重置</el-button></el-col>
         </el-form-item>
 
         <el-form-item label="项目地址" class="inline-3">
@@ -44,49 +44,53 @@
           </el-select>
         </el-form-item>
 
-        <el-form-item label="开发时间" class="inline-3">
+        <el-form-item label="开发时间" class="inline-3 timein">
           <el-date-picker
             v-model="form.startDevDate"
             type="year"
             format="yyyy"
             value-format="yyyy"
+            :default-value="form.startDate"
             placeholder="请选择开始时间">
           </el-date-picker>
           </el-form-item>
-          <el-form-item label="-" class="inline-3" style="margin-left: -43px;">
+          <el-form-item label="-" class="inline-3 timeout" style="margin-left: -43px;">
           <el-date-picker
             v-model="form.endDevDate"
             type="year"
             format="yyyy"
             value-format="yyyy"
+            :default-value="form.startDate"
             placeholder="请选择结束时间">
           </el-date-picker>
         </el-form-item>
-        <el-form-item label="园区类型 " class="inline-3" style="margin-left: -43px;">
-          <label slot="label">园区类型&nbsp;&nbsp;&nbsp;</label>
-          <el-select v-model="form.parkType" placeholder="请选择">
-            <el-option v-for="item in parkTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="建成时间" class="inline-3">
+        <el-form-item label="建成时间" class="inline-3 timein">
           <el-date-picker
             v-model="form.startCreateDate"
             type="year"
             format="yyyy"
             value-format="yyyy"
+            :default-value="form.startDate"
             placeholder="请选择开始时间">
           </el-date-picker>
           </el-form-item>
-          <el-form-item label="-" class="inline-3" style="margin-left: -43px;">
+          <el-form-item label="-" class="inline-3 timeout" style="margin-left: -43px;">
           <el-date-picker
             v-model="form.endCreateDate"
             type="year"
             format="yyyy"
             value-format="yyyy"
+            :default-value="form.startDate"
             placeholder="请选择结束时间">
           </el-date-picker>
         </el-form-item>
-        <el-form-item label="投资主体属性" class="inline-3" style="margin-left: -43px;">
+        <el-form-item label="园区类型 " class="inline-3">
+          <label slot="label">园区类型</label>
+          <el-select v-model="form.parkType" placeholder="请选择">
+            <el-option v-for="item in parkTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="投资主体属性" class="inline-3">
           <el-select v-model="form.devSubject" placeholder="请选择" style="width:93%;">
             <el-option v-for="item in devSubjectList" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
@@ -147,6 +151,7 @@ export default {
       operModeList: _D.operModeList,
       parkTypeList: _D.parkTypeList,
       form: {
+        startDate:new Date('2018'),
         parkName: '',
         position: [],
         province: '',
@@ -243,7 +248,7 @@ export default {
       this.$router.push({ path: `editProject/${row.projectid}`, query: { t: Date.now(), pagetype: 'list' } })
     },
     detailProject (row) {
-      let routeData = this.$router.resolve({ path: `detail/${row.projectid}`, query: { t: Date.now() } })
+      let routeData = this.$router.resolve({ path: `detail/${row.projectid}`, query: { t: Date.now(), pagetype: 'publish'  } })
       window.open(routeData.href, '_blank')
     },
     deleteProject (row) {
@@ -294,6 +299,12 @@ export default {
 .inline-3 {
   width: calc(33.333% - 30px);
   }
+.timein{
+  width:265px;
+}
+.timeout{
+  width:250px;
+}
 .empty{
   text-align: center;
   line-height: 300px;

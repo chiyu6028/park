@@ -19,8 +19,8 @@
         <el-col :span="6" class="info-li">用地面积：<span>{{item.uselandarea}}（ha）</span></el-col>
         <el-col :span="6" class="info-li">总建筑面积：<span>{{item.totalbuildarea}}（m²）</span></el-col>
         <el-col :span="6" class="info-li">容积率：<span>{{item.plotratio}}（%）</span></el-col>
-        <el-col :span="6" class="info-li">园区类型：<span v-if="parkTypeList[item.parktype]">{{parkTypeList[item.parktype].label}}</span></el-col>
-        <el-col :span="6" class="info-li">园区产值：<span>{{item.parkvalue}}园区产值（亿元）</span></el-col>
+        <el-col :span="6" class="info-li">园区类型：<span v-if="parkTypeList[item.parktype]">{{parkTypeList[item.parktype]}}</span></el-col>
+        <el-col :span="6" class="info-li">园区产值：<span>{{item.parkvalue}}（亿元）</span></el-col>
         <el-col :span="6" class="info-li">平均产值：<span>{{item.avgvalue}}（亿元/k㎡）</span></el-col>
         <el-col :span="6" class="info-li">就业人口：<span>{{item.employmentpeople}}（万人）</span></el-col>
         <el-col :span="6" class="info-li">企业数量：<span>{{item.enterprisenum}}（家）</span></el-col>
@@ -74,7 +74,7 @@ export default {
   data () {
     return {
       url: '/downloadFile?filePath=',
-      parkTypeList: _D.parkTypeList,
+      parkTypeList: _D.parkTypeObj,
       form: {
         neardes: '',
         parkNearGarden: [],
